@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/mnt/c/Users/acc/projects__/acubliss'
+let g:netrw_dirhist_2='/mnt/c/Users/acc/projects__/acubliss/core'
+let g:netrw_dirhist_3='/mnt/c/Users/acc/projects__/acubliss/core/tenants'
+let g:netrw_dirhist_4='/mnt/c/Users/acc/projects__/acubliss/core'
+let g:netrw_dirhist_5='/mnt/c/Users/acc/projects__/acubliss/core/tenants'
+let g:netrw_dirhist_6='/mnt/c/Users/acc/projects__/acubliss/core/tenants/viewsets'
