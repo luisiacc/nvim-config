@@ -1,4 +1,3 @@
-    "
     " autocmd FileType py,js,json,html,css,python,typescriptreact,typescript,javascriptreact,javascript let b:coc_suggest_disable = 1
     " lua << EOF
     "   local nvim_lsp = require('lspconfig')
@@ -39,18 +38,19 @@ else
 
     syntax enable
     filetype indent on
+    filetype plugin on
     set smartindent
     set autoindent
 
     source ~/.config/nvim/sets.vim
     source ~/.config/nvim/plugins.vim
+    source ~/.config/nvim/lua.vim
     source ~/.config/nvim/commands.vim
     source ~/.config/nvim/globals.vim
     source ~/.config/nvim/coc.vim
     source ~/.config/nvim/mappings.vim
     source ~/.config/nvim/windows.vim
     source ~/.config/nvim/schemes.vim
-    source ~/.config/nvim/lua.vim
 
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()

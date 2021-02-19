@@ -1,33 +1,34 @@
 {
-  "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],
-  "diagnostic.displayByAle": false,
-  "git.addedSign.hlGroup": "GitGutterAdd",
-  "git.enableGlobalStatus": false,
-  "git.changedSign.hlGroup": "GitGutterChange",
-  "git.removedSign.hlGroup": "GitGutterDelete",
-  "git.topRemovedSign.hlGroup": "GitGutterDelete",
-  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-  "git.changedSign.text": "▌",
-  "git.removedSign.text": "▌",
-  "git.addedSign.text": "▌",
-  "git.changeRemovedSign.text": "▌",
-  "git.topRemovedSign.text": "▌",
+    "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],
+    "diagnostic.displayByAle": false,
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.enableGlobalStatus": false,
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "git.changedSign.text": "▌",
+    "git.removedSign.text": "▌",
+    "git.addedSign.text": "▌",
+    "git.changeRemovedSign.text": "▌",
+    "git.topRemovedSign.text": "▌",
 
-  //explorer
-  "explorer.width": 40,
-  "explorer.file.showHiddenFiles": true,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.icon.enableVimDevicons": true,
-  "explorer.previewAction.onHover": false,
-  "explorer.keyMappings.global": {
-    "v": "open:vsplit"
-  },
-  "python.jediEnabled": false,
-  "python.autoComplete.extraPaths": ["./core"],
-  "python.autoComplete.showAdvancedMembers": true,
-  "python.autoComplete.addBrackets": true,
-  "pyright.disableOrganizeImports": true,
-  "pyright.disableCompletion": false,
-  "html.filetypes": ["html", "handlebars", "htmldjango", "django"],
-  "tsserver.disableAutomaticTypeAcquisition": true
+    //explorer
+    "explorer.width": 40,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.enableVimDevicons": true,
+    "explorer.previewAction.onHover": false,
+    "explorer.keyMappings.global": {
+        "v": "open:vsplit"
+    },
+    "html.filetypes": [
+        "html",
+        "handlebars",
+        "htmldjango",
+        "django",
+        "djangohtml"
+    ],
+    "html.format.enable": true,
+    "tsserver.disableAutomaticTypeAcquisition": true
 }

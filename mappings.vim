@@ -109,3 +109,11 @@ nmap <leader>lr :vert diffsplit #<CR>
 
 " todo
 nnoremap <leader>e :tabedit todo.md<cr>
+
+"floaterm terminal
+tnoremap jj <C-\><C-n>
+
+" nnoremap <leader>p :FloatermNew eval $(ssh-agent -s) && ssh-add ~/.ssh/r.txt 
+nnoremap <leader>p :FloatermToggle<CR>
+
+nnoremap <leader>js :set filetype=javascriptreact<CR>

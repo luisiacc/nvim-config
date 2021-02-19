@@ -9,29 +9,34 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
-
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'stsewd/fzf-checkout.vim'
-Plug 'fisadev/vim-isort'
+Plug 'antoinemadec/coc-fzf'
 
-Plug 'vim-test/vim-test'
+"python
+Plug 'fisadev/vim-isort'
+Plug 'tweekmonster/django-plus.vim'
+Plug 'vim-python/python-syntax'
+Plug 'psf/black', { 'branch': 'stable' }
+
+" javascript
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
-
+Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
 Plug 'jiangmiao/auto-pairs'
-Plug 'mattn/emmet-vim'
-
-Plug 'zirrostig/vim-schlepp'
-Plug 'jremmen/vim-ripgrep'
 Plug 'leafgarland/typescript-vim'
+Plug 'mlaursen/vim-react-snippets'
+
+Plug 'vim-test/vim-test'
+
+Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'tweekmonster/django-plus.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
@@ -40,12 +45,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'honza/vim-snippets'
-Plug 'mlaursen/vim-react-snippets'
-Plug 'vim-python/python-syntax'
-Plug 'psf/black', { 'branch': 'stable' }
-Plug 'psliwka/vim-smoothie'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'antoinemadec/coc-fzf'
 Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-surround'
@@ -69,11 +69,16 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
+Plug 'mhartington/oceanic-next'
+
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'ThePrimeagen/vim-be-good'
+Plug 'voldikss/vim-floaterm'
+
+" Plug 'codota/tabnine-vim'
 call plug#end()
 
 " for coc to work with scss files

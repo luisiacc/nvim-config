@@ -9,7 +9,7 @@ set background=dark
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_invert_selection='0'
 colorscheme gruvbox
-let g:airline_theme='badwolf'
+let g:airline_theme='base16_gruvbox_dark_hard'
 " colorscheme material
 " let g:material_theme_style='palenight'
 " let g:airline_theme = 'material'
@@ -28,7 +28,7 @@ highlight TSConstant guifg=#D4879C
 highlight TSConstBuiltin guifg=#D4879C
 highlight TSVariable guifg=#72A699
 highlight TSKeyword guifg=#fb4934
-highlight TSField guifg=#EBDBB2
+highlight TSField guifg=#DEDEDE
 
 highlight ColorColumn ctermbg=0 guibg=#252525
 hi LineNr ctermbg=NONE guibg=NONE

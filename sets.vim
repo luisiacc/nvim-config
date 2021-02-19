@@ -2,6 +2,11 @@ set nocompatible
 set encoding=utf-8
 set mouse=a
 set synmaxcol=500
+set foldlevelstart=20
+
+set conceallevel=0
+let g:json_ignore_conceal=1
+let g:html_ignore_conceal=1
 
 "open local vimrc first
 set exrc 
@@ -16,7 +21,7 @@ set ttimeoutlen=0
 "
 set mmp=2000000
 
-set guicursor=
+" set guicursor=
 set scrolloff=5
 set hidden
 
@@ -31,9 +36,6 @@ set magic
 " set shiftwidth=4
 set expandtab
 set clipboard+=unnamedplus
-
-set smartindent
-set autoindent
 
 set nu rnu
 set nowrap

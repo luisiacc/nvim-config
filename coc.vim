@@ -146,4 +146,3 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 nmap <Leader>cc <Plug>(coc-calc-result-append)
 " replace result on current expression
 nmap <Leader>cr <Plug>(coc-calc-result-replace)
-
