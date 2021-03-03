@@ -49,6 +49,7 @@ else
     source ~/.config/nvim/globals.vim
     source ~/.config/nvim/coc.vim
     source ~/.config/nvim/mappings.vim
+    " source ~/.config/nvim/telescope.vim
     source ~/.config/nvim/windows.vim
     source ~/.config/nvim/schemes.vim
 

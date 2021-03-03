@@ -12,6 +12,11 @@ Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
@@ -40,7 +45,6 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-"Plug 'hardcoreplayers/spaceline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 

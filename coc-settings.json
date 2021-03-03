@@ -12,11 +12,13 @@
     "git.addedSign.text": "▌",
     "git.changeRemovedSign.text": "▌",
     "git.topRemovedSign.text": "▌",
+    "python.pythonPath": "python3.0",
 
     //explorer
     "explorer.width": 40,
     "explorer.file.showHiddenFiles": true,
     "explorer.icon.enableNerdfont": true,
+    "explorer.git.enable": true,
     "explorer.icon.enableVimDevicons": true,
     "explorer.previewAction.onHover": false,
     "explorer.keyMappings.global": {

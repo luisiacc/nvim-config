@@ -3,6 +3,8 @@ lua << EOF
       highlight = {
         enable = true,              -- false will disable the whole extension
       },
+      incremental_selection = {enable = true},
+      textobjects = {enable = true},
       playground = {
         enable = true,
         disable = {},
