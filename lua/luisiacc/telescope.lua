@@ -1,4 +1,34 @@
 local actions = require('telescope.actions')
+
+local full_theme = {
+  winblend = 20;
+  width = 0.8;
+  show_line = false;
+  prompt_prefix = 'TS Symbols>';
+  prompt_title = '';
+  results_title = '';
+  preview_title = '';
+  borderchars = {
+    prompt = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' };
+    results = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' };
+    preview = {'▀', '▐', '▄', '▌', '▛', '▜', '▟', '▙' };
+  };
+}
+
+local no_preview = function()
+  return require('telescope.themes').get_dropdown({
+    borderchars = {
+      { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+      prompt = {"─", "│", " ", "│", '┌', '┐', "│", "│"},
+      results = {"─", "│", "─", "│", "├", "┤", "┘", "└"},
+      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+    },
+    width = 0.8,
+    previewer = false,
+    prompt_title = false
+  })
+end
+
 require('telescope').setup {
     defaults = {
         vimgrep_arguments = {
@@ -24,6 +54,7 @@ require('telescope').setup {
                 ["<C-q>"] = actions.send_to_qflist,
                 ["<A-j>"] = actions.move_selection_next,
                 ["<A-k>"] = actions.move_selection_previous,
+                ["<esc>"] = actions.close,
             },
         }
     },

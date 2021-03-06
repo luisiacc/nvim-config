@@ -81,7 +81,7 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'voldikss/vim-floaterm'
-
+Plug 'jmckiern/vim-shoot', { 'do': '\"./install.py\" chromedriver' }
 " Plug 'codota/tabnine-vim'
 call plug#end()
 

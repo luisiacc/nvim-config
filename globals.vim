@@ -67,7 +67,7 @@ let g:fzf_tags_command = 'ctags -R --exclude=node_modules --exclude=.env --exclu
 " let $FZF_DEFAULT_OPTS="--reverse -m --ansi --preview 'bat -p --color always {}'"
 let $FZF_DEFAULT_OPTS = "--reverse -m"
 
-command! -bang -nargs=* Ag call fzf#vim#grep('rg --column --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
+command! -bang -nargs=* Ag call fzf#vim#grep('rg --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)
 
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
@@ -79,3 +79,6 @@ let g:NERDTreeHijackNetrw=0
 
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=2
+
+" let g:indentLine_char_list = ['|', '¦', '┆', '┊'], │, ⎸, or ▏
+let g:indentLine_char = '│'

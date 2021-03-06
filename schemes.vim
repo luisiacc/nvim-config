@@ -25,18 +25,25 @@ set t_Co=256
 " hi! link TSKeyword GruvBoxRed
 "
 " gruvbox stuff
-highlight TSConstant guifg=#D4879C ctermfg=0
+highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
 highlight TSConstBuiltin guifg=#D4879C ctermfg=0
 highlight TSVariable guifg=#72A699 ctermfg=0
 highlight TSKeyword guifg=#fb4934 ctermfg=0
 highlight TSField guifg=#DEDEDE ctermfg=0
 
+highlight DiffAdd guifg=#082708 guibg=#284230
+highlight DiffDelete guifg=#472d2d guibg=#472d2d
+highlight DiffText guifg=#202020 guibg=#776D19
+highlight DiffChange guifg=#AC9D25
+
 highlight ColorColumn ctermbg=45 guibg=#252525
-" hi LineNr ctermbg=NONE guibg=NONE
 
 let g:gruvbox_italic=1
 "let g:onedark_hide_endofbuffer = 1
 "let g:onedark_terminal_italics = 1
+"new
+"new
 
 " set background transparent
-" hi Normal guibg=NONE ctermbg=NONE
+hi Normal guibg=NONE ctermbg=NONE
+hi LineNr ctermbg=NONE guibg=NONE

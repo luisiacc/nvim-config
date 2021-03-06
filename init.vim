@@ -36,9 +36,9 @@ else
     set runtimepath^=~/.vim runtimepath+=~/.vim/after
     let &packpath = &runtimepath
 
-    syntax enable
+    syntax off
     filetype indent on
-    filetype plugin on
+    filetype plugin off
     set smartindent
     set autoindent
 
