@@ -11,6 +11,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'norcalli/snippets.nvim'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -26,7 +28,7 @@ Plug 'antoinemadec/coc-fzf'
 Plug 'fisadev/vim-isort'
 Plug 'tweekmonster/django-plus.vim'
 Plug 'vim-python/python-syntax'
-Plug 'psf/black', { 'branch': 'stable' }
+" Plug 'psf/black', { 'branch': 'stable' }
 
 " javascript
 Plug 'maxmellon/vim-jsx-pretty'
@@ -45,13 +47,15 @@ Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 Plug 'honza/vim-snippets'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/goyo.vim'
 
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
@@ -78,7 +82,9 @@ Plug 'mhartington/oceanic-next'
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons'
 
+Plug 'mhinz/vim-startify'
 Plug 'ThePrimeagen/vim-be-good'
 Plug 'voldikss/vim-floaterm'
 Plug 'AndrewRadev/tagalong.vim'
@@ -91,3 +97,8 @@ if exists("g:loaded_webdevicons")
     call webdevicons#refresh()
 endif
 
+" Just set :DB w:db = mysql://user:pass@host/dbname<CR>, write your query, and run the current buffer with :DB<CR>.
+
+" What makes it really nice, is that the :DB<CR> command supports visual selections, meaning you can have many queries in the same buffer, select the one you want to execute and do :DB<CR>.
+
+" I added a mapping: vmap <Leader>D :DB<CR> that allows me to just tap <Space>D to run the visually selected query.

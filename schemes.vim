@@ -1,6 +1,27 @@
 " hi! Normal ctermbg=NONE guibg=NONE 
 " hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
 
+" lightline
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'filename', "modified" ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveStatusline'
+      \ },
+      \ }
+autocmd VimEnter * call SetupLightlineColors()
+function SetupLightlineColors() abort
+  " transparent background in statusbar
+  let l:palette = lightline#palette()
+
+  let l:palette.normal.middle = [ [ '#313131', '#303030', '256', '1' ] ]
+  let l:palette.inactive.middle = l:palette.normal.middle
+  let l:palette.tabline.middle = l:palette.normal.middle
+
+  call lightline#colorscheme()
+endfunction
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
 
@@ -45,5 +66,6 @@ let g:gruvbox_italic=1
 "new
 
 " set background transparent
-hi Normal guibg=NONE ctermbg=NONE
-hi LineNr ctermbg=NONE guibg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
+" hi LineNr ctermbg=NONE guibg=NONE
+

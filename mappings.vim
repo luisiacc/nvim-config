@@ -115,3 +115,31 @@ tnoremap jj <C-\><C-n>
 nnoremap <leader>p :FloatermToggle<CR>
 
 nnoremap <leader>js :set filetype=javascriptreact<CR>
+
+nnoremap <C-x> :cnext<CR>
+nnoremap <C-z> :cprev<CR>
+nnoremap <C-q> :call ToggleQFList(1)<CR>
+nnoremap <C-m> :call ToggleQFList(0)<CR>
+
+let g:acc_qf_l = 0
+let g:acc_qf_g = 0
+
+fun! ToggleQFList(global)
+    if g:acc_qf_g == 1 || g:acc_qf_l == 1
+        if a:global
+            let g:acc_qf_g = 0
+            cclose
+        else
+            let g:acc_qf_l = 0
+            lclose
+        endif
+    else
+        if a:global
+            let g:acc_qf_g = 1
+            copen
+        else
+            let g:acc_qf_l = 1
+            lopen
+        endif
+    endif
+endfun

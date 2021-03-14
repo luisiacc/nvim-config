@@ -12,7 +12,7 @@
     "git.addedSign.text": "▌",
     "git.changeRemovedSign.text": "▌",
     "git.topRemovedSign.text": "▌",
-    "python.pythonPath": "python3.0",
+    "python.pythonPath": "python3.9",
 
     //explorer
     "explorer.width": 40,

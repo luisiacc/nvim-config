@@ -3,6 +3,7 @@ set encoding=utf-8
 set mouse=a
 set synmaxcol=500
 set foldlevelstart=20
+set noshowmode
 
 set conceallevel=0
 let g:json_ignore_conceal=1

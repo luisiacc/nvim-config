@@ -31,13 +31,13 @@ end
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
-    prompt_position = "bottom",
+    prompt_position = "top",
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
-    sorting_strategy = "descending",
+    sorting_strategy = "ascending",
     layout_strategy = "horizontal",
     layout_defaults = {
       horizontal = {

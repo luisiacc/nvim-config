@@ -17,12 +17,15 @@ else
     set smartindent
     set autoindent
 
-    source ~/.config/nvim/sets.vim
     source ~/.config/nvim/plugins.vim
+    source ~/.config/nvim/sets.vim
     source ~/.config/nvim/lua.vim
     source ~/.config/nvim/commands.vim
     source ~/.config/nvim/globals.vim
     source ~/.config/nvim/coc.vim
+    source ~/.config/nvim/coc-explorer.vim
+    " source ~/.config/nvim/lsp-config.vim
+    " luafile ~/.config/nvim/compe.lua
     source ~/.config/nvim/mappings.vim
     source ~/.config/nvim/telescope.vim
     source ~/.config/nvim/windows.vim

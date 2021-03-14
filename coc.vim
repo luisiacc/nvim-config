@@ -24,7 +24,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
-inoremap <silent><expr> <c-space> coc#refresh()
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
@@ -34,7 +37,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>ci <Plug>(coc-git-chunkinfo)
 nmap <leader>cr :CocRestart
-nmap <leader>ca <Plug>(coc-codeaction)
+nmap <leader>ca <Plug>(coc-codeaction-cursor)
 vmap <leader>ca <Plug>(coc-codeaction-selected)
 xmap <leader>ca <Plug>(coc-codeaction-selected)
 
@@ -42,6 +45,13 @@ xmap <leader>ca <Plug>(coc-codeaction-selected)
 nmap <leader>ne <Plug>(coc-diagnostic-next-error)
 nmap <leader>pe <Plug>(coc-diagnostic-prev-error)
 
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
 
 " search tags with this
 nmap <silent> <leader>gd g<C-]>
@@ -51,55 +61,13 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <NUL> coc#refresh()
 else
     inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 "search workspace symbols
 nnoremap <silent><nowait> <space>qs  :<C-u>CocList -I symbols<cr>
-
-"coc explorer stuff
-
-let g:coc_explorer_global_presets = {
-            \   '.vim': {
-            \     'root-uri': '~/.vim',
-            \   },
-            \   'tab': {
-            \     'position': 'tab',
-            \     'quit-on-open': v:true,
-            \   },
-            \   'floating': {
-            \     'position': 'floating',
-            \     'open-action-strategy': 'sourceWindow',
-            \     'floating-width': 80,
-            \     'floating-height': 28,
-            \   },
-            \   'floatingTop': {
-            \     'position': 'floating',
-            \     'floating-position': 'center-top',
-            \     'open-action-strategy': 'sourceWindow',
-            \   },
-            \   'floatingLeftside': {
-            \     'position': 'floating',
-            \     'floating-position': 'left-center',
-            \     'floating-width': 50,
-            \     'open-action-strategy': 'sourceWindow',
-            \   },
-            \   'floatingRightside': {
-            \     'position': 'floating',
-            \     'floating-position': 'right-center',
-            \     'floating-width': 50,
-            \     'open-action-strategy': 'sourceWindow',
-            \   },
-            \   'simplify': {
-            \     'file-child-template': '[selection | clip | 1] [indent][icon | 1] [filename omitCenter 1]'
-            \   }
-            \}
-
-" Use preset argument to open it
-nmap <space>ce :CocCommand explorer<CR>
-nmap <space>qe :CocCommand explorer --preset floating<CR>
-
 " Mappings for CoCList
 " Show all diagnostics.
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
