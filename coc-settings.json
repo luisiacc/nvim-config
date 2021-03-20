@@ -32,5 +32,33 @@
         "djangohtml"
     ],
     "html.format.enable": true,
-    "tsserver.disableAutomaticTypeAcquisition": true
+    "tsserver.disableAutomaticTypeAcquisition": true,
+    "suggest.completionItemKindLabels": {
+        "keyword": "",
+        "variable": "",
+        "value": "",
+        "operator": "Ψ",
+        "constructor": "",
+        "function": "ƒ",
+        "reference": "渚",
+        "constant": "",
+        "method": "",
+        "struct": "פּ",
+        "class": "",
+        "interface": "",
+        "text": "",
+        "enum": "",
+        "enumMember": "",
+        "module": "",
+        "color": "",
+        "property": "",
+        "field": "料",
+        "unit": "",
+        "event": "鬒",
+        "file": "",
+        "folder": "",
+        "snippet": "",
+        "typeParameter": "",
+        "default": ""
+    }
 }
