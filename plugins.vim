@@ -13,6 +13,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'norcalli/snippets.nvim'
+Plug 'p00f/nvim-ts-rainbow'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -23,6 +24,7 @@ Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'antoinemadec/coc-fzf'
+Plug 'liuchengxu/vista.vim'
 
 "python
 Plug 'fisadev/vim-isort'
@@ -49,7 +51,9 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+Plug 'Iron-E/nvim-highlite'
 
 Plug 'honza/vim-snippets'
 Plug 'ludovicchabant/vim-gutentags'
@@ -83,6 +87,11 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'akinsho/nvim-bufferline.lua'
+" Plug 'romgrk/barbar.nvim'
+" Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'bagrat/vim-buffet'
+Plug 'crispgm/nvim-tabline'
 
 Plug 'mhinz/vim-startify'
 Plug 'ThePrimeagen/vim-be-good'
@@ -102,3 +111,14 @@ endif
 " What makes it really nice, is that the :DB<CR> command supports visual selections, meaning you can have many queries in the same buffer, select the one you want to execute and do :DB<CR>.
 
 " I added a mapping: vmap <Leader>D :DB<CR> that allows me to just tap <Space>D to run the visually selected query.
+
+" :lua << EOF
+"     require'bufferline'.setup{
+"         options = {
+"             show_tab_indicators = true,
+"             enforce_regular_tabs = true,
+"             always_show_bufferline = true
+"         }
+"     }
+" EOF
+

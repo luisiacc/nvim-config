@@ -114,3 +114,6 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 nmap <Leader>cc <Plug>(coc-calc-result-append)
 " replace result on current expression
 nmap <Leader>cr <Plug>(coc-calc-result-replace)
+
+" autocmd User CocOpenFloat call nvim_win_set_config(g:coc_last_float_win, {'relative': 'editor', 'row': 0, 'col': 0})
+" autocmd User CocOpenFloat call nvim_win_set_width(g:coc_last_float_win, 9999)

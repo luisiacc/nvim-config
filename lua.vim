@@ -5,6 +5,7 @@ lua << EOF
       },
       incremental_selection = {enable = true},
       textobjects = {enable = true},
+      rainbow = {enable = true},
       playground = {
         enable = true,
         disable = {},
@@ -14,3 +15,4 @@ lua << EOF
     }
 EOF
 
+lua require'tabline'.setup{}

@@ -2,26 +2,28 @@
 " hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
 
 " lightline
-let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'filename', "modified" ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveStatusline'
-      \ },
-      \ }
-autocmd VimEnter * call SetupLightlineColors()
-function SetupLightlineColors() abort
-  " transparent background in statusbar
-  let l:palette = lightline#palette()
+" let g:lightline = {
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'gitbranch', 'filename', "modified" ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'gitbranch': 'FugitiveStatusline'
+"       \ },
+"       \ }
+" autocmd VimEnter * call SetupLightlineColors()
+" function SetupLightlineColors() abort
+"   " transparent background in statusbar
+"   let l:palette = lightline#palette()
 
-  let l:palette.normal.middle = [ [ '#313131', '#303030', '256', '1' ] ]
-  let l:palette.inactive.middle = l:palette.normal.middle
-  let l:palette.tabline.middle = l:palette.normal.middle
+"   let l:palette.normal.middle = [ [ '#313131', '#303030', '256', '1' ] ]
+"   let l:palette.inactive.middle = l:palette.normal.middle
+"   let l:palette.tabline.middle = l:palette.normal.middle
 
-  call lightline#colorscheme()
-endfunction
+"   call lightline#colorscheme()
+" endfunction
+
+
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
 
@@ -49,6 +51,8 @@ set t_Co=256
 highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
 highlight TSConstBuiltin guifg=#D4879C ctermfg=0
 highlight TSVariable guifg=#72A699 ctermfg=0
+highlight TSTag guifg=#8ec07c
+highlight TSType guifg=#8ec07c
 highlight TSKeyword guifg=#fb4934 ctermfg=0
 highlight TSField guifg=#DEDEDE ctermfg=0
 
@@ -66,6 +70,6 @@ let g:gruvbox_italic=1
 "new
 
 " set background transparent
-" hi Normal guibg=NONE ctermbg=NONE
-" hi LineNr ctermbg=NONE guibg=NONE
+" hi Normal guibg=#252525 ctermbg=NONE
+" hi LineNr ctermbg=NONE guibg=#252525
 
