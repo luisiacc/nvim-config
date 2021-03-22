@@ -25,6 +25,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'liuchengxu/vista.vim'
+Plug 'andrejlevkovitch/vim-lua-format'
 
 "python
 Plug 'fisadev/vim-isort'
