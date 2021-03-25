@@ -26,7 +26,7 @@ else
     source ~/.config/nvim/coc-explorer.vim
     " source ~/.config/nvim/lsp-config.vim
     " luafile ~/.config/nvim/compe.lua
-    luafile ~/.config/nvim/galaxyline.lua
+    " luafile ~/.config/nvim/galaxyline.lua
     " source ~/.config/nvim/mpbtl.vim
     source ~/.config/nvim/lua-format.vim
     source ~/.config/nvim/mappings.vim
@@ -37,5 +37,8 @@ else
     set foldmethod=expr
     set foldexpr=nvim_treesitter#foldexpr()
 
+    set guifont=MonoLisa\ Nerd\ Font:h11:w500
+    set lsp=6
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
