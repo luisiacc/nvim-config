@@ -62,6 +62,7 @@ highlight DiffText guifg=#202020 guibg=#776D19
 highlight DiffChange guifg=#AC9D25
 
 highlight ColorColumn ctermbg=45 guibg=#252525
+hi MatchParen guibg=#454545
 
 let g:gruvbox_italic=1
 "let g:onedark_hide_endofbuffer = 1
