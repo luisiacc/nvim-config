@@ -1,6 +1,7 @@
 {
     "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],
     "diagnostic.displayByAle": false,
+    "coc.preferences.formatOnType": false,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.enableGlobalStatus": false,
     "git.changedSign.hlGroup": "GitGutterChange",
@@ -13,7 +14,7 @@
     "git.changeRemovedSign.text": "▌",
     "git.topRemovedSign.text": "▌",
     "python.pythonPath": "python3.9",
-
+    "emmet.showSuggestionsAsSnippets": false,
     //explorer
     "explorer.width": 40,
     "explorer.file.showHiddenFiles": true,
