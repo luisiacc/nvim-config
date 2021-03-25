@@ -7,14 +7,6 @@ endif
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-treesitter/playground'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'hrsh7th/nvim-compe'
-Plug 'norcalli/snippets.nvim'
-Plug 'p00f/nvim-ts-rainbow'
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -26,6 +18,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'antoinemadec/coc-fzf'
 Plug 'liuchengxu/vista.vim'
 Plug 'andrejlevkovitch/vim-lua-format'
+Plug 'kevinhwang91/nvim-bqf'
 
 "python
 Plug 'fisadev/vim-isort'
@@ -33,28 +26,32 @@ Plug 'tweekmonster/django-plus.vim'
 Plug 'vim-python/python-syntax'
 " Plug 'psf/black', { 'branch': 'stable' }
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'nvim-lua/completion-nvim'
+" Plug 'hrsh7th/nvim-compe'
+" Plug 'norcalli/snippets.nvim'
+" Plug 'p00f/nvim-ts-rainbow'
+
 " javascript
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'leafgarland/typescript-vim'
 Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
 Plug 'jremmen/vim-ripgrep'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'itchyny/lightline.vim'
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-Plug 'Iron-E/nvim-highlite'
 
 Plug 'honza/vim-snippets'
 Plug 'ludovicchabant/vim-gutentags'
@@ -93,6 +90,12 @@ Plug 'kyazdani42/nvim-web-devicons'
 " Plug 'kyazdani42/nvim-tree.lua'
 " Plug 'bagrat/vim-buffet'
 Plug 'crispgm/nvim-tabline'
+Plug 'hoob3rt/lualine.nvim'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'itchyny/lightline.vim'
+" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
+" Plug 'Iron-E/nvim-highlite'
 
 Plug 'mhinz/vim-startify'
 Plug 'ThePrimeagen/vim-be-good'
@@ -123,3 +126,19 @@ endif
 "     }
 " EOF
 
+lua << EOF
+require('nvim-autopairs').setup()
+require('lualine').setup{
+    options = {
+        theme = 'gruvbox',
+        section_separators = {'', ''},
+        component_separators = {'', ''}
+    }
+}
+
+require'tabline'.setup{}
+EOF
+
+let g:vim_jsx_pretty_disable_js = 1
+let g:vim_jsx_pretty_template_tags = []
+let g:vim_jsx_pretty_colorful_config = 0
