@@ -15,14 +15,14 @@
 " function SetupLightlineColors() abort
 "   " transparent background in statusbar
 "   let l:palette = lightline#palette()
-
+ 
 "   let l:palette.normal.middle = [ [ '#313131', '#303030', '256', '1' ] ]
 "   let l:palette.inactive.middle = l:palette.normal.middle
 "   let l:palette.tabline.middle = l:palette.normal.middle
-
+ 
 "   call lightline#colorscheme()
 " endfunction
-
+ 
 
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256

@@ -22,8 +22,9 @@ Plug 'kevinhwang91/nvim-bqf'
 
 "python
 Plug 'fisadev/vim-isort'
+" Plug 'brentyi/isort.vim'
 Plug 'tweekmonster/django-plus.vim'
-Plug 'vim-python/python-syntax'
+" Plug 'vim-python/python-syntax'
 " Plug 'psf/black', { 'branch': 'stable' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -131,7 +132,7 @@ require('nvim-autopairs').setup()
 require('lualine').setup{
     options = {
         theme = 'gruvbox',
-        section_separators = {'', ''},
+        section_separators = {'', ''},
         component_separators = {'', ''}
     }
 }
@@ -139,6 +140,8 @@ require('lualine').setup{
 require'tabline'.setup{}
 EOF
 
+        " section_separators = {'', ''},
+        " component_separators = {'', ''}
 let g:vim_jsx_pretty_disable_js = 1
 let g:vim_jsx_pretty_template_tags = []
 let g:vim_jsx_pretty_colorful_config = 0
