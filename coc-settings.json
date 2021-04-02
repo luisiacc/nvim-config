@@ -13,7 +13,6 @@
     "git.addedSign.text": "▌",
     "git.changeRemovedSign.text": "▌",
     "git.topRemovedSign.text": "▌",
-    "python.pythonPath": "python3.9",
     "emmet.showSuggestionsAsSnippets": false,
     //explorer
     "explorer.width": 40,

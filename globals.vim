@@ -36,6 +36,8 @@ let g:prettier#config#trailing_comma = 'all'
 let g:prettier#autoformat = 0
 
 let g:jsx_ext_required=0
+let g:vim_jsx_pretty_enable_jsx_highlight = 0
+let g:vim_jsx_pretty_detail = 0
 
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = { 'typescript': 'jsxRegion,tsxRegion', 'typescriptreact': 'jsxRegion,tsxRegion', 'typescript.tsx': 'jsxRegion,tsxRegion', 'javascript.jsx': 'jsxRegion', 'javascriptreact': 'jsxRegion' }
@@ -90,3 +92,5 @@ let g:indentLine_char = '│'
 let g:airline_highlighting_cache = 1
 let g:airline#extensions#disable_rtp_load = 1
 let g:airline_extensions = ['branch', 'tabline']
+
+let g:indentLine_fileTypeExclude = ['coc-explorer']

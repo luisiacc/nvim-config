@@ -8,3 +8,5 @@ augroup vimrc_autocmd
     autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml CocPrettier
     autocmd BufNewFile,BufRead *.vim,*.vimrc silent execute ':setlocal syntax=vim'
 augroup END
+
+command! -range=% RIsort :<line1>,<line2>! isort -
