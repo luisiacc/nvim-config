@@ -12,10 +12,10 @@ else
     let &packpath = &runtimepath
 
     syntax off
-    filetype indent on
+    filetype indent off
     filetype plugin off
-    set smartindent
-    set autoindent
+    " set smartindent
+    " set autoindent
 
     source ~/.config/nvim/plugins.vim
     source ~/.config/nvim/sets.vim

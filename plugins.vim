@@ -36,7 +36,7 @@ Plug 'nvim-treesitter/playground'
 " Plug 'p00f/nvim-ts-rainbow'
 
 " javascript
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'pangloss/vim-javascript'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
@@ -145,3 +145,4 @@ EOF
 let g:vim_jsx_pretty_disable_js = 1
 let g:vim_jsx_pretty_template_tags = []
 let g:vim_jsx_pretty_colorful_config = 0
+let g:python_highlight_space_errors = 0

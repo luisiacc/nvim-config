@@ -119,6 +119,8 @@ nnoremap <C-z> :cprev<CR>
 nnoremap <C-q> :call ToggleQFList()<CR>
 nnoremap <C-e> :call ToggleLocList()<CR>
 
+nnoremap <leader>rs :setlocal syntax=OFF
+
 let g:acc_loc_list = 0
 let g:acc_quickfix_list = 0
 

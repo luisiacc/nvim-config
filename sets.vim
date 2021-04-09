@@ -5,7 +5,6 @@ set synmaxcol=500
 set foldlevelstart=20
 set noshowmode
 
-set conceallevel=0
 let g:json_ignore_conceal=1
 let g:html_ignore_conceal=1
 
