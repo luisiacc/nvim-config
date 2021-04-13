@@ -74,13 +74,14 @@ Plug 'Th3Whit3Wolf/onebuddy'
 Plug 'ntk148v/vim-horizon'
 Plug 'rakr/vim-one'
 " Plug 'joshdick/onedark.vim'
-Plug 'artanikin/vim-synthwave84'
+" Plug 'artanikin/vim-synthwave84'
 " Plug 'arcticicestudio/nord-vim' 
-Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/edge'
+" Plug 'sainnhe/gruvbox-material'
+" Plug 'sainnhe/edge'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'mhartington/oceanic-next'
+Plug 'embark-theme/vim', { 'as': 'embark' }
 
 Plug 'editorconfig/editorconfig-vim'
 
