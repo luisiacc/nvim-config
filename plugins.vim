@@ -77,7 +77,7 @@ Plug 'rakr/vim-one'
 " Plug 'artanikin/vim-synthwave84'
 " Plug 'arcticicestudio/nord-vim' 
 " Plug 'sainnhe/gruvbox-material'
-" Plug 'sainnhe/edge'
+Plug 'sainnhe/edge'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'mhartington/oceanic-next'
@@ -133,8 +133,8 @@ require('nvim-autopairs').setup()
 require('lualine').setup{
     options = {
         theme = 'gruvbox',
-        section_separators = {'', ''},
-        component_separators = {'', ''}
+        section_separators = {'', ''},
+        component_separators = {'', ''}
     }
 }
 
