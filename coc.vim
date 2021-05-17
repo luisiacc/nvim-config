@@ -37,6 +37,10 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>ci <Plug>(coc-git-chunkinfo)
+
+nmap <leader>nc <Plug>(coc-git-nextchunk)
+nmap <leader>pc <Plug>(coc-git-prevchunk)
+
 nmap <leader>cr :CocRestart
 nmap <leader>ca <Plug>(coc-codeaction-cursor)
 vmap <leader>ca <Plug>(coc-codeaction-selected)
@@ -118,3 +122,6 @@ nmap <Leader>cr <Plug>(coc-calc-result-replace)
 
 " autocmd User CocOpenFloat call nvim_win_set_config(g:coc_last_float_win, {'relative': 'editor', 'row': 0, 'col': 0})
 " autocmd User CocOpenFloat call nvim_win_set_width(g:coc_last_float_win, 9999)
+
+"node version
+let g:node_coc_path = '/home/acc/.nvm/versions/node/v16.0.0/bin/node'
