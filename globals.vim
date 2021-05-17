@@ -66,7 +66,7 @@ let $FZF_DEFAULT_COMMAND="rg --files --hidden -g '!{.git,node_modules,.env}/*'"
 let g:fzf_layout = {'window': { 'width': 0.9, 'height': 0.9 } }
 let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 let g:fzf_tags_command = 'ctags -R --exclude=node_modules --exclude=.env --exclude=.git'
-let $FZF_DEFAULT_OPTS="--reverse -m --ansi --preview 'bat -p --color always {}'"
+let $FZF_DEFAULT_OPTS="--reverse -m --ansi"
 " let $FZF_DEFAULT_OPTS = "--reverse -m"
 
 " command! -bang -nargs=* Ag call fzf#vim#grep('rg --no-heading --hidden --color=always --smart-case -- '.shellescape(<q-args>), 1, fzf#vim#with_preview(), <bang>0)

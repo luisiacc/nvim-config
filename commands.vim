@@ -8,7 +8,7 @@ augroup vimrc_autocmd
     autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml CocPrettier
     autocmd BufNewFile,BufRead *.vim,*.vimrc setlocal syntax=vim
     autocmd FileType netrw setlocal syntax=netrw
-    autocmd BufEnter *.js,*.jsx,*.py,*.html silent execute ':setlocal syntax=OFF'
+    autocmd BufEnter *.js,*.jsx,*.py silent execute ':setlocal syntax=OFF'
 augroup END
 
 command! -range=% RIsort :<line1>,<line2>! isort -
