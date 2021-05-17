@@ -13,6 +13,6 @@ autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
 lua require'lspconfig'.pyright.setup{}
 lua require'lspconfig'.tsserver.setup{}
-lua require'snippets'.use_suggested_mappings()
+"lua require'snippets'.use_suggested_mappings()
 
 

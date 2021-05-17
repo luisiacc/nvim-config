@@ -34,11 +34,14 @@ else
     source ~/.config/nvim/windows.vim
     source ~/.config/nvim/schemes.vim
 
-    set foldmethod=expr
-    set foldexpr=nvim_treesitter#foldexpr()
+    " set foldmethod=expr
+    " set foldexpr=nvim_treesitter#foldexpr()
 
-    set guifont=MonoLisa\ Nerd\ Font:h11:w500
-    set lsp=6
+    set guifont=Hack\ NF:h15:w500
+    set linespace=8
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+    let g:neovide_transparency=0.95
+    let g:neovide_cursor_animation_length=0.08
 endif
 

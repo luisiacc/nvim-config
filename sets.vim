@@ -27,7 +27,7 @@ set hidden
 
 set noerrorbells
 set diffopt+=vertical
-set nocursorline
+set cursorline
 set autoread
 set showcmd
 set showmatch
