@@ -129,19 +129,21 @@ endif
 "     }
 " EOF
 
+" require('lualine').setup{
+"     options = {
+"         theme = 'gruvbox',
+"         section_separators = {'', ''},
+"         component_separators = {'', ''}
+"     }
+" }
+" require'tabline'.setup{}
+
+luafile ~/.config/nvim/lualine.lua
+source ~/.config/nvim/tabline.vim
+
 lua << EOF
 require('nvim-autopairs').setup()
-require('lualine').setup{
-    options = {
-        theme = 'gruvbox',
-        section_separators = {'', ''},
-        component_separators = {'', ''}
-    }
-}
-
-require'tabline'.setup{}
 EOF
-
         " section_separators = {'', ''},
         " component_separators = {'', ''}
 let g:vim_jsx_pretty_disable_js = 1
