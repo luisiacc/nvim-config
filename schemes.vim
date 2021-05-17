@@ -50,7 +50,7 @@ set t_Co=256
 " gruvbox stuff
 highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
 highlight TSConstBuiltin guifg=#D4879C ctermfg=0
-highlight TSVariable guifg=#72A699 ctermfg=0
+highlight TSVariable guifg=#99C6BA ctermfg=0
 highlight TSTag guifg=#8ec07c
 highlight TSType guifg=#8ec07c
 highlight TSKeyword guifg=#fb4934 ctermfg=0
@@ -61,7 +61,7 @@ highlight DiffDelete guifg=#472d2d guibg=#472d2d
 highlight DiffText guifg=#202020 guibg=#776D19
 highlight DiffChange guifg=#AC9D25
 
-highlight ColorColumn ctermbg=45 guibg=#252A33
+highlight ColorColumn ctermbg=45 guibg=#252525
 hi MatchParen guibg=#454545
 
 let g:gruvbox_italic=1
@@ -70,7 +70,8 @@ let g:gruvbox_italic=1
 "new
 "new
 
+hi Normal guisp=#aaa
 " set background transparent
-" hi Normal guibg=#252525 ctermbg=NONE
-" hi LineNr ctermbg=NONE guibg=#252525
+" hi Normal guibg=NONE ctermbg=NONE
+" hi LineNr ctermbg=NONE guibg=NONE
 

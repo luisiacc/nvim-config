@@ -50,6 +50,7 @@ require('telescope').setup{
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {".venv", "node_modules"},
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    scroll_strategy = nil,
     shorten_path = true,
     winblend = 0,
     width = 0.75,
@@ -77,10 +78,16 @@ require('telescope').setup{
     }
   },
   extensions = {
-      fzy_native = {
-          override_generic_sorter = true,
-          override_file_sorter = true,
-      }
+      -- fzy_native = {
+      --     override_generic_sorter = false,
+      --     override_file_sorter = true,
+      -- }
+   fzf = {
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }     
   }
 }
 
