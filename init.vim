@@ -33,6 +33,7 @@ else
     source ~/.config/nvim/telescope.vim
     source ~/.config/nvim/windows.vim
     source ~/.config/nvim/schemes.vim
+    luafile ~/.config/nvim/diffview.lua
 
     " set foldmethod=expr
     " set foldexpr=nvim_treesitter#foldexpr()

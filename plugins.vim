@@ -53,7 +53,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-
+Plug 'sindrets/diffview.nvim'
 
 Plug 'honza/vim-snippets'
 Plug 'ludovicchabant/vim-gutentags'

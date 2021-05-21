@@ -5,6 +5,8 @@ set synmaxcol=500
 set foldlevelstart=20
 set noshowmode
 
+set diffopt=horizontal
+
 let g:json_ignore_conceal=1
 let g:html_ignore_conceal=1
 
@@ -26,7 +28,6 @@ set scrolloff=5
 set hidden
 
 set noerrorbells
-set diffopt+=vertical
 set cursorline
 set autoread
 set showcmd
