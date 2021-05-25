@@ -49,6 +49,7 @@ Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
+Plug 'dense-analysis/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'easymotion/vim-easymotion'

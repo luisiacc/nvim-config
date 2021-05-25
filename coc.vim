@@ -124,4 +124,14 @@ nmap <Leader>cr <Plug>(coc-calc-result-replace)
 " autocmd User CocOpenFloat call nvim_win_set_width(g:coc_last_float_win, 9999)
 
 "node version
-let g:node_coc_path = '/home/acc/.nvm/versions/node/v16.0.0/bin/node'
+let g:node_coc_path = '/home/acc/.nvm/versions/node/v16.2.0/bin/node'
+
+
+" ale
+"
+let g:ale_lint_on_text_changed = 'always'
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ['black', 'isort']}
+let g:ale_linters_explicit = 1
+let g:ale_linters = {'javascript': ['prettier', 'eslint'], 'python': ['flake8']}
+let g:ale_disable_lsp = 1

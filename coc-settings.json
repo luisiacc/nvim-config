@@ -2,7 +2,7 @@
     "tsserver.trace.server": "verbose",
     "pyright.trace.server": "verbose",
     "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],
-    "diagnostic.displayByAle": false,
+    "diagnostic.displayByAle": true,
     "coc.preferences.formatOnType": false,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.enableGlobalStatus": false,
