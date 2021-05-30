@@ -72,18 +72,23 @@ Plug 'Yggdroot/indentLine'
 Plug 'tjdevries/colorbuddy.nvim'
 Plug 'Th3Whit3Wolf/one-nvim'
 Plug 'Th3Whit3Wolf/onebuddy'
+
 " Plug 'gruvbox-community/gruvbox'
+" Plug 'sainnhe/gruvbox-material'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
+" Plug 'rktjmp/lush.nvim'
+" Plug 'npxbr/gruvbox.nvim'
+
 Plug 'ntk148v/vim-horizon'
 Plug 'rakr/vim-one'
 " Plug 'joshdick/onedark.vim'
 " Plug 'artanikin/vim-synthwave84'
 " Plug 'arcticicestudio/nord-vim' 
-" Plug 'sainnhe/gruvbox-material'
 Plug 'sainnhe/edge'
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'mhartington/oceanic-next'
 Plug 'embark-theme/vim', { 'as': 'embark' }
+Plug 'mnishz/colorscheme-preview.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 

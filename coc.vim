@@ -131,7 +131,12 @@ let g:node_coc_path = '/home/acc/.nvm/versions/node/v16.2.0/bin/node'
 "
 let g:ale_lint_on_text_changed = 'always'
 let g:ale_fix_on_save = 1
-let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ['black', 'isort']}
+let g:ale_fixers = {'javascript': ['prettier', 'eslint'], 'python': ['black', 'isort'], 'rust': ['rustfmt']}
+let g:ale_disable_lsp = 1
+let g:ale_set_highlights = 0
+let g:ale_echo_msg_format = '[%linter%] (%code%) - %s'
+
 let g:ale_linters_explicit = 1
 let g:ale_linters = {'javascript': ['prettier', 'eslint'], 'python': ['flake8']}
-let g:ale_disable_lsp = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 1

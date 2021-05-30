@@ -1,4 +1,5 @@
 command! -nargs=0 CocPrettier :call CocAction('runCommand', 'prettier.formatFile')
+command! -nargs=0 FormatDjango :!djhtml -i %
 
 "auto cmd group
 augroup vimrc_autocmd

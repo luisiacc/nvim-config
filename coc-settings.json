@@ -33,7 +33,6 @@
         "django",
         "djangohtml"
     ],
-    "html.format.enable": true,
     "tsserver.disableAutomaticTypeAcquisition": true,
     "suggest.completionItemKindLabels": {
         "keyword": "",

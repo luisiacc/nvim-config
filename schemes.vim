@@ -50,16 +50,11 @@ set t_Co=256
 " gruvbox stuff
 highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
 highlight TSConstBuiltin guifg=#D4879C ctermfg=0
-highlight TSVariable guifg=#99C6BA ctermfg=0
+highlight TSVariable guifg=#F4F4F4 ctermfg=0
 highlight TSTag guifg=#8ec07c
 highlight TSType guifg=#8ec07c
 highlight TSKeyword guifg=#fb4934 ctermfg=0
 highlight TSField guifg=#DEDEDE ctermfg=0
-
-highlight DiffAdd guifg=#082708 guibg=#284230
-highlight DiffDelete guifg=#472d2d guibg=#472d2d
-highlight DiffText guifg=#202020 guibg=#776D19
-highlight DiffChange guifg=#AC9D25
 
 highlight ColorColumn ctermbg=45 guibg=#252525
 hi MatchParen guibg=#454545

@@ -5,7 +5,7 @@ set synmaxcol=500
 set foldlevelstart=20
 set noshowmode
 
-set diffopt=horizontal
+set diffopt=vertical
 
 let g:json_ignore_conceal=1
 let g:html_ignore_conceal=1
