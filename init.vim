@@ -17,24 +17,40 @@ else
     " set smartindent
     " set autoindent
 
-    source ~/.config/nvim/plugins.vim
-    source ~/.config/nvim/sets.vim
-    source ~/.config/nvim/lua.vim
-    source ~/.config/nvim/commands.vim
-    source ~/.config/nvim/globals.vim
-    source ~/.config/nvim/coc.vim
-    source ~/.config/nvim/coc-explorer.vim
-    " source ~/.config/nvim/lsp-config.vim
-    " source ~/.config/nvim/compe.vim
-    " luafile ~/.config/nvim/galaxyline.lua
-    " source ~/.config/nvim/mpbtl.vim
-    source ~/.config/nvim/ale.vim
-    source ~/.config/nvim/lua-format.vim
-    source ~/.config/nvim/mappings.vim
-    source ~/.config/nvim/telescope.vim
-    source ~/.config/nvim/windows.vim
-    source ~/.config/nvim/schemes.vim
-    luafile ~/.config/nvim/diffview.lua
+    if has('win32')
+        let g:nvim_config_home = '~/AppData/Local/nvim'
+    else
+        let g:nvim_config_home = '~/.config/nvim'
+    endif
+
+    function! g:Source(file)
+        exec 'source ' .. g:nvim_config_home .. a:file
+    endfunction
+
+    function! g:Luafile(file)
+        exec 'luafile ' .. g:nvim_config_home .. a:file
+    endfunction
+
+    call g:Source('/plugins.vim')
+    call g:Source('/sets.vim')
+    call g:Source('/lua.vim')
+    call g:Source('/commands.vim')
+    call g:Source('/globals.vim')
+    call g:Source('/coc.vim')
+    call g:Source('/coc-explorer.vim')
+
+    " call g:Source('/lsp-config.vim')
+    " call g:Source('/compe.vim')
+    " call g:Luafile('/galaxyline.lua')
+    " call g:Source('/mpbtl.vim')
+
+    call g:Source('/ale.vim')
+    call g:Source('/lua-format.vim')
+    call g:Source('/mappings.vim')
+    call g:Source('/telescope.vim')
+    call g:Source('/windows.vim')
+    call g:Source('/schemes.vim')
+    call g:Luafile('/diffview.lua')
 
     " set foldmethod=expr
     " set foldexpr=nvim_treesitter#foldexpr()
