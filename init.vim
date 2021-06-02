@@ -25,9 +25,10 @@ else
     source ~/.config/nvim/coc.vim
     source ~/.config/nvim/coc-explorer.vim
     " source ~/.config/nvim/lsp-config.vim
-    " luafile ~/.config/nvim/compe.lua
+    " source ~/.config/nvim/compe.vim
     " luafile ~/.config/nvim/galaxyline.lua
     " source ~/.config/nvim/mpbtl.vim
+    source ~/.config/nvim/ale.vim
     source ~/.config/nvim/lua-format.vim
     source ~/.config/nvim/mappings.vim
     source ~/.config/nvim/telescope.vim

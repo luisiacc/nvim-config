@@ -75,7 +75,7 @@ nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
 
-"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>me :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 nnoremap <leader>ps :Rg<SPACE>
 noremap <silent> <C-Right> :vertical resize -5<CR>

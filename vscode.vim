@@ -285,6 +285,7 @@ nmap <space>qe :CocCommand explorer --preset floating<CR>
 let g:netrw_browse_split=2
 let g:netrw_banner=0
 let g:netrw_winsize=25
+nnoremap <leader>me :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 let $FZF_DEFAULT_COMMAND="rg --files --hidden -g '!{.git,node_modules,.env}/*'"
 
@@ -359,13 +360,11 @@ nnoremap <leader><CR> :so ~/config/nvim/init.vim<CR>
 nnoremap - *zz
 nnoremap <leader>t :Tags<CR>
 
+
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>
 nnoremap <C-k> :wincmd k<CR>
 nnoremap <C-l> :wincmd l<CR>
-nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv :NERDTreeFind<CR>
-"nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <leader>ps :Rg<SPACE>
 noremap <silent> <C-Right> :vertical resize -5<CR>
 noremap <silent> <C-Left> :vertical resize +5<CR>

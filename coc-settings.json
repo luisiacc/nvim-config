@@ -23,6 +23,8 @@
     "explorer.git.enable": true,
     "explorer.icon.enableVimDevicons": true,
     "explorer.previewAction.onHover": false,
+    "typescript.autoClosingTags": true,
+    "javascript.autoClosingTags": true,
     "explorer.keyMappings.global": {
         "v": "open:vsplit"
     },

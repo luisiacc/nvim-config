@@ -78,7 +78,7 @@ command! -bang -nargs=* Ag
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-let test#strategy = "dispatch"
+let test#strategy = "asyncrun_background_term"
 let test#neovim#term_position = "vertical"
 
 let g:NERDTreeHijackNetrw=0
