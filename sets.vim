@@ -1,9 +1,10 @@
-set nocompatible 
+set nocompatible
 set encoding=utf-8
 set mouse=a
 set synmaxcol=500
 set foldlevelstart=20
 set noshowmode
+" set signcolumn=yes
 
 set diffopt=vertical
 
@@ -11,10 +12,10 @@ let g:json_ignore_conceal=1
 let g:html_ignore_conceal=1
 
 "open local vimrc first
-set exrc 
+set exrc
 
 " indent guide
-"set listchars=tab:\|\ 
+"set listchars=tab:\|\
 "set list
 "
 "folds
@@ -57,7 +58,7 @@ set t_md=
 set updatetime=100
 set colorcolumn=120
 set wildmenu
-set guitablabel=\[%N\]\ %t\ %M 
+set guitablabel=\[%N\]\ %t\ %M
 set guioptions-=T guioptions-=m
 
 

@@ -63,6 +63,5 @@
         "snippet": "",
         "typeParameter": "",
         "default": ""
-    },
-    "pyright.disableSelfClsNotAccessed": true
+    }
 }

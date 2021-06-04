@@ -38,6 +38,6 @@ let g:coc_explorer_global_presets = {
             \}
 
 " Use preset argument to open it
-nmap <space>ce :CocCommand explorer<CR>
+nmap <space>ce :CocCommand explorer --position right<CR>
 nmap <space>qe :CocCommand explorer --preset floating<CR>
 

@@ -22,7 +22,7 @@ Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'kevinhwang91/nvim-bqf'
 
 "python
-Plug 'fisadev/vim-isort'
+" Plug 'fisadev/vim-isort'
 " Plug 'brentyi/isort.vim'
 Plug 'tweekmonster/django-plus.vim'
 " Plug 'vim-python/python-syntax'

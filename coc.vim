@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-tsserver', 'coc-eslint', 'coc-json', 'coc-html', 'coc-prettier', 'coc-snippets', 'coc-scssmodules', 'coc-css']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-html', 'coc-snippets', 'coc-css']
 let g:coc_force_debug = 1
 
 " use <tab> for trigger completion and navigate to the next complete item

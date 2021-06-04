@@ -11,7 +11,7 @@ nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 " autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
 " autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
 
-lua require'lspconfig'.pyright.setup{}
+" lua require'lspconfig'.pyright.setup{}
 " lua require'lspconfig'.tsserver.setup{}
 "lua require'snippets'.use_suggested_mappings()
 
