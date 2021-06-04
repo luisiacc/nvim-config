@@ -31,6 +31,7 @@ else
         exec 'luafile ' .. g:nvim_config_home .. a:file
     endfunction
 
+    call g:Source('/ale.vim')
     call g:Source('/plugins.vim')
     call g:Source('/sets.vim')
     call g:Source('/lua.vim')
@@ -44,7 +45,6 @@ else
     " call g:Luafile('/galaxyline.lua')
     " call g:Source('/mpbtl.vim')
 
-    call g:Source('/ale.vim')
     call g:Source('/lua-format.vim')
     call g:Source('/mappings.vim')
     call g:Source('/telescope.vim')
