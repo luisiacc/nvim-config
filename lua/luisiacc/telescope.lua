@@ -47,9 +47,9 @@ require('telescope').setup{
         mirror = false,
       },
     },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {".venv", "node_modules"},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     scroll_strategy = nil,
     shorten_path = true,
     winblend = 0,
@@ -77,21 +77,22 @@ require('telescope').setup{
         },
     }
   },
-  extensions = {
-      -- fzy_native = {
-      --     override_generic_sorter = false,
-      --     override_file_sorter = true,
-      -- }
-   fzf = {
-      override_generic_sorter = true, -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-                                       -- the default case_mode is "smart_case"
-    }     
-  }
+  -- extensions = {
+  --     fzy_native = {
+  --         override_generic_sorter = false,
+  --         override_file_sorter = true,
+  --     }
+  --  fzf = {
+  --     override_generic_sorter = true, -- override the generic sorter
+  --     override_file_sorter = true,     -- override the file sorter
+  --     case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+  --                                      -- the default case_mode is "smart_case"
+  --   }
+  -- }
 }
 
-require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('coc')
 
 local M = {}
             -- map(mode, key, lua function to call)
@@ -110,9 +111,9 @@ local M = {}
             --   :h telescope.layout ->
             --   :h telescope.actions
             --
--- M.git_branches = function() 
+-- M.git_branches = function()
 --     require("telescope.builtin").git_branches({
---         attach_mappings = function(prompt_bufnr, map) 
+--         attach_mappings = function(prompt_bufnr, map)
 --             map('i', '<c-d>', actions.git_delete_branch)
 --             map('n', '<c-d>', actions.git_delete_branch)
 --             map('i', '<A-j>', actions.move_selection_next)

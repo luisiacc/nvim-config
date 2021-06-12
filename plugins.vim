@@ -12,6 +12,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'fannheyward/telescope-coc.nvim'
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -22,7 +23,7 @@ Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'kevinhwang91/nvim-bqf'
 
 "python
-" Plug 'fisadev/vim-isort'
+Plug 'fisadev/vim-isort'
 " Plug 'brentyi/isort.vim'
 Plug 'tweekmonster/django-plus.vim'
 " Plug 'vim-python/python-syntax'

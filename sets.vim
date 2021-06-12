@@ -4,7 +4,7 @@ set mouse=a
 set synmaxcol=500
 set foldlevelstart=20
 set noshowmode
-" set signcolumn=yes
+set signcolumn=yes
 
 set diffopt=vertical
 
