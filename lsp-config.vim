@@ -56,6 +56,9 @@ require('lspconfig').cssls.setup{
 require'lspconfig'.vimls.setup{
     capabilities = capabilities,
 }
+require'lspconfig'.rls.setup{
+    capabilities = capabilities,
+}
 
 -- lua server-----------------------------------------------------------------------------
 local system_name
