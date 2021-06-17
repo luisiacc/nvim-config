@@ -3,8 +3,8 @@
 require'compe'.setup {
   enabled = true;
   autocomplete = true;
-  debug = false;
-  min_length = 1;
+  debug = false,
+  min_length = 1,
   preselect = 'enable';
   throttle_time = 80;
   source_timeout = 200;
@@ -13,13 +13,14 @@ require'compe'.setup {
   max_kind_width = 100;
   max_menu_width = 100;
   documentation = true;
-
   source = {
+    utilsnips = true;
     path = true;
+    omni = false;
     buffer = true;
     nvim_lsp = true;
     nvim_lua = true;
-  };
+  }
 }
 
 local t = function(str)

@@ -50,7 +50,7 @@ set t_Co=256
 " gruvbox stuff
 highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
 highlight TSConstBuiltin guifg=#D4879C ctermfg=0
-highlight TSVariable guifg=#F4F4F4 ctermfg=0
+" highlight TSVariable guifg=#E7D7AD ctermfg=0
 highlight TSTag guifg=#8ec07c
 highlight TSType guifg=#8ec07c
 highlight TSKeyword guifg=#fb4934 ctermfg=0

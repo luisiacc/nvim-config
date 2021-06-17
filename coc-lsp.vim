@@ -38,10 +38,6 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap <leader>ci <Plug>(coc-git-chunkinfo)
 
-nmap <leader>nc <Plug>(coc-git-nextchunk)
-nmap <leader>pc <Plug>(coc-git-prevchunk)
-
-nmap <leader>cr :CocRestart
 nmap <leader>ca <Plug>(coc-codeaction-cursor)
 vmap <leader>ca <Plug>(coc-codeaction-selected)
 xmap <leader>ca <Plug>(coc-codeaction-selected)
@@ -86,9 +82,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>cr  :<C-u>CocListResume<CR>
 
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
@@ -105,27 +98,3 @@ omap ac <Plug>(coc-classobj-a)
 nmap <silent> <C-s> <Plug>(coc-range-select)
 xmap <silent> <C-s> <Plug>(coc-range-select)
 
-" Add `:Format` command to format current buffer.
-command! -nargs=0 SyncFormat :call CocAction('format')
-command! -nargs=0 Format :call CocActionAsync('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocActionAsync('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
-" append result on current expression
-nmap <Leader>cc <Plug>(coc-calc-result-append)
-" replace result on current expression
-nmap <Leader>cr <Plug>(coc-calc-result-replace)
-
-" autocmd User CocOpenFloat call nvim_win_set_config(g:coc_last_float_win, {'relative': 'editor', 'row': 0, 'col': 0})
-" autocmd User CocOpenFloat call nvim_win_set_width(g:coc_last_float_win, 9999)
-
-"node version
-let g:node_coc_path = '/home/acc/.nvm/versions/node/v16.2.0/bin/node'
-
-
-" ale
-"

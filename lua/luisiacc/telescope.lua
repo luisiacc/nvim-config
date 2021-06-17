@@ -92,7 +92,7 @@ require('telescope').setup{
 }
 
 require('telescope').load_extension('fzf')
-require('telescope').load_extension('coc')
+-- require('telescope').load_extension('coc')
 
 local M = {}
             -- map(mode, key, lua function to call)

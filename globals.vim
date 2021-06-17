@@ -94,3 +94,6 @@ let g:airline#extensions#disable_rtp_load = 1
 let g:airline_extensions = ['branch', 'tabline']
 
 let g:indentLine_fileTypeExclude = ['coc-explorer']
+
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8

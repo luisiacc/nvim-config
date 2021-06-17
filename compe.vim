@@ -1,4 +1,4 @@
-luafile ~/.config/nvim/compe.lua
+call g:Luafile('/compe.lua')
 
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')

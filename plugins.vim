@@ -31,10 +31,18 @@ Plug 'tweekmonster/django-plus.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
 Plug 'hrsh7th/nvim-compe'
-Plug 'norcalli/snippets.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
+Plug 'glepnir/lspsaga.nvim'
+
+" Plug 'norcalli/snippets.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+" Plug 'hrsh7th/vim-vsnip'
+" Plug 'hrsh7th/vim-vsnip-integ'
 " Plug 'p00f/nvim-ts-rainbow'
 
 " javascript
@@ -50,14 +58,13 @@ Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'easymotion/vim-easymotion'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
 
-Plug 'honza/vim-snippets'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/goyo.vim'
 
@@ -77,8 +84,6 @@ Plug 'tjdevries/colorbuddy.nvim'
 Plug 'Th3Whit3Wolf/one-nvim'
 Plug 'Th3Whit3Wolf/onebuddy'
 
-" Plug 'gruvbox-community/gruvbox'
-" Plug 'sainnhe/gruvbox-material'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 " Plug 'rktjmp/lush.nvim'
 " Plug 'npxbr/gruvbox.nvim'
@@ -98,10 +103,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
-" Plug 'akinsho/nvim-bufferline.lua'
-" Plug 'romgrk/barbar.nvim'
 " Plug 'kyazdani42/nvim-tree.lua'
-" Plug 'bagrat/vim-buffet'
 Plug 'crispgm/nvim-tabline'
 Plug 'hoob3rt/lualine.nvim'
 " Plug 'vim-airline/vim-airline'

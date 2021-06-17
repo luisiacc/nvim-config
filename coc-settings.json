@@ -1,4 +1,5 @@
 {
+    "suggest.autoTrigger": false,
     "tsserver.trace.server": "verbose",
     "pyright.trace.server": "verbose",
     "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],

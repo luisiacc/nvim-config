@@ -15,7 +15,6 @@ nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-p> :GFiles<CR>
-nnoremap <leader>F :BLines<CR>
 nnoremap <leader>an :Snippets<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <leader>ff :Ag<CR>
@@ -85,11 +84,11 @@ noremap <silent> <C-Down> :resize +1<CR>
 
 " Sweet Sweet FuGITive
 nmap <leader>gc :GBranches<CR>
-nmap <leader>as :G rebase -i --autosquash 
+nmap <leader>as :G rebase -i --autosquash
 nmap <leader>df :Gdiffsplit<CR>
 nmap <leader>ru :G reset head~1<CR>
-nmap <leader>cb :G checkout 
-nmap <leader>nb :G checkout -b 
+nmap <leader>cb :G checkout
+nmap <leader>nb :G checkout -b
 nmap <leader>co :Gcommit<CR>
 nmap <leader>gh :diffget //2<CR>
 nmap <leader>gl :diffget //3<CR>
@@ -109,7 +108,7 @@ nnoremap <leader>e :tabedit todo.md<cr>
 "floaterm terminal
 tnoremap jj <C-\><C-n>
 
-" nnoremap <leader>p :FloatermNew eval $(ssh-agent -s) && ssh-add ~/.ssh/r.txt 
+" nnoremap <leader>p :FloatermNew eval $(ssh-agent -s) && ssh-add ~/.ssh/r.txt
 nnoremap <leader>p :FloatermToggle<CR>
 
 nnoremap <leader>js :set filetype=javascriptreact<CR>
