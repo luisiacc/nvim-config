@@ -30,6 +30,7 @@ Plug 'tweekmonster/django-plus.vim'
 " Plug 'psf/black', { 'branch': 'stable' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/playground'
 
 Plug 'neovim/nvim-lspconfig'

@@ -23,12 +23,23 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " lua vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 lua vim.lsp.handlers["textDocument/codeLens"] = function() end
 
+function ShowLineDiagnostic() abort
+    let line_diagnostics = v:lua.vim.lsp.diagnostic.get_line_diagnostics()
+    if v:lua.next(line_diagnostics)
+        :echo line_diagnostics[0].message
+    else
+        :echo
+    endif
+endfunction
+
+autocmd! CursorMoved * :call ShowLineDiagnostic()
+
 lua << EOF
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
-    virtual_text = true,
+    virtual_text = false,
     signs = true,
     update_in_insert = true,
   }
@@ -36,13 +47,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    'documentation',
-    'detail',
-    'additionalTextEdits',
-  }
-}
+--capabilities.textDocument.completion.completionItem.resolveSupport = {
+ -- properties = {
+   -- 'documentation',
+ --   'detail',
+ --   'additionalTextEdits',
+ -- }
+--}
 
 require('lspconfig').jsonls.setup{
     capabilities = capabilities,
@@ -168,8 +179,8 @@ nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
 nnoremap <silent><leader>gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
 
 "" jump diagnostic
-nnoremap <silent> ne <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
-nnoremap <silent> pe <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+nnoremap <silent> <leader>ne <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
+nnoremap <silent> <leader>pe <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
 
 "" float terminal also you can pass the cli command in open_float_terminal function
 nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>

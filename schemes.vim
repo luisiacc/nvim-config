@@ -22,7 +22,11 @@
 
 "   call lightline#colorscheme()
 " endfunction
-
+"
+"
+"############################################3
+" highlight lua inside vim
+let g:vimsyn_embed = 'l'
 
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
