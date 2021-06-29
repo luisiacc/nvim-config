@@ -62,7 +62,7 @@ set guitablabel=\[%N\]\ %t\ %M
 set guioptions-=T guioptions-=m
 
 
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noinsert,noselect,preview
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 set termguicolors

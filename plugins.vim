@@ -29,7 +29,7 @@ Plug 'tweekmonster/django-plus.vim'
 " Plug 'vim-python/python-syntax'
 " Plug 'psf/black', { 'branch': 'stable' }
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'git checkout 972f70956ac8635ab2f6d7ed0b24e5cd159d7a04'}
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/playground'
 
@@ -55,7 +55,7 @@ Plug 'alvan/vim-closetag'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'windwp/nvim-autopairs'
 Plug 'leafgarland/typescript-vim'
-Plug 'mlaursen/vim-react-snippets'
+" Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
@@ -67,6 +67,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
 
 Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/gutentags_plus'
 Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-dadbod'
@@ -99,6 +100,7 @@ Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'mhartington/oceanic-next'
 Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'mnishz/colorscheme-preview.vim'
+Plug 'eddyekofo94/gruvbox-flat.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 

@@ -12,8 +12,8 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <leader>an :Snippets<CR>
 nnoremap <Leader>pf :Files<CR>
@@ -67,7 +67,7 @@ nnoremap <leader>fs :Files<CR>
 nnoremap <leader>s :w!<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap - *zz
-nnoremap <leader>t :Tags<CR>
+" nnoremap <leader>t :Tags<CR>
 
 nnoremap <C-h> :wincmd h<CR>
 nnoremap <C-j> :wincmd j<CR>

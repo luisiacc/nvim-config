@@ -1,9 +1,12 @@
 {
-    "suggest.autoTrigger": false,
+    "suggest.autoTrigger": "none",
     "tsserver.trace.server": "verbose",
     "pyright.trace.server": "verbose",
     "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],
     "diagnostic.displayByAle": true,
+    "diagnostic.enable": false,
+    "diagnostic.enableSign": false,
+    "signature.enable": false,
     "coc.preferences.formatOnType": false,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.enableGlobalStatus": false,

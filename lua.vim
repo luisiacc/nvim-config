@@ -1,8 +1,7 @@
 lua << EOF
 require'nvim-treesitter.configs'.setup {
     highlight = {
-        enable = true,              -- false will disable the whole extension
-        additional_vim_regex_highlighting = true
+        enable = true,
     },
     indent = {enable = true},
     incremental_selection = {enable = true},
@@ -13,7 +12,7 @@ require'nvim-treesitter.configs'.setup {
         updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
         persist_queries = false -- Whether the query persists across vim sessions
     }
-    }
+}
 
 require'bqf'.setup({
     auto_enable = true,
@@ -36,7 +35,10 @@ require'bqf'.setup({
 })
 
 require'treesitter-context.config'.setup{
-    enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+    enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
 }
 EOF
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 

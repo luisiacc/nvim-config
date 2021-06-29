@@ -26,7 +26,7 @@ lua vim.lsp.handlers["textDocument/codeLens"] = function() end
 function ShowLineDiagnostic() abort
     let line_diagnostics = v:lua.vim.lsp.diagnostic.get_line_diagnostics()
     if v:lua.next(line_diagnostics)
-        :echo line_diagnostics[0].message
+        :echo substitute(line_diagnostics[0].message, "\n", ".", "")
     else
         :echo
     endif
@@ -36,6 +36,7 @@ autocmd! CursorMoved * :call ShowLineDiagnostic()
 
 lua << EOF
 
+vim.lsp.set_log_level("debug")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
@@ -54,6 +55,10 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
  --   'additionalTextEdits',
  -- }
 --}
+
+require'lspconfig'.clangd.setup{
+    capabilities = capabilities,
+}
 
 require('lspconfig').jsonls.setup{
     capabilities = capabilities,
