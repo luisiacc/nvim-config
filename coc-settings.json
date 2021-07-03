@@ -1,13 +1,13 @@
 {
-    "suggest.autoTrigger": "none",
+    "suggest.autoTrigger": "always",
     "tsserver.trace.server": "verbose",
     "pyright.trace.server": "verbose",
     "python.linting.pylintArgs": ["--extension-pkg-whitelist=PyQt5"],
-    "diagnostic.displayByAle": true,
-    "diagnostic.enable": false,
-    "diagnostic.enableSign": false,
-    "signature.enable": false,
-    "coc.preferences.formatOnType": false,
+    "diagnostic.enable": true,
+    "diagnostic.enableSign": true,
+    "signature.enable": true,
+    "suggest.enablePreview": true,
+    "suggest.enablePreselect": true,
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.enableGlobalStatus": false,
     "git.changedSign.hlGroup": "GitGutterChange",
@@ -19,7 +19,6 @@
     "git.addedSign.text": "▌",
     "git.changeRemovedSign.text": "▌",
     "git.topRemovedSign.text": "▌",
-    "emmet.showSuggestionsAsSnippets": false,
     //explorer
     "explorer.width": 40,
     "explorer.file.showHiddenFiles": true,
@@ -67,5 +66,20 @@
         "snippet": "",
         "typeParameter": "",
         "default": ""
-    }
+    },
+    "languageserver": {
+        "lua-language-server": {
+            "cwd": "/home/acc/lua-language-server/",
+            "command": "/home/acc/lua-language-server/bin/Linux/lua-language-server",
+            "args": [
+                "-E",
+                "-e",
+                "LANG=en",
+                "/home/acc/lua-language-server/main.lua"
+            ],
+            "filetypes": ["lua"],
+            "rootPatterns": [".git/"]
+        }
+    },
+    "clangd.path": "/home/acc/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
 }

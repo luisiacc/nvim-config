@@ -106,4 +106,7 @@ let g:tagalong_filetypes = ['html', 'xml', 'jsx', 'eruby', 'ejs', 'eco', 'php', 
 
 " ############################### snippets ###############################
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "own_snippets"]
+let g:UltiSnipsExpandTrigger="<a-.>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ############################### snippets ###############################

@@ -15,10 +15,6 @@ nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 " lua require'snippets'.use_suggested_mappings()
 " lua require'lsp_signature'.on_attach()
 
-let g:UltiSnipsExpandTrigger="<a-.>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " disable diagnostics for lsp-config
 " lua vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 lua vim.lsp.handlers["textDocument/codeLens"] = function() end

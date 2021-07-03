@@ -31,7 +31,6 @@ end
 local actions = require('telescope.actions')
 require('telescope').setup{
   defaults = {
-    prompt_position = "top",
     prompt_prefix = "> ",
     selection_caret = "> ",
     entry_prefix = "  ",
@@ -39,7 +38,10 @@ require('telescope').setup{
     selection_strategy = "reset",
     sorting_strategy = "ascending",
     layout_strategy = "horizontal",
-    layout_defaults = {
+    layout_config = {
+      prompt_position = "top",
+      preview_cutoff = 180,
+      width = 0.75,
       horizontal = {
         mirror = false,
       },
@@ -53,10 +55,7 @@ require('telescope').setup{
     scroll_strategy = nil,
     shorten_path = true,
     winblend = 0,
-    width = 0.75,
-    preview_cutoff = 180,
-    results_height = 1,
-    results_width = 0.6,
+    preview_width = 0.6,
     border = {},
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     color_devicons = true,

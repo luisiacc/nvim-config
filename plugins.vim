@@ -55,14 +55,15 @@ Plug 'alvan/vim-closetag'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'windwp/nvim-autopairs'
 Plug 'leafgarland/typescript-vim'
-" Plug 'mlaursen/vim-react-snippets'
+Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
 " Plug 'dense-analysis/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
+Plug 'phaazon/hop.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
 
