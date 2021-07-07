@@ -7,10 +7,6 @@ nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 " nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 " nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
-" autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 100)
-" autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 100)
-" autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 100)
-
 " lua require'lspconfig'.pyright.setup{}
 " lua require'snippets'.use_suggested_mappings()
 " lua require'lsp_signature'.on_attach()

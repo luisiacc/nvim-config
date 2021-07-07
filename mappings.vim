@@ -33,7 +33,7 @@ nmap <silent> t<C-g> :TestVisit<CR>
 " remap tab navigation
 nnoremap <leader>, gT
 nnoremap <leader>. gt
-nnoremap <leader>w :q!<CR>
+nnoremap <leader>w G:q!<CR>
 nnoremap <leader>ee :noh<CR>
 inoremap jj <Esc>
 
@@ -143,3 +143,19 @@ fun! ToggleLocList()
         lopen
     endif
 endfun
+
+"#################################################################################
+"-------------------------------------HOP.NVIM------------------------------------
+"#################################################################################
+nmap <leader><leader>l <cmd>HopLine<CR>
+nmap <leader><leader>w <cmd>HopWordAC<CR>
+nmap <leader><leader>b <cmd>HopWordBC<CR>
+nmap <leader><leader>c <cmd>HopChar1<CR>
+nmap <leader><leader>d <cmd>HopLine<CR>
+
+highlight HopNextKey guibg=#303030
+highlight HopNextKey1 guibg=#303030
+highlight HopNextKey2 guibg=#303030
+"#################################################################################
+"----------------------------------END HOP.NVIM-----------------------------------
+"#################################################################################
