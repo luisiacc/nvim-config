@@ -173,7 +173,8 @@ nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<
 nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
 
 "" preview definition
-nnoremap <silent><leader>gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+nnoremap <silent><leader>dp <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+nnoremap <silent><leader>gd <C-]>
 
 "" jump diagnostic
 nnoremap <silent> <leader>ne <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>

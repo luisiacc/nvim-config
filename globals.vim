@@ -98,7 +98,7 @@ let g:indentLine_fileTypeExclude = ['coc-explorer']
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
 
-let g:gutentags_ctags_executable = '/usr/bin/ctags'
+" let g:gutentags_ctags_executable = '/usr/bin/ctags'
 
 " ############################### TAGALONG ###############################
 let g:tagalong_filetypes = ['html', 'xml', 'jsx', 'eruby', 'ejs', 'eco', 'php', 'htmldjango', 'javascriptreact', 'typescriptreact', 'javascript', 'typescript']
