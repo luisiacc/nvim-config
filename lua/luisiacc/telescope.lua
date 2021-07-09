@@ -53,7 +53,7 @@ require('telescope').setup{
     file_ignore_patterns = {".venv", "node_modules"},
     -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     scroll_strategy = nil,
-    shorten_path = true,
+    path_display = "shorten",
     winblend = 0,
     preview_width = 0.6,
     border = {},

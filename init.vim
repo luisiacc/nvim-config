@@ -37,21 +37,21 @@ else
     call g:Source('/lua.vim')
     call g:Source('/commands.vim')
     call g:Source('/globals.vim')
-    " call g:Source('/coc-lsp.vim')
+    call g:Source('/coc-lsp.vim')
     call g:Source('/coc-else.vim')
     call g:Source('/coc-explorer.vim')
 
-    call g:Source('/lsp-config.vim')
-    call g:Source('/compe.vim')
+    " call g:Source('/lsp-config.vim')
+    " call g:Source('/compe.vim')
     "
     " call g:Luafile('/galaxyline.lua')
     " call g:Source('/mpbtl.vim')
 
     call g:Source('/lua-format.vim')
+    call g:Source('/schemes.vim')
     call g:Source('/mappings.vim')
     call g:Source('/telescope.vim')
     call g:Source('/windows.vim')
-    call g:Source('/schemes.vim')
     call g:Luafile('/diffview.lua')
 
     " set foldmethod=expr

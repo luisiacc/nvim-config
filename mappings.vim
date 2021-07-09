@@ -151,11 +151,11 @@ nmap <leader><leader>l <cmd>HopLine<CR>
 nmap <leader><leader>w <cmd>HopWordAC<CR>
 nmap <leader><leader>b <cmd>HopWordBC<CR>
 nmap <leader><leader>c <cmd>HopChar1<CR>
-nmap <leader><leader>d <cmd>HopLine<CR>
+nmap <leader><leader>d <cmd>HopChar2<CR>
 
-highlight HopNextKey guibg=#303030
-highlight HopNextKey1 guibg=#303030
-highlight HopNextKey2 guibg=#303030
+highlight! HopNextKey guibg=#353535
+highlight! HopNextKey1 guibg=#353535
+highlight! HopNextKey2 guibg=#353535
 "#################################################################################
 "----------------------------------END HOP.NVIM-----------------------------------
 "#################################################################################
