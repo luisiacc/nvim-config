@@ -55,10 +55,15 @@ set t_Co=256
 highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
 highlight TSConstBuiltin guifg=#D4879C ctermfg=0
 " highlight TSVariable guifg=#E7D7AD ctermfg=0
+highlight javascriptTSKeywordFunction guifg=#8ec07c
+highlight javascriptTSConditional guifg=#fb4934
+highlight javascriptTSProperty guifg=#ebdbb2
 highlight TSTag guifg=#8ec07c
 highlight TSType guifg=#8ec07c
 highlight TSKeyword guifg=#fb4934 ctermfg=0
 highlight TSField guifg=#DEDEDE ctermfg=0
+highlight pythonDecorator guifg=#FE6F29 ctermfg=0 gui=bold
+
 
 highlight ColorColumn ctermbg=45 guibg=#252525
 hi MatchParen guibg=#454545
@@ -97,3 +102,5 @@ function! SaneDiffDefaults()
 endfunction
 
 call SaneDiffDefaults()
+
+highlight CocFloating guibg=#252525 guifg=#D4879C
