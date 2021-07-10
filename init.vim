@@ -40,6 +40,7 @@ else
     call g:Source('/coc-lsp.vim')
     call g:Source('/coc-else.vim')
     call g:Source('/coc-explorer.vim')
+    call g:Source('/nvimtree.vim')
 
     " call g:Source('/lsp-config.vim')
     " call g:Source('/compe.vim')
