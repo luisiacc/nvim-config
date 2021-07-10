@@ -157,9 +157,6 @@ endif
 " }
 " require'tabline'.setup{}
 
-call g:Luafile('/lualine.lua')
-call g:Source('/tabline.vim')
-
 lua << EOF
 require('nvim-autopairs').setup()
 EOF

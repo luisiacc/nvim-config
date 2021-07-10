@@ -1,5 +1,5 @@
 lua << EOF
-require("todo-comments").setup()
+require("todo-comments").setup {}
 
 require'nvim-treesitter.configs'.setup {
     highlight = {
@@ -91,6 +91,6 @@ EOF
 
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
-" TODO fix this shit
-" FIX make this to work
-" HACK makc
+" TODO: fix this shit
+" FIX: make this to work
+" HACK: makc
