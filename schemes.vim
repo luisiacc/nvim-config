@@ -28,6 +28,8 @@
 " highlight lua inside vim
 let g:vimsyn_embed = 'l'
 
+let g:tokyonight_style = "storm"
+
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
 
