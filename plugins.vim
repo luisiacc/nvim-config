@@ -21,6 +21,7 @@ Plug 'antoinemadec/coc-fzf'
 Plug 'liuchengxu/vista.vim'
 Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'kevinhwang91/nvim-bqf'
+Plug 'lewis6991/gitsigns.nvim'
 
 "python
 Plug 'fisadev/vim-isort'
@@ -29,9 +30,10 @@ Plug 'tweekmonster/django-plus.vim'
 " Plug 'vim-python/python-syntax'
 " Plug 'psf/black', { 'branch': 'stable' }
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': 'git checkout 972f70956ac8635ab2f6d7ed0b24e5cd159d7a04'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/playground'
+Plug 'folke/todo-comments.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 " Plug 'nvim-lua/completion-nvim'

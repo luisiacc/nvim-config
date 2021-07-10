@@ -1,6 +1,3 @@
-nmap <leader>nc <Plug>(coc-git-nextchunk)
-nmap <leader>pc <Plug>(coc-git-prevchunk)
-
 nmap <leader>cr :CocRestart
 
 " append result on current expression
@@ -17,6 +14,4 @@ command! -nargs=? Fold :call     CocActionAsync('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
-
-nmap <leader>ci <Plug>(coc-git-chunkinfo)
 
