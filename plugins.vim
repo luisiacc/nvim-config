@@ -18,45 +18,34 @@ Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'stsewd/fzf-checkout.vim'
 Plug 'antoinemadec/coc-fzf'
-Plug 'liuchengxu/vista.vim'
 Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'kevinhwang91/nvim-bqf'
 Plug 'lewis6991/gitsigns.nvim'
 
 "python
 Plug 'fisadev/vim-isort'
-" Plug 'brentyi/isort.vim'
 Plug 'tweekmonster/django-plus.vim'
-" Plug 'vim-python/python-syntax'
-" Plug 'psf/black', { 'branch': 'stable' }
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
 
-Plug 'neovim/nvim-lspconfig'
-" Plug 'nvim-lua/completion-nvim'
-Plug 'hrsh7th/nvim-compe'
+" Plug 'neovim/nvim-lspconfig'
+" Plug 'hrsh7th/nvim-compe'
 " Plug 'ray-x/lsp_signature.nvim'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 
 " Plug 'norcalli/snippets.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" Plug 'hrsh7th/vim-vsnip'
-" Plug 'hrsh7th/vim-vsnip-integ'
-" Plug 'p00f/nvim-ts-rainbow'
 
 " javascript
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'pangloss/vim-javascript'
-Plug 'hail2u/vim-css3-syntax'
+" Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'windwp/nvim-autopairs'
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
@@ -86,18 +75,11 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'tjdevries/colorbuddy.nvim'
-Plug 'Th3Whit3Wolf/one-nvim'
-Plug 'Th3Whit3Wolf/onebuddy'
 
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
-" Plug 'rktjmp/lush.nvim'
-" Plug 'npxbr/gruvbox.nvim'
 
 Plug 'ntk148v/vim-horizon'
 Plug 'rakr/vim-one'
-" Plug 'joshdick/onedark.vim'
-" Plug 'artanikin/vim-synthwave84'
-" Plug 'arcticicestudio/nord-vim'
 Plug 'sainnhe/edge'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'mhartington/oceanic-next'
@@ -115,12 +97,8 @@ Plug 'crispgm/nvim-tabline'
 Plug 'hoob3rt/lualine.nvim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-" Plug 'itchyny/lightline.vim'
-" Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
-" Plug 'Iron-E/nvim-highlite'
 
 Plug 'mhinz/vim-startify'
-Plug 'ThePrimeagen/vim-be-good'
 Plug 'voldikss/vim-floaterm'
 Plug 'AndrewRadev/tagalong.vim'
 call plug#end()

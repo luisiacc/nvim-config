@@ -59,10 +59,14 @@ highlight TSConstBuiltin guifg=#D4879C ctermfg=0
 " highlight TSVariable guifg=#E7D7AD ctermfg=0
 highlight javascriptTSKeywordFunction guifg=#8ec07c
 highlight javascriptTSConditional guifg=#fb4934
-highlight javascriptTSProperty guifg=#ebdbb2
+highlight javascriptTSVariable guifg=#7fa2ac ctermfg=0
+" highlight javascriptTSProperty guifg=#ebdbb2
 highlight TSTag guifg=#8ec07c
 highlight TSType guifg=#8ec07c
 highlight TSKeyword guifg=#fb4934 ctermfg=0
+highlight TSKeywordFunction guifg=#fb4934 ctermfg=0
+highlight TSConditional guifg=#fb4934 ctermfg=0
+highlight TSRepeat guifg=#fb4934 ctermfg=0
 highlight TSField guifg=#DEDEDE ctermfg=0
 highlight pythonDecorator guifg=#FE6F29 ctermfg=0 gui=bold
 highlight cppTSVariable guifg=#E7D7AD ctermfg=0
