@@ -15,9 +15,6 @@ let g:ale_linters = {
 let g:ale_linters_ignore = ['flake8']
 let g:ale_python_pylint_change_directory = 0
 " disable red space on python by polyglot
-let g:python_highlight_space_errors = 0
-let g:json_highlight_space_errors = 0
-let g:polyglot_disabled = ['jsx']
 
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '●'
@@ -25,20 +22,7 @@ let g:ale_sign_warning = '●'
 let g:Schlepp#allowSquishingLines = 1
 let g:Schlepp#allowSquishingBlock = 1
 
-let g:UltiSnipsExpandTrigger='<C-j>'
-
-let g:python_highlight_all=1
-let g:black_linelength=120
-
 " web stuff
-let g:prettier#config#arrow_parens = 'always'
-let g:prettier#config#trailing_comma = 'all'
-let g:prettier#autoformat = 0
-
-let g:jsx_ext_required=0
-let g:vim_jsx_pretty_enable_jsx_highlight = 0
-let g:vim_jsx_pretty_detail = 0
-
 let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
 let g:closetag_regions = { 'typescript': 'jsxRegion,tsxRegion', 'typescriptreact': 'jsxRegion,tsxRegion', 'typescript.tsx': 'jsxRegion,tsxRegion', 'javascript.jsx': 'jsxRegion', 'javascriptreact': 'jsxRegion' }
 

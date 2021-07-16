@@ -41,11 +41,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " javascript
-" Plug 'hail2u/vim-css3-syntax'
 Plug 'mattn/emmet-vim'
 Plug 'alvan/vim-closetag'
 Plug 'windwp/nvim-autopairs'
-" Plug 'leafgarland/typescript-vim'
 Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
@@ -53,13 +51,11 @@ Plug 'vim-test/vim-test'
 " Plug 'dense-analysis/ale'
 Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-" Plug 'easymotion/vim-easymotion'
 Plug 'phaazon/hop.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
 
 Plug 'ludovicchabant/vim-gutentags'
-" Plug 'skywind3000/gutentags_plus'
 Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-dadbod'
@@ -70,8 +66,8 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-dispatch'
 
-" Plug 'Yggdroot/indentLine'
-Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'Yggdroot/indentLine'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'tjdevries/colorbuddy.nvim'
