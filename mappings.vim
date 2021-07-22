@@ -14,11 +14,8 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 " nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-p> :GFiles<CR>
-nnoremap <leader>an :Snippets<CR>
-nnoremap <Leader>pf :Files<CR>
-nnoremap <leader>ff :Ag<CR>
-nnoremap <leader>sf :BLines<CR>
+" nnoremap <C-p> :GFiles<CR>
+" nnoremap <leader>ff :Ag<CR>
 " Path completion with custom source command
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
@@ -83,10 +80,10 @@ noremap <silent> <C-Up> :resize -1<CR>
 noremap <silent> <C-Down> :resize +1<CR>
 
 " Sweet Sweet FuGITive
-nmap <leader>gc :GBranches<CR>
+" nmap <leader>gc :GBranches<CR>
 nmap <leader>as :G rebase -i --autosquash
 nmap <leader>df :Gdiffsplit<CR>
-nmap <leader>ru :G reset head~1<CR>
+nmap <leader>ru :G reset HEAD~1<CR>
 nmap <leader>cb :G checkout
 nmap <leader>nb :G checkout -b
 nmap <leader>co :Gcommit<CR>

@@ -10,11 +10,12 @@ nnoremap <Leader>fb :lua require('telescope.builtin').file_browser(require('tele
 nnoremap <Leader>em :Telescope find_files cwd=~/.config/nvim<CR>
 
 nnoremap <leader>pw :lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy{ path_display = "shorten", search = vim.fn.expand("<cword>") })<CR>
-" nnoremap <leader>ff :lua require('telescope.builtin').grep_string{ path_display = "shorten", word_match = "-w", only_sort_text = true, search = '' }<CR>
+nnoremap <leader>ff :lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy{})<CR>
+nnoremap <leader>fw :lua require('telescope.builtin').grep_string(require('telescope.themes').get_ivy{ only_sort_text = true, search = '' })<CR>
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>t :lua require('telescope.builtin').tags(require('telescope.themes').get_ivy({path_display = "shorten", only_sort_text = true}))<CR>
 " nnoremap <leader>t :Tags<CR>
 nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
-nnoremap <leader>F <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find(require'telescope.themes'.get_dropdown { border = true, previewer = false, width = 0.70 })<CR>
-" nnoremap <leader>pc :lua require('telescope.builtin').git_branches()<CR>
+nnoremap <leader>F <cmd>lua require'telescope.builtin'.current_buffer_fuzzy_find(require'telescope.themes'.get_dropdown { border = true, previewer = false, layout_config={width = 0.70} })<CR>
+nnoremap <leader>gc :lua require('telescope.builtin').git_branches(require('telescope.themes').get_ivy{})<CR>
 

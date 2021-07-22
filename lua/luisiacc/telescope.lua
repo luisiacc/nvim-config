@@ -54,7 +54,7 @@ require('telescope').setup{
     -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     scroll_strategy = nil,
     winblend = 0,
-    preview_width = 0.6,
+    preview_width = 0.8,
     border = {},
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     color_devicons = true,

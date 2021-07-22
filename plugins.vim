@@ -26,7 +26,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'fisadev/vim-isort'
 Plug 'tweekmonster/django-plus.vim'
 
-Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
