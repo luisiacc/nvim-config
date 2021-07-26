@@ -10,7 +10,8 @@ nnoremap <Leader>fb :lua require('telescope.builtin').file_browser(require('tele
 nnoremap <Leader>em :Telescope find_files cwd=~/.config/nvim<CR>
 
 nnoremap <leader>pw :lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy{ path_display = "shorten", search = vim.fn.expand("<cword>") })<CR>
-nnoremap <leader>ff :lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy{})<CR>
+" nnoremap <leader>ff :lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy{})<CR>
+nnoremap <leader>ff :Ag<CR>
 nnoremap <leader>fw :lua require('telescope.builtin').grep_string(require('telescope.themes').get_ivy{ only_sort_text = true, search = '' })<CR>
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>t :lua require('telescope.builtin').tags(require('telescope.themes').get_ivy({path_display = "shorten", only_sort_text = true}))<CR>

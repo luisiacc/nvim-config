@@ -30,6 +30,12 @@ end
 
 local actions = require('telescope.actions')
 require('telescope').setup{
+  pickers = {
+    buffers = {
+      sort_lastused = true,
+      theme = "ivy",
+    }
+  },
   defaults = {
     prompt_prefix = "> ",
     selection_caret = "> ",
@@ -41,7 +47,7 @@ require('telescope').setup{
     layout_config = {
       prompt_position = "top",
       preview_cutoff = 180,
-      width = 0.75,
+      width = 0.8,
       horizontal = {
         mirror = false,
       },
@@ -52,8 +58,7 @@ require('telescope').setup{
     -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {".venv", "node_modules"},
     -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    scroll_strategy = nil,
-    winblend = 0,
+    scroll_strategy = "cycle",
     preview_width = 0.8,
     border = {},
     borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },

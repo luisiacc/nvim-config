@@ -28,6 +28,7 @@ Plug 'tweekmonster/django-plus.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
 
@@ -96,7 +97,7 @@ Plug 'hoob3rt/lualine.nvim'
 
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'
-Plug 'AndrewRadev/tagalong.vim'
+" Plug 'AndrewRadev/tagalong.vim'
 call plug#end()
 
 " for coc to work with scss files

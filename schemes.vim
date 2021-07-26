@@ -70,6 +70,7 @@ highlight TSRepeat guifg=#fb4934 ctermfg=0
 highlight TSField guifg=#DEDEDE ctermfg=0
 highlight pythonDecorator guifg=#FE6F29 ctermfg=0 gui=bold
 highlight cppTSVariable guifg=#E7D7AD ctermfg=0
+highlight Statement guifg=#fb4934 ctermfg=0
 
 
 highlight ColorColumn ctermbg=45 guibg=#252525
