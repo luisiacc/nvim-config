@@ -4,6 +4,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+if has('win32')
+    let b:projects = '\\wsl$\Ubuntu-18.04\home\acc\projects\'
+else
+    let b:projects = '/home/acc/projects/'
+endif
+
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
@@ -74,7 +80,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tjdevries/colorbuddy.nvim'
 
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug '/home/acc/projects/gruvbox-ts'
+Plug b:projects .. 'gruvbox-ts'
 
 Plug 'ntk148v/vim-horizon'
 Plug 'rakr/vim-one'
