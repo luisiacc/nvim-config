@@ -4,6 +4,12 @@ nnoremap <leader>bb :Black<CR>
 nnoremap <leader>fp :CocPrettier<CR>
 nnoremap <leader>fm :Format<CR>
 
+nnoremap Y y$
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ? ?<c-g>u
+inoremap ! !<c-g>u
+
 inoremap jj <Esc>
 "Fix visual indenting
 vmap < <gv
@@ -34,20 +40,8 @@ nnoremap <leader>w G:q!<CR>
 nnoremap <leader>ee :noh<CR>
 inoremap jj <Esc>
 
-"Fix visual indenting
-vmap < <gv
-vmap > >gv
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
 nnoremap <leader>ee :noh<CR>
 inoremap jj <Esc>
-
-"Fix visual indenting
-vmap < <gv
-vmap > >gv
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
 
 
 " replace word
