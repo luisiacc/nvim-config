@@ -41,6 +41,7 @@ nmap <leader>ci <Plug>(coc-git-chunkinfo)
 nmap <leader>ca <Plug>(coc-codeaction-cursor)
 vmap <leader>ca <Plug>(coc-codeaction-selected)
 xmap <leader>ca <Plug>(coc-codeaction-selected)
+nmap <leader>cl <Plug>(coc-codelens-action)
 
 "error navigation
 nmap <leader>ne <Plug>(coc-diagnostic-next-error)

@@ -37,7 +37,7 @@ let g:airline#extension#ale#enabled = 1
 let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_invert_selection='0'
 set background=dark
-colorscheme gruvbox
+colorscheme gruvbox-ts
 let g:airline_theme='base16_gruvbox_dark_hard'
 " colorscheme material
 " let g:material_theme_style='palenight'
@@ -48,30 +48,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#highlighter#highligth = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 set t_Co=256
-
-" highligts for TreeSitter
-" hi! link TSKeywordOperator GruvBoxRed
-" hi! link TSKeyword GruvBoxRed
-"
-" gruvbox stuff
-" highlight TSVariable guifg=#E7D7AD ctermfg=0
-" highlight javascriptTSProperty guifg=#ebdbb2
-highlight TSConstant guifg=#D4879C ctermfg=0 gui=bold cterm=bold
-highlight TSConstBuiltin guifg=#D4879C ctermfg=0
-highlight javascriptTSConditional guifg=#fb4934
-highlight javascriptTSVariable guifg=#7fa2ac ctermfg=0
-highlight TSTag guifg=#8ec07c
-highlight TSType guifg=#8ec07c
-highlight TSKeyword guifg=#fb4934 ctermfg=0
-highlight TSKeywordOperator guifg=#fb4934
-highlight TSKeywordFunction guifg=#fb4934 ctermfg=0
-highlight TSConditional guifg=#fb4934 ctermfg=0
-highlight TSRepeat guifg=#fb4934 ctermfg=0
-highlight TSField guifg=#DEDEDE ctermfg=0
-highlight pythonDecorator guifg=#FE6F29 ctermfg=0 gui=bold
-highlight cppTSVariable guifg=#E7D7AD ctermfg=0
-highlight Statement guifg=#fb4934 ctermfg=0
-
 
 highlight ColorColumn ctermbg=45 guibg=#252525
 hi MatchParen guibg=#454545

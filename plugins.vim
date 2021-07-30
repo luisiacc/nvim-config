@@ -23,7 +23,7 @@ Plug 'kevinhwang91/nvim-bqf'
 Plug 'lewis6991/gitsigns.nvim'
 
 "python
-Plug 'fisadev/vim-isort'
+" Plug 'fisadev/vim-isort'
 Plug 'tweekmonster/django-plus.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -74,6 +74,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tjdevries/colorbuddy.nvim'
 
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug '/home/acc/projects/gruvbox-ts'
 
 Plug 'ntk148v/vim-horizon'
 Plug 'rakr/vim-one'
