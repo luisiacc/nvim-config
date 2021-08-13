@@ -71,7 +71,7 @@ let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=2
 
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊'], │, ⎸, or ▏
-let g:indentLine_char = '│'
+" let g:indent_blankline_char = '│'
 
 let g:airline_highlighting_cache = 1
 let g:airline#extensions#disable_rtp_load = 1

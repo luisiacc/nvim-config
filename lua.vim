@@ -87,6 +87,16 @@ require('gitsigns').setup {
   use_internal_diff = true,  -- If luajit is present
 }
 
+
+require("indent_blankline").setup {
+    --char = "│",
+    char = "·",
+    space_char = "·",
+    show_first_indent_level = false,
+    use_treesitter = true,
+    buftype_exclude = {"terminal", "telescope"},
+    filetype_exclude = {"help"}
+}
 EOF
 
 nnoremap <F4> :lua package.loaded.luisiacc = nil<CR>:source ~/.config/nvim/init.vim<CR>
