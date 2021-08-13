@@ -36,7 +36,7 @@ nmap <silent> t<C-g> :TestVisit<CR>
 " remap tab navigation
 nnoremap <leader>, gT
 nnoremap <leader>. gt
-nnoremap <leader>w G:q!<CR>
+nnoremap <leader>w gg:q!<CR>
 nnoremap <leader>ee :noh<CR>
 inoremap jj <Esc>
 
