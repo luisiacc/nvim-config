@@ -142,7 +142,13 @@ ins_left {
   color = {fg = colors.magenta, gui = 'bold'}
 }
 
-ins_left {'location'}
+local gps = require("nvim-gps")
+
+ins_left {
+  gps.get_location,
+  condition = gps.is_available,
+  color = {fg = colors.violet}
+}
 
 ins_left {'progress', color = {fg = colors.fg, gui = 'bold'}}
 

@@ -88,3 +88,4 @@ endfunction
 call SaneDiffDefaults()
 
 highlight CocFloating guibg=#252525 guifg=#D4879C
+highlight IndentBlanklineContextChar guifg=#D4879C

@@ -1,6 +1,6 @@
 lua << EOF
-require("todo-comments").setup {}
-require('nvim-ts-autotag').setup()
+require('todo-comments').setup{}
+--require('nvim-ts-autotag').setup()
 require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
@@ -59,8 +59,8 @@ require('gitsigns').setup {
     ['n ]c'] = { expr = true, "&diff ? ']c' : '<cmd>lua require\"gitsigns.actions\".next_hunk()<CR>'"},
     ['n [c'] = { expr = true, "&diff ? '[c' : '<cmd>lua require\"gitsigns.actions\".prev_hunk()<CR>'"},
 
-    ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-    ['v <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
+    ['n <leader>sc'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+    ['v <leader>sc'] = '<cmd>lua require"gitsigns".stage_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
     ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
     ['n <leader>uc'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
     ['v <leader>uc'] = '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
@@ -76,33 +76,53 @@ require('gitsigns').setup {
     interval = 1000,
     follow_files = true
   },
-  current_line_blame = false,
-  current_line_blame_delay = 1000,
-  current_line_blame_position = 'eol',
+  current_line_blame = true,
+  current_line_blame_opts = {
+      delay = 200,
+  },
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
   word_diff = false,
-  use_decoration_api = true,
   use_internal_diff = true,  -- If luajit is present
 }
 
+require('nvim-gps').setup({
+	icons = {
+		["class-name"] = ' ',      -- Classes and class-like objects
+		["function-name"] = ' ',   -- Functions
+		["method-name"] = ' '      -- Methods (functions inside class-like objects)
+	},
+	languages = {                    -- You can disable any language individually here
+		["c"] = true,
+		["cpp"] = true,
+		["go"] = true,
+		["java"] = true,
+		["javascript"] = true,
+		["lua"] = true,
+		["python"] = true,
+		["rust"] = true,
+		["viml"] = true,
+	},
+	separator = ' > ',
+})
 
-require("indent_blankline").setup {
-    --char = "│",
-    char = "·",
-    space_char = "·",
-    show_first_indent_level = false,
-    use_treesitter = true,
-    buftype_exclude = {"terminal", "telescope"},
-    filetype_exclude = {"help"}
-}
+vim.opt.listchars:append({lead="·"})
 EOF
 
 nnoremap <F4> :lua package.loaded.luisiacc = nil<CR>:source ~/.config/nvim/init.vim<CR>
 
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
-" TODO: fix this shit
-" FIX: make this to work
-" HACK: makc
+let g:indent_blankline_char = '│'
+" set list listchars=tab:<->,space:⋅,trail:~,eol:↴
+set list listchars=space:·,trail:~
+"char = '·",
+" let g:indent_blankline_space_char = '·'
+let g:indent_blankline_show_trailing_blankline_indent = v:false
+let g:indent_blankline_show_first_indent_level = v:false
+let g:indent_blankline_show_current_context = v:true
+let g:indent_blankline_use_treesitter = v:true
+let g:indent_blankline_buftype_exclude = [ 'terminal', 'telescope' ]
+let g:indent_blankline_filetype_exclude = [ 'help', 'startify', 'dashboard', 'packer', 'neogitstatus', 'NvimTree', 'Trouble' ]
+let g:indent_blankline_context_patterns = [ 'def', 'class', 'return', 'function', 'method', '^if', '^while', 'jsx_element', '^for', '^object', '^table', 'block', 'arguments', 'if_statement', 'else_clause', 'jsx_element', 'jsx_self_closing_element', 'try_statement', 'catch_clause', 'import_statement', 'operation_type' ]

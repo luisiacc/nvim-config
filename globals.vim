@@ -85,7 +85,7 @@ let g:floaterm_height = 0.8
 " let g:gutentags_ctags_executable = '/usr/bin/ctags'
 
 " ############################### TAGALONG ###############################
-let g:tagalong_filetypes = ['html', 'xml', 'jsx', 'eruby', 'ejs', 'eco', 'php', 'htmldjango', 'javascriptreact', 'typescriptreact', 'javascript', 'typescript']
+let g:tagalong_filetypes = ['html', 'xml', 'jsx', 'eruby', 'ejs', 'eco', 'php', 'js', 'htmldjango', 'javascriptreact', 'typescriptreact', 'javascript', 'typescript']
 " ############################### TAGALONG ###############################
 
 " ############################### snippets ###############################

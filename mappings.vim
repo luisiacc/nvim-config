@@ -87,9 +87,6 @@ nmap <leader>gg :G<CR>
 nmap <leader>dg :diffget<CR>
 nmap <leader>dp :diffput<CR>
 
-"coc git
-nmap <leader>uc :CocCommand git.chunkUndo<CR>
-nmap <leader>sc :CocCommand git.chunkStage<CR>
 " compares current file to last revision
 nmap <leader>lr :vert diffsplit #<CR>
 

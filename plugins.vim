@@ -37,6 +37,7 @@ Plug 'romgrk/nvim-treesitter-context'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
+Plug 'SmiteshP/nvim-gps'
 
 " Plug 'neovim/nvim-lspconfig'
 " Plug 'hrsh7th/nvim-compe'
@@ -49,14 +50,14 @@ Plug 'honza/vim-snippets'
 
 " javascript
 Plug 'mattn/emmet-vim'
-Plug 'alvan/vim-closetag'
+" Plug 'alvan/vim-closetag'
 Plug 'windwp/nvim-autopairs'
 Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
 " Plug 'dense-analysis/ale'
-Plug 'jremmen/vim-ripgrep'
+" Plug 'jremmen/vim-ripgrep'
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'phaazon/hop.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -104,7 +105,7 @@ Plug 'hoob3rt/lualine.nvim'
 
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'
-" Plug 'AndrewRadev/tagalong.vim'
+Plug 'AndrewRadev/tagalong.vim'
 call plug#end()
 
 " for coc to work with scss files
