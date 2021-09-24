@@ -84,27 +84,29 @@ require('gitsigns').setup {
   update_debounce = 100,
   status_formatter = nil, -- Use default
   word_diff = false,
-  use_internal_diff = true,  -- If luajit is present
+  diff_opts = {
+    internal = true,
+  },
 }
 
 require('nvim-gps').setup({
-	icons = {
-		["class-name"] = ' ',      -- Classes and class-like objects
-		["function-name"] = ' ',   -- Functions
-		["method-name"] = ' '      -- Methods (functions inside class-like objects)
+	  icons = {
+        ["class-name"] = ' ',      -- Classes and class-like objects
+        ["function-name"] = ' ',   -- Functions
+        ["method-name"] = ' '      -- Methods (functions inside class-like objects)
 	},
-	languages = {                    -- You can disable any language individually here
-		["c"] = true,
-		["cpp"] = true,
-		["go"] = true,
-		["java"] = true,
-		["javascript"] = true,
-		["lua"] = true,
-		["python"] = true,
-		["rust"] = true,
-		["viml"] = true,
-	},
-	separator = ' > ',
+	adlanguages = {                    -- You can disable any language individually here
+        ["c"] = true,
+        ["cpp"] = true,
+        ["go"] = true,
+        ["java"] = true,
+        ["javascript"] = true,
+        ["lua"] = true,
+        ["python"] = true,
+        ["rust"] = true,
+        ["viml"] = true,
+    },
+	  separator = ' > ',
 })
 
 vim.opt.listchars:append({lead="·"})
@@ -112,10 +114,9 @@ EOF
 
 nnoremap <F4> :lua package.loaded.luisiacc = nil<CR>:source ~/.config/nvim/init.vim<CR>
 
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 let g:indent_blankline_char = '│'
-" set list listchars=tab:<->,space:⋅,trail:~,eol:↴
 set list listchars=space:·,trail:~
 "char = '·",
 " let g:indent_blankline_space_char = '·'
