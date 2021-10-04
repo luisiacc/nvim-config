@@ -53,3 +53,37 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
 
 " a list of groups can be found at `:help nvim_tree_highlight`
 highlight NvimTreeFolderIcon guibg=blue
+
+
+lua << EOF
+require'nvim-tree'.setup {
+    disable_netrw       = true,
+    hijack_netrw        = true,
+    open_on_setup       = false,
+    ignore_ft_on_setup  = {},
+    follow = 1,
+    auto_close          = false,
+    open_on_tab         = false,
+    hijack_cursor       = false,
+    lsp_diagnostics     = false,
+    update_focused_file = {
+        enable      = true,
+        update_cwd  = false,
+        ignore_list = {"startify"}
+    },
+    system_open = {
+        cmd  = nil,
+        args = {}
+    },
+    view = {
+        width = 40,
+        side = 'right',
+        auto_resize = false,
+        mappings = {
+            custom_only = false,
+            list = {}
+        }
+    }
+}
+
+EOF
