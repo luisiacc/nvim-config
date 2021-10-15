@@ -1,7 +1,3 @@
-let g:nvim_tree_side = 'right' "left by default
-let g:nvim_tree_width = 40 "30 by default
-let g:nvim_tree_ignore = [] "empty by default
-let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
 let g:nvim_tree_auto_close = 0 "0 by default, closes the tree when it's the last window
 let g:nvim_tree_auto_ignore_ft = ['startify'] "empty by default, don't auto open tree on specific filetypes.
 let g:nvim_tree_quit_on_open = 0 "0 by default, closes the tree when you open a file
@@ -15,7 +11,6 @@ let g:nvim_tree_width_allow_resize  = 1 "0 by default, will not resize the tree 
 let g:nvim_tree_disable_netrw = 1 "1 by default, disables netrw
 let g:nvim_tree_hijack_netrw = 1 "1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
 let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
-let g:nvim_tree_update_cwd = 1 "0 by default, will update the tree cwd when changing nvim's directory (DirChanged event). Behaves strangely with autochdir set.
 let g:nvim_tree_show_icons = {
     \ 'git': 1,
     \ 'folders': 1,
@@ -62,10 +57,19 @@ require'nvim-tree'.setup {
     open_on_setup       = false,
     ignore_ft_on_setup  = {},
     follow = 1,
+    auto_open = true,
     auto_close          = false,
     open_on_tab         = false,
     hijack_cursor       = false,
-    lsp_diagnostics     = false,
+    diagnostics         = {
+        enable = false,
+        icons = {
+          hint = "",
+          info = "",
+          warning = "",
+          error = "",
+        }
+    },
     update_focused_file = {
         enable      = true,
         update_cwd  = false,
