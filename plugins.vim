@@ -5,7 +5,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 if has('win32')
-    let b:projects = '\\wsl$\Ubuntu-18.04\home\acc\projects\'
+    let b:projects = 'C:\projects\'
 else
     let b:projects = '/home/acc/projects/'
 endif
