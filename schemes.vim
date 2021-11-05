@@ -38,6 +38,7 @@ let g:gruvbox_contrast_dark='medium'
 let g:gruvbox_invert_selection='0'
 set background=dark
 colorscheme gruvbox-ts
+" colorscheme tokyonight
 let g:airline_theme='base16_gruvbox_dark_hard'
 " colorscheme material
 " let g:material_theme_style='palenight'

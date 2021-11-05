@@ -68,5 +68,10 @@
             "rootPatterns": [".git/"]
         }
     },
-    "clangd.path": "/home/acc/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd"
+    "clangd.path": "/home/acc/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackPath": "/home/acc/projects/acubliss/core/.venv/bin/black",
+    "python.formatting.blackArgs": ["--line-length", "120"]
 }
