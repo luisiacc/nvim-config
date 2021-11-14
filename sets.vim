@@ -27,6 +27,7 @@ set mmp=2000000
 " set guicursor=
 set scrolloff=5
 set hidden
+set switchbuf=useopen
 
 set noerrorbells
 set cursorline
@@ -61,7 +62,9 @@ set wildmenu
 set guitablabel=\[%N\]\ %t\ %M
 set guioptions-=T guioptions-=m
 
-
+" Do NOT yank with x/s
+nnoremap x "_x
+nnoremap s "_s
 set completeopt=menuone,noinsert,noselect,preview
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 

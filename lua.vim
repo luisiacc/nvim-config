@@ -110,15 +110,13 @@ require('nvim-gps').setup({
 })
 
 require'hop'.setup()
-vim.opt.listchars:append({lead="·"})
+--vim.opt.listchars:append({lead="·"})
 EOF
 
 nnoremap <F4> :lua package.loaded.luisiacc = nil<CR>:source ~/.config/nvim/init.vim<CR>
 
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 let g:indent_blankline_char = '│'
-set list listchars=space:·,trail:~
+" set list listchars=space:·,trail:~
 "char = '·",
 " let g:indent_blankline_space_char = '·'
 let g:indent_blankline_show_trailing_blankline_indent = v:false

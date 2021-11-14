@@ -55,7 +55,12 @@ require'nvim-tree'.setup {
     auto_open = true,
     auto_close          = false,
     open_on_tab         = false,
+    update_cwd = true,
     hijack_cursor       = false,
+      update_to_buf_dir   = {
+        enable = true,
+        auto_open = true,
+      },
     diagnostics         = {
         enable = false,
         icons = {
@@ -67,7 +72,7 @@ require'nvim-tree'.setup {
     },
     update_focused_file = {
         enable      = true,
-        update_cwd  = false,
+        update_cwd  = true,
         ignore_list = {"startify"}
     },
     system_open = {

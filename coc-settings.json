@@ -1,4 +1,5 @@
 {
+    "codeLens.enable": true,
     "suggest.autoTrigger": "always",
     "diagnostic.enable": true,
     "diagnostic.enableSign": true,
@@ -53,20 +54,6 @@
         "snippet": "",
         "typeParameter": "",
         "default": ""
-    },
-    "languageserver": {
-        "lua-language-server": {
-            "cwd": "/home/acc/lua-language-server/",
-            "command": "/home/acc/lua-language-server/bin/Linux/lua-language-server",
-            "args": [
-                "-E",
-                "-e",
-                "LANG=en",
-                "/home/acc/lua-language-server/main.lua"
-            ],
-            "filetypes": ["lua"],
-            "rootPatterns": [".git/"]
-        }
     },
     "clangd.path": "/home/acc/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
     "python.linting.pylintEnabled": false,

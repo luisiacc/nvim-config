@@ -93,3 +93,7 @@ highlight IndentBlanklineContextChar guifg=#365050
 
 highlight IndentBlanklineChar guifg=#313131
 highlight IndentBlanklineSpaceChar guifg=#313131
+
+"github theme config
+let g:github_comment_style = "italic"
+let g:github_keyword_style = "italic"

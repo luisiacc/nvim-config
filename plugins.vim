@@ -93,6 +93,7 @@ Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'mnishz/colorscheme-preview.vim'
 Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'folke/tokyonight.nvim'
+Plug 'projekt0n/github-nvim-theme'
 
 Plug 'editorconfig/editorconfig-vim'
 
