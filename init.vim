@@ -42,8 +42,8 @@ else
     call g:Source('/coc-explorer.vim')
     call g:Source('/nvimtree.vim')
 
-    call g:Luafile('/lualine.lua')
-    call g:Source('/tabline.vim')
+    " call g:Luafile('/lualine.lua')
+    " call g:Source('/tabline.vim')
 
     " call g:Source('/lsp-config.vim')
     " call g:Source('/compe.vim')
