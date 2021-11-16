@@ -60,5 +60,17 @@
     "python.linting.flake8Enabled": true,
     "python.formatting.provider": "black",
     "python.formatting.blackPath": "/home/acc/projects/acubliss/core/.venv/bin/black",
-    "python.formatting.blackArgs": ["--line-length", "120"]
+    "python.formatting.blackArgs": ["--line-length", "120"],
+    "Lua.workspace.library": [
+        "/home/acc/neovim/share/nvim/runtime/lua",
+        "/home/acc/neovim/share/nvim/runtime/lua/vim/lsp"
+    ],
+    "Lua.diagnostics.globals": [
+        "hs",
+        "vim",
+        "it",
+        "describe",
+        "before_each",
+        "after_each"
+    ]
 }
