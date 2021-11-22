@@ -37,15 +37,15 @@ else
     call g:Source('/lua.vim')
     call g:Source('/commands.vim')
     call g:Source('/globals.vim')
-    call g:Source('/coc-lsp.vim')
+    " call g:Source('/coc-lsp.vim')
     call g:Source('/coc-else.vim')
-    call g:Source('/coc-explorer.vim')
+    " call g:Source('/coc-explorer.vim')
     call g:Source('/nvimtree.vim')
 
-    " call g:Luafile('/lualine.lua')
-    " call g:Source('/tabline.vim')
+    call g:Luafile('/lualine.lua')
+    call g:Source('/tabline.vim')
 
-    " call g:Source('/lsp-config.vim')
+    call g:Source('/lsp-config.vim')
     " call g:Source('/compe.vim')
     "
     " call g:Luafile('/galaxyline.lua')

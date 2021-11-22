@@ -94,3 +94,8 @@ let g:UltiSnipsExpandTrigger="<a-.>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " ############################### snippets ###############################
+"
+
+imap <silent><script><expr> <C-s> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+"

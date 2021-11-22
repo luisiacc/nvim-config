@@ -65,7 +65,7 @@ set guioptions-=T guioptions-=m
 " Do NOT yank with x/s
 nnoremap x "_x
 nnoremap s "_s
-set completeopt=menuone,noinsert,noselect,preview
+set completeopt=menu,menuone,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 set termguicolors

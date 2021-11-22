@@ -13,60 +13,168 @@ nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 
 " disable diagnostics for lsp-config
 " lua vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+"
 lua vim.lsp.handlers["textDocument/codeLens"] = function() end
 
-function ShowLineDiagnostic() abort
-    let line_diagnostics = v:lua.vim.lsp.diagnostic.get_line_diagnostics()
-    if v:lua.next(line_diagnostics)
-        :echo substitute(line_diagnostics[0].message, "\n", ".", "")
-    else
-        :echo
-    endif
-endfunction
-
-autocmd! CursorMoved * :call ShowLineDiagnostic()
+sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
+sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
+sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
+sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
 
 lua << EOF
+
+function PrintDiagnostics(opts, bufnr, line_nr, client_id)
+  opts = opts or {}
+
+  bufnr = bufnr or 0
+  line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
+
+  local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, line_nr, opts, client_id)
+  if vim.tbl_isempty(line_diagnostics) then return end
+
+  local diagnostic_message = ""
+  for i, diagnostic in ipairs(line_diagnostics) do
+    diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
+    print(diagnostic_message)
+    if i ~= #line_diagnostics then
+      diagnostic_message = diagnostic_message .. "\n"
+    end
+  end
+  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
+end
+
+vim.cmd [[ autocmd CursorMoved * lua PrintDiagnostics() ]]
+
+----------------------------------- CMPE ---------------------------------------------------
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
+  local lspkind = require('lspkind')
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+        -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+      end,
+    },
+    mapping = {
+      ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
+      ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
+      ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+      ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<Tab>'] = function(fallback)
+          if not cmp.select_next_item() then
+            if vim.bo.buftype ~= 'prompt' and has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end
+        end,
+        ['<S-Tab>'] = function(fallback)
+          if not cmp.select_prev_item() then
+            if vim.bo.buftype ~= 'prompt' and has_words_before() then
+              cmp.complete()
+            else
+              fallback()
+            end
+          end
+        end,
+    },
+    formatting = {
+        format = lspkind.cmp_format {
+            with_text = true,
+            menu = {
+                buffer = "[buf]",
+                nvim_lsp = "[LSP]",
+                nvim_lua = "[api]",
+                path = "[path]",
+                utilsnips = "[snip]",
+            }
+        }
+    },
+    sources = cmp.config.sources({
+      { name = 'nvim_lua' },
+      { name = 'nvim_lsp' },
+      { name = 'path' },
+      -- { name = 'vsnip' }, -- For vsnip users.
+      -- { name = 'luasnip' }, -- For luasnip users.
+      { name = 'ultisnips' }, -- For ultisnips users.
+      -- { name = 'snippy' }, -- For snippy users.
+    }, {
+      { name = 'buffer', keyword_length = 5 },
+    })
+  })
+
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+
+vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+      {" ", "FloatBorder"},
+      {"▔", "FloatBorder"},
+      {" ", "FloatBorder"},
+      {"▕", "FloatBorder"},
+      {" ", "FloatBorder"},
+      {"▁", "FloatBorder"},
+      {" ", "FloatBorder"},
+      {"▏", "FloatBorder"},
+}
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 vim.lsp.set_log_level("debug")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = false,
+    underline = true,
     virtual_text = false,
     signs = true,
     update_in_insert = true,
   }
 )
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
---capabilities.textDocument.completion.completionItem.resolveSupport = {
- -- properties = {
-   -- 'documentation',
- --   'detail',
- --   'additionalTextEdits',
- -- }
---}
-
-require'lspconfig'.clangd.setup{
+local nvim_lsp = require('lspconfig')
+local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls', 'html', 'cssls', 'vimls' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
     capabilities = capabilities,
-}
-
-require('lspconfig').jsonls.setup{
-    capabilities = capabilities,
-}
-require('lspconfig').html.setup{
-    capabilities = capabilities,
-}
-require('lspconfig').cssls.setup{
-    capabilities = capabilities,
-}
-require'lspconfig'.vimls.setup{
-    capabilities = capabilities,
-}
-require'lspconfig'.rls.setup{
-    capabilities = capabilities,
-}
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
 
 -- lua server-----------------------------------------------------------------------------
 local system_name
