@@ -4,51 +4,27 @@ nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 " nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 " nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-" nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <silent> <leader>ne <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap <silent> <leader>pe <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
 
 " lua require'lspconfig'.pyright.setup{}
 " lua require'snippets'.use_suggested_mappings()
-" lua require'lsp_signature'.on_attach()
 
 " disable diagnostics for lsp-config
 " lua vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 "
-lua vim.lsp.handlers["textDocument/codeLens"] = function() end
-
-sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
-sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
-sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
-sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
 
 lua << EOF
-
-function PrintDiagnostics(opts, bufnr, line_nr, client_id)
-  opts = opts or {}
-
-  bufnr = bufnr or 0
-  line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
-
-  local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(bufnr, line_nr, opts, client_id)
-  if vim.tbl_isempty(line_diagnostics) then return end
-
-  local diagnostic_message = ""
-  for i, diagnostic in ipairs(line_diagnostics) do
-    diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
-    print(diagnostic_message)
-    if i ~= #line_diagnostics then
-      diagnostic_message = diagnostic_message .. "\n"
-    end
-  end
-  vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
-end
-
-vim.cmd [[ autocmd CursorMoved * lua PrintDiagnostics() ]]
 
 ----------------------------------- CMPE ---------------------------------------------------
   -- Setup nvim-cmp.
   local cmp = require'cmp'
   local lspkind = require('lspkind')
+
+    local has_words_before = function()
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
 
   cmp.setup({
     snippet = {
@@ -134,128 +110,150 @@ vim.cmd [[ autocmd CursorMoved * lua PrintDiagnostics() ]]
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
-vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
-vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+    vim.cmd [[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]]
+    vim.cmd [[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
 
-local border = {
-      {" ", "FloatBorder"},
-      {"▔", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"▕", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"▁", "FloatBorder"},
-      {" ", "FloatBorder"},
-      {"▏", "FloatBorder"},
-}
-
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or border
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
-vim.lsp.set_log_level("debug")
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = false,
-    signs = true,
-    update_in_insert = true,
-  }
-)
-
-local nvim_lsp = require('lspconfig')
-local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls', 'html', 'cssls', 'vimls' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
+    local border = {
+          {" ", "FloatBorder"},
+          {"▔", "FloatBorder"},
+          {" ", "FloatBorder"},
+          {"▕", "FloatBorder"},
+          {" ", "FloatBorder"},
+          {"▁", "FloatBorder"},
+          {" ", "FloatBorder"},
+          {"▏", "FloatBorder"},
     }
-  }
-end
 
--- lua server-----------------------------------------------------------------------------
-local system_name
-if vim.fn.has("mac") == 1 then
-  system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-  system_name = "Linux"
-elseif vim.fn.has('win32') == 1 then
-  system_name = "Windows"
-else
-  print("Unsupported system for sumneko")
-end
+    local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+    function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+      opts = opts or {}
+      opts.border = opts.border or border
+      return orig_util_open_floating_preview(contents, syntax, opts, ...)
+    end
 
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = '~/lua-language-server'
-local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+    vim.lsp.set_log_level("debug")
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        underline = false,
+        virtual_text = false,
+        signs = true,
+        update_in_insert = true,
+      }
+    )
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+    local nvim_lsp = require('lspconfig')
+    local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'clangd', 'jsonls', 'html', 'cssls', 'vimls' }
+    for _, lsp in ipairs(servers) do
+      nvim_lsp[lsp].setup {
+        capabilities = capabilities,
+        flags = {
+          debounce_text_changes = 150,
+        }
+      }
+    end
 
-require'lspconfig'.sumneko_lua.setup {
-    capabilities = capabilities;
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
+    -- lua server-----------------------------------------------------------------------------
+    local system_name
+    if vim.fn.has("mac") == 1 then
+      system_name = "macOS"
+    elseif vim.fn.has("unix") == 1 then
+      system_name = "Linux"
+    elseif vim.fn.has('win32') == 1 then
+      system_name = "Windows"
+    else
+      print("Unsupported system for sumneko")
+    end
+
+    -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+    local sumneko_root_path = '~/lua-language-server'
+    local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
+
+    local runtime_path = vim.split(package.path, ';')
+    table.insert(runtime_path, "lua/?.lua")
+    table.insert(runtime_path, "lua/?/init.lua")
+
+    require'lspconfig'.sumneko_lua.setup {
+        capabilities = capabilities;
+      cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+      settings = {
+        Lua = {
+          runtime = {
+            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
+            -- Setup your lua path
+            path = runtime_path,
+          },
+          diagnostics = {
+            -- Get the language server to recognize the `vim` global
+            globals = {'vim'},
+          },
+          workspace = {
+            -- Make the server aware of Neovim runtime files
+            library = vim.api.nvim_get_runtime_file("", true),
+          },
+          -- Do not send telemetry data containing a randomized but unique identifier
+          telemetry = {
+            enable = false,
+          },
+        },
       },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
--- end lua server
-------------------------------------------------------------------------------------------
+    }
+    -- end lua server
+    ------------------------------------------------------------------------------------------
 
-vim.lsp.protocol.CompletionItemKind = {
-  ' [text]',
-  ' [method]',
-  'ƒ [function]',
-  ' [constructor]',
-  ' [field]',
-  ' [variable]',
-  ' [class]',
-  ' [interface]',
-  ' [module]',
-  ' [property]',
-  ' [unit]',
-  ' [value]',
-  ' [enum]',
-  ' [keyword]',
-  '﬌ [snippet]',
-  ' [color]',
-  ' [file]',
-  ' [reference]',
-  ' [dir]',
-  ' [enummember]',
-  ' [constant]',
-  ' [struct]',
-  '  [event]',
-  ' [operator]',
-  ' [type]',
-}
+    vim.lsp.protocol.CompletionItemKind = {
+      ' [text]',
+      ' [method]',
+      'ƒ [function]',
+      ' [constructor]',
+      ' [field]',
+      ' [variable]',
+      ' [class]',
+      ' [interface]',
+      ' [module]',
+      ' [property]',
+      ' [unit]',
+      ' [value]',
+      ' [enum]',
+      ' [keyword]',
+      '﬌ [snippet]',
+      ' [color]',
+      ' [file]',
+      ' [reference]',
+      ' [dir]',
+      ' [enummember]',
+      ' [constant]',
+      ' [struct]',
+      '  [event]',
+      ' [operator]',
+      ' [type]',
+    }
 
-local saga = require'lspsaga'
-saga.init_lsp_saga()
+    local saga = require'lspsaga'
+    saga.init_lsp_saga()
 
+    function PrintDiagnostics()
+      local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+      local diagnostics = vim.diagnostic.get(0, {lnum=lnum})
+      if vim.tbl_isempty(diagnostics) then
+          print("")
+          return
+      end
+      for i, diagnostic in ipairs(diagnostics) do
+        print(string.format("%d: %s", i, diagnostic.message))
+      end
+    end
+
+    vim.cmd [[ autocmd CursorHold * lua PrintDiagnostics() ]]
+
+    require'lsp_signature'.setup({
+        bind = true,
+        hint_enable = true, -- virtual hint enable
+        hint_prefix = " ",  -- Panda for parameter
+        handler_opts = {
+            border = "rounded"
+        }
+    })
 EOF
 
 
@@ -285,9 +283,15 @@ nnoremap <silent><leader>dp <cmd>lua require'lspsaga.provider'.preview_definitio
 nnoremap <silent><leader>gd <C-]>
 
 "" jump diagnostic
-nnoremap <silent> <leader>ne <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
-nnoremap <silent> <leader>pe <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+" nnoremap <silent> <leader>ne <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
+" nnoremap <silent> <leader>pe <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
 
 "" float terminal also you can pass the cli command in open_float_terminal function
 nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+
+sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
+sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
+sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
+sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
+

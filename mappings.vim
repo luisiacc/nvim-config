@@ -99,6 +99,8 @@ tnoremap jj <C-\><C-n>
 " nnoremap <leader>p :FloatermNew eval $(ssh-agent -s) && ssh-add ~/.ssh/r.txt
 nnoremap <leader>p :FloatermToggle<CR>
 
+nnoremap <leader>d :tabedit %<CR>
+
 nnoremap <leader>js :set filetype=javascriptreact<CR>
 
 nnoremap <C-x> :cnext<CR>

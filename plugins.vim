@@ -101,6 +101,7 @@ Plug 'mnishz/colorscheme-preview.vim'
 Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'projekt0n/github-nvim-theme'
+Plug 'lourenci/github-colors'
 
 Plug 'editorconfig/editorconfig-vim'
 

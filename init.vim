@@ -61,7 +61,7 @@ else
     " set foldmethod=expr
     " set foldexpr=nvim_treesitter#foldexpr()
 
-    set guifont=Hack\ NF:h15:w500
+    set guifont=SFMono\ Nerd\ Font:h11
     set linespace=8
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 

@@ -87,6 +87,10 @@ require'nvim-tree'.setup {
             custom_only = false,
             list = {}
         }
+    },
+    git = {
+        enable = true,
+        ignore = false,
     }
 }
 
