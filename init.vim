@@ -41,7 +41,7 @@ call g:Luafile('/lsp-config.lua')
 " call g:Luafile('/galaxyline.lua')
 " call g:Source('/mpbtl.vim')
 
-call g:Source('/lua-format.vim')
+" call g:Source('/lua-format.vim')
 call g:Source('/schemes.vim')
 call g:Source('/mappings.vim')
 call g:Source('/telescope.vim')
