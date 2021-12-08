@@ -129,10 +129,17 @@ local servers = {
 	"cssls",
 	"vimls",
 }
+
+local on_attach = function(client)
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
+end
+
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		capabilities = capabilities,
 		flags = { debounce_text_changes = 150 },
+		on_attach = on_attach,
 	})
 end
 
@@ -189,8 +196,8 @@ local fmt = null_ls.builtins.formatting
 local dg = null_ls.builtins.diagnostics
 local ca = null_ls.builtins.code_actions
 local _debug = function(file, content)
-  file = io.open(file, "a"):write(content)
-  file.close()
+	file = io.open(file, "a"):write(content .. "\n")
+	file.close()
 end
 
 -- Configuring null-ls
@@ -205,24 +212,26 @@ null_ls.config({
 		fmt.clang_format,
 		fmt.black,
 		fmt.isort.with({
+      condition = function(utils)
+        return utils.root_has_file("pyproject.toml")
+      end,
 			args = function(params)
-        return {
-          "--stdout",
-          "--profile",
-          "black",
-          "--settings-path",
-          nvim_lsp.util.root_pattern(".venv", "pyproject.toml", ".git")(params.bufname),
-          '$FILENAME',
-          "-"
-        }
-      end
+        local root = nvim_lsp.util.root_pattern(".venv", "pyproject.toml", ".git")(params.bufname)
+				return {
+					"--stdout",
+					"--profile",
+					"black",
+					"--settings-path",
+					root,
+					"$FILENAME",
+				}
+			end,
 		}),
 		fmt.eslint_d,
-		dg.eslint_d,
 		fmt.prettier,
+		dg.eslint_d,
 		dg.flake8,
 		ca.eslint,
-		ca.gitsigns,
 	},
 })
 
@@ -327,3 +336,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 	update_in_insert = true,
 })
 
+vim.diagnostic.config({
+	underline = false,
+	virtual_text = false,
+	signs = true,
+	update_in_insert = false,
+})
+
+-- trouble.vim
+require("trouble").setup({
+	use_lsp_diagnostic_signs = true,
+})

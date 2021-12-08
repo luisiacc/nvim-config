@@ -1,8 +1,6 @@
 " Black for python
 "let g:black_virtualenv="/mnt/c/Users/acc/projects__/acubliss/core/.venv/"
-nnoremap <leader>bb :Black<CR>
-nnoremap <leader>fp :CocPrettier<CR>
-nnoremap <leader>fm :Format<CR>
+nnoremap <leader>fm :lua vim.lsp.buf.formatting()<CR>
 
 nnoremap Y y$
 inoremap , ,<c-g>u
