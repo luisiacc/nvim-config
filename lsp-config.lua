@@ -195,12 +195,18 @@ local null_ls = require("null-ls")
 local fmt = null_ls.builtins.formatting
 local dg = null_ls.builtins.diagnostics
 local ca = null_ls.builtins.code_actions
+
 local _debug = function(file, content)
 	file = io.open(file, "a"):write(content .. "\n")
 	file.close()
 end
 
--- Configuring null-ls
+local root_has_file = function(name)
+	local lsputil = require("lspconfig.util")
+	local cwd = vim.loop.cwd()
+	return lsputil.path.exists(lsputil.path.join(cwd, name))
+end
+
 null_ls.config({
 	autostart = true,
 	sources = {
@@ -210,25 +216,33 @@ null_ls.config({
 		fmt.rustfmt,
 		fmt.stylua,
 		fmt.clang_format,
-		fmt.black,
+		fmt.black.with({ prefer_local = ".venv/bin", extra_args = { "--line-length", "120" } }),
+		-- fmt.isort,
 		fmt.isort.with({
-      condition = function(utils)
-        return utils.root_has_file("pyproject.toml")
-      end,
+			-- condition = function(utils)
+			-- 	return utils.root_has_file("pyproject.toml")
+			-- end,
 			args = function(params)
-        local root = nvim_lsp.util.root_pattern(".venv", "pyproject.toml", ".git")(params.bufname)
-				return {
+				local lsputil = require("lspconfig.util")
+				local cwd = vim.loop.cwd()
+
+				local root = nvim_lsp.util.root_pattern(".venv", "pyproject.toml", ".git")(params.bufname)
+				local config = {
 					"--stdout",
-					"--profile",
-					"black",
-					"--settings-path",
-					root,
-					"$FILENAME",
+					"--filename",
 				}
+				if root_has_file("pyproject.toml") then
+					table.insert(config, "--settings-path")
+					table.insert(config, root)
+				end
+				table.insert(config, "$FILENAME")
+				table.insert(config, "-")
+				return config
 			end,
 		}),
+		fmt.djhtml,
 		fmt.eslint_d,
-		fmt.prettier,
+		fmt.prettierd,
 		dg.eslint_d,
 		dg.flake8,
 		ca.eslint,
@@ -236,7 +250,7 @@ null_ls.config({
 })
 
 -- Setting up null-ls server
-nvim_lsp["null-ls"].setup({})
+nvim_lsp["null-ls"].setup({ debug = true })
 ------------------------------------------------------------------------------------------
 
 vim.lsp.protocol.CompletionItemKind = {

@@ -46,7 +46,10 @@ Plug 'tami5/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+
 Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug '/home/acc/projects/null-ls.nvim'
+
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
