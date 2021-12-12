@@ -51,11 +51,11 @@ call g:Luafile('/diffview.lua')
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
 
-set guifont=JetBrainsMono\ Nerd\ Font:h11
-set linespace=10
+set guifont=JetBrainsMono\ Nerd\ Font:h9
+set linespace=8
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-let g:neovide_transparency=1
-let g:neovide_cursor_animation_length=0.05
-let g:neovide_cursor_antialiasing=v:true
+" let g:neovide_transparency=1
+" let g:neovide_cursor_animation_length=0.08
+" let g:neovide_cursor_antialiasing=v:true
 
