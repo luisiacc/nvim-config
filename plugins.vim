@@ -57,6 +57,8 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-calc'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
 Plug 'onsails/lspkind-nvim'
 
 " Plug 'norcalli/snippets.nvim'
@@ -67,7 +69,7 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 " Plug 'alvan/vim-closetag'
 Plug 'windwp/nvim-autopairs'
-Plug 'mlaursen/vim-react-snippets'
+" Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 

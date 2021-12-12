@@ -24,6 +24,10 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local t = function(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -59,6 +63,38 @@ cmp.setup({
 				end
 			end
 		end,
+		["<C-n>"] = cmp.mapping({
+			c = function()
+				if cmp.visible() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					vim.api.nvim_feedkeys(t("<Down>"), "n", true)
+				end
+			end,
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end,
+		}),
+		["<C-p>"] = cmp.mapping({
+			c = function()
+				if cmp.visible() then
+					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					vim.api.nvim_feedkeys(t("<Up>"), "n", true)
+				end
+			end,
+			i = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+				else
+					fallback()
+				end
+			end,
+		}),
 	},
 	formatting = {
 		format = lspkind.cmp_format({
@@ -73,13 +109,13 @@ cmp.setup({
 		}),
 	},
 	sources = cmp.config.sources({
+		{ name = "ultisnips" }, -- For ultisnips users.
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
 		{ name = "calc" },
 		-- { name = 'vsnip' }, -- For vsnip users.
 		-- { name = 'luasnip' }, -- For luasnip users.
-		{ name = "ultisnips" }, -- For ultisnips users.
 		-- { name = 'snippy' }, -- For snippy users.
 	}, { { name = "buffer", keyword_length = 5 } }),
 })
@@ -300,7 +336,7 @@ vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
 
 require("lsp_signature").setup({
 	bind = true,
-	hint_enable = true, -- virtual hint enable
+	hint_enable = false, -- virtual hint enable
 	hint_prefix = " ", -- Panda for parameter
 	handler_opts = { border = "rounded" },
 })
@@ -359,5 +395,5 @@ vim.diagnostic.config({
 
 -- trouble.vim
 require("trouble").setup({
-	use_lsp_diagnostic_signs = true,
+	use_lsp_diagnostic = true,
 })

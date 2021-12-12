@@ -40,7 +40,7 @@ set magic
 set expandtab
 set clipboard+=unnamedplus
 
-set nu rnu
+set nu "rnu
 set nowrap
 set smartcase
 set noswapfile
