@@ -16,7 +16,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'github/copilot.vim'
 
@@ -24,8 +23,8 @@ Plug 'folke/trouble.nvim'
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
-Plug 'antoinemadec/coc-fzf'
+" Plug 'stsewd/fzf-checkout.vim'
+" Plug 'antoinemadec/coc-fzf'
 Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'kevinhwang91/nvim-bqf'
 Plug 'lewis6991/gitsigns.nvim'
@@ -41,14 +40,15 @@ Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
 Plug 'SmiteshP/nvim-gps'
 
-Plug 'ray-x/lsp_signature.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
 Plug 'tami5/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
-" Plug '/home/acc/projects/null-ls.nvim'
+Plug 'nvim-pack/nvim-spectre'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
@@ -57,12 +57,14 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-calc'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'dcampos/nvim-snippy'
+Plug 'dcampos/cmp-snippy'
 
 Plug 'onsails/lspkind-nvim'
 
 " Plug 'norcalli/snippets.nvim'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " javascript
@@ -73,9 +75,7 @@ Plug 'windwp/nvim-autopairs'
 
 Plug 'vim-test/vim-test'
 
-" Plug 'dense-analysis/ale'
-" Plug 'jremmen/vim-ripgrep'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'phaazon/hop.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
@@ -114,17 +114,14 @@ Plug 'lourenci/github-colors'
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'crispgm/nvim-tabline'
 Plug 'hoob3rt/lualine.nvim'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'
-Plug 'AndrewRadev/tagalong.vim'
 call plug#end()
 
 " for coc to work with scss files
@@ -150,21 +147,10 @@ endif
 "     }
 " EOF
 
-" require('lualine').setup{
-"     options = {
-"         theme = 'gruvbox',
-"         section_separators = {'', ''},
-"         component_separators = {'', ''}
-"     }
-" }
-" require'tabline'.setup{}
-
-lua << EOF
-require('nvim-autopairs').setup()
-EOF
-        " section_separators = {'', ''},
-        " component_separators = {'', ''}
 let g:vim_jsx_pretty_disable_js = 1
 let g:vim_jsx_pretty_template_tags = []
 let g:vim_jsx_pretty_colorful_config = 0
 let g:python_highlight_space_errors = 0
+
+" call g:Source("/plugins/coc-else")
+

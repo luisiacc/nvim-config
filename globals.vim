@@ -79,23 +79,4 @@ let g:airline_extensions = ['branch', 'tabline']
 
 let g:indentLine_fileTypeExclude = ['coc-explorer']
 
-let g:floaterm_width = 0.8
-let g:floaterm_height = 0.8
 
-" let g:gutentags_ctags_executable = '/usr/bin/ctags'
-
-" ############################### TAGALONG ###############################
-let g:tagalong_filetypes = ['html', 'xml', 'jsx', 'eruby', 'ejs', 'eco', 'php', 'js', 'htmldjango', 'javascriptreact', 'typescriptreact', 'javascript', 'typescript']
-" ############################### TAGALONG ###############################
-
-" ############################### snippets ###############################
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "own_snippets"]
-let g:UltiSnipsExpandTrigger="<a-.>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" ############################### snippets ###############################
-"
-
-imap <silent><script><expr> <C-s> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-"

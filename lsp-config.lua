@@ -4,8 +4,12 @@ vim.cmd([[nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>]])
 vim.cmd([[nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>]])
 -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-vim.cmd([[nnoremap <silent> <leader>ne <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>]])
-vim.cmd([[nnoremap <silent> <leader>pe <cmd>lua vim.lsp.diagnostic.goto_next()<CR>]])
+vim.cmd([[nnoremap <silent> <leader>pe <cmd>lua vim.diagnostic.goto_prev()<CR>]])
+vim.cmd([[nnoremap <silent> <leader>ne <cmd>lua vim.diagnostic.goto_next()<CR>]])
+
+local masive = 1
+
+local mar = masive + 10
 
 -- " lua require'lspconfig'.pyright.setup{}
 -- " lua require'snippets'.use_suggested_mappings()
@@ -34,8 +38,8 @@ cmp.setup({
 		expand = function(args)
 			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
 			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-			vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-			-- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+			require("snippy").expand_snippet(args.body) -- For `snippy` users.
 		end,
 	},
 	mapping = {
@@ -109,7 +113,7 @@ cmp.setup({
 		}),
 	},
 	sources = cmp.config.sources({
-		{ name = "ultisnips" }, -- For ultisnips users.
+		{ name = "snippy" },
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "path" },
@@ -153,12 +157,11 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("trace")
 local nvim_lsp = require("lspconfig")
 local servers = {
 	"pyright",
 	"rust_analyzer",
-	"tsserver",
 	"clangd",
 	"jsonls",
 	"html",
@@ -178,6 +181,56 @@ for _, lsp in ipairs(servers) do
 		on_attach = on_attach,
 	})
 end
+
+local ts_utils = require("nvim-lsp-ts-utils")
+nvim_lsp.tsserver.setup({
+	init_options = ts_utils.init_options,
+	root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+	flags = { debounce_text_changes = 150 },
+	on_attach = function(client, bufnr)
+		local ts_utils = require("nvim-lsp-ts-utils")
+
+		-- defaults
+		ts_utils.setup({
+			debug = false,
+			disable_commands = false,
+			enable_import_on_completion = false,
+
+			-- import all
+			import_all_timeout = 5000, -- ms
+			-- lower numbers = higher priority
+			import_all_priorities = {
+				same_file = 1, -- add to existing import statement
+				local_files = 2, -- git files or files with relative path markers
+				buffer_content = 3, -- loaded buffer content
+				buffers = 4, -- loaded buffer names
+			},
+			import_all_scan_buffers = 100,
+			import_all_select_source = false,
+
+			-- filter diagnostics
+			filter_out_diagnostics_by_severity = {},
+			filter_out_diagnostics_by_code = {},
+
+			-- inlay hints
+			auto_inlay_hints = true,
+			inlay_hints_highlight = "Comment",
+
+			-- update imports on file move
+			update_imports_on_move = false,
+			require_confirmation_on_move = false,
+			watch_dir = nil,
+		})
+
+		-- required to fix code action ranges and filter diagnostics
+		ts_utils.setup_client(client)
+
+		-- no default maps, so you may want to define some here
+		local opts = { silent = true }
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", ":TSLspRenameFile<CR>", opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "ga", ":TSLspImportAll<CR>", opts)
+	end,
+})
 
 -- lua server-----------------------------------------------------------------------------
 local system_name
@@ -243,7 +296,7 @@ local root_has_file = function(name)
 	return lsputil.path.exists(lsputil.path.join(cwd, name))
 end
 
-null_ls.config({
+null_ls.setup({
 	autostart = true,
 	sources = {
 		fmt.trim_whitespace.with({
@@ -251,7 +304,6 @@ null_ls.config({
 		}),
 		fmt.rustfmt,
 		fmt.stylua,
-		fmt.clang_format,
 		fmt.black.with({ prefer_local = ".venv/bin", extra_args = { "--line-length", "120" } }),
 		-- fmt.isort,
 		fmt.isort.with({
@@ -285,8 +337,6 @@ null_ls.config({
 	},
 })
 
--- Setting up null-ls server
-nvim_lsp["null-ls"].setup({ debug = true })
 ------------------------------------------------------------------------------------------
 
 vim.lsp.protocol.CompletionItemKind = {
@@ -334,12 +384,12 @@ end
 
 vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
 
-require("lsp_signature").setup({
-	bind = true,
-	hint_enable = false, -- virtual hint enable
-	hint_prefix = " ", -- Panda for parameter
-	handler_opts = { border = "rounded" },
-})
+-- require("lsp_signature").setup({
+-- 	bind = true,
+-- 	hint_enable = false, -- virtual hint enable
+-- 	hint_prefix = " ", -- Panda for parameter
+-- 	handler_opts = { border = "rounded" },
+-- })
 
 -- " lsp provider to find the cursor word definition and reference
 vim.cmd([[nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]])

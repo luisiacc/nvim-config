@@ -24,13 +24,6 @@ nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 
-" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
-nmap <silent> t<C-n> :TestNearest<CR>
-nmap <silent> t<C-f> :TestFile<CR>
-nmap <silent> t<C-s> :TestSuite<CR>
-nmap <silent> t<C-l> :TestLast<CR>
-nmap <silent> t<C-g> :TestVisit<CR>
-
 " remap tab navigation
 nnoremap <leader>, gT
 nnoremap <leader>. gt
@@ -71,31 +64,12 @@ noremap <silent> <C-Left> :vertical resize +5<CR>
 noremap <silent> <C-Up> :resize -1<CR>
 noremap <silent> <C-Down> :resize +1<CR>
 
-" Sweet Sweet FuGITive
-" nmap <leader>gc :GBranches<CR>
-nmap <leader>as :G rebase -i --autosquash
-nmap <leader>df :Gdiffsplit<CR>
-nmap <leader>ru :G reset HEAD~1<CR>
-nmap <leader>cb :G checkout
-nmap <leader>nb :G checkout -b
-nmap <leader>co :Gcommit<CR>
-nmap <leader>gh :diffget //2<CR>
-nmap <leader>gl :diffget //3<CR>
-nmap <leader>gg :G<CR>
-nmap <leader>dg :diffget<CR>
-nmap <leader>dp :diffput<CR>
-
 " compares current file to last revision
 nmap <leader>lr :vert diffsplit #<CR>
 
 " todo
 nnoremap <leader>e :tabedit todo.md<cr>
 
-"floaterm terminal
-tnoremap jj <C-\><C-n>
-
-" nnoremap <leader>p :FloatermNew eval $(ssh-agent -s) && ssh-add ~/.ssh/r.txt
-nnoremap <leader>p :FloatermToggle<CR>
 
 nnoremap <leader>d :tabedit %<CR>
 
@@ -132,20 +106,6 @@ fun! ToggleLocList()
     endif
 endfun
 
-"#################################################################################
-"-------------------------------------HOP.NVIM------------------------------------
-"#################################################################################
-nmap <leader><leader>l <cmd>HopLine<CR>
-nmap <leader><leader>w <cmd>HopWordAC<CR>
-nmap <leader><leader>b <cmd>HopWordBC<CR>
-nmap <leader><leader>c <cmd>HopChar1<CR>
-nmap <leader><leader>d <cmd>HopChar2<CR>
-
-highlight HopNextKey guibg=#353535
-highlight HopNextKey1 guibg=#353535
-highlight HopNextKey2 guibg=#353535
-"#################################################################################
-"----------------------------------END HOP.NVIM-----------------------------------
-"#################################################################################
-
 nmap <leader>q :tabedit /mnt/c/Users/acc/AppData/Roaming/alacritty/alacritty.yml<CR>
+
+
