@@ -7,10 +7,6 @@ vim.cmd([[nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>]])
 vim.cmd([[nnoremap <silent> <leader>pe <cmd>lua vim.diagnostic.goto_prev()<CR>]])
 vim.cmd([[nnoremap <silent> <leader>ne <cmd>lua vim.diagnostic.goto_next()<CR>]])
 
-local masive = 1
-
-local mar = masive + 10
-
 -- " lua require'lspconfig'.pyright.setup{}
 -- " lua require'snippets'.use_suggested_mappings()
 
@@ -156,9 +152,102 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 	opts.border = opts.border or border
 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+-------------------------- SET UP SERVERS ---------------------------------------------
 
 -- vim.lsp.set_log_level("trace")
 local nvim_lsp = require("lspconfig")
+local common_on_attach = function(client)
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
+end
+
+local ts_utils = require("nvim-lsp-ts-utils")
+
+local default_config = {
+	capabilities = capabilities,
+	flags = { debounce_text_changes = 150 },
+	on_attach = common_on_attach,
+}
+
+local server_configurations = {
+	["sumneko_lua"] = {
+		capabilities = capabilities,
+		on_attach = common_on_attach,
+		flags = { debounce_text_changes = 150 },
+		settings = {
+			Lua = {
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { "vim" },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = { vim.api.nvim_get_runtime_file("", true) },
+				},
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = { enable = false },
+			},
+		},
+	},
+	["tsserver"] = {
+		capabilities = capabilities,
+		init_options = ts_utils.init_options,
+		root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+		flags = { debounce_text_changes = 150 },
+		on_attach = function(client, bufnr)
+			-- defaults
+			common_on_attach(client)
+			ts_utils.setup({
+				debug = false,
+				disable_commands = false,
+				enable_import_on_completion = false,
+
+				-- import all
+				import_all_timeout = 5000, -- ms
+				-- lower numbers = higher priority
+				import_all_priorities = {
+					same_file = 1, -- add to existing import statement
+					local_files = 2, -- git files or files with relative path markers
+					buffer_content = 3, -- loaded buffer content
+					buffers = 4, -- loaded buffer names
+				},
+				import_all_scan_buffers = 100,
+				import_all_select_source = false,
+
+				-- filter diagnostics
+				filter_out_diagnostics_by_severity = {},
+				filter_out_diagnostics_by_code = {},
+
+				-- inlay hints
+				auto_inlay_hints = true,
+				inlay_hints_highlight = "Comment",
+
+				-- update imports on file move
+				update_imports_on_move = false,
+				require_confirmation_on_move = false,
+				watch_dir = nil,
+			})
+
+			-- required to fix code action ranges and filter diagnostics
+			ts_utils.setup_client(client)
+
+			-- no default maps, so you may want to define some here
+			local opts = { silent = true }
+			vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", ":TSLspRenameFile<CR>", opts)
+			vim.api.nvim_buf_set_keymap(bufnr, "n", "ga", ":TSLspImportAll<CR>", opts)
+		end,
+	},
+}
+
+local lsp_installer = require("nvim-lsp-installer")
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+	-- This setup() function is exactly the same as lspconfig's setup function.
+	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+	server:setup(server_configurations[server.name] or default_config)
+end)
+
 local servers = {
 	"pyright",
 	"rust_analyzer",
@@ -167,118 +256,15 @@ local servers = {
 	"html",
 	"cssls",
 	"vimls",
+	"sumneko_lua",
+	"tsserver",
 }
 
-local on_attach = function(client)
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
-end
+-- for _, lsp in ipairs(servers) do
+-- 	nvim_lsp[lsp].setup()
+-- end
 
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup({
-		capabilities = capabilities,
-		flags = { debounce_text_changes = 150 },
-		on_attach = on_attach,
-	})
-end
-
-local ts_utils = require("nvim-lsp-ts-utils")
-nvim_lsp.tsserver.setup({
-	init_options = ts_utils.init_options,
-	root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
-	flags = { debounce_text_changes = 150 },
-	on_attach = function(client, bufnr)
-		local ts_utils = require("nvim-lsp-ts-utils")
-
-		-- defaults
-		ts_utils.setup({
-			debug = false,
-			disable_commands = false,
-			enable_import_on_completion = false,
-
-			-- import all
-			import_all_timeout = 5000, -- ms
-			-- lower numbers = higher priority
-			import_all_priorities = {
-				same_file = 1, -- add to existing import statement
-				local_files = 2, -- git files or files with relative path markers
-				buffer_content = 3, -- loaded buffer content
-				buffers = 4, -- loaded buffer names
-			},
-			import_all_scan_buffers = 100,
-			import_all_select_source = false,
-
-			-- filter diagnostics
-			filter_out_diagnostics_by_severity = {},
-			filter_out_diagnostics_by_code = {},
-
-			-- inlay hints
-			auto_inlay_hints = true,
-			inlay_hints_highlight = "Comment",
-
-			-- update imports on file move
-			update_imports_on_move = false,
-			require_confirmation_on_move = false,
-			watch_dir = nil,
-		})
-
-		-- required to fix code action ranges and filter diagnostics
-		ts_utils.setup_client(client)
-
-		-- no default maps, so you may want to define some here
-		local opts = { silent = true }
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", ":TSLspRenameFile<CR>", opts)
-		vim.api.nvim_buf_set_keymap(bufnr, "n", "ga", ":TSLspImportAll<CR>", opts)
-	end,
-})
-
--- lua server-----------------------------------------------------------------------------
-local system_name
-if vim.fn.has("mac") == 1 then
-	system_name = "macOS"
-elseif vim.fn.has("unix") == 1 then
-	system_name = "Linux"
-elseif vim.fn.has("win32") == 1 then
-	system_name = "Windows"
-else
-	print("Unsupported system for sumneko")
-end
-
--- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
-local sumneko_root_path = "/home/acc/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
-
-local runtime_path = vim.split(package.path, ";")
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
-nvim_lsp.sumneko_lua.setup({
-	capabilities = capabilities,
-	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-	settings = {
-		Lua = {
-			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-				version = "LuaJIT",
-				-- Setup your lua path
-				path = runtime_path,
-			},
-			diagnostics = {
-				-- Get the language server to recognize the `vim` global
-				globals = { "vim" },
-			},
-			workspace = {
-				-- Make the server aware of Neovim runtime files
-				library = vim.api.nvim_get_runtime_file("", true),
-			},
-			-- Do not send telemetry data containing a randomized but unique identifier
-			telemetry = { enable = false },
-		},
-	},
-})
--- end lua server
 ------------------------------------------------------------------------------------------
-
 ------------------------------- null ls --------------------------------------------------
 local null_ls = require("null-ls")
 local fmt = null_ls.builtins.formatting
