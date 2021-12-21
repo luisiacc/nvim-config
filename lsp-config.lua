@@ -28,6 +28,8 @@ local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+local snippy = require("snippy")
+
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
@@ -44,25 +46,27 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
 		["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = function(fallback)
-			if not cmp.select_next_item() then
-				if vim.bo.buftype ~= "prompt" and has_words_before() then
-					cmp.complete()
-				else
-					fallback()
-				end
+		["<CR>"] = cmp.mapping.confirm({ select = false }),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif snippy.can_expand_or_advance() then
+				snippy.expand_or_advance()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
 			end
-		end,
-		["<S-Tab>"] = function(fallback)
-			if not cmp.select_prev_item() then
-				if vim.bo.buftype ~= "prompt" and has_words_before() then
-					cmp.complete()
-				else
-					fallback()
-				end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif snippy.can_jump(-1) then
+				snippy.previous()
+			else
+				fallback()
 			end
-		end,
+		end, { "i", "s" }),
 		["<C-n>"] = cmp.mapping({
 			c = function()
 				if cmp.visible() then
