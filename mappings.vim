@@ -15,8 +15,8 @@ vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 " nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
 " nnoremap <C-p> :GFiles<CR>
 " nnoremap <leader>ff :Ag<CR>
@@ -44,7 +44,6 @@ nnoremap <Leader>rr :%s/<C-r><C-w>/
 nnoremap <leader>c :Commits<CR>
 nnoremap <leader>bc :BCommits<CR>
 
-nnoremap <leader>cs :CocSearch<SPACE>
 nnoremap <leader>fs :Files<CR>
 nnoremap <leader>s :w!<CR>
 nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
@@ -80,7 +79,7 @@ nnoremap <C-z> :cprev<CR>
 nnoremap <C-q> :call ToggleQFList()<CR>
 nnoremap <C-e> :call ToggleLocList()<CR>
 
-nnoremap <leader>rs :setlocal syntax=OFF
+" nnoremap <leader>rs :setlocal syntax=OFF
 
 let g:acc_loc_list = 0
 let g:acc_quickfix_list = 0
@@ -107,5 +106,6 @@ fun! ToggleLocList()
 endfun
 
 nmap <leader>q :tabedit /mnt/c/Users/acc/AppData/Roaming/alacritty/alacritty.yml<CR>
+nmap <leader>qq :tabedit /mnt/c/Users/acc/.wezterm.lua<CR>
 
 

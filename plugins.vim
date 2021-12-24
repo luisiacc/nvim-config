@@ -17,7 +17,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 Plug 'folke/trouble.nvim'
 
@@ -92,7 +92,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-dispatch'
 
 " Plug 'Yggdroot/indentLine'
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'tjdevries/colorbuddy.nvim'

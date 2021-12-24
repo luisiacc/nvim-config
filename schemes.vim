@@ -26,9 +26,6 @@ hi MatchParen guibg=#454545
 let g:gruvbox_italic=1
 
 hi Normal guisp=#aaa
-" set background transparent
-" hi Normal guibg=NONE ctermbg=NONE
-" hi LineNr ctermbg=NONE guibg=NONE
 
 " A lot of vim colorschemes provide some wild defaults for diff colors. This
 " function sets the diff colors to some more sane defaults that at least looks
@@ -75,3 +72,8 @@ let g:airline_section_a = ''
 " let g:airline_section_c = airline#section#create(['%{NvimGps()}'])
 hi NormalFloat guifg=NONE ctermfg=223 guibg=#242424 ctermbg=235 gui=NONE cterm=NONE
 hi FloatBorder guifg=NONE ctermfg=223 guibg=#242424 ctermbg=235 gui=NONE cterm=NONE
+hi Cursor guifg=#404040 guibg=NONE
+
+" set background transparent
+" hi Normal guibg=NONE ctermbg=NONE
+" hi LineNr ctermbg=NONE guibg=NONE
