@@ -275,13 +275,14 @@ local fmt = null_ls.builtins.formatting
 local dg = null_ls.builtins.diagnostics
 local ca = null_ls.builtins.code_actions
 
-local _debug = function(file, content)
-	file = io.open(file, "a"):write(content .. "\n")
-	file.close()
+local _debug = function(content)
+	local f = io.open("/home/acc/.nvim.debug.log", "a")
+	f:write(content .. "\n")
+	f.close()
 end
 
+local lsputil = require("lspconfig.util")
 local root_has_file = function(name)
-	local lsputil = require("lspconfig.util")
 	local cwd = vim.loop.cwd()
 	return lsputil.path.exists(lsputil.path.join(cwd, name))
 end
@@ -304,15 +305,15 @@ null_ls.setup({
 				local lsputil = require("lspconfig.util")
 				local cwd = vim.loop.cwd()
 
-				local root = nvim_lsp.util.root_pattern(".venv", "pyproject.toml", ".git")(params.bufname)
+				local root = nvim_lsp.pyright.get_root_dir(params.bufname)
 				local config = {
 					"--stdout",
-					"--filename",
 				}
-				if root_has_file("pyproject.toml") then
+				if lsputil.path.exists(lsputil.path.join(root, "pyproject.toml")) then
 					table.insert(config, "--settings-path")
 					table.insert(config, root)
 				end
+				table.insert(config, "--filename")
 				table.insert(config, "$FILENAME")
 				table.insert(config, "-")
 				return config
