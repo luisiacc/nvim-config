@@ -8,7 +8,7 @@ vim.cmd(
 vim.cmd(
 	[[noremap <leader>ps :lua require('telescope.builtin').live_grep(require('telescope.themes').get_ivy{ path_display = "shorten", only_sort_text = true })<CR>]]
 )
-vim.cmd([[nnoremap <C-p> :lua require('telescope.builtin').git_files(require('telescope.themes').get_ivy({}))<CR>]])
+vim.cmd([[nnoremap <C-p> :lua require('telescope.builtin').find_files(require('telescope.themes').get_ivy({}))<CR>]])
 vim.cmd(
 	[[nnoremap <Leader>fs :lua require('telescope.builtin').find_files(require('telescope.themes').get_ivy({}))<CR>]]
 )
