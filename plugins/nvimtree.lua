@@ -71,7 +71,7 @@ require("nvim-tree").setup({
 	},
 	update_focused_file = {
 		enable = true,
-		update_cwd = false,
+		update_cwd = true,
 		ignore_list = { "startify" },
 	},
 	system_open = {
@@ -81,7 +81,7 @@ require("nvim-tree").setup({
 	view = {
 		width = 40,
 		side = "right",
-		auto_resize = false,
+		auto_resize = true,
 		mappings = {
 			custom_only = false,
 			list = {},
