@@ -1,3 +1,5 @@
+require("hop").setup()
+
 vim.cmd([[nmap <leader><leader>l <cmd>HopLine<CR>]])
 vim.cmd([[nmap <leader><leader>w <cmd>HopWordAC<CR>]])
 vim.cmd([[nmap <leader><leader>b <cmd>HopWordBC<CR>]])

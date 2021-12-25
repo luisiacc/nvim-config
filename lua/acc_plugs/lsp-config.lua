@@ -435,6 +435,3 @@ vim.diagnostic.config({
 })
 
 -- trouble.vim
-require("trouble").setup({
-	use_lsp_diagnostic = true,
-})

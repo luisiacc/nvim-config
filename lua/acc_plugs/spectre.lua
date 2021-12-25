@@ -1,3 +1,4 @@
+require("spectre").setup()
 vim.cmd([[nnoremap <leader>S :lua require('spectre').open()<CR>]])
 
 -- "search current word
