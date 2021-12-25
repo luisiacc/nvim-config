@@ -7,14 +7,7 @@ vim.cmd([[nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>]])
 vim.cmd([[nnoremap <silent> <leader>pe <cmd>lua vim.diagnostic.goto_prev()<CR>]])
 vim.cmd([[nnoremap <silent> <leader>ne <cmd>lua vim.diagnostic.goto_next()<CR>]])
 
--- " lua require'lspconfig'.pyright.setup{}
--- " lua require'snippets'.use_suggested_mappings()
-
--- " disable diagnostics for lsp-config
--- " lua vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
--- "
-
------------------------------------ CMPE ---------------------------------------------------
+----------------------------------- CMP ---------------------------------------------------
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local lspkind = require("lspkind")
@@ -173,7 +166,79 @@ local default_config = {
 	on_attach = common_on_attach,
 }
 
+local python_root_files = {
+	".venv",
+	"pyproject.toml",
+	"setup.py",
+	"setup.cfg",
+	"requirements.txt",
+	"Pipfile",
+	"pyrightconfig.json",
+}
+
+local find_cmd = function(cmd, prefixes, start_from, stop_at)
+	local path = require("lspconfig/util").path
+
+	if type(prefixes) == "string" then
+		prefixes = { prefixes }
+	end
+
+	local found
+	for _, prefix in ipairs(prefixes) do
+		local full_cmd = prefix and path.join(prefix, cmd) or cmd
+		local possibility
+
+		-- if start_from is a dir, test it first since transverse will start from its parent
+		if start_from and path.is_dir(start_from) then
+			possibility = path.join(start_from, full_cmd)
+			if vim.fn.executable(possibility) > 0 then
+				found = possibility
+				break
+			end
+		end
+
+		path.traverse_parents(start_from, function(dir)
+			possibility = path.join(dir, full_cmd)
+			if vim.fn.executable(possibility) > 0 then
+				found = possibility
+				return true
+			end
+			-- use cwd as a stopping point to avoid scanning the entire file system
+			if stop_at and dir == stop_at then
+				return true
+			end
+		end)
+
+		if found ~= nil then
+			break
+		end
+	end
+
+	return found or cmd
+end
+
 local server_configurations = {
+	["pyright"] = {
+		root_dir = nvim_lsp.util.root_pattern(unpack(python_root_files)),
+		settings = {
+			python = {
+				analysis = {
+					autoSearchPaths = true,
+					useLibraryCodeForTypes = false,
+					diagnosticMode = "workspace",
+				},
+			},
+		},
+		before_init = function(_, config)
+			local p
+			if vim.env.VIRTUAL_ENV then
+				p = nvim_lsp.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+			else
+				p = find_cmd("python3", ".venv/bin", config.root_dir)
+			end
+			config.settings.python.pythonPath = p
+		end,
+	},
 	["sumneko_lua"] = {
 		capabilities = capabilities,
 		on_attach = common_on_attach,
@@ -251,22 +316,6 @@ lsp_installer.on_server_ready(function(server)
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(server_configurations[server.name] or default_config)
 end)
-
-local servers = {
-	"pyright",
-	"rust_analyzer",
-	"clangd",
-	"jsonls",
-	"html",
-	"cssls",
-	"vimls",
-	"sumneko_lua",
-	"tsserver",
-}
-
--- for _, lsp in ipairs(servers) do
--- 	nvim_lsp[lsp].setup()
--- end
 
 ------------------------------------------------------------------------------------------
 ------------------------------- null ls --------------------------------------------------
@@ -420,18 +469,18 @@ vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn line
 vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=]])
 vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	underline = false,
-	virtual_text = false,
-	signs = true,
-	update_in_insert = true,
-})
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+-- 	underline = false,
+-- 	virtual_text = false,
+-- 	signs = true,
+-- 	update_in_insert = true,
+-- })
 
 vim.diagnostic.config({
 	underline = false,
 	virtual_text = false,
 	signs = true,
-	update_in_insert = false,
+	update_in_insert = true,
 })
 
 -- trouble.vim

@@ -5,6 +5,7 @@ local configs = {
 	"floaterm",
 	"fugitive",
 	"gitsigns",
+	"harpoon",
 	"hop",
 	"indent-blankline",
 	"lsp-config",

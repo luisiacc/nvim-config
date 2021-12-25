@@ -108,4 +108,3 @@ endfun
 nmap <leader>q :tabedit /mnt/c/Users/acc/AppData/Roaming/alacritty/alacritty.yml<CR>
 nmap <leader>qq :tabedit /mnt/c/Users/acc/.wezterm.lua<CR>
 
-

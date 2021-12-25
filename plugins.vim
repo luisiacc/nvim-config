@@ -97,20 +97,16 @@ Plug 'skywind3000/asyncrun.vim'
 
 Plug 'tjdevries/colorbuddy.nvim'
 
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug b:projects .. 'gruvbox-ts'
-
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
-Plug 'rakr/vim-one'
 Plug 'sainnhe/edge'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
-Plug 'mhartington/oceanic-next'
 Plug 'embark-theme/vim', { 'as': 'embark' }
-Plug 'mnishz/colorscheme-preview.vim'
 Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'lourenci/github-colors'
+Plug 'rebelot/kanagawa.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -122,6 +118,7 @@ Plug 'hoob3rt/lualine.nvim'
 
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'
+Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
 " for coc to work with scss files
