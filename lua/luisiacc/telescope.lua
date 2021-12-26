@@ -27,33 +27,27 @@ local no_preview = function()
 	})
 end
 
+local vscode_finder = function(opts)
+	local theme_opts = require("telescope.themes").get_ivy(opts)
+	theme_opts.theme = "vscode"
+	return vim.tbl_deep_extend("force", theme_opts, opts)
+end
+
 local ivy = require("telescope.themes").get_ivy
 
 local actions = require("telescope.actions")
 require("telescope").setup({
 	pickers = { buffers = { sort_lastused = true, theme = "ivy" } },
-	defaults = {
+	defaults = ivy({
 		prompt_prefix = "> ",
 		selection_caret = "> ",
 		entry_prefix = "  ",
 		initial_mode = "insert",
 		selection_strategy = "reset",
-		sorting_strategy = "ascending",
-		layout_strategy = "horizontal",
-		layout_config = {
-			prompt_position = "top",
-			preview_cutoff = 180,
-			width = 0.8,
-			horizontal = { mirror = false },
-			vertical = { mirror = false },
-		},
-		-- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
 		file_ignore_patterns = { ".venv", "node_modules" },
-		-- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
 		scroll_strategy = "cycle",
 		preview_width = 0.8,
-		border = {},
-		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+		-- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
 		color_devicons = true,
 		use_less = true,
 		set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
@@ -71,7 +65,7 @@ require("telescope").setup({
 				["<esc>"] = actions.close,
 			},
 		},
-	},
+	}),
 	-- extensions = {
 	--     fzy_native = {
 	--         override_generic_sorter = false,

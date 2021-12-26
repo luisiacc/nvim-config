@@ -96,8 +96,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'tjdevries/colorbuddy.nvim'
+Plug 'norcalli/nvim-colorizer.lua'
 
-Plug b:projects .. 'gruvbox-ts'
+Plug b:projects .. 'gruvbox-ts-new'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'sainnhe/edge'
@@ -107,6 +108,8 @@ Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
+Plug 'FrenzyExists/aquarium-vim'
+Plug 'rose-pine/neovim', {'as': 'rose-pine'}
 
 Plug 'editorconfig/editorconfig-vim'
 

@@ -20,9 +20,6 @@ let g:airline#extensions#highlighter#highligth = 0
 let g:airline#extensions#tabline#fnamemod = ':t'
 set t_Co=256
 
-highlight ColorColumn ctermbg=45 guibg=#252525
-hi MatchParen guibg=#454545
-
 let g:gruvbox_italic=1
 
 hi Normal guisp=#aaa
@@ -52,10 +49,7 @@ endfunction
 call SaneDiffDefaults()
 
 highlight CocFloating guibg=#252525 guifg=#D4879C
-highlight IndentBlanklineContextChar guifg=#365050
 
-highlight IndentBlanklineChar guifg=#313131
-highlight IndentBlanklineSpaceChar guifg=#313131
 
 "github theme config
 let g:github_comment_style = "italic"
@@ -70,10 +64,10 @@ endf
 
 let g:airline_section_a = ''
 " let g:airline_section_c = airline#section#create(['%{NvimGps()}'])
-hi NormalFloat guifg=NONE ctermfg=223 guibg=#242424 ctermbg=235 gui=NONE cterm=NONE
-hi FloatBorder guifg=NONE ctermfg=223 guibg=#242424 ctermbg=235 gui=NONE cterm=NONE
-hi Cursor guifg=#404040 guibg=NONE
+hi NormalFloat guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
+hi FloatBorder guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
 
 " set background transparent
-" hi Normal guibg=NONE ctermbg=NONE
-" hi LineNr ctermbg=NONE guibg=NONE
+" hi Normal guibg=#151515 ctermbg=NONE
+" hi LineNr ctermbg=NONE guibg=#151515
+"

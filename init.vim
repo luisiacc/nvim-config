@@ -32,7 +32,6 @@ call g:Source('/commands.vim')
 call g:Source('/globals.vim')
 call g:Source('/tabline.vim')
 
-call g:Source('/schemes.vim')
 call g:Source('/mappings.vim')
 call g:Source('/windows.vim')
 
@@ -41,6 +40,8 @@ require("acc_plugs")
 --vim.opt.listchars:append({lead="·"})
 vim.cmd([[nnoremap <F4> :lua package.loaded.acc_plugs = nil<CR>:source ~/.config/nvim/init.vim<CR>]])
 EOF
+
+call g:Source('/schemes.vim')
 
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
