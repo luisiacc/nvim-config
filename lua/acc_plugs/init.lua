@@ -1,5 +1,6 @@
 local configs = {
 	"bqf",
+	"colorizer",
 	"copilot",
 	"diffview",
 	"floaterm",
