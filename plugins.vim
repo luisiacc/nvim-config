@@ -79,6 +79,7 @@ Plug 'vim-test/vim-test'
 Plug 'phaazon/hop.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
+Plug 'numToStr/Comment.nvim'
 
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'junegunn/goyo.vim'
@@ -87,7 +88,7 @@ Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-dispatch'
 
@@ -99,7 +100,10 @@ Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-ts-new'
-Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'rktjmp/lush.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+
+" Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'sainnhe/edge'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
