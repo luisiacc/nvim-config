@@ -1,4 +1,5 @@
 let g:vimsyn_embed = 'l'
+let g:gruvbox_ts_function_style = "NONE"
 
 let g:tokyonight_style = "storm"
 
@@ -6,7 +7,7 @@ let g:tokyonight_style = "storm"
 let g:nvcode_termcolors=256
 
 set background=dark
-colorscheme gruvbox-ts
+colorscheme gruvbox-baby
 " colorscheme tokyonight
 let g:airline_theme='base16_gruvbox_dark_medium'
 " colorscheme material
