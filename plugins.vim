@@ -99,7 +99,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
-Plug b:projects .. 'gruvbox-ts-new'
+Plug b:projects .. 'gruvbox-baby'
 Plug 'rktjmp/lush.nvim'
 Plug 'ellisonleao/gruvbox.nvim'
 

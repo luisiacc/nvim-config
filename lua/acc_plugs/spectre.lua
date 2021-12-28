@@ -1,4 +1,10 @@
-require("spectre").setup()
+require("spectre").setup({
+	highlight = {
+		ui = "String",
+		search = "DiffChange",
+		replace = "debugPc",
+	},
+})
 vim.cmd([[nnoremap <leader>S :lua require('spectre').open()<CR>]])
 
 -- "search current word
