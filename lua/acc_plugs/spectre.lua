@@ -1,9 +1,9 @@
 require("spectre").setup({
-	highlight = {
-		ui = "String",
-		search = "DiffChange",
-		replace = "debugPc",
-	},
+  highlight = {
+    ui = "String",
+    search = "DiffChange",
+    replace = "debugPc",
+  },
 })
 vim.cmd([[nnoremap <leader>S :lua require('spectre').open()<CR>]])
 

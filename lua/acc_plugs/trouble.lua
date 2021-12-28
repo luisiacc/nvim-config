@@ -1,3 +1,3 @@
 require("trouble").setup({
-	use_lsp_diagnostic = true,
+  use_lsp_diagnostic = true,
 })
