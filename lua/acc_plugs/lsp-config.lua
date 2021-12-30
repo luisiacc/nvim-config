@@ -106,15 +106,12 @@ cmp.setup({
     }),
   },
   sources = cmp.config.sources({
-    { name = "snippy" },
-    { name = "nvim_lua" },
-    { name = "nvim_lsp" },
-    { name = "path" },
-    { name = "calc" },
-    -- { name = 'vsnip' }, -- For vsnip users.
-    -- { name = 'luasnip' }, -- For luasnip users.
-    -- { name = 'snippy' }, -- For snippy users.
-  }, { { name = "buffer", keyword_length = 5 } }),
+    { name = "snippy", max_item_count = 5 },
+    { name = "nvim_lua", max_item_count = 10 },
+    { name = "nvim_lsp", max_item_count = 10 },
+    { name = "path", max_item_count = 10 },
+    { name = "calc", max_item_count = 10 },
+  }, { { name = "buffer", max_item_count = 10 } }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

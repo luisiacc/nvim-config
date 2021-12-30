@@ -1,5 +1,4 @@
 let g:vimsyn_embed = 'l'
-let g:gruvbox_ts_function_style = "NONE"
 
 let g:tokyonight_style = "storm"
 
