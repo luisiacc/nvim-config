@@ -470,18 +470,18 @@ vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn line
 vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=]])
 vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
 
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
--- 	underline = false,
--- 	virtual_text = false,
--- 	signs = true,
--- 	update_in_insert = true,
--- })
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+  underline = false,
+  virtual_text = false,
+  signs = true,
+  update_in_insert = false,
+})
 
 vim.diagnostic.config({
   underline = false,
   virtual_text = false,
   signs = true,
-  update_in_insert = true,
+  update_in_insert = false,
 })
 
 -- trouble.vim

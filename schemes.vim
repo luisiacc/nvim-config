@@ -22,32 +22,6 @@ set t_Co=256
 
 let g:gruvbox_italic=1
 
-hi Normal guisp=#aaa
-
-" A lot of vim colorschemes provide some wild defaults for diff colors. This
-" function sets the diff colors to some more sane defaults that at least looks
-" quite pleasant in most colorschemes.
-function! SaneDiffDefaults()
-    hi DiffAdd    ctermfg=234 ctermbg=114 guibg=#26332c guifg=NONE
-    hi DiffChange cterm=underline ctermfg=180 guibg=#273842 guifg=NONE
-    hi DiffDelete ctermfg=234 ctermbg=168 guibg=#572E33 guifg=#572E33
-    hi DiffText   ctermfg=234 ctermbg=180 guibg=#314753 guifg=NONE
-    hi! link       diffAdded     DiffAdd
-    hi! link       diffChanged   DiffChange
-    hi! link       diffRemoved   DiffDelete
-    hi! link       diffBDiffer   WarningMsg
-    hi! link       diffCommon    WarningMsg
-    hi! link       diffDiffer    WarningMsg
-    hi! link       diffFile      Directory
-    hi! link       diffIdentical WarningMsg
-    hi! link       diffIndexLine Number
-    hi! link       diffIsA       WarningMsg
-    hi! link       diffNoEOL     WarningMsg
-    hi! link       diffOnly      WarningMsg
-endfunction
-
-call SaneDiffDefaults()
-
 highlight CocFloating guibg=#252525 guifg=#D4879C
 
 

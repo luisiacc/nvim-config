@@ -33,7 +33,6 @@ call g:Source('/globals.vim')
 call g:Source('/tabline.vim')
 
 call g:Source('/mappings.vim')
-call g:Source('/windows.vim')
 
 lua << EOF
 require("acc_plugs")

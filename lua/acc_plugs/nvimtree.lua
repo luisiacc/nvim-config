@@ -42,9 +42,6 @@ vim.cmd([[nnoremap <leader>r :NvimTreeRefresh<CR>]])
 vim.cmd([[nnoremap <leader>n :NvimTreeFindFile<CR>]])
 -- " NvimTreeOpen and NvimTreeClose are also available if you need them
 
--- " a list of groups can be found at `:help nvim_tree_highlight`
-vim.cmd([[highlight NvimTreeFolderIcon guibg=blue]])
-
 require("nvim-tree").setup({
   disable_netrw = true,
   hijack_netrw = true,

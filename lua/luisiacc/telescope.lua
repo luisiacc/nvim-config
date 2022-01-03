@@ -46,7 +46,6 @@ require("telescope").setup({
     selection_strategy = "reset",
     file_ignore_patterns = { ".venv", "node_modules" },
     scroll_strategy = "cycle",
-    preview_width = 0.8,
     -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     color_devicons = true,
     use_less = true,
@@ -81,35 +80,5 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
--- require('telescope').load_extension('coc')
-
-local M = {}
--- map(mode, key, lua function to call)
---
--- good place to look: telescope.actions (init.lua)
--- lua function to call:  (gets bufnr, not necessarily needed)
---   require('telescope.actions.state').get_selected_entry(bufnr)
---   Actions just take the bufnr and give out information
---   require('telescope.actions').close(bufnr)
---
---   check out telescope.actions for _all the available_ supported
---   actions.
---
---   :h telescope.setup ->
---   :h telescope.builtin ->
---   :h telescope.layout ->
---   :h telescope.actions
---
--- M.git_branches = function()
---     require("telescope.builtin").git_branches({
---         attach_mappings = function(prompt_bufnr, map)
---             map('i', '<c-d>', actions.git_delete_branch)
---             map('n', '<c-d>', actions.git_delete_branch)
---             map('i', '<A-j>', actions.move_selection_next)
---             map('i', '<A-k>', actions.move_selection_previous)
---             return true
---         end
---     })
--- end
 
 return M

@@ -82,7 +82,7 @@ Plug 'sindrets/diffview.nvim'
 Plug 'numToStr/Comment.nvim'
 
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'junegunn/goyo.vim'
+Plug 'folke/zen-mode.nvim'
 
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-surround'
@@ -122,6 +122,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'crispgm/nvim-tabline'
 Plug 'hoob3rt/lualine.nvim'
+" Plug 'kdheepak/tabline.nvim'
 
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'

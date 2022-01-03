@@ -33,16 +33,15 @@ set noerrorbells
 set cursorline
 set autoread
 set showcmd
-set showmatch
+" set showmatch
 set magic
-"set tabstop=4 softtabstop=4
-" set shiftwidth=4
 set expandtab
 set clipboard+=unnamedplus
 
 set nu "rnu
 set nowrap
-set smartcase
+set ignorecase " case-insensitive searching
+set smartcase  " but become case-sensitive if you type uppercase characters
 set noswapfile
 set nobackup
 set nowritebackup

@@ -17,11 +17,13 @@ local configs = {
   "nvimtree",
   "snippy",
   "spectre",
+  -- "tabline",
   "telescope",
   "todo_comments",
   "treesitter",
   "trouble",
   "vim-test",
+  "zen-mode",
 }
 
 for _, plugin in ipairs(configs) do
