@@ -34,6 +34,7 @@ local conditions = {
 }
 
 -- Config
+--    
 local config = {
   options = {
     -- Disable sections and component separators
@@ -214,23 +215,15 @@ ins_right({
   color = { fg = colors.violet, gui = "bold" },
 })
 
-ins_right({
-  "diff",
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = " ", modified = "柳 ", removed = " " },
-  color_added = colors.green,
-  color_modified = colors.orange,
-  color_removed = colors.red,
-  condition = conditions.hide_in_width,
-})
-
-ins_right({
-  function()
-    return "▊"
-  end,
-  color = { fg = colors.blue },
-  right_padding = 0,
-})
+-- ins_right({
+--   "diff",
+--   -- Is it me or the symbol for modified us really weird
+--   symbols = { added = " ", modified = "柳 ", removed = " " },
+--   color_added = colors.green,
+--   color_modified = colors.orange,
+--   color_removed = colors.red,
+--   condition = conditions.hide_in_width,
+-- })
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
