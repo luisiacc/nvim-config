@@ -484,4 +484,13 @@ vim.diagnostic.config({
   update_in_insert = false,
 })
 
--- trouble.vim
+_G.cancel_all = function()
+  local clients = vim.lsp.buf_get_clients()
+  for _, client in pairs(clients) do
+    for id, _ in pairs(client.requests) do
+      client.cancel_request(id)
+    end
+  end
+  vim.notify("Cleaned!")
+end
+vim.cmd([[nnoremap <leader>aa :lua cancel_all()<CR>]])

@@ -100,8 +100,8 @@ Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
+Plug 'sainnhe/gruvbox-material'
 Plug 'rktjmp/lush.nvim'
-Plug 'ellisonleao/gruvbox.nvim'
 
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
