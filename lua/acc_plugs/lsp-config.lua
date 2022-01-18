@@ -372,9 +372,9 @@ null_ls.setup({
     fmt.djhtml,
     fmt.eslint_d,
     fmt.prettierd,
-    dg.eslint_d,
+    dg.tsc,
+    dg.eslint,
     dg.flake8,
-    ca.eslint,
   },
 })
 

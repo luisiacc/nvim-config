@@ -41,6 +41,11 @@ let g:airline_section_a = ''
 hi NormalFloat guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
 hi FloatBorder guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
 
+highlight IndentBlanklineContextChar guifg=#365050
+
+highlight IndentBlanklineChar guifg=#313131
+highlight IndentBlanklineSpaceChar guifg=#313131
+
 " set background transparent
 " hi Normal guibg=#151515 ctermbg=NONE
 " hi LineNr ctermbg=NONE guibg=#151515

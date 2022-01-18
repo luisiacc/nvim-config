@@ -76,7 +76,6 @@ Plug 'windwp/nvim-autopairs'
 Plug 'vim-test/vim-test'
 
 " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-Plug 'phaazon/hop.nvim'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'sindrets/diffview.nvim'
@@ -94,7 +93,7 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-dispatch'
 
 " Plug 'Yggdroot/indentLine'
-" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
 Plug 'tjdevries/colorbuddy.nvim'

@@ -8,7 +8,7 @@ local configs = {
   "fugitive",
   "gitsigns",
   "harpoon",
-  "hop",
+  -- "hop",
   "indent-blankline",
   "lsp-config",
   "lualine",

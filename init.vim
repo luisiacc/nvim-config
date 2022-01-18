@@ -17,16 +17,12 @@ function! g:Source(file)
     exec 'source ' .. g:nvim_config_home .. a:file
 endfunction
 
-function! g:Luafile(file)
-    exec 'luafile ' .. g:nvim_config_home .. a:file
-endfunction
-
 call g:Source('/plugins.vim')
 "call g:Source('/packer.lua')
 
 call g:Source('/sets.vim')
 
-call g:Luafile('/globals.lua')
+call g:Source('/globals.lua')
 
 call g:Source('/commands.vim')
 call g:Source('/globals.vim')

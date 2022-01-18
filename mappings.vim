@@ -39,14 +39,7 @@ inoremap jj <Esc>
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 nnoremap <Leader>rr :%s/<C-r><C-w>/
 
-
-" Git
-nnoremap <leader>c :Commits<CR>
-nnoremap <leader>bc :BCommits<CR>
-
-nnoremap <leader>fs :Files<CR>
 nnoremap <leader>s :w!<CR>
-nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap - *zz
 " nnoremap <leader>t :Tags<CR>
 
@@ -109,4 +102,3 @@ nmap <leader>q :tabedit /mnt/c/Users/acc/AppData/Roaming/alacritty/alacritty.yml
 nmap <leader>qq :tabedit /mnt/c/Users/acc/.wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s
-
