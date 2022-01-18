@@ -57,7 +57,7 @@ let $FZF_DEFAULT_OPTS="--reverse -m --ansi"
 command! -bang -nargs=* Ag
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+  \    fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
