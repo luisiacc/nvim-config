@@ -373,7 +373,7 @@ null_ls.setup({
     fmt.eslint_d,
     fmt.prettierd,
     dg.tsc,
-    dg.eslint,
+    dg.eslint_d,
     dg.flake8,
   },
 })

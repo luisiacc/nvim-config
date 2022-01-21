@@ -34,6 +34,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'tweekmonster/django-plus.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'yioneko/nvim-yati'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
