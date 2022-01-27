@@ -1,9 +1,22 @@
-require("nvim-ts-autotag").setup()
+require("nvim-ts-autotag").setup({
+  filetypes = {
+    "html",
+    "htmldjango",
+    "javascript",
+    "javascript.tsx",
+    "javascriptreact",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact",
+    "svelte",
+    "vue",
+  },
+})
 require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
   },
-  yati = { enable = true },
+  indent = { enable = true },
   incremental_selection = { enable = true },
   textobjects = { enable = true },
   playground = {

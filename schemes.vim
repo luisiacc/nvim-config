@@ -47,6 +47,6 @@ highlight IndentBlanklineChar guifg=#313131
 highlight IndentBlanklineSpaceChar guifg=#313131
 
 " set background transparent
-" hi Normal guibg=#151515 ctermbg=NONE
-" hi LineNr ctermbg=NONE guibg=#151515
+" hi Normal guibg=NONE ctermbg=NONE
+" hi LineNr ctermbg=NONE guibg=NONE
 "

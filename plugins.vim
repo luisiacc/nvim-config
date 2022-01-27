@@ -34,7 +34,6 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'tweekmonster/django-plus.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'yioneko/nvim-yati'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
@@ -109,7 +108,6 @@ Plug 'ntk148v/vim-horizon'
 Plug 'sainnhe/edge'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'embark-theme/vim', { 'as': 'embark' }
-Plug 'eddyekofo94/gruvbox-flat.nvim'
 Plug 'folke/tokyonight.nvim'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
