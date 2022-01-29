@@ -38,18 +38,47 @@ local ivy = require("telescope.themes").get_ivy
 local actions = require("telescope.actions")
 require("telescope").setup({
   pickers = { buffers = { sort_lastused = true, theme = "ivy" } },
-  defaults = ivy({
-    prompt_prefix = "> ",
-    selection_caret = "> ",
+  defaults = {
+    prompt_prefix = "   ",
+    selection_caret = "❯ ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",
     file_ignore_patterns = { ".venv", "node_modules" },
+    sorting_strategy = "ascending",
     scroll_strategy = "cycle",
+    -- layout_strategy = "horizontal",
+    layout_strategy = "bottom_pane",
     -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     color_devicons = true,
+    winblend = 0,
     use_less = true,
     set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+    layout_config = {
+      horizontal = {
+        prompt_position = "top",
+        preview_width = 0.6,
+        results_width = 0.5,
+      },
+      bottom_pane = {
+        prompt_position = "top",
+        preview_width = 0.6,
+        results_width = 0.5,
+      },
+      vertical = {
+        mirror = false,
+      },
+      height = 0.90,
+      preview_cutoff = 150,
+    },
+    border = {},
+    borderchars = { " " },
+    -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+    -- borderchars = {
+    --   prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+    --   results = { " " },
+    --   preview = { " " },
+    -- },
     mappings = {
       i = {
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
@@ -58,7 +87,7 @@ require("telescope").setup({
         ["<esc>"] = actions.close,
       },
     },
-  }),
+  },
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching
