@@ -1,13 +1,3 @@
-vim.cmd([[nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>]])
-vim.cmd([[nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>]])
-vim.cmd([[nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>]])
-vim.cmd([[nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>]])
--- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
--- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-vim.cmd([[nnoremap <silent> <leader>pe <cmd>lua vim.diagnostic.goto_prev()<CR>]])
-vim.cmd([[nnoremap <silent> <leader>ne <cmd>lua vim.diagnostic.goto_next()<CR>]])
-
------------------------------------ CMP ---------------------------------------------------
 -- Setup nvim-cmp.
 local cmp = require("cmp")
 local lspkind = require("lspkind")
@@ -153,6 +143,44 @@ local nvim_lsp = require("lspconfig")
 local common_on_attach = function(client)
   client.resolved_capabilities.document_formatting = false
   client.resolved_capabilities.document_range_formatting = false
+
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0, silent = true })
+  -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+  -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+  vim.keymap.set("n", "<leader>pe", vim.diagnostic.goto_prev, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>ne", vim.diagnostic.goto_next, { buffer = 0, silent = true })
+
+  -- " lsp provider to find the cursor word definition and reference
+  vim.keymap.set("n", "gh", require("lspsaga.provider").lsp_finder, { buffer = 0, silent = true })
+
+  -- " code action
+  vim.keymap.set("n", "<leader>ca", require("lspsaga.codeaction").code_action, { buffer = 0, silent = true })
+  vim.keymap.set("v", "<leader>ca", require("lspsaga.codeaction").range_code_action, { buffer = 0, silent = true })
+
+  -- "" show hover doc
+  vim.keymap.set("n", "K", require("lspsaga.hover").render_hover_doc, { buffer = 0, silent = true })
+
+  -- "" scroll down hover doc or scroll in definition preview
+  vim.keymap.set("n", "<C-d>", function()
+    require("lspsaga.action").smart_scroll_with_saga(1)
+  end, { buffer = 0, silent = true })
+  -- "" scroll up hover doc
+  vim.keymap.set("n", "<C-u>", function()
+    require("lspsaga.action").smart_scroll_with_saga(-1)
+  end, { buffer = 0, silent = true })
+
+  -- "" show signature help
+  vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, { buffer = 0, silent = true })
+
+  -- "" rename
+  vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").rename, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>dp", require("lspsaga.provider").preview_definition, { buffer = 0, silent = true })
+
+  -- "" preview definition
+  vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = 0, silent = true })
 end
 
 local ts_utils = require("nvim-lsp-ts-utils")
@@ -427,41 +455,12 @@ end
 
 vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
 
--- require("lsp_signature").setup({
--- 	bind = true,
--- 	hint_enable = false, -- virtual hint enable
--- 	hint_prefix = " ", -- Panda for parameter
--- 	handler_opts = { border = "rounded" },
--- })
-
--- " lsp provider to find the cursor word definition and reference
-vim.cmd([[nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>]])
-
--- " code action
-vim.cmd([[nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>]])
-vim.cmd([[vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>]])
-
--- "" show hover doc
-vim.cmd([[nnoremap <silent> K <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>]])
-
--- "" scroll down hover doc or scroll in definition preview
-vim.cmd([[nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>]])
--- "" scroll up hover doc
-vim.cmd([[nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>]])
-
--- "" show signature help
-vim.cmd([[nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>]])
-
--- "" rename
-vim.cmd([[nnoremap <silent><leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>]])
-
--- "" preview definition
-vim.cmd([[nnoremap <silent><leader>dp <cmd>lua require'lspsaga.provider'.preview_definition()<CR>]])
-vim.cmd([[nnoremap <silent><leader>gd <C-]>]])
-
--- "" jump diagnostic
--- " nnoremap <silent> <leader>ne <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
--- " nnoremap <silent> <leader>pe <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+require("lsp_signature").setup({
+  bind = true,
+  hint_enable = false, -- virtual hint enable
+  hint_prefix = " ", -- Panda for parameter
+  handler_opts = { border = "rounded" },
+})
 
 -- "" float terminal also you can pass the cli command in open_float_terminal function
 vim.cmd([[nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>]])
@@ -496,3 +495,10 @@ _G.cancel_all = function()
   vim.notify("Cleaned!")
 end
 vim.cmd([[nnoremap <leader>aa :lua cancel_all()<CR>]])
+
+_G.col = function()
+  if package.loaded.luisiacc and package.loaded.cycle_colorschemes then
+    package.loaded.luisiacc.cycle_colorschemes = nil
+  end
+  require("luisiacc.cycle_colorschemes").go_to_scheme(1)
+end
