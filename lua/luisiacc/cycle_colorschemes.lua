@@ -24,7 +24,7 @@ function M.get_current_scheme()
     end
   end
 
-  return 0, colorschemes[0]
+  return 1, colorschemes[0]
 end
 
 function M.activate_scheme(scheme)
