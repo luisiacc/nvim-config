@@ -30,6 +30,7 @@ end
 function M.activate_scheme(scheme)
   vim.o.background = scheme.background or "dark"
   vim.cmd(string.format("colorscheme %s", scheme.name))
+  print(string.format("colorscheme=%s background=%s", scheme.name, vim.o.background))
 end
 
 local _debug = function(content)

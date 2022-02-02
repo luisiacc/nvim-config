@@ -1,6 +1,4 @@
-" Black for python
-"let g:black_virtualenv="/mnt/c/Users/acc/projects__/acubliss/core/.venv/"
-nnoremap <leader>fm :lua vim.lsp.buf.formatting()<CR>
+nnoremap <leader>fm <cmd>lua vim.lsp.buf.formatting()<CR>
 
 nnoremap Y y$
 inoremap , ,<c-g>u
@@ -8,21 +6,15 @@ inoremap . .<c-g>u
 inoremap ? ?<c-g>u
 inoremap ! !<c-g>u
 
-inoremap jj <Esc>
 "Fix visual indenting
 vmap < <gv
 vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" nnoremap <leader>cw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-p> :GFiles<CR>
-" nnoremap <leader>ff :Ag<CR>
 " Path completion with custom source command
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
-inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
+" inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
+" inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 
 " remap tab navigation
 nnoremap <leader>, gT
@@ -32,7 +24,6 @@ nnoremap <leader>ee :noh<CR>
 inoremap jj <Esc>
 
 nnoremap <leader>ee :noh<CR>
-inoremap jj <Esc>
 
 
 " replace word

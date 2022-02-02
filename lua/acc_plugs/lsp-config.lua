@@ -245,6 +245,8 @@ end
 local server_configurations = {
   ["pyright"] = {
     root_dir = nvim_lsp.util.root_pattern(unpack(python_root_files)),
+    capabilities = capabilities,
+    on_attach = common_on_attach,
     settings = {
       python = {
         analysis = {
@@ -374,6 +376,7 @@ null_ls.setup({
     }),
     fmt.rustfmt,
     fmt.stylua,
+    fmt.gofmt,
     fmt.black.with({ prefer_local = ".venv/bin", extra_args = { "--line-length", "120" } }),
     -- fmt.isort,
     fmt.isort.with({
@@ -455,12 +458,12 @@ end
 
 vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
 
-require("lsp_signature").setup({
-  bind = true,
-  hint_enable = false, -- virtual hint enable
-  hint_prefix = " ", -- Panda for parameter
-  handler_opts = { border = "rounded" },
-})
+-- require("lsp_signature").setup({
+--   bind = true,
+--   hint_enable = false, -- virtual hint enable
+--   hint_prefix = " ", -- Panda for parameter
+--   handler_opts = { border = "rounded" },
+-- })
 
 -- "" float terminal also you can pass the cli command in open_float_terminal function
 vim.cmd([[nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>]])

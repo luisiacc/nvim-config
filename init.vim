@@ -31,6 +31,7 @@ call g:Source('/tabline.vim')
 call g:Source('/mappings.vim')
 
 lua << EOF
+-- require'impatient'.enable_profile()
 require("acc_plugs")
 require'lightspeed'.setup{}
 --vim.opt.listchars:append({lead="·"})

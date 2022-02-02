@@ -3,7 +3,7 @@ local builtin = require("telescope.builtin")
 local M = {}
 
 function M.grep_string_under_cursor()
-  builtin.grep_string({ path_display = "shorten", search = vim.fn.input("Grep For > ") })
+  builtin.grep_string({ path_display = "shorten", search = vim.fn.expand("<cword>") })
 end
 
 function M.live_grep_under_cursor()
