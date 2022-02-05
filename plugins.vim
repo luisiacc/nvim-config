@@ -102,6 +102,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug b:projects .. 'gruvbox-baby'
 Plug 'sainnhe/gruvbox-material'
 Plug 'rktjmp/lush.nvim'
+Plug 'arcticicestudio/nord-vim'
 
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
@@ -109,6 +110,7 @@ Plug 'sainnhe/edge'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'folke/tokyonight.nvim'
+Plug 'sainnhe/everforest'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'FrenzyExists/aquarium-vim'

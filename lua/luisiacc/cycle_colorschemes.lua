@@ -1,13 +1,16 @@
 local colorschemes = {
   { name = "gruvbox-baby" },
-  { name = "edge", background = "dark" },
+  { name = "edge" },
   { name = "edge", background = "light" },
-  { name = "rose-pine", background = "dark" },
+  { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github_dimmed" },
-  { name = "tokyonight", background = "dark" },
+  { name = "tokyonight" },
   { name = "tokyonight", background = "light" },
-  { name = "gruvbox-material", background = "dark" },
+  { name = "gruvbox-material" },
+  { name = "everforest" },
+  { name = "nord" },
+  { name = "kanagawa" },
 }
 
 local M = {}

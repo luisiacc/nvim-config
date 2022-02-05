@@ -38,8 +38,8 @@ endf
 
 let g:airline_section_a = ''
 " let g:airline_section_c = airline#section#create(['%{NvimGps()}'])
-hi NormalFloat guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
-hi FloatBorder guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
+" hi NormalFloat guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
+" hi FloatBorder guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
 
 highlight IndentBlanklineContextChar guifg=#365050
 

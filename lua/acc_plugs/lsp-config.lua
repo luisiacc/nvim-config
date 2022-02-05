@@ -497,6 +497,15 @@ _G.cancel_all = function()
   end
   vim.notify("Cleaned!")
 end
+
+_G.remove_hidden_buffers = function()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.fn.getbufinfo(bufnr)[1].hidden == 1 then
+      vim.api.nvim_buf_delete(bufnr, {})
+    end
+  end
+end
+
 vim.cmd([[nnoremap <leader>aa :lua cancel_all()<CR>]])
 
 _G.col = function()
