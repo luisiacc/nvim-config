@@ -97,6 +97,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "snippy", max_item_count = 5 },
+    { name = "nvim_lsp_signature_help", max_item_count = 10 },
     { name = "nvim_lua", max_item_count = 10 },
     { name = "nvim_lsp", max_item_count = 10 },
     { name = "path", max_item_count = 10 },
@@ -150,8 +151,8 @@ local common_on_attach = function(client)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0, silent = true })
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<leader>pe", vim.diagnostic.goto_prev, { buffer = 0, silent = true })
-  vim.keymap.set("n", "<leader>ne", vim.diagnostic.goto_next, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<c-a-k>", vim.diagnostic.goto_prev, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<c-a-j>", vim.diagnostic.goto_next, { buffer = 0, silent = true })
 
   -- " lsp provider to find the cursor word definition and reference
   vim.keymap.set("n", "gh", require("lspsaga.provider").lsp_finder, { buffer = 0, silent = true })
@@ -501,7 +502,7 @@ end
 _G.remove_hidden_buffers = function()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if vim.fn.getbufinfo(bufnr)[1].hidden == 1 then
-      vim.api.nvim_buf_delete(bufnr, {})
+      pcall(vim.api.nvim_buf_delete, bufnr, {})
     end
   end
 end

@@ -27,13 +27,24 @@ function M.get_current_scheme()
     end
   end
 
-  return 1, colorschemes[0]
+  return 1, colorschemes[1]
 end
 
 function M.activate_scheme(scheme)
-  vim.o.background = scheme.background or "dark"
+  local bg = scheme.background or "dark"
   vim.cmd(string.format("colorscheme %s", scheme.name))
-  print(string.format("colorscheme=%s background=%s", scheme.name, vim.o.background))
+  vim.cmd(string.format("set background=" .. bg))
+  vim.g.colors_name = scheme.name
+
+  if scheme.name == "rose-pine" then
+    if bg == "light" then
+      require("rose-pine").set("dawn")
+    else
+      require("rose-pine").set("moon")
+    end
+  end
+
+  print(string.format("colorscheme=%s background=%s", scheme.name, bg))
 end
 
 local _debug = function(content)

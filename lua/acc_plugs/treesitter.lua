@@ -17,6 +17,9 @@ require("nvim-treesitter.configs").setup({
     enable = true,
   },
   indent = { enable = true },
+  endwise = {
+    enable = true,
+  },
   incremental_selection = { enable = true },
   textobjects = { enable = true },
   playground = {

@@ -45,11 +45,11 @@ vim.cmd([[nnoremap <leader>n :NvimTreeFindFile<CR>]])
 require("nvim-tree").setup({
   disable_netrw = true,
   hijack_netrw = true,
-  open_on_setup = false,
+  open_on_setup = true,
   ignore_ft_on_setup = {},
   follow = true,
   auto_open = true,
-  auto_close = false,
+  auto_close = true,
   open_on_tab = false,
   update_cwd = true,
   hijack_cursor = false,

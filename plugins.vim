@@ -35,6 +35,7 @@ Plug 'tweekmonster/django-plus.vim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
+Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
@@ -50,6 +51,7 @@ Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
@@ -100,9 +102,7 @@ Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
-Plug 'sainnhe/gruvbox-material'
 Plug 'rktjmp/lush.nvim'
-Plug 'arcticicestudio/nord-vim'
 
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
@@ -110,20 +110,21 @@ Plug 'sainnhe/edge'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'folke/tokyonight.nvim'
+Plug 'Mofiqul/vscode.nvim'
 Plug 'sainnhe/everforest'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rebelot/kanagawa.nvim'
 Plug 'FrenzyExists/aquarium-vim'
 Plug 'rose-pine/neovim', {'as': 'rose-pine'}
+Plug 'sainnhe/gruvbox-material'
+Plug 'arcticicestudio/nord-vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
 " Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'crispgm/nvim-tabline'
 Plug 'hoob3rt/lualine.nvim'
-" Plug 'kdheepak/tabline.nvim'
 
 Plug 'mhinz/vim-startify'
 Plug 'voldikss/vim-floaterm'

@@ -172,7 +172,7 @@ function! MyTabLabel(n)
   if empty(name)
     return '[No Name]'
   else
-    return a:n . ' '. icon.' '.fnamemodify(name, ':t')
+    return '  '. icon.'  '.fnamemodify(name, ':t').'  '
   endif
 endfunction
 
