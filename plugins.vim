@@ -127,7 +127,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
 
 Plug 'mhinz/vim-startify'
-Plug 'voldikss/vim-floaterm'
+" Plug 'voldikss/vim-floaterm'
+Plug 'akinsho/toggleterm.nvim'
 Plug 'ThePrimeagen/harpoon'
 call plug#end()
 
