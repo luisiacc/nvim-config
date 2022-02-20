@@ -17,6 +17,7 @@ vim.g.indent_blankline_filetype_exclude = {
   "Trouble",
 }
 vim.g.indent_blankline_context_patterns = {
+  "try",
   "def",
   "class",
   "return",

@@ -103,6 +103,12 @@ cmp.setup({
     { name = "path", max_item_count = 10 },
     { name = "calc", max_item_count = 10 },
   }, { { name = "buffer", max_item_count = 10 } }),
+  -- view = {
+  --   entries = "native",
+  -- },
+  experimental = {
+    ghost_text = true,
+  },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

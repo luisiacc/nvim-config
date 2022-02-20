@@ -3,6 +3,7 @@ let g:vimsyn_embed = 'l'
 let g:tokyonight_style = "storm"
 let g:vscode_style = "dark"
 let g:gruvbox_baby_telescope_theme = 1
+let g:gruvbox_baby_keyword_style = "NONE"
 
 " configure nvcode-color-schemes
 let g:nvcode_termcolors=256
