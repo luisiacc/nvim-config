@@ -2,6 +2,7 @@ local colorschemes = {
   { name = "gruvbox-baby" },
   { name = "edge" },
   { name = "edge", background = "light" },
+  { name = "nightfly" },
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github_dimmed" },

@@ -107,6 +107,7 @@ Plug 'rktjmp/lush.nvim'
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'sainnhe/edge'
+Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'kaicataldo/material.vim', {'branch': 'main'}
 Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'folke/tokyonight.nvim'
