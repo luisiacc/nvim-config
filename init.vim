@@ -33,7 +33,7 @@ call g:Source('/mappings.vim')
 lua << EOF
 -- require'impatient'.enable_profile()
 require("acc_plugs")
-require'lightspeed'.setup{}
+require('lightspeed').setup({})
 --vim.opt.listchars:append({lead="·"})
 vim.cmd([[nnoremap <F4> :lua package.loaded.acc_plugs = nil<CR>:source ~/.config/nvim/init.vim<CR>]])
 EOF
