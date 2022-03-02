@@ -259,7 +259,7 @@ local server_configurations = {
         analysis = {
           autoSearchPaths = true,
           useLibraryCodeForTypes = false,
-          diagnosticMode = "workspace",
+          diagnosticMode = "openFilesOnly",
         },
       },
     },
@@ -411,7 +411,7 @@ null_ls.setup({
     fmt.djhtml,
     fmt.eslint_d,
     fmt.prettierd,
-    dg.tsc,
+    -- dg.tsc,
     dg.eslint_d,
     dg.flake8,
     ca.eslint_d,

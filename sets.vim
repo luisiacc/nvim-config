@@ -38,7 +38,7 @@ set magic
 set expandtab
 set clipboard+=unnamedplus
 
-set nu "rnu
+set nonu "rnu
 set nowrap
 set ignorecase " case-insensitive searching
 set smartcase  " but become case-sensitive if you type uppercase characters

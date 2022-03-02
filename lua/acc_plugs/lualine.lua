@@ -159,7 +159,7 @@ ins_left({
   color = { fg = colors.violet },
 })
 
-ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
+ins_left({ "location", color = { fg = colors.fg, gui = "bold" } })
 
 ins_left({
   "diagnostics",
