@@ -1,5 +1,4 @@
 vim.g.nvim_tree_auto_ignore_ft = { "startify" } --empty by default, don't auto open tree on specific filetypes.
-vim.g.nvim_tree_quit_on_open = 0 -- 0 by default, closes the tree when you open a file
 vim.g.nvim_tree_indent_markers = 1 -- 0 by default, this option shows indent markers when folders are open
 -- let g:nvim_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
 vim.g.nvim_tree_git_hl = 1 -- 0 by default, will enable file highlight for git attributes (can be used without the icons).
@@ -43,6 +42,7 @@ vim.cmd([[nnoremap <leader>n :NvimTreeFindFile<CR>]])
 -- " NvimTreeOpen and NvimTreeClose are also available if you need them
 
 require("nvim-tree").setup({
+  quit_on_open = 0,
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = true,

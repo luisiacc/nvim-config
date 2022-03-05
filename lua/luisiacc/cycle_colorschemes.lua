@@ -6,6 +6,7 @@ local colorschemes = {
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github_dimmed" },
+  { name = "vscode" },
   { name = "tokyonight" },
   { name = "tokyonight", background = "light" },
   { name = "gruvbox-material" },
