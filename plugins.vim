@@ -23,15 +23,15 @@ Plug 'folke/trouble.nvim'
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Plug 'stsewd/fzf-checkout.vim'
-" Plug 'antoinemadec/coc-fzf'
-Plug 'andrejlevkovitch/vim-lua-format'
+" Plug 'andrejlevkovitch/vim-lua-format'
 Plug 'kevinhwang91/nvim-bqf'
 Plug 'lewis6991/gitsigns.nvim'
 
 "python
 " Plug 'fisadev/vim-isort'
 Plug 'tweekmonster/django-plus.vim'
+
+Plug 'karb94/neoscroll.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'romgrk/nvim-treesitter-context'
@@ -47,6 +47,14 @@ Plug 'tami5/lspsaga.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
+" debugger
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'theHamsta/nvim-dap-virtual-text'
+
+" debugger langs
+Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
