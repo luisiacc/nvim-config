@@ -47,6 +47,6 @@ require("gitsigns").setup({
   status_formatter = nil, -- Use default
   word_diff = false,
   diff_opts = {
-    internal = true,
+    internal = false,
   },
 })
