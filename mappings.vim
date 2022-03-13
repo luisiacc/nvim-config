@@ -20,10 +20,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <leader>, gT
 nnoremap <leader>. gt
 nnoremap <leader>w gg:q!<CR>
-nnoremap <leader>ee :noh<CR>
 inoremap jj <Esc>
-
-nnoremap <leader>ee :noh<CR>
 
 
 " replace word
