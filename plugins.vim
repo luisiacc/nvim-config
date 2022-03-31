@@ -24,7 +24,7 @@ Plug 'folke/trouble.nvim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'andrejlevkovitch/vim-lua-format'
-Plug 'kevinhwang91/nvim-bqf'
+" Plug 'kevinhwang91/nvim-bqf'
 Plug 'lewis6991/gitsigns.nvim'
 
 "python

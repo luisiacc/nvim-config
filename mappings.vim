@@ -86,7 +86,7 @@ fun! ToggleLocList()
     endif
 endfun
 
-nmap <leader>q :tabedit /mnt/c/Users/acc/AppData/Roaming/alacritty/alacritty.yml<CR>
-nmap <leader>qq :tabedit /mnt/c/Users/acc/.wezterm.lua<CR>
+nmap <leader>q :tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.yml<CR>
+nmap <leader>qq :tabedit /mnt/c/Users/Luis/.wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s

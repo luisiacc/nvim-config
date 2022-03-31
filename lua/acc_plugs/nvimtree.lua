@@ -49,7 +49,6 @@ require("nvim-tree").setup({
   ignore_ft_on_setup = {},
   follow = true,
   auto_open = true,
-  auto_close = true,
   open_on_tab = false,
   update_cwd = true,
   hijack_cursor = false,

@@ -145,7 +145,7 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
 end
 -------------------------- SET UP SERVERS ---------------------------------------------
 
-vim.lsp.set_log_level("trace")
+-- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
 local common_on_attach = function(client)
   client.resolved_capabilities.document_formatting = false

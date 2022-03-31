@@ -47,4 +47,4 @@ let g:python3_host_prog  = '/usr/bin/python3.9'
 " let g:neovide_transparency=1
 " let g:neovide_cursor_animation_length=0.08
 " let g:neovide_cursor_antialiasing=v:true
-
+set laststatus=3

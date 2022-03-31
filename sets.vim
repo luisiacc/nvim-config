@@ -5,7 +5,6 @@ set synmaxcol=500
 set foldlevelstart=20
 set noshowmode
 set signcolumn=yes
-set laststatus=3
 
 set diffopt=vertical
 

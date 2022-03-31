@@ -1,5 +1,5 @@
 local configs = {
-  "bqf",
+--  "bqf",
   "colorizer",
   "comment",
   "copilot",
