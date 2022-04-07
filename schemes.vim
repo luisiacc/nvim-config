@@ -1,5 +1,10 @@
 let g:vimsyn_embed = 'l'
 
+lua << EOF
+local colors = require("gruvbox-baby.colors").config()
+vim.g.gruvbox_baby_highlights = {Visual = {bg = "#404040"}}
+EOF
+
 let g:tokyonight_style = "storm"
 let g:vscode_style = "dark"
 let g:gruvbox_baby_telescope_theme = 1
