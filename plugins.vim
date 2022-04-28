@@ -13,6 +13,9 @@ endif
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
+Plug 'vimwiki/vimwiki'
+Plug 'lewis6991/impatient.nvim'
+
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'

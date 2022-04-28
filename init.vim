@@ -1,6 +1,7 @@
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
+
 syntax off
 filetype indent off
 filetype plugin off
@@ -16,6 +17,8 @@ endif
 function! g:Source(file)
     exec 'source ' .. g:nvim_config_home .. a:file
 endfunction
+
+" lua require("impatient")
 
 call g:Source('/plugins.vim')
 "call g:Source('/packer.lua')

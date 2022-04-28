@@ -24,7 +24,7 @@ toggleterm.setup({
     -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
     -- width = 80,
     -- height = 50,
-    winblend = 1,
+    winblend = 0,
     highlights = {
       border = "Normal",
       background = "Normal",

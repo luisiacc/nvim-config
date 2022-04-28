@@ -14,6 +14,9 @@ end
 local snippy = require("snippy")
 
 cmp.setup({
+  sorting = {
+    comparators = cmp.config.locality,
+  },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -23,7 +26,7 @@ cmp.setup({
       require("snippy").expand_snippet(args.body) -- For `snippy` users.
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -82,7 +85,7 @@ cmp.setup({
         end
       end,
     }),
-  },
+  }),
   formatting = {
     format = lspkind.cmp_format({
       with_text = true,
@@ -121,7 +124,6 @@ cmp.setup.cmdline(":", {
 
 -- Setup lspconfig.
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
 vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
 vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
@@ -415,6 +417,7 @@ null_ls.setup({
     dg.eslint_d,
     dg.flake8,
     ca.eslint_d,
+    ca.refactoring,
   },
 })
 

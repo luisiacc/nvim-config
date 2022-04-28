@@ -19,7 +19,8 @@ vnoremap K :m '<-2<CR>gv=gv
 " remap tab navigation
 nnoremap <leader>, gT
 nnoremap <leader>. gt
-nnoremap <leader>w gg:q!<CR>
+nnoremap <A-q> gg:q!<CR>
+nnoremap <leader>2 gg:q!<CR>
 inoremap jj <Esc>
 
 
@@ -46,9 +47,6 @@ noremap <silent> <C-Down> :resize +1<CR>
 
 " compares current file to last revision
 nmap <leader>lr :vert diffsplit #<CR>
-
-" todo
-nnoremap <leader>e :tabedit todo.md<cr>
 
 
 nnoremap <leader>d :tabedit %<CR>

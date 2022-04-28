@@ -66,6 +66,7 @@ function M.go_to_scheme(moves)
   local new_index = ((index + moves - 1) % #colorschemes) + 1
   local next_scheme = colorschemes[new_index]
   pcall(M.activate_scheme, next_scheme)
+  vim.opt.laststatus = 3
 end
 
 return M
