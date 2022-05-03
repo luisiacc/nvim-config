@@ -115,11 +115,12 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", { sources = { { name = "buffer" } } })
+cmp.setup.cmdline("/", { sources = { { name = "buffer" } }, mapping = cmp.mapping.preset.cmdline() })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
   sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
+  mapping = cmp.mapping.preset.cmdline(),
 })
 
 -- Setup lspconfig.
@@ -145,13 +146,27 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   opts.border = opts.border or border
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
+
 -------------------------- SET UP SERVERS ---------------------------------------------
 
+local lsp_formatting = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(clients)
+      -- filter out clients that you don't want to use
+      return vim.tbl_filter(function(client)
+        return client.name ~= "tsserver"
+      end, clients)
+    end,
+    bufnr = bufnr,
+  })
+end
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
-local common_on_attach = function(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
+local common_on_attach = function(client, bufnr)
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0, silent = true })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0, silent = true })
@@ -190,6 +205,20 @@ local common_on_attach = function(client)
 
   -- "" preview definition
   vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>fm", function()
+    lsp_formatting(bufnr)
+  end, { buffer = 0, silent = true })
+
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
+  end
 end
 
 local ts_utils = require("nvim-lsp-ts-utils")
@@ -306,7 +335,7 @@ local server_configurations = {
     flags = { debounce_text_changes = 150 },
     on_attach = function(client, bufnr)
       -- defaults
-      common_on_attach(client)
+      common_on_attach(client, bufnr)
       ts_utils.setup({
         debug = false,
         disable_commands = false,
@@ -394,8 +423,6 @@ null_ls.setup({
       -- end,
       args = function(params)
         local lsputil = require("lspconfig.util")
-        local cwd = vim.loop.cwd()
-
         local root = nvim_lsp.pyright.get_root_dir(params.bufname)
         local config = {
           "--stdout",

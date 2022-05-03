@@ -1,5 +1,3 @@
-nnoremap <leader>fm <cmd>lua vim.lsp.buf.formatting()<CR>
-
 nnoremap Y y$
 inoremap , ,<c-g>u
 inoremap . .<c-g>u
