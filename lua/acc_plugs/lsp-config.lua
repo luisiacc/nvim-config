@@ -221,7 +221,25 @@ local common_on_attach = function(client, bufnr)
   end
 end
 
+local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
+
 local ts_utils = require("nvim-lsp-ts-utils")
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup,
+  pattern = table.concat(filetypes_with_save_on_write_with_no_lsp, ","),
+  callback = function(id, group, match, bufnr, file)
+    vim.keymap.set("n", "<leader>fm", function()
+      lsp_formatting(bufnr)
+    end, { buffer = 0, silent = true })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
+  end,
+})
 
 local default_config = {
   capabilities = capabilities,
