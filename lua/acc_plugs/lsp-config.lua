@@ -15,7 +15,7 @@ local snippy = require("snippy")
 
 cmp.setup({
   sorting = {
-    comparators = cmp.config.locality,
+    comparators = cmp.config.compare.locality,
   },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -397,13 +397,24 @@ local server_configurations = {
 }
 
 local lsp_installer = require("nvim-lsp-installer")
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-  -- This setup() function is exactly the same as lspconfig's setup function.
-  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  server:setup(server_configurations[server.name] or default_config)
-end)
+lsp_installer.setup({})
+
+local servers = {
+  "pyright",
+  "rust_analyzer",
+  "tsserver",
+  "sumneko_lua",
+  "gopls",
+  "clangd",
+  "tailwindcss",
+  "cssls",
+  "jsonls",
+  "html",
+  "sqlls",
+}
+for _, lsp in pairs(servers) do
+  require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
+end
 
 ------------------------------------------------------------------------------------------
 ------------------------------- null ls --------------------------------------------------

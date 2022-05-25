@@ -138,11 +138,14 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'hoob3rt/lualine.nvim'
+Plug 'feline-nvim/feline.nvim'
 
 Plug 'mhinz/vim-startify'
 " Plug 'voldikss/vim-floaterm'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'ThePrimeagen/refactoring.nvim'
+Plug 'rcarriga/nvim-notify'
 call plug#end()
 
 " for coc to work with scss files
