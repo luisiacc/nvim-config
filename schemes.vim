@@ -4,9 +4,10 @@ lua << EOF
 local c = require("gruvbox-baby.colors").config()
 vim.g.gruvbox_baby_highlights = {
     Visual = {bg = "#404040"},
-    Pmenu = { fg = c.foreground, bg = c.none },
-    CmpDocBorder = { fg = c.foreground, bg = c.none },
-    CmpBorder = { fg = c.foreground, bg = c.none },
+    Pmenu = { fg = c.comment, bg = c.none },
+    PmenuSel = { fg = c.none, bg = "#171717" },
+    CmpDocBorder = { fg = "#030303", bg = c.none },
+    CmpBorder = { fg = "#030303", bg = c.none },
 }
 EOF
 

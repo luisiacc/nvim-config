@@ -56,8 +56,8 @@ nnoremap <C-z> :cprev<CR>
 nnoremap <C-q> :call ToggleQFList()<CR>
 nnoremap <C-e> :call ToggleLocList()<CR>
 
-nmap <C-w> <C-b>
-nmap <C-e> <C-f>
+nmap <C-e> <C-b>
+nmap <C-r> <C-f>
 
 " nnoremap <leader>rs :setlocal syntax=OFF
 
