@@ -1,8 +1,13 @@
 let g:vimsyn_embed = 'l'
 
 lua << EOF
-local colors = require("gruvbox-baby.colors").config()
-vim.g.gruvbox_baby_highlights = {Visual = {bg = "#404040"}}
+local c = require("gruvbox-baby.colors").config()
+vim.g.gruvbox_baby_highlights = {
+    Visual = {bg = "#404040"},
+    Pmenu = { fg = c.foreground, bg = c.none },
+    CmpDocBorder = { fg = c.foreground, bg = c.none },
+    CmpBorder = { fg = c.foreground, bg = c.none },
+}
 EOF
 
 let g:tokyonight_style = "storm"

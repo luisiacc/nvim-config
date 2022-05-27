@@ -44,6 +44,7 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
 Plug 'SmiteshP/nvim-gps'
+Plug 'p00f/nvim-ts-rainbow'
 
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'tami5/lspsaga.nvim'

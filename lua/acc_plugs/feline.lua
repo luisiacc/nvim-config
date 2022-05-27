@@ -45,16 +45,16 @@ M.statusline.icons.active[1] = {
   {
     provider = "file_info",
     hl = {
-      fg = "white",
-      bg = c.forest_green,
+      fg = c.background,
+      bg = c.milk,
       style = "bold",
     },
     left_sep = {
       "slant_left_2",
-      { str = " ", hl = { bg = c.forest_green, fg = "NONE" } },
+      { str = " ", hl = { bg = c.milk, fg = "NONE" } },
     },
     right_sep = {
-      { str = " ", hl = { bg = c.forest_green, fg = "NONE" } },
+      { str = " ", hl = { bg = c.milk, fg = "NONE" } },
       "slant_right_2",
       " ",
     },

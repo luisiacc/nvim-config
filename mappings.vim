@@ -56,6 +56,9 @@ nnoremap <C-z> :cprev<CR>
 nnoremap <C-q> :call ToggleQFList()<CR>
 nnoremap <C-e> :call ToggleLocList()<CR>
 
+nmap <C-w> <C-b>
+nmap <C-e> <C-f>
+
 " nnoremap <leader>rs :setlocal syntax=OFF
 
 let g:acc_loc_list = 0

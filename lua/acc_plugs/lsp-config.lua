@@ -12,10 +12,39 @@ local t = function(str)
 end
 
 local snippy = require("snippy")
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
+local cmp_window = require("cmp.utils.window")
+
+cmp_window.info_ = cmp_window.info
+cmp_window.info = function(self)
+  local info = self:info_()
+  info.scrollable = false
+  return info
+end
 
 cmp.setup({
+  window = {
+    completion = {
+      border = border("CmpBorder"),
+    },
+    documentation = {
+      border = border("CmpDocBorder"),
+    },
+  },
   sorting = {
-    comparators = cmp.config.compare.locality,
+    comparators = cmp.config.compare.scopes,
   },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -151,11 +180,8 @@ end
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
-    filter = function(clients)
-      -- filter out clients that you don't want to use
-      return vim.tbl_filter(function(client)
-        return client.name ~= "tsserver"
-      end, clients)
+    filter = function(client)
+      return client.name == "null-ls"
     end,
     bufnr = bufnr,
   })
@@ -223,6 +249,7 @@ end
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
+-- format buffers who doesn't have lsp
 local ts_utils = require("nvim-lsp-ts-utils")
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup,
