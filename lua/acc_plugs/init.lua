@@ -1,6 +1,7 @@
 local configs = {
   --  "bqf",
   "nvim-gps",
+  "symbols",
   "colorizer",
   "comment",
   "copilot",

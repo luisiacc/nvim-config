@@ -25,7 +25,6 @@ augroup vimrc_autocmd
     autocmd BufNewFile,BufRead *.vim,*.vimrc setlocal syntax=vim
     autocmd FileType netrw setlocal syntax=netrw
     autocmd BufEnter *.js,*.jsx,*.ts,*.tsx,*.py,*.lua,*.rs,*.cpp silent execute ':setlocal syntax=OFF'
-    autocmd BufWritePre *.py,*.js,*.ts,*.tsx,*.rs,*.lua,*.cpp silent execute ':lua vim.lsp.buf.formatting_sync()'
 augroup END
 
 nnoremap <A-n> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(-1)<cr>

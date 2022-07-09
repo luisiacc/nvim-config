@@ -45,17 +45,17 @@ M.statusline.icons.active[1] = {
   {
     provider = "file_info",
     hl = {
-      fg = c.background,
-      bg = c.milk,
+      fg = "white",
+      bg = "oceanblue",
       style = "bold",
     },
     left_sep = {
-      "slant_left_2",
-      { str = " ", hl = { bg = c.milk, fg = "NONE" } },
+      "left_rounded",
+      { str = " ", hl = { bg = "oceanblue", fg = "NONE" } },
     },
     right_sep = {
-      { str = " ", hl = { bg = c.milk, fg = "NONE" } },
-      "slant_right_2",
+      { str = " ", hl = { bg = "oceanblue", fg = "NONE" } },
+      "right_rounded",
       " ",
     },
   },
@@ -64,7 +64,7 @@ M.statusline.icons.active[1] = {
     right_sep = {
       " ",
       {
-        str = "slant_left_2_thin",
+        str = "left_rounded_thin",
         hl = {
           fg = "fg",
           bg = "bg",
@@ -78,7 +78,7 @@ M.statusline.icons.active[1] = {
     right_sep = {
       " ",
       {
-        str = "slant_right_2_thin",
+        str = "right_rounded_thin",
         hl = {
           fg = "fg",
           bg = "bg",

@@ -29,7 +29,7 @@ function M.grep_string()
 end
 
 function M.tags()
-  return builtin.tags({ path_display = "shorten", sort_only_text = true })
+  return builtin.tags({ sort_only_text = true })
 end
 
 function M.find_in_buffer()

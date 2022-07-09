@@ -56,8 +56,7 @@ nnoremap <C-z> :cprev<CR>
 nnoremap <C-q> :call ToggleQFList()<CR>
 nnoremap <C-e> :call ToggleLocList()<CR>
 
-nmap <C-e> <C-b>
-nmap <C-r> <C-f>
+nmap <C-e> <C-f>
 
 " nnoremap <leader>rs :setlocal syntax=OFF
 
@@ -86,6 +85,6 @@ fun! ToggleLocList()
 endfun
 
 nmap <leader>q :tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.yml<CR>
-nmap <leader>qq :tabedit /mnt/c/Users/Luis/.wezterm.lua<CR>
+nmap <leader>qq :tabedit /mnt/c/Users/Luis/.config/wezterm/wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s

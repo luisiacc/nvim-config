@@ -14,13 +14,13 @@ end
 local snippy = require("snippy")
 local function border(hl_name)
   return {
-    { "╭", hl_name },
+    { "┌", hl_name },
     { "─", hl_name },
-    { "╮", hl_name },
+    { "┐", hl_name },
     { "│", hl_name },
-    { "╯", hl_name },
+    { "┘", hl_name },
     { "─", hl_name },
-    { "╰", hl_name },
+    { "└", hl_name },
     { "│", hl_name },
   }
 end
@@ -138,9 +138,9 @@ cmp.setup({
   -- view = {
   --   entries = "native",
   -- },
-  experimental = {
-    ghost_text = true,
-  },
+  -- experimental = {
+  --   ghost_text = true,
+  -- },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
@@ -180,6 +180,7 @@ end
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
+    timeout_ms = 5000,
     filter = function(client)
       return client.name == "null-ls"
     end,
@@ -200,8 +201,8 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0, silent = true })
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<c-a-k>", vim.diagnostic.goto_prev, { buffer = 0, silent = true })
-  vim.keymap.set("n", "<c-a-j>", vim.diagnostic.goto_next, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_prev, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>gm", vim.diagnostic.goto_next, { buffer = 0, silent = true })
 
   -- " lsp provider to find the cursor word definition and reference
   vim.keymap.set("n", "gh", require("lspsaga.provider").lsp_finder, { buffer = 0, silent = true })
@@ -235,16 +236,14 @@ local common_on_attach = function(client, bufnr)
     lsp_formatting(bufnr)
   end, { buffer = 0, silent = true })
 
-  if client.supports_method("textDocument/formatting") then
-    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
-    })
-  end
+  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      lsp_formatting(bufnr)
+    end,
+  })
 end
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
@@ -464,6 +463,7 @@ end
 
 null_ls.setup({
   autostart = true,
+  default_timeout = 10000,
   sources = {
     fmt.trim_whitespace.with({
       filetypes = { "text", "sh", "zsh", "yaml", "toml", "make", "conf", "tmux" },
@@ -471,7 +471,11 @@ null_ls.setup({
     fmt.rustfmt,
     fmt.stylua,
     fmt.gofmt,
-    fmt.black.with({ prefer_local = ".venv/bin", extra_args = { "--line-length", "120" } }),
+    fmt.black.with({
+      prefer_local = ".venv/bin",
+      args = { "--quiet", "-" },
+      extra_args = { "--line-length", "120" },
+    }),
     -- fmt.isort,
     fmt.isort.with({
       -- condition = function(utils)

@@ -1,8 +1,10 @@
 local colorschemes = {
   { name = "gruvbox-baby" },
+  { name = "dracula" },
   { name = "edge" },
   { name = "edge", background = "light" },
   { name = "nightfly" },
+  { name = "nightfox" },
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github_dimmed" },
@@ -11,11 +13,24 @@ local colorschemes = {
   { name = "tokyonight", background = "light" },
   { name = "gruvbox-material" },
   { name = "everforest" },
-  { name = "nord" },
   { name = "kanagawa" },
 }
 
 local M = {}
+
+local custom_per_scheme = {
+  dracula = function()
+    vim.cmd([[hi Comment guifg=#665c54 gui=italic ]])
+    vim.cmd([[hi TSComment guifg=#665c54 gui=italic ]])
+  end,
+  default = function()
+    vim.cmd([[
+      highlight IndentBlanklineContextChar guifg=#365050
+      highlight IndentBlanklineChar guifg=#313131
+      highlight IndentBlanklineSpaceChar guifg=#313131
+    ]])
+  end,
+}
 
 -- @returns the current scheme from the list above, along with it's index
 function M.get_current_scheme()
@@ -67,6 +82,10 @@ function M.go_to_scheme(moves)
   local next_scheme = colorschemes[new_index]
   pcall(M.activate_scheme, next_scheme)
   vim.opt.laststatus = 3
+  if custom_per_scheme[next_scheme.name] then
+    custom_per_scheme[next_scheme.name]()
+  end
+  custom_per_scheme["default"]()
 end
 
 return M

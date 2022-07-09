@@ -162,9 +162,9 @@ require("telescope").setup({
     file_ignore_patterns = { ".venv", "node_modules" },
     sorting_strategy = "ascending",
     scroll_strategy = "cycle",
-    layout_strategy = "horizontal",
+    -- layout_strategy = "horizontal",
     -- layout_strategy = a_bottom_pane,
-    -- layout_strategy = "bottom_pane",
+    layout_strategy = "bottom_pane",
     -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
     color_devicons = true,
     winblend = 0,
@@ -188,14 +188,14 @@ require("telescope").setup({
       width = 0.85,
       preview_cutoff = 150,
     },
-    border = {},
-    borderchars = { " " },
+    -- border = {},
+    -- borderchars = { " " },
     -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    -- borderchars = {
-    --   prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-    --   results = { " " },
-    --   preview = { " " },
-    -- },
+    borderchars = {
+      prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+      results = { " " },
+      preview = { " " },
+    },
     mappings = {
       i = {
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
