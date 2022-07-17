@@ -29,7 +29,7 @@ M.statusline.icons.active[1] = {
   {
     provider = "▊ ",
     hl = {
-      fg = "skyblue",
+      fg = c.soft_yellow,
     },
   },
   {
@@ -45,16 +45,16 @@ M.statusline.icons.active[1] = {
   {
     provider = "file_info",
     hl = {
-      fg = "white",
-      bg = "oceanblue",
+      fg = c.dark,
+      bg = c.bright_yellow,
       style = "bold",
     },
     left_sep = {
       "left_rounded",
-      { str = " ", hl = { bg = "oceanblue", fg = "NONE" } },
+      { str = " ", hl = { bg = c.soft_yellow, fg = "NONE" } },
     },
     right_sep = {
-      { str = " ", hl = { bg = "oceanblue", fg = "NONE" } },
+      { str = " ", hl = { bg = c.soft_yellow, fg = "NONE" } },
       "right_rounded",
       " ",
     },
@@ -101,16 +101,6 @@ M.statusline.icons.active[1] = {
   {
     provider = "diagnostic_info",
     hl = { fg = "skyblue" },
-  },
-  {
-    provider = function()
-      return gps.get_location()
-    end,
-    hl = { fg = "skyblue" },
-    enabled = function()
-      return gps.is_available()
-    end,
-    left_sep = "  ",
   },
 }
 
@@ -404,6 +394,18 @@ M.winbar.icons.active[1] = {
       fg = "skyblue",
       bg = "NONE",
       style = "bold",
+    },
+  },
+  {
+    provider = function()
+      return gps.get_location()
+    end,
+    hl = { fg = "skyblue", bg = "NONE", style = "bold" },
+    enabled = function()
+      return gps.is_available()
+    end,
+    left_sep = {
+      { str = " ❯ ", hl = { bg = "NONE", fg = "skyblue" } },
     },
   },
 }

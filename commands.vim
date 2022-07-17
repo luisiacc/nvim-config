@@ -1,5 +1,3 @@
-command! -nargs=0 CocPrettier :call CocAction('runCommand', 'prettier.formatFile')
-command! -nargs=0 FormatDjango :call CocAction('runCommand', 'htmldjango.djhtml.format')
 command! -nargs=1 CFont silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -f ' . <q-args>
 command! -nargs=1 CHeight silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -o ' . <q-args>
 command! -nargs=1 CSize silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -s ' . <q-args>
@@ -29,3 +27,4 @@ augroup END
 
 nnoremap <A-n> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(-1)<cr>
 nnoremap <A-m> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(1)<cr>
+lua require("luisiacc.colorscheme")

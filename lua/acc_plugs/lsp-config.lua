@@ -34,6 +34,8 @@ cmp_window.info = function(self)
   return info
 end
 
+local compare = cmp.config.compare
+
 cmp.setup({
   window = {
     completion = {
@@ -44,7 +46,18 @@ cmp.setup({
     },
   },
   sorting = {
-    comparators = cmp.config.compare.scopes,
+    comparators = {
+      compare.scopes,
+      compare.locality,
+      compare.offset,
+      compare.exact,
+      compare.score,
+      compare.recently_used,
+      compare.kind,
+      compare.sort_text,
+      compare.length,
+      compare.order,
+    },
   },
   snippet = {
     -- REQUIRED - you must specify a snippet engine
@@ -180,7 +193,7 @@ end
 
 local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
-    timeout_ms = 5000,
+    timeout_ms = 10000,
     filter = function(client)
       return client.name == "null-ls"
     end,

@@ -1,5 +1,8 @@
 require("luisiacc")
 
+local action_state = require("telescope.actions.state")
+local actions = require("telescope.actions")
+
 local funcs = require("luisiacc.tel_functions")
 local tb = require("telescope.builtin")
 
@@ -10,7 +13,8 @@ end
 nnoremap("<leader>fw", funcs.grep_string_under_cursor)
 nnoremap("<leader>ps", funcs.live_grep)
 
-nnoremap("<C-p>", tb.find_files)
+nnoremap("<C-p>", funcs.find_files)
+nnoremap("<leader>ft", tb.treesitter)
 nnoremap("<Leader>em", funcs.search_nvim_config)
 nnoremap("<leader>pw", funcs.live_grep_under_cursor)
 nnoremap("<leader>ff", ":Ag<cr>")
@@ -30,3 +34,4 @@ local delta = require("luisiacc.delta")
 nnoremap("<leader>c", delta.commits)
 nnoremap("<leader>bc", delta.bcommits)
 nnoremap("<leader>gs", delta.status)
+nnoremap("<leader><leader>", funcs.frecency)

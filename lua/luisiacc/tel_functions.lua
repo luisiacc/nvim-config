@@ -1,4 +1,5 @@
 local builtin = require("telescope.builtin")
+local sorters = require("telescope.sorters")
 
 local M = {}
 
@@ -11,7 +12,7 @@ function M.live_grep_under_cursor()
 end
 
 function M.live_grep()
-  return builtin.live_grep({ path_display = "shorten", sort_only_text = true })
+  return builtin.live_grep({ path_display = "shorten", sort_only_text = true, use_regex = true })
 end
 
 function M.search_nvim_config()
@@ -25,11 +26,17 @@ function M.search_all_files()
 end
 
 function M.grep_string()
-  return builtin.grep_string({ sort_only_text = true })
+  return builtin.grep_string({
+    short_path = true,
+    word_match = "-w",
+    only_sort_text = true,
+    -- layout_strategy = "vertical",
+    sorter = sorters.get_fzy_sorter(),
+  })
 end
 
 function M.tags()
-  return builtin.tags({ sort_only_text = true })
+  return builtin.tags({ only_sort_tags = true, fname_width = 40 })
 end
 
 function M.find_in_buffer()
@@ -38,6 +45,14 @@ function M.find_in_buffer()
     previewer = false,
     layout_config = { width = 0.70, height = 0.70 },
   }))
+end
+
+function M.find_files()
+  return builtin.find_files({})
+end
+
+function M.frecency()
+  require("telescope").extensions.frecency.frecency()
 end
 
 return M

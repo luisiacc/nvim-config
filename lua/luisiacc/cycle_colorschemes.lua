@@ -1,13 +1,16 @@
 local colorschemes = {
   { name = "gruvbox-baby" },
+  { name = "nightfly" },
   { name = "dracula" },
+  { name = "one_monokai" },
   { name = "edge" },
   { name = "edge", background = "light" },
-  { name = "nightfly" },
   { name = "nightfox" },
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github_dimmed" },
+  { name = "github_dark" },
+  { name = "github_dark_default" },
   { name = "vscode" },
   { name = "tokyonight" },
   { name = "tokyonight", background = "light" },
@@ -18,16 +21,26 @@ local colorschemes = {
 
 local M = {}
 
-local custom_per_scheme = {
-  dracula = function()
+local custom_scheme_setup = {
+  one_monokai = function()
+    require("one_monokai").setup()
+  end,
+  ["rose-pine"] = function(bg)
+    if bg == "light" then
+      require("rose-pine").set("dawn")
+    else
+      require("rose-pine").set("moon")
+    end
+  end,
+  dracula = function(bg)
     vim.cmd([[hi Comment guifg=#665c54 gui=italic ]])
     vim.cmd([[hi TSComment guifg=#665c54 gui=italic ]])
   end,
-  default = function()
+  default_dark = function(bg)
     vim.cmd([[
-      highlight IndentBlanklineContextChar guifg=#365050
-      highlight IndentBlanklineChar guifg=#313131
-      highlight IndentBlanklineSpaceChar guifg=#313131
+      hi IndentBlanklineContextChar guifg=#365050
+      hi IndentBlanklineChar guifg=#313131
+      hi IndentBlanklineSpaceChar guifg=#313131
     ]])
   end,
 }
@@ -49,9 +62,10 @@ end
 
 function M.activate_scheme(scheme)
   local bg = scheme.background or "dark"
-  vim.cmd(string.format("colorscheme %s", scheme.name))
+  vim.o.termguicolors = true
   vim.cmd(string.format("set background=" .. bg))
-  vim.g.colors_name = scheme.name
+  vim.cmd(string.format("Colorscheme %s", scheme.name))
+  print(string.format("colorscheme=%s background=%s", scheme.name, bg))
 
   if scheme.name == "rose-pine" then
     if bg == "light" then
@@ -61,7 +75,17 @@ function M.activate_scheme(scheme)
     end
   end
 
-  print(string.format("colorscheme=%s background=%s", scheme.name, bg))
+  if custom_scheme_setup[scheme] then
+    custom_scheme_setup[scheme.name](bg)
+  end
+
+  if bg == "dark" then
+    custom_scheme_setup["default_dark"](bg)
+  end
+
+  vim.defer_fn(function()
+    vim.cmd("hi nvim_set_hl_x_hi_clear_bugfix guifg=red")
+  end, 100)
 end
 
 local _debug = function(content)
@@ -82,10 +106,6 @@ function M.go_to_scheme(moves)
   local next_scheme = colorschemes[new_index]
   pcall(M.activate_scheme, next_scheme)
   vim.opt.laststatus = 3
-  if custom_per_scheme[next_scheme.name] then
-    custom_per_scheme[next_scheme.name]()
-  end
-  custom_per_scheme["default"]()
 end
 
 return M

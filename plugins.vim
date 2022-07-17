@@ -25,6 +25,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'nvim-telescope/telescope-frecency.nvim'
+Plug 'tami5/sqlite.lua'
 Plug 'github/copilot.vim'
 
 Plug 'folke/trouble.nvim'
@@ -122,6 +124,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug b:projects .. 'gruvbox-baby'
 Plug 'rktjmp/lush.nvim'
 
+Plug 'tanvirtin/monokai.nvim'
 " colorschemes
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'lmburns/kimbox'

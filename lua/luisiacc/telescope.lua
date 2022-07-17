@@ -206,6 +206,9 @@ require("telescope").setup({
     },
   },
   extensions = {
+    frecency = {
+      db_root = "/home/acc/.vim",
+    },
     fzf = {
       fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
@@ -224,3 +227,4 @@ require("telescope").setup({
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
+require("telescope").load_extension("frecency")
