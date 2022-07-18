@@ -44,8 +44,8 @@ EOF
 
 call g:Source('/schemes.vim')
 
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 let g:python3_host_prog  = '/usr/bin/python3.9'
 " let g:neovide_transparency=1

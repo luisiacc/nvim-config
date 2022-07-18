@@ -1,5 +1,4 @@
 function colorscheme(name)
-  vim.notify(name)
   vim.cmd("hi clear")
   require("luisiacc.reset_ts_highlights")()
   vim.cmd("colorscheme " .. name)

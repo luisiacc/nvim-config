@@ -3,6 +3,8 @@ local colorschemes = {
   { name = "nightfly" },
   { name = "dracula" },
   { name = "one_monokai" },
+  { name = "monokai_pro" },
+  { name = "monokai_ristretto" },
   { name = "edge" },
   { name = "edge", background = "light" },
   { name = "nightfox" },
@@ -62,10 +64,10 @@ end
 
 function M.activate_scheme(scheme)
   local bg = scheme.background or "dark"
+  print(string.format("colorscheme=%s background=%s", scheme.name, bg))
   vim.o.termguicolors = true
   vim.cmd(string.format("set background=" .. bg))
   vim.cmd(string.format("Colorscheme %s", scheme.name))
-  print(string.format("colorscheme=%s background=%s", scheme.name, bg))
 
   if scheme.name == "rose-pine" then
     if bg == "light" then

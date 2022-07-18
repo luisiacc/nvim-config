@@ -25,6 +25,9 @@ local M = {
 }
 
 local gps = require("nvim-gps")
+local color = require("tokyonight.util")
+local file_color = color.brighten(c.soft_yellow, 0.26)
+-- local file_color = c.soft_yellow
 M.statusline.icons.active[1] = {
   {
     provider = "▊ ",
@@ -46,16 +49,16 @@ M.statusline.icons.active[1] = {
     provider = "file_info",
     hl = {
       fg = c.dark,
-      bg = c.bright_yellow,
+      bg = file_color,
       style = "bold",
     },
     left_sep = {
-      "left_rounded",
-      { str = " ", hl = { bg = c.soft_yellow, fg = "NONE" } },
+      { str = "left_rounded", hl = { bg = "NONE", fg = c.soft_yellow } },
+      { str = " ", hl = { bg = file_color, fg = "NONE" } },
     },
     right_sep = {
-      { str = " ", hl = { bg = c.soft_yellow, fg = "NONE" } },
-      "right_rounded",
+      { str = " ", hl = { bg = file_color, fg = "NONE" } },
+      { str = "right_rounded", hl = { bg = "NONE", fg = c.soft_yellow } },
       " ",
     },
   },
