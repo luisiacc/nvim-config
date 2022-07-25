@@ -12,7 +12,7 @@ vim.g.gruvbox_baby_highlights = {
 }
 EOF
 
-let g:tokyonight_style = "storm"
+let g:tokyonight_style = "night"
 let g:vscode_style = "dark"
 let g:gruvbox_baby_telescope_theme = 1
 let g:gruvbox_baby_keyword_style = "NONE"

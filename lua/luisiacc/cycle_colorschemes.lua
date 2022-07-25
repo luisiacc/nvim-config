@@ -67,7 +67,7 @@ function M.activate_scheme(scheme)
   print(string.format("colorscheme=%s background=%s", scheme.name, bg))
   vim.o.termguicolors = true
   vim.cmd(string.format("set background=" .. bg))
-  vim.cmd(string.format("Colorscheme %s", scheme.name))
+  vim.cmd(string.format("colorscheme %s", scheme.name))
 
   if scheme.name == "rose-pine" then
     if bg == "light" then
