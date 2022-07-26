@@ -61,6 +61,6 @@ vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- vim.o.completion_matching_strategy_list = { "exact", "substring", "fuzzy" }
 
 vim.opt.termguicolors = true
-if vim.fn.has("nvim") then
+if vim.fn.has("nvim") == 1 then
   vim.g.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 end

@@ -42,7 +42,7 @@ require('lightspeed').setup({})
 -- vim.cmd([[nnoremap <F4> :lua package.loaded.acc_plugs = nil<CR>:source ~/.config/nvim/init.vim<CR>]])
 EOF
 
-call g:Source('/schemes.vim')
+call g:Source('/schemes.lua')
 
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
