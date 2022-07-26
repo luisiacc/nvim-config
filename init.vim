@@ -23,7 +23,7 @@ endfunction
 call g:Source('/plugins.vim')
 "call g:Source('/packer.lua')
 
-call g:Source('/sets.vim')
+call g:Source('/sets.lua')
 
 call g:Source('/globals.lua')
 
