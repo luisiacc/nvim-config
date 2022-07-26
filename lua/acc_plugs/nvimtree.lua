@@ -1,6 +1,3 @@
-vim.cmd([[nnoremap <leader>ce :NvimTreeToggle<CR>]])
-vim.cmd([[nnoremap <leader>r :NvimTreeRefresh<CR>]])
-vim.cmd([[nnoremap <leader>n :NvimTreeFindFile<CR>]])
 -- " NvimTreeOpen and NvimTreeClose are also available if you need them
 
 require("nvim-tree").setup({
@@ -15,6 +12,7 @@ require("nvim-tree").setup({
   sync_root_with_cwd = true,
   hijack_cursor = true,
   hijack_directories = {
+    enable = true,
     auto_open = false,
   },
   filters = {
@@ -49,7 +47,9 @@ require("nvim-tree").setup({
     centralize_selection = true,
     mappings = {
       custom_only = false,
-      list = {},
+      list = {
+        { key = "<CR>", action = "edit_in_place" },
+      },
     },
   },
   git = {
@@ -71,3 +71,17 @@ require("nvim-tree").setup({
     prefix = "🔎 >",
   },
 })
+
+local function toggle_replace()
+  local view = require("nvim-tree.view")
+  if view.is_visible() then
+    view.close()
+  else
+    require("nvim-tree").open_replacing_current_buffer()
+  end
+end
+
+vim.keymap.set("n", "<leader>ce", "<cmd>NvimTreeToggle<CR>")
+vim.keymap.set("n", "<leader>r", "<cmd>NvimTreeRefresh<CR>")
+vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeFindFile<CR>")
+vim.keymap.set("n", "<leader>i", toggle_replace)
