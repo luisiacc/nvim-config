@@ -57,7 +57,9 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'tami5/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/nvim-lsp-installer'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+" Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 " debugger

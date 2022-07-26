@@ -47,12 +47,12 @@ cmp.setup({
   },
   sorting = {
     comparators = {
-      compare.scopes,
       compare.locality,
-      compare.offset,
-      compare.exact,
-      compare.score,
       compare.recently_used,
+      compare.scopes,
+      compare.exact,
+      compare.offset,
+      compare.score,
       compare.kind,
       compare.sort_text,
       compare.length,
@@ -365,6 +365,14 @@ local server_configurations = {
     capabilities = capabilities,
     on_attach = common_on_attach,
     flags = { debounce_text_changes = 150 },
+    root_dir = nvim_lsp.util.root_pattern(
+      ".luarc.json",
+      ".luacheckrc",
+      ".stylua.toml",
+      "stylua.toml",
+      "selene.toml",
+      ".git"
+    ),
     settings = {
       Lua = {
         runtime = {
@@ -435,9 +443,6 @@ local server_configurations = {
   },
 }
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.setup({})
-
 local servers = {
   "pyright",
   "rust_analyzer",
@@ -445,12 +450,18 @@ local servers = {
   "sumneko_lua",
   "gopls",
   "clangd",
-  "tailwindcss",
+  -- "tailwindcss",
   "cssls",
   "jsonls",
   "html",
   "sqlls",
 }
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = servers,
+})
+
 for _, lsp in pairs(servers) do
   require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
 end
@@ -492,7 +503,7 @@ null_ls.setup({
     -- fmt.isort,
     fmt.isort.with({
       -- condition = function(utils)
-      -- 	return utils.root_has_file("pyproject.toml")
+      -- return root_has_file("pyproject.toml")
       -- end,
       args = function(params)
         local lsputil = require("lspconfig.util")
@@ -584,13 +595,6 @@ vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn line
 vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=]])
 vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = false,
-  virtual_text = false,
-  signs = true,
-  update_in_insert = false,
-})
-
 vim.diagnostic.config({
   underline = false,
   virtual_text = false,
@@ -617,10 +621,3 @@ _G.remove_hidden_buffers = function()
 end
 
 vim.cmd([[nnoremap <leader>aa :lua cancel_all()<CR>]])
-
-_G.col = function()
-  if package.loaded.luisiacc and package.loaded.cycle_colorschemes then
-    package.loaded.luisiacc.cycle_colorschemes = nil
-  end
-  require("luisiacc.cycle_colorschemes").go_to_scheme(1)
-end
