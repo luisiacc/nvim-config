@@ -14,6 +14,7 @@ vim.g.tokyonight_style = "night"
 vim.g.vscode_style = "dark"
 vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_keyword_style = "NONE"
+vim.g.gruvbox_baby_function_style = { "italic", "bold" }
 
 -- " configure nvcode-color-schemes
 vim.g.nvcode_termcolors = 256

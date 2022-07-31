@@ -38,6 +38,15 @@ local custom_scheme_setup = {
     vim.cmd([[hi Comment guifg=#665c54 gui=italic ]])
     vim.cmd([[hi TSComment guifg=#665c54 gui=italic ]])
   end,
+  nightfox = function(bg)
+    require("nightfox").setup({
+      options = {
+        styles = {
+          functions = "bold,italic",
+        },
+      },
+    })
+  end,
   default_dark = function(bg)
     vim.cmd([[
       hi IndentBlanklineContextChar guifg=#365050

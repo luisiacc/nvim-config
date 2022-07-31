@@ -38,10 +38,10 @@ nnoremap <C-l> :wincmd l<CR>
 nnoremap <leader>me :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 nnoremap <leader>ps :Rg<SPACE>
-noremap <silent> <C-Right> :vertical resize -5<CR>
-noremap <silent> <C-Left> :vertical resize +5<CR>
-noremap <silent> <C-Up> :resize -1<CR>
-noremap <silent> <C-Down> :resize +1<CR>
+nnoremap <silent> <C-Right> :vertical resize -2<CR>
+nnoremap <silent> <C-Left> :vertical resize +2<CR>
+nnoremap <silent> <C-Up> :resize -1<CR>
+nnoremap <silent> <C-Down> :resize +1<CR>
 
 " compares current file to last revision
 nmap <leader>lr :vert diffsplit #<CR>
