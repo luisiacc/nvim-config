@@ -4,27 +4,12 @@ let mapleader=" "
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='?'
 
-let g:ale_python_pylint_executable = 'python'
-let g:ale_python_pylint_options = '-m pylint --max-line-length=120'
-let g:ale_python_pylint_use_global = 1
 let g:pymode_lint_config = '$HOME/.pylintrc'
 let g:pymode_options_max_line_length=120
-let g:ale_linters = {
-            \ 'python': ['pylint'],
-            \ }
-let g:ale_linters_ignore = ['flake8']
-let g:ale_python_pylint_change_directory = 0
-" disable red space on python by polyglot
-
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '●'
-
-let g:Schlepp#allowSquishingLines = 1
-let g:Schlepp#allowSquishingBlock = 1
 
 " web stuff
-let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
-let g:closetag_regions = { 'typescript': 'jsxRegion,tsxRegion', 'typescriptreact': 'jsxRegion,tsxRegion', 'typescript.tsx': 'jsxRegion,tsxRegion', 'javascript.jsx': 'jsxRegion', 'javascriptreact': 'jsxRegion' }
+" let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
+" let g:closetag_regions = { 'typescript': 'jsxRegion,tsxRegion', 'typescriptreact': 'jsxRegion,tsxRegion', 'typescript.tsx': 'jsxRegion,tsxRegion', 'javascript.jsx': 'jsxRegion', 'javascriptreact': 'jsxRegion' }
 
 
 " sessions
@@ -32,9 +17,9 @@ let g:sessions_dir = '~/vim-sessions'
 exec 'nnoremap <leader>ms :mks! ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
 exec 'nnoremap <leader>ss :so ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
 
-let g:netrw_browse_split=2
-let g:netrw_banner=0
-let g:netrw_winsize=25
+" let g:netrw_browse_split=2
+" let g:netrw_banner=0
+" let g:netrw_winsize=25
 
 " FZF
 
@@ -65,18 +50,10 @@ let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 let test#strategy = "asyncrun_background_term"
 let test#neovim#term_position = "vertical"
 
-let g:NERDTreeHijackNetrw=0
-
 let g:indent_guides_start_level=2
 let g:indent_guides_guide_size=2
 
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊'], │, ⎸, or ▏
 " let g:indent_blankline_char = '│'
-
-let g:airline_highlighting_cache = 1
-let g:airline#extensions#disable_rtp_load = 1
-let g:airline_extensions = ['branch', 'tabline']
-
-let g:indentLine_fileTypeExclude = ['coc-explorer']
 
 
