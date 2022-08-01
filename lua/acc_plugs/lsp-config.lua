@@ -214,11 +214,11 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0, silent = true })
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<leader>gn", vim.diagnostic.goto_prev, { buffer = 0, silent = true })
-  vim.keymap.set("n", "<leader>gm", vim.diagnostic.goto_next, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<A-k>", require("lspsaga.diagnostic").goto_prev, { buffer = 0, silent = true, noremap = true })
+  vim.keymap.set("n", "<A-j>", require("lspsaga.diagnostic").goto_next, { buffer = 0, silent = true, noremap = true })
 
   -- " lsp provider to find the cursor word definition and reference
-  vim.keymap.set("n", "gh", require("lspsaga.provider").lsp_finder, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = 0, silent = true })
 
   -- " code action
   vim.keymap.set("n", "<leader>ca", require("lspsaga.codeaction").code_action, { buffer = 0, silent = true })
@@ -240,8 +240,8 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, { buffer = 0, silent = true })
 
   -- "" rename
-  vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").rename, { buffer = 0, silent = true })
-  vim.keymap.set("n", "<leader>dp", require("lspsaga.provider").preview_definition, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>dp", require("lspsaga.definition").preview_definition, { buffer = 0, silent = true })
 
   -- "" preview definition
   vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = 0, silent = true })
@@ -563,7 +563,16 @@ vim.lsp.protocol.CompletionItemKind = {
 }
 
 local saga = require("lspsaga")
-saga.init_lsp_saga()
+saga.init_lsp_saga({
+  code_action_icon = "💡",
+  code_action_lightbulb = {
+    enable = true,
+    sign = true,
+    enable_in_insert = true,
+    sign_priority = 5,
+    virtual_text = false,
+  },
+})
 
 function PrintDiagnostics()
   local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1

@@ -54,7 +54,7 @@ Plug 'SmiteshP/nvim-gps'
 Plug 'p00f/nvim-ts-rainbow'
 
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'tami5/lspsaga.nvim'
+Plug 'glepnir/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
