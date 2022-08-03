@@ -12,15 +12,18 @@ local t = function(str)
 end
 
 local snippy = require("snippy")
+-- border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
+-- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+-- ╘══════╛
 local function border(hl_name)
   return {
-    { "┌", hl_name },
+    { "╭", hl_name },
     { "─", hl_name },
-    { "┐", hl_name },
+    { "╮", hl_name },
     { "│", hl_name },
-    { "┘", hl_name },
+    { "╯", hl_name },
     { "─", hl_name },
-    { "└", hl_name },
+    { "╰", hl_name },
     { "│", hl_name },
   }
 end

@@ -1,8 +1,21 @@
 local augroup = vim.api.nvim_create_augroup("ColorschemeChanges", {})
 
-function extend_hl(group, new_config)
+local function extend_hl(group, new_config)
   local current_hl = vim.api.nvim_get_hl_by_name(group, true)
   vim.api.nvim_set_hl(0, group, vim.tbl_extend("force", current_hl, new_config))
+end
+
+local function apply_italics()
+  local italic_bold_groups = { "TSKeyword", "TSFunction", "TSKeywordFunction", "TSMethod" }
+  if vim.g.colors_name == "gruvbox-baby" then
+    for _, group in ipairs(italic_bold_groups) do
+      extend_hl(group, { italic = true, bold = true })
+    end
+  else
+    for _, group in ipairs(italic_bold_groups) do
+      extend_hl(group, { italic = true })
+    end
+  end
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
@@ -20,7 +33,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     for k, v in pairs(highs) do
       vim.api.nvim_set_hl(0, k, v)
     end
-    extend_hl("TSKeyword", { italic = true, bold = true })
-    extend_hl("TSKeywordFunction", { italic = true, bold = true })
+    apply_italics()
   end,
 })
