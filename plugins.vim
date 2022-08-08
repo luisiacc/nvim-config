@@ -129,6 +129,8 @@ Plug 'rktjmp/lush.nvim'
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'sthendev/mariana.vim', { 'do': 'make' }
+Plug 'kaiuri/nvim-juliana'
 Plug 'lmburns/kimbox'
 Plug 'Mofiqul/dracula.nvim'
 Plug 'EdenEast/nightfox.nvim'

@@ -1,5 +1,6 @@
 local colorschemes = {
-  { name = "gruvbox-baby" },
+  { name = "gruvbox-baby", variant = 1 },
+  { name = "gruvbox-baby", variant = 2 },
   { name = "nightfly" },
   { name = "dracula" },
   { name = "one_monokai" },
@@ -18,10 +19,25 @@ local colorschemes = {
   { name = "tokyonight", background = "light" },
   { name = "gruvbox-material" },
   { name = "everforest" },
-  { name = "kanagawa" },
+  { name = "mariana" },
 }
 
+local function extend_hl(group, new_config)
+  local current_hl = vim.api.nvim_get_hl_by_name(group, true)
+  vim.api.nvim_set_hl(0, group, vim.tbl_extend("force", current_hl, new_config))
+end
+
 local M = {}
+
+local colorscheme_variants = {
+  ["gruvbox-baby"] = function(variant)
+    if variant == 1 then
+      vim.g.gruvbox_baby_use_original_palette = false
+    else
+      vim.g.gruvbox_baby_use_original_palette = true
+    end
+  end,
+}
 
 local custom_scheme_setup = {
   one_monokai = function()
@@ -47,6 +63,11 @@ local custom_scheme_setup = {
       },
     })
   end,
+  mariana = function(bg)
+    vim.api.nvim_set_hl(0, "CursorLine", { bg = "#515151" })
+    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#515151" })
+    extend_hl("TabLine", { underline = false })
+  end,
   default_dark = function(bg)
     vim.cmd([[
       hi IndentBlanklineContextChar guifg=#365050
@@ -63,7 +84,11 @@ function M.get_current_scheme()
 
   for i, scheme in ipairs(colorschemes) do
     local scheme_background = scheme.background or "dark"
-    if scheme.name == current_scheme_name and scheme_background == current_background then
+    if
+      scheme.name == current_scheme_name
+      and scheme_background == current_background
+      and (not vim.g.cycle_colorschemes_variant or vim.g.cycle_colorschemes_variant == scheme.variant)
+    then
       return i, scheme
     end
   end
@@ -75,18 +100,15 @@ function M.activate_scheme(scheme)
   local bg = scheme.background or "dark"
   print(string.format("colorscheme=%s background=%s", scheme.name, bg))
   vim.o.termguicolors = true
+  vim.g.cycle_colorschemes_variant = nil
+  if colorscheme_variants[scheme.name] and scheme.variant then
+    vim.g.cycle_colorschemes_variant = scheme.variant
+    colorscheme_variants[scheme.name](scheme.variant)
+  end
   vim.cmd(string.format("set background=" .. bg))
   vim.cmd(string.format("colorscheme %s", scheme.name))
 
-  if scheme.name == "rose-pine" then
-    if bg == "light" then
-      require("rose-pine").set("dawn")
-    else
-      require("rose-pine").set("moon")
-    end
-  end
-
-  if custom_scheme_setup[scheme] then
+  if custom_scheme_setup[scheme.name] then
     custom_scheme_setup[scheme.name](bg)
   end
 

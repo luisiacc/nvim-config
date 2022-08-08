@@ -39,6 +39,21 @@ end
 
 local compare = cmp.config.compare
 
+local buffer = {
+  name = "buffer",
+  max_item_count = 10,
+  option = {
+    get_bufnrs = function()
+      local buf = vim.api.nvim_get_current_buf()
+      local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+      if byte_size > 256 * 1024 then -- 0.256 Megabyte max
+        return {}
+      end
+      return { buf }
+    end,
+  },
+}
+
 cmp.setup({
   window = {
     completion = {
@@ -150,17 +165,11 @@ cmp.setup({
     { name = "nvim_lsp", max_item_count = 10 },
     { name = "path", max_item_count = 10 },
     { name = "calc", max_item_count = 10 },
-  }, { { name = "buffer", max_item_count = 10 } }),
-  -- view = {
-  --   entries = "native",
-  -- },
-  -- experimental = {
-  --   ghost_text = true,
-  -- },
+  }, { buffer }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", { sources = { { name = "buffer" } }, mapping = cmp.mapping.preset.cmdline() })
+-- cmp.setup.cmdline("/", { sources = { buffer }, mapping = cmp.mapping.preset.cmdline() })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {

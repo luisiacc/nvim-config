@@ -28,3 +28,20 @@ augroup END
 nnoremap <A-n> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(-1)<cr>
 nnoremap <A-m> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(1)<cr>
 lua require("luisiacc.colorscheme")
+
+function DisableHighlightsOnBuffer()
+    exec 'TSBufDisable hightlight'
+    exec 'TSBufDisable indent'
+    exec 'TSBufDisable rainbow'
+    setlocal syntax=ON
+endfunction
+
+function EnableHighlightsOnBuffer()
+    exec 'TSBufEnable hightlight'
+    exec 'TSBufEnable indent'
+    exec 'TSBufEnable rainbow'
+    setlocal syntax=OFF
+endfunction
+
+command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()
+command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()
