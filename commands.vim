@@ -25,8 +25,6 @@ augroup vimrc_autocmd
     autocmd BufEnter *.js,*.jsx,*.ts,*.tsx,*.py,*.lua,*.rs,*.cpp silent execute ':setlocal syntax=OFF'
 augroup END
 
-nnoremap <A-n> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(-1)<cr>
-nnoremap <A-m> <cmd>lua require("luisiacc.cycle_colorschemes").go_to_scheme(1)<cr>
 lua require("luisiacc.colorscheme")
 
 function DisableHighlightsOnBuffer()

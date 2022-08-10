@@ -37,13 +37,15 @@ lua << EOF
 vim.notify = require("notify")
 -- require'impatient'.enable_profile()
 require("acc_plugs")
+require("luisiacc.cycle_colorschemes")
 require('lightspeed').setup({})
 --vim.opt.listchars:append({lead="·"})
 -- vim.cmd([[nnoremap <F4> :lua package.loaded.acc_plugs = nil<CR>:source ~/.config/nvim/init.vim<CR>]])
-vim.g.neovide_transparency=0.97
+vim.g.neovide_transparency=0.95
 vim.g.neovide_cursor_animation_length = 0.08
 vim.g.neovide_cursor_antialiasing=true
 vim.g.neovide_refresh_rate=140
+vim.g.neovide_no_idle=true
 EOF
 
 call g:Source('/schemes.lua')

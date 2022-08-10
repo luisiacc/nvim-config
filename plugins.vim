@@ -131,6 +131,7 @@ Plug 'tanvirtin/monokai.nvim'
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'sthendev/mariana.vim', { 'do': 'make' }
 Plug 'kaiuri/nvim-juliana'
+Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
 Plug 'lmburns/kimbox'
 Plug 'Mofiqul/dracula.nvim'
 Plug 'EdenEast/nightfox.nvim'
@@ -142,9 +143,7 @@ Plug 'bluz71/vim-nightfly-guicolors'
 " Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'folke/tokyonight.nvim'
 Plug 'Mofiqul/vscode.nvim'
-Plug 'sainnhe/everforest'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'rebelot/kanagawa.nvim'
 Plug 'FrenzyExists/aquarium-vim'
 Plug 'rose-pine/neovim', {'as': 'rose-pine'}
 Plug 'sainnhe/gruvbox-material'

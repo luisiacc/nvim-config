@@ -2,7 +2,6 @@ local colorschemes = {
   { name = "gruvbox-baby", variant = 1 },
   { name = "gruvbox-baby", variant = 2 },
   { name = "nightfly" },
-  { name = "dracula" },
   { name = "one_monokai" },
   { name = "monokai_pro" },
   { name = "monokai_ristretto" },
@@ -12,14 +11,12 @@ local colorschemes = {
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github_dimmed" },
-  { name = "github_dark" },
   { name = "github_dark_default" },
   { name = "vscode" },
   { name = "tokyonight" },
-  { name = "tokyonight", background = "light" },
-  { name = "gruvbox-material" },
-  { name = "everforest" },
   { name = "mariana" },
+  { name = "catppuccin", variant = "frappe" },
+  { name = "catppuccin", variant = "macchiato" },
 }
 
 local function extend_hl(group, new_config)
@@ -29,7 +26,7 @@ end
 
 local M = {}
 
-local colorscheme_variants = {
+local pre_colorscheme_hook = {
   ["gruvbox-baby"] = function(variant)
     if variant == 1 then
       vim.g.gruvbox_baby_use_original_palette = false
@@ -37,9 +34,12 @@ local colorscheme_variants = {
       vim.g.gruvbox_baby_use_original_palette = true
     end
   end,
+  catppuccin = function(variant)
+    vim.cmd(string.format('silent execute "Catppuccin %s"', variant))
+  end,
 }
 
-local custom_scheme_setup = {
+local after_colorscheme_hook = {
   one_monokai = function()
     require("one_monokai").setup()
   end,
@@ -67,6 +67,9 @@ local custom_scheme_setup = {
     vim.api.nvim_set_hl(0, "CursorLine", { bg = "#515151" })
     vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#515151" })
     extend_hl("TabLine", { underline = false })
+  end,
+  catppuccin = function(variant)
+    vim.cmd("Catppuccin " .. variant)
   end,
   default_dark = function(bg)
     vim.cmd([[
@@ -100,20 +103,22 @@ function M.activate_scheme(scheme)
   local bg = scheme.background or "dark"
   print(string.format("colorscheme=%s background=%s", scheme.name, bg))
   vim.o.termguicolors = true
+
   vim.g.cycle_colorschemes_variant = nil
-  if colorscheme_variants[scheme.name] and scheme.variant then
+  if pre_colorscheme_hook[scheme.name] and scheme.variant then
     vim.g.cycle_colorschemes_variant = scheme.variant
-    colorscheme_variants[scheme.name](scheme.variant)
+    pre_colorscheme_hook[scheme.name](scheme.variant)
   end
+
   vim.cmd(string.format("set background=" .. bg))
   vim.cmd(string.format("colorscheme %s", scheme.name))
 
-  if custom_scheme_setup[scheme.name] then
-    custom_scheme_setup[scheme.name](bg)
+  if after_colorscheme_hook[scheme.name] then
+    after_colorscheme_hook[scheme.name](bg)
   end
 
-  if bg == "dark" then
-    custom_scheme_setup["default_dark"](bg)
+  if bg == "dark" and not (scheme.name == "catppuccin") then
+    after_colorscheme_hook["default_dark"](bg)
   end
 
   vim.defer_fn(function()
@@ -141,4 +146,13 @@ function M.go_to_scheme(moves)
   vim.opt.laststatus = 3
 end
 
-return M
+local function go_forward()
+  M.go_to_scheme(1)
+end
+
+local function go_backwards()
+  M.go_to_scheme(-1)
+end
+
+vim.keymap.set("n", "<A-n>", go_backwards)
+vim.keymap.set("n", "<A-m>", go_forward)

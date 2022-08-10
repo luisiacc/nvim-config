@@ -7,22 +7,10 @@ let g:user_emmet_leader_key='?'
 let g:pymode_lint_config = '$HOME/.pylintrc'
 let g:pymode_options_max_line_length=120
 
-" web stuff
-" let g:closetag_filenames='*.html,*.js,*.jsx,*.tsx'
-" let g:closetag_regions = { 'typescript': 'jsxRegion,tsxRegion', 'typescriptreact': 'jsxRegion,tsxRegion', 'typescript.tsx': 'jsxRegion,tsxRegion', 'javascript.jsx': 'jsxRegion', 'javascriptreact': 'jsxRegion' }
-
-
 " sessions
 let g:sessions_dir = '~/vim-sessions'
 exec 'nnoremap <leader>ms :mks! ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
 exec 'nnoremap <leader>ss :so ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
-
-" let g:netrw_browse_split=2
-" let g:netrw_banner=0
-" let g:netrw_winsize=25
-
-" FZF
-
 
 if executable('rg')
     let g:rg_derive_root='true'
