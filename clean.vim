@@ -37,6 +37,10 @@ Plug 'nvim-pack/nvim-spectre'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'numToStr/Comment.nvim'
 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'windwp/nvim-ts-autotag'
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
@@ -48,8 +52,13 @@ Plug 'kaiuri/nvim-juliana'
 Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
 Plug 'akinsho/toggleterm.nvim'
 
+Plug 'folke/tokyonight.nvim'
+
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'SmiteshP/nvim-gps'
+Plug 'feline-nvim/feline.nvim'
 call plug#end()
 
 if exists("g:loaded_webdevicons")
@@ -68,7 +77,10 @@ require("acc_plugs.comment")
 require("acc_plugs.fugitive")
 require("acc_plugs.nvimtree")
 require("acc_plugs.gitsigns")
+require("acc_plugs.feline")
 require("acc_plugs.spectre")
+require("acc_plugs.treesitter")
+require("luisiacc.colorscheme")
 require('lightspeed').setup({})
 EOF
 

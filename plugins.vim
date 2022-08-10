@@ -45,7 +45,7 @@ Plug 'karb94/neoscroll.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'romgrk/nvim-treesitter-context'
+" Plug 'romgrk/nvim-treesitter-context'
 Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'

@@ -66,15 +66,12 @@ cmp.setup({
   sorting = {
     comparators = {
       compare.locality,
-      compare.recently_used,
-      compare.scopes,
       compare.exact,
-      compare.offset,
+      compare.scopes,
+      compare.recently_used,
       compare.score,
-      compare.kind,
       compare.sort_text,
-      compare.length,
-      compare.order,
+      compare.kind,
     },
   },
   snippet = {
