@@ -29,16 +29,7 @@ vim.g.nvcode_termcolors = 256
 vim.opt.termguicolors = true
 vim.o.background = "light"
 vim.cmd([[colorscheme gruvbox-baby]])
--- " colorscheme nightfly
 vim.go.t_Co = 256
-
-vim.g.gruvbox_italic = 1
--- "github theme config
-vim.g.github_comment_style = "italic"
-vim.g.github_keyword_style = "italic"
-
--- " hi NormalFloat guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
--- " hi FloatBorder guifg=NONE ctermfg=223 guibg=#101010 ctermbg=235 gui=NONE cterm=NONE
 
 vim.cmd([[highlight IndentBlanklineContextChar guifg=#365050]])
 
