@@ -39,7 +39,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'lewis6991/gitsigns.nvim'
 
 "python
-" Plug 'fisadev/vim-isort'
 Plug 'tweekmonster/django-plus.vim'
 
 Plug 'karb94/neoscroll.nvim'
@@ -60,7 +59,6 @@ Plug 'glepnir/lspsaga.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-" Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'simrat39/rust-tools.nvim'
 
@@ -75,7 +73,6 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
-Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'hrsh7th/cmp-buffer'
@@ -83,21 +80,16 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-calc'
-" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'dcampos/nvim-snippy'
 Plug 'dcampos/cmp-snippy'
 
 Plug 'onsails/lspkind-nvim'
 
-" Plug 'norcalli/snippets.nvim'
-" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " javascript
 Plug 'mattn/emmet-vim'
-" Plug 'alvan/vim-closetag'
 Plug 'windwp/nvim-autopairs'
-" Plug 'mlaursen/vim-react-snippets'
 
 Plug 'vim-test/vim-test'
 
@@ -130,8 +122,6 @@ Plug 'rktjmp/lush.nvim'
 
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
-" Plug 'christianchiarulli/nvcode-color-schemes.vim'
-" Plug 'sthendev/mariana.vim', { 'do': 'make' }
 Plug 'olivercederborg/poimandres.nvim'
 Plug 'kaiuri/nvim-juliana'
 Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
@@ -150,14 +140,12 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'FrenzyExists/aquarium-vim'
 Plug 'rose-pine/neovim', {'as': 'rose-pine'}
 Plug 'sainnhe/gruvbox-material'
-" Plug 'arcticicestudio/nord-vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
-" Plug 'ryanoasis/vim-devicons'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-Plug 'hoob3rt/lualine.nvim'
+" Plug 'hoob3rt/lualine.nvim'
 Plug 'feline-nvim/feline.nvim'
 
 Plug 'mhinz/vim-startify'
@@ -167,9 +155,6 @@ Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/refactoring.nvim'
 Plug 'rcarriga/nvim-notify'
 call plug#end()
-
-" for coc to work with scss files
-autocmd FileType scss setl iskeyword+=@-@
 
 if exists("g:loaded_webdevicons")
     call webdevicons#refresh()
