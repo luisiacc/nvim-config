@@ -23,6 +23,7 @@ Plug 'lewis6991/impatient.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
@@ -61,6 +62,7 @@ Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 " Plug 'williamboman/nvim-lsp-installer'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'simrat39/rust-tools.nvim'
 
 " debugger
 Plug 'mfussenegger/nvim-dap'
@@ -129,7 +131,8 @@ Plug 'rktjmp/lush.nvim'
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
 " Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug 'sthendev/mariana.vim', { 'do': 'make' }
+" Plug 'sthendev/mariana.vim', { 'do': 'make' }
+Plug 'olivercederborg/poimandres.nvim'
 Plug 'kaiuri/nvim-juliana'
 Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
 Plug 'lmburns/kimbox'

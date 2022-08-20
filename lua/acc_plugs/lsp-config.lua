@@ -46,6 +46,7 @@ local buffer = {
     get_bufnrs = function()
       local buf = vim.api.nvim_get_current_buf()
       local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
+      -- local lines = vim.api.nvim_buf_line_count(buf)
       if byte_size > 256 * 1024 then -- 0.256 Megabyte max
         return {}
       end
@@ -55,6 +56,10 @@ local buffer = {
 }
 
 cmp.setup({
+  performance = {
+    debounce = 1000,
+    fetching_timeout = 1000,
+  },
   window = {
     completion = {
       border = border("CmpBorder"),
@@ -158,7 +163,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = "snippy", max_item_count = 5 },
     { name = "nvim_lsp_signature_help", max_item_count = 10 },
-    { name = "nvim_lua", max_item_count = 10 },
+    { name = "nvim_lua", max_item_count = 10, ft = "lua" },
     { name = "nvim_lsp", max_item_count = 10 },
     { name = "path", max_item_count = 10 },
     { name = "calc", max_item_count = 10 },
@@ -166,7 +171,7 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline("/", { sources = { buffer }, mapping = cmp.mapping.preset.cmdline() })
+cmp.setup.cmdline("/", { sources = { buffer }, mapping = cmp.mapping.preset.cmdline() })
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
@@ -230,8 +235,8 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = 0, silent = true })
 
   -- " code action
-  vim.keymap.set("n", "<leader>ca", require("lspsaga.codeaction").code_action, { buffer = 0, silent = true })
-  vim.keymap.set("v", "<leader>ca", require("lspsaga.codeaction").range_code_action, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, silent = true })
+  vim.keymap.set("v", "<leader>ca", vim.lsp.buf.range_code_action, { buffer = 0, silent = true })
 
   -- "" show hover doc
   vim.keymap.set("n", "K", require("lspsaga.hover").render_hover_doc, { buffer = 0, silent = true })
@@ -348,7 +353,14 @@ end
 
 local server_configurations = {
   ["pyright"] = {
-    root_dir = nvim_lsp.util.root_pattern(unpack(python_root_files)),
+    single_file_support = false,
+    root_dir = function(filename, bufnr)
+      local lines = vim.api.nvim_buf_line_count(bufnr)
+      if lines > 3000 then
+        return nil
+      end
+      return nvim_lsp.util.root_pattern(unpack(python_root_files))(filename)
+    end,
     capabilities = capabilities,
     on_attach = common_on_attach,
     settings = {
@@ -454,7 +466,7 @@ local server_configurations = {
 
 local servers = {
   "pyright",
-  "rust_analyzer",
+  -- "rust_analyzer",
   "tsserver",
   "sumneko_lua",
   "gopls",
@@ -474,6 +486,14 @@ require("mason-lspconfig").setup({
 for _, lsp in pairs(servers) do
   require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
 end
+
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = common_on_attach,
+  },
+})
 
 ------------------------------------------------------------------------------------------
 ------------------------------- null ls --------------------------------------------------

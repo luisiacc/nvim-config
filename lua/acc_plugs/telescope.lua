@@ -12,6 +12,7 @@ end
 
 nnoremap("<leader>fw", funcs.grep_string_under_cursor)
 nnoremap("<leader>ps", funcs.live_grep)
+nnoremap("<leader>fb", funcs.file_browser)
 
 nnoremap("<C-p>", funcs.find_files)
 nnoremap("<leader>ft", tb.treesitter)

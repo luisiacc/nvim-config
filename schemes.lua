@@ -10,9 +10,13 @@ vim.g.gruvbox_baby_highlights = {
   CmpBorder = { fg = c.light_blue, bg = c.none },
 }
 
-vim.g.gruvbox_baby_background_color = "medium"
+vim.g.gruvbox_baby_background_color = "soft"
+vim.g.gruvbox_baby_transparent_mode = false
+vim.g.gruvbox_baby_transform_colors = false
+vim.g.gruvbox_baby_string_style = "nocombine"
 vim.g.gruvbox_baby_use_original_palette = false
 vim.g.tokyonight_style = "night"
+vim.g.tokyonight_transform_colors = "true"
 vim.g.vscode_style = "dark"
 vim.g.gruvbox_baby_telescope_theme = 1
 vim.g.gruvbox_baby_keyword_style = "NONE"
@@ -23,7 +27,7 @@ vim.g.gruvbox_baby_function_style = { "italic", "bold" }
 vim.g.nvcode_termcolors = 256
 
 vim.opt.termguicolors = true
-vim.opt.background = "dark"
+vim.o.background = "light"
 vim.cmd([[colorscheme gruvbox-baby]])
 -- " colorscheme nightfly
 vim.go.t_Co = 256

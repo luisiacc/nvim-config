@@ -1,6 +1,8 @@
 local colorschemes = {
-  { name = "gruvbox-baby", variant = 1 },
-  { name = "gruvbox-baby", variant = 2 },
+  { name = "gruvbox-baby", variant = "soft" },
+  { name = "gruvbox-baby", variant = "medium" },
+  { name = "gruvbox-baby", variant = "dark" },
+  { name = "poimandres" },
   { name = "nightfly" },
   { name = "one_monokai" },
   { name = "monokai_pro" },
@@ -14,7 +16,6 @@ local colorschemes = {
   { name = "github_dark_default" },
   { name = "vscode" },
   { name = "tokyonight" },
-  { name = "mariana" },
   { name = "catppuccin", variant = "frappe" },
   { name = "catppuccin", variant = "macchiato" },
 }
@@ -24,15 +25,15 @@ local function extend_hl(group, new_config)
   vim.api.nvim_set_hl(0, group, vim.tbl_extend("force", current_hl, new_config))
 end
 
+local function set_hl(group, config)
+  vim.api.nvim_set_hl(0, group, config)
+end
+
 local M = {}
 
 local pre_colorscheme_hook = {
   ["gruvbox-baby"] = function(variant)
-    if variant == 1 then
-      vim.g.gruvbox_baby_use_original_palette = false
-    else
-      vim.g.gruvbox_baby_use_original_palette = true
-    end
+    vim.g.gruvbox_baby_background_color = variant
   end,
   catppuccin = function(variant)
     vim.cmd(string.format('silent execute "Catppuccin %s"', variant))
@@ -40,6 +41,22 @@ local pre_colorscheme_hook = {
 }
 
 local after_colorscheme_hook = {
+  poimandres = function()
+    local p = require("poimandres.palette")
+    set_hl("TSVariable", { fg = p.text })
+    set_hl("TSField", { fg = p.pink1 })
+    set_hl("TSComment", { fg = p.blueGray3 })
+    set_hl("TSTag", { fg = p.teal1 })
+    set_hl("TSType", { fg = p.blue3 })
+    set_hl("Visual", { bg = p.blueGray3 })
+    set_hl("TelescopeSelection", { fg = p.text, bg = p.blueGray3 })
+    set_hl("TelescopeSelectionCaret", { fg = p.text, bg = p.blueGray3 })
+    set_hl("ColorColumn", { bg = p.background3 })
+    set_hl("TSAttribute", { fg = p.blue2 })
+    set_hl("javascriptTSProperty", { fg = p.blue2 })
+    set_hl("tupescriptTSProperty", { fg = p.blue2 })
+    set_hl("NvimTreeGitIgnored", { fg = p.blueGray3 })
+  end,
   one_monokai = function()
     require("one_monokai").setup()
   end,
