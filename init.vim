@@ -31,8 +31,6 @@ call g:Source('/commands.vim')
 call g:Source('/globals.vim')
 call g:Source('/tabline.vim')
 
-call g:Source('/mappings.vim')
-
 lua << EOF
 vim.notify = require("notify")
 -- require'impatient'.enable_profile()
@@ -48,6 +46,8 @@ vim.g.neovide_refresh_rate=140
 vim.g.neovide_no_idle=true
 EOF
 
+
+call g:Source('/mappings.vim')
 call g:Source('/schemes.lua')
 
 " set foldmethod=expr

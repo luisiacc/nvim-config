@@ -1,3 +1,13 @@
+vim.g.autocomplete_tool = "coq"
+vim.g.using_coq = vim.g.autocomplete_tool == "coq"
+vim.g.using_cmp = vim.g.autocomplete_tool == "cmp"
+
+if vim.g.using_coq then
+  require("acc_plugs.coq")
+else
+  require("acc_plugs.cmp")
+end
+
 local configs = {
   --  "bqf",
   "nvim-gps",
@@ -12,7 +22,6 @@ local configs = {
   "gitsigns",
   "harpoon",
   "indent-blankline",
-  "cmp",
   "lsp-config",
   -- "lualine",
   "neoscroll",

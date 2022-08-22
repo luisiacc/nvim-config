@@ -57,6 +57,7 @@ Plug 'ray-x/lsp_signature.nvim'
 Plug 'glepnir/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'smjonas/inc-rename.nvim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -72,6 +73,10 @@ Plug 'mfussenegger/nvim-dap-python'
 
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
+
+Plug 'ms-jpq/coq_nvim'
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'

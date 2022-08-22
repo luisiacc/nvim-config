@@ -1,6 +1,11 @@
 -- Setup nvim-cmp.
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities
+if vim.g.using_coq then
+  capabilities = vim.lsp.protocol.make_client_capabilities()
+else
+  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+end
 
 vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
 vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
@@ -36,6 +41,9 @@ local lsp_formatting = function(bufnr)
 end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local rename = require("inc_rename")
+rename.setup()
+
 -- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
 local common_on_attach = function(client, bufnr)
@@ -74,7 +82,8 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, { buffer = 0, silent = true })
 
   -- "" rename
-  vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = 0, silent = true })
+  -- vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>rn", ":IncRename ")
   vim.keymap.set("n", "<leader>dp", require("lspsaga.definition").preview_definition, { buffer = 0, silent = true })
 
   -- "" preview definition
@@ -304,15 +313,25 @@ require("mason-lspconfig").setup({
 })
 
 for _, lsp in pairs(servers) do
-  require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
+  if vim.g.using_coq then
+    local coq = require("coq")
+    require("lspconfig")[lsp].setup(coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config))
+  else
+    require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
+  end
 end
 
 local rt = require("rust-tools")
 
+local function config_wrapper(config)
+  if vim.g.using_coq then
+    return require("coq").lsp_ensure_capabilities(config)
+  end
+  return config
+end
+
 rt.setup({
-  server = {
-    on_attach = common_on_attach,
-  },
+  server = config_wrapper({ on_attach = common_on_attach }),
 })
 
 ------------------------------------------------------------------------------------------

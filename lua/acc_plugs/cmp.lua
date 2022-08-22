@@ -61,7 +61,7 @@ cmp.setup({
     if lines > 5000 then
       return false
     end
-    return not cmp.config.context.in_syntax_group("Comment")
+    return true
   end,
   performance = {
     debounce = 1000,

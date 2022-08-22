@@ -4,7 +4,7 @@ vim.g.dracula_italic_comment = true
 local c = require("gruvbox-baby.colors").config()
 vim.g.gruvbox_baby_highlights = {
   Visual = { bg = "#404040" },
-  Pmenu = { fg = c.comment, bg = c.none },
+  Pmenu = { fg = c.foreground, bg = c.background_dark },
   PmenuSel = { fg = c.none, bg = "#171717" },
   CmpDocBorder = { fg = c.light_blue, bg = c.none },
   CmpBorder = { fg = c.light_blue, bg = c.none },
