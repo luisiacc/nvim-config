@@ -1,7 +1,3 @@
-vim.g.autocomplete_tool = "coq"
-vim.g.using_coq = vim.g.autocomplete_tool == "coq"
-vim.g.using_cmp = vim.g.autocomplete_tool == "cmp"
-
 if vim.g.using_coq then
   require("acc_plugs.coq")
 else

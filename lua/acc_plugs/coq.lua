@@ -36,7 +36,10 @@ require("lspkind").init({
   mode = "symbol_text",
   preset = "codicons",
 })
+
 require("coq_3p")({
-  { src = "nvimlua", short_name = "nLUA" },
-  { src = "bc", short_name = "nLUA" },
+  { src = "nvimlua", short_name = "nLUA", conf_only = true },
+  { src = "bc", short_name = "MATH" },
 })
+
+require("coq")

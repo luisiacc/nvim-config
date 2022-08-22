@@ -10,6 +10,12 @@ else
     let b:projects = '/home/acc/projects/'
 endif
 
+lua << EOF
+vim.g.autocomplete_tool = "coq"
+vim.g.using_coq = vim.g.autocomplete_tool == "coq"
+vim.g.using_cmp = vim.g.autocomplete_tool == "cmp"
+EOF
+
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
@@ -28,7 +34,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sqlite.lua'
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 
 Plug 'folke/trouble.nvim'
 
@@ -74,19 +80,22 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
-Plug 'ms-jpq/coq_nvim'
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-nvim-lua'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-calc'
+if g:using_cmp
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-nvim-lua'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-calc'
+    Plug 'dcampos/cmp-snippy'
+endif
+
 Plug 'dcampos/nvim-snippy'
-Plug 'dcampos/cmp-snippy'
 
 Plug 'onsails/lspkind-nvim'
 

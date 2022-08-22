@@ -312,9 +312,9 @@ require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
 
+local coq = require("coq")
 for _, lsp in pairs(servers) do
   if vim.g.using_coq then
-    local coq = require("coq")
     require("lspconfig")[lsp].setup(coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config))
   else
     require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
