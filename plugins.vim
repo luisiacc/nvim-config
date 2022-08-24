@@ -21,6 +21,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'stevearc/dressing.nvim'
 Plug 'ziontee113/icon-picker.nvim'
+Plug 'akinsho/bufferline.nvim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'lewis6991/impatient.nvim'
