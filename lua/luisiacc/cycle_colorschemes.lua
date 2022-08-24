@@ -50,7 +50,7 @@ local after_colorscheme_hook = {
     set_hl("TSField", { fg = p.pink1 })
     set_hl("TSComment", { fg = p.blueGray3 })
     set_hl("TSTag", { fg = p.teal1 })
-    set_hl("TSNamedImport", { fg = p.blue2 })
+    set_hl("TSNamedImport", { fg = p.blue3 })
 
     set_hl("TSFuncLocal", { fg = func })
     set_hl("TSFuncBuiltin", { fg = func })

@@ -27,6 +27,7 @@ nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 nnoremap <Leader>rr :%s/<C-r><C-w>/
 
 nnoremap <leader>s :w!<CR>
+nnoremap <leader>r :noautocmd w!<CR>
 nnoremap - *zz
 " nnoremap <leader>t :Tags<CR>
 

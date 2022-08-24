@@ -79,7 +79,7 @@ local common_on_attach = function(client, bufnr)
   end, { buffer = 0, silent = true })
 
   -- "" show signature help
-  vim.keymap.set("n", "gs", require("lspsaga.signaturehelp").signature_help, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = 0, silent = true })
 
   -- "" rename
   -- vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = 0, silent = true })
@@ -102,7 +102,7 @@ local common_on_attach = function(client, bufnr)
   })
 end
 
-local filetypes_with_save_on_write_with_no_lsp = { "htmldjango", "python" }
+local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
 -- format buffers who doesn't have lsp
 local ts_utils = require("nvim-lsp-ts-utils")

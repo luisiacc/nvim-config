@@ -2,11 +2,13 @@ if vim.g.using_coq then
   require("acc_plugs.coq")
 else
   require("acc_plugs.cmp")
+  require("acc_plugs.snippy")
 end
 
 local configs = {
   --  "bqf",
   "nvim-gps",
+  "bufferline",
   "symbols",
   "colorizer",
   "comment",
@@ -23,7 +25,6 @@ local configs = {
   "neoscroll",
   "nvim_autopairs",
   "nvimtree",
-  "snippy",
   "spectre",
   "startify",
   "telescope",

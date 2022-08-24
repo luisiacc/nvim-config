@@ -29,7 +29,7 @@ call g:Source('/globals.lua')
 
 call g:Source('/commands.vim')
 call g:Source('/globals.vim')
-call g:Source('/tabline.vim')
+" call g:Source('/tabline.vim')
 
 lua << EOF
 vim.notify = require("notify")
