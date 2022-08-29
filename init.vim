@@ -32,7 +32,6 @@ call g:Source('/globals.vim')
 " call g:Source('/tabline.vim')
 
 lua << EOF
-vim.notify = require("notify")
 -- require'impatient'.enable_profile()
 require("acc_plugs")
 require("luisiacc.cycle_colorschemes")

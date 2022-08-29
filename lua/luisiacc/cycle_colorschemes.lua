@@ -2,6 +2,7 @@ local colorschemes = {
   { name = "gruvbox-baby", variant = "soft" },
   { name = "gruvbox-baby", variant = "medium" },
   { name = "gruvbox-baby", variant = "dark" },
+  { name = "nord" },
   { name = "poimandres" },
   { name = "nightfly" },
   { name = "one_monokai" },

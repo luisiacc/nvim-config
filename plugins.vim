@@ -137,6 +137,8 @@ Plug 'rktjmp/lush.nvim'
 
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
+Plug 'katawful/kat.nvim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'olivercederborg/poimandres.nvim'
 Plug 'kaiuri/nvim-juliana'
 Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
@@ -168,7 +170,6 @@ Plug 'mhinz/vim-startify'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/refactoring.nvim'
-Plug 'rcarriga/nvim-notify'
 call plug#end()
 
 if exists("g:loaded_webdevicons")

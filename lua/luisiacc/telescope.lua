@@ -1,5 +1,6 @@
 local resolve = require("telescope.config.resolve")
 local p_window = require("telescope.pickers.window")
+local actions = require("telescope.actions")
 local fb_actions = require("telescope").extensions.file_browser.actions
 
 local full_theme = {
@@ -86,7 +87,11 @@ require("telescope").setup({
       preview = { " " },
     },
     mappings = {
+      n = {
+        ["<a-i>"] = actions.to_fuzzy_refine,
+      },
       i = {
+        ["<a-i>"] = actions.to_fuzzy_refine,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
         ["<A-j>"] = actions.move_selection_next,
         ["<A-k>"] = actions.move_selection_previous,
@@ -106,7 +111,7 @@ require("telescope").setup({
           ["<esc>"] = false,
         },
         ["n"] = {
-          -- your custom normal mode mappings
+          -- yoir custom normal mode mappings
           -- ["a"] = fb_actions.create_from_prompt,
           -- ["c"] = fb_actions.copy,
           -- ["r"] = fb_actions.rename,

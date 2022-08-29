@@ -14,7 +14,7 @@ end
 vim.g.coq_settings = {
   auto_start = "shut-up",
   clients = {
-    tree_sitter = { enabled = false },
+    -- tree_sitter = { enabled = false },
     tmux = { enabled = false },
     tags = { enabled = false },
   },

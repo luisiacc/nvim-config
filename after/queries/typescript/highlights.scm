@@ -1,0 +1,2 @@
+"asserts" @keyword
+"is" @keyword
