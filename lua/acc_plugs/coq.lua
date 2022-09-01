@@ -13,10 +13,19 @@ end
 
 vim.g.coq_settings = {
   auto_start = "shut-up",
+  completion = {
+    smart = false,
+  },
+  weights = {
+    proximity = 0.8,
+  },
   clients = {
     -- tree_sitter = { enabled = false },
     tmux = { enabled = false },
     tags = { enabled = false },
+    paths = {
+      resolution = { "file", "cwd" },
+    },
   },
   display = {
     pum = {

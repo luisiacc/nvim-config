@@ -21,13 +21,13 @@ let b:projects = '/home/acc/projects/'
 
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
-Plug 'stevearc/dressing.nvim'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
-Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-Plug 'nvim-telescope/telescope-project.nvim'
+" Plug 'stevearc/dressing.nvim'
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-file-browser.nvim'
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+" Plug 'nvim-telescope/telescope-project.nvim'
 " Plug 'nvim-telescope/telescope-frecency.nvim'
 " Plug 'tami5/sqlite.lua'
 
@@ -72,17 +72,17 @@ call g:Source('/mappings.vim')
 call g:Source('/tabline.vim')
 
 lua << EOF
-require("acc_plugs.telescope")
-require("acc_plugs.toggleterm")
-require("acc_plugs.comment")
-require("acc_plugs.fugitive")
-require("acc_plugs.nvimtree")
-require("acc_plugs.gitsigns")
-require("acc_plugs.feline")
-require("acc_plugs.spectre")
+-- require("acc_plugs.telescope")
+-- require("acc_plugs.toggleterm")
+-- require("acc_plugs.comment")
+-- require("acc_plugs.fugitive")
+-- require("acc_plugs.nvimtree")
+-- require("acc_plugs.gitsigns")
+-- require("acc_plugs.feline")
+-- require("acc_plugs.spectre")
 require("acc_plugs.treesitter")
-require("luisiacc.colorscheme")
-require('lightspeed').setup({})
+-- require("luisiacc.colorscheme")
+-- require('lightspeed').setup({})
 EOF
 
 colorscheme catppuccin

@@ -62,10 +62,10 @@ local after_colorscheme_hook = {
     set_hl("pythonTSField", { fg = p.blueGray1 })
     set_hl("pythonTSParameter", { fg = p.blueGray1 })
     set_hl("pythonTSConstant", { fg = p.blueGray1 })
+    set_hl("pythonTSType", { fg = p.blue1 })
 
     set_hl("TSTag", { fg = p.teal1 })
     set_hl("TSType", { fg = p.blue3 })
-    set_hl("pythonTSType", { fg = p.blue1 })
     set_hl("TSString", { fg = p.teal1 })
     set_hl("tsxTSConstructor", { fg = p.teal1 })
     set_hl("TSConstructor", { fg = p.teal1 })
@@ -75,7 +75,7 @@ local after_colorscheme_hook = {
     set_hl("ColorColumn", { bg = p.background3 })
     set_hl("TSAttribute", { fg = p.blue2 })
     set_hl("javascriptTSProperty", { fg = p.blue2 })
-    set_hl("tupescriptTSProperty", { fg = p.blue2 })
+    set_hl("typescriptTSProperty", { fg = p.blue2 })
     set_hl("NvimTreeGitIgnored", { fg = p.blueGray3 })
   end,
   one_monokai = function()

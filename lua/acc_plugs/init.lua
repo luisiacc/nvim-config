@@ -8,6 +8,7 @@ end
 local configs = {
   --  "bqf",
   "nvim-gps",
+  "dressing",
   "bufferline",
   "symbols",
   "colorizer",

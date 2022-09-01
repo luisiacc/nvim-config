@@ -37,6 +37,7 @@ Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sqlite.lua'
 " Plug 'github/copilot.vim'
 
+" Plug 'folke/which-key.nvim'
 Plug 'folke/trouble.nvim'
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }

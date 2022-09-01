@@ -177,10 +177,29 @@ cmp.setup({
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline("/", { sources = { buffer }, mapping = cmp.mapping.preset.cmdline() })
+cmp.setup.cmdline("/", {
+  enabled = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local lines = vim.api.nvim_buf_line_count(bufnr)
+    if lines > 5000 then
+      return false
+    end
+    return true
+  end,
+  sources = { buffer },
+  mapping = cmp.mapping.preset.cmdline(),
+})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
+  enabled = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local lines = vim.api.nvim_buf_line_count(bufnr)
+    if lines > 5000 then
+      return false
+    end
+    return true
+  end,
   sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
   mapping = cmp.mapping.preset.cmdline(),
 })

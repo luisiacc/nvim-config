@@ -13,6 +13,7 @@ endif
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
+Plug b:projects .. 'gruvbox-baby'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
