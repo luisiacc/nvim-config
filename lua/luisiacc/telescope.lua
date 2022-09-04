@@ -1,7 +1,6 @@
 local resolve = require("telescope.config.resolve")
 local p_window = require("telescope.pickers.window")
 local actions = require("telescope.actions")
-local fb_actions = require("telescope").extensions.file_browser.actions
 
 local full_theme = {
   winblend = 20,
@@ -100,26 +99,6 @@ require("telescope").setup({
     },
   },
   extensions = {
-    file_browser = {
-      theme = "ivy",
-      -- disables netrw and use telescope-file-browser in its place
-      -- hijack_netrw = true,
-      mappings = {
-        -- your custom insert mode mappings
-        ["i"] = {
-          -- your custom normal mode mappings
-          ["<esc>"] = false,
-        },
-        ["n"] = {
-          -- yoir custom normal mode mappings
-          -- ["a"] = fb_actions.create_from_prompt,
-          -- ["c"] = fb_actions.copy,
-          -- ["r"] = fb_actions.rename,
-          -- ["d"] = fb_actions.remove,
-          ["K"] = fb_actions.goto_parent_dir,
-        },
-      },
-    },
     frecency = {
       db_root = "/home/acc/.vim",
     },
@@ -141,5 +120,4 @@ require("telescope").setup({
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("project")
-pcall(require("telescope").load_extension, "file_browser")
 pcall(require("telescope").load_extension, "frecency")

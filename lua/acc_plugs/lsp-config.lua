@@ -46,7 +46,9 @@ rename.setup()
 
 -- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
+local navic = require("nvim-navic")
 local common_on_attach = function(client, bufnr)
+  navic.attach(client, bufnr)
   client.server_capabilities.document_formatting = false
   client.server_capabilities.document_range_formatting = false
 
@@ -93,13 +95,13 @@ local common_on_attach = function(client, bufnr)
   end, { buffer = 0, silent = true })
 
   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = augroup,
-    buffer = bufnr,
-    callback = function()
-      lsp_formatting(bufnr)
-    end,
-  })
+  -- vim.api.nvim_create_autocmd("BufWritePre", {
+  --   group = augroup,
+  --   buffer = bufnr,
+  --   callback = function()
+  --     lsp_formatting(bufnr)
+  --   end,
+  -- })
 end
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
@@ -295,7 +297,7 @@ local server_configurations = {
 
 local servers = {
   "pyright",
-  -- "rust_analyzer",
+  "rust_analyzer",
   "tsserver",
   "sumneko_lua",
   "gopls",
@@ -321,7 +323,7 @@ for _, lsp in pairs(servers) do
   end
 end
 
-local rt = require("rust-tools")
+-- local rt = require("rust-tools")
 
 local function config_wrapper(config)
   if vim.g.using_coq then
@@ -330,9 +332,9 @@ local function config_wrapper(config)
   return config
 end
 
-rt.setup({
-  server = config_wrapper({ on_attach = common_on_attach }),
-})
+-- rt.setup({
+--   server = config_wrapper({ on_attach = common_on_attach }),
+-- })
 
 ------------------------------------------------------------------------------------------
 ------------------------------- null ls --------------------------------------------------

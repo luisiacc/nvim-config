@@ -24,7 +24,7 @@ local M = {
   },
 }
 
-local gps = require("nvim-gps")
+local gps = require("nvim-navic")
 local color = require("tokyonight.util")
 local file_color = color.brighten(c.soft_yellow, 0.26)
 -- local file_color = c.soft_yellow
@@ -286,11 +286,11 @@ M.statusline.noicons.active[1] = {
   },
   {
     provider = function()
-      return require("nvim-gps").get_location()
+      return require("nvim-navic").get_location()
     end,
     hl = { fg = "skyblue" },
     enabled = function()
-      return require("nvim-gps").is_available()
+      return require("nvim-navic").is_available()
     end,
   },
 }

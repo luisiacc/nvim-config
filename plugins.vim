@@ -20,25 +20,23 @@ set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
 Plug 'stevearc/dressing.nvim'
-Plug 'ziontee113/icon-picker.nvim'
 Plug 'akinsho/bufferline.nvim'
 
-Plug 'vimwiki/vimwiki'
 Plug 'lewis6991/impatient.nvim'
 
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
+" Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-project.nvim'
-Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'tami5/sqlite.lua'
+Plug 'nvim-telescope/telescope-frecency.nvim'
 " Plug 'github/copilot.vim'
 
 " Plug 'folke/which-key.nvim'
-Plug 'folke/trouble.nvim'
+" Plug 'folke/trouble.nvim'
 
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -50,7 +48,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'tweekmonster/django-plus.vim'
 
 Plug 'karb94/neoscroll.nvim'
-Plug 'simrat39/symbols-outline.nvim'
+" Plug 'simrat39/symbols-outline.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Plug 'romgrk/nvim-treesitter-context'
@@ -58,10 +56,10 @@ Plug 'RRethy/nvim-treesitter-endwise'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/playground'
 Plug 'folke/todo-comments.nvim'
-Plug 'SmiteshP/nvim-gps'
+Plug 'SmiteshP/nvim-navic'
 Plug 'p00f/nvim-ts-rainbow'
 
-Plug 'ray-x/lsp_signature.nvim'
+" Plug 'ray-x/lsp_signature.nvim'
 Plug 'glepnir/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
@@ -82,9 +80,11 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+if g:using_coq
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+endif
 
 if g:using_cmp
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -124,13 +124,13 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive'
 " Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-dispatch'
+" Plug 'tpope/vim-dispatch'
 
 " Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
-Plug 'tjdevries/colorbuddy.nvim'
+" Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
@@ -138,16 +138,13 @@ Plug 'rktjmp/lush.nvim'
 
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
-Plug 'katawful/kat.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'olivercederborg/poimandres.nvim'
 Plug 'kaiuri/nvim-juliana'
 Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
-Plug 'lmburns/kimbox'
 Plug 'Mofiqul/dracula.nvim'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'cpea2506/one_monokai.nvim'
-Plug 'ntk148v/vim-horizon'
 Plug 'sainnhe/edge'
 Plug 'bluz71/vim-nightfly-guicolors'
 " Plug 'kaicataldo/material.vim', {'branch': 'main'}
@@ -155,7 +152,6 @@ Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'folke/tokyonight.nvim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'projekt0n/github-nvim-theme'
-Plug 'FrenzyExists/aquarium-vim'
 Plug 'rose-pine/neovim', {'as': 'rose-pine'}
 Plug 'sainnhe/gruvbox-material'
 
@@ -163,11 +159,9 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-" Plug 'hoob3rt/lualine.nvim'
 Plug 'feline-nvim/feline.nvim'
 
 Plug 'mhinz/vim-startify'
-" Plug 'voldikss/vim-floaterm'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/refactoring.nvim'

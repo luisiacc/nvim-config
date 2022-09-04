@@ -15,8 +15,11 @@ vnoremap K :m '<-2<CR>gv=gv
 " inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 
 " remap tab navigation
-nnoremap <leader>, gT
-nnoremap <leader>. gt
+" nnoremap <leader>, gT
+" nnoremap <leader>. gt
+nnoremap <silent><leader>. :BufferLineCycleNext<CR>
+nnoremap <silent><leader>, :BufferLineCyclePrev<CR>
+
 nnoremap <A-q> gg:q!<CR>
 nnoremap <leader>2 gg:q!<CR>
 inoremap jj <Esc>

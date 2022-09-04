@@ -20,7 +20,7 @@ vim.g.coq_settings = {
     proximity = 0.8,
   },
   clients = {
-    -- tree_sitter = { enabled = false },
+    tree_sitter = { enabled = false },
     tmux = { enabled = false },
     tags = { enabled = false },
     paths = {

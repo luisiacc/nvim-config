@@ -96,64 +96,10 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
-    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif snippy.can_expand_or_advance() then
-        snippy.expand_or_advance()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif snippy.can_jump(-1) then
-        snippy.previous()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<C-n>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          vim.api.nvim_feedkeys(t("<Down>"), "n", true)
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          fallback()
-        end
-      end,
-    }),
-    ["<C-p>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          vim.api.nvim_feedkeys(t("<Up>"), "n", true)
-        end
-      end,
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          fallback()
-        end
-      end,
-    }),
   }),
   formatting = {
     format = lspkind.cmp_format({
@@ -172,8 +118,8 @@ cmp.setup({
     { name = "nvim_lua", max_item_count = 10, ft = "lua" },
     { name = "nvim_lsp", max_item_count = 10 },
     { name = "path", max_item_count = 10 },
-    { name = "calc", max_item_count = 10 },
-  }, { buffer }),
+    buffer,
+  }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

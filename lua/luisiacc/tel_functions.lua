@@ -55,10 +55,4 @@ function M.frecency()
   require("telescope").extensions.frecency.frecency()
 end
 
-function M.file_browser()
-  require("telescope").extensions.file_browser.file_browser({
-    initial_mode = "normal",
-  })
-end
-
 return M

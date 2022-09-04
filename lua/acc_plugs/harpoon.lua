@@ -1,7 +1,5 @@
-require("telescope").load_extension("harpoon")
-
 -- vim.cmd([[nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>]])
-vim.cmd([[nnoremap <leader>h :Telescope harpoon marks path_display=tail<CR>]])
-vim.cmd([[nnoremap <leader>am :lua require("harpoon.mark").toggle_file()<CR>]])
-vim.cmd([[nnoremap <leader>an :lua require("harpoon.ui").nav_next()<CR>]])
-vim.cmd([[nnoremap <leader>ap :lua require("harpoon.ui").nav_prev()<CR>]])
+vim.keymap.set("n", "<a-h>", require("harpoon.ui").toggle_quick_menu, { buffer = 0, silent = true })
+vim.keymap.set("n", "<leader>am", require("harpoon.mark").toggle_file, { buffer = 0, silent = true })
+vim.keymap.set("n", "<a-o>", require("harpoon.ui").nav_prev, { buffer = 0, silent = true })
+vim.keymap.set("n", "<a-p>", require("harpoon.ui").nav_next, { buffer = 0, silent = true })

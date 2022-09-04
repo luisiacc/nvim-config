@@ -32,7 +32,6 @@ local configs = {
   "todo_comments",
   "toggleterm",
   "treesitter",
-  "trouble",
   "vim-test",
   "zen-mode",
   -- "floaterm",
