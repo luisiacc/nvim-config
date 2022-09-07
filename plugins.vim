@@ -11,7 +11,7 @@ else
 endif
 
 lua << EOF
-vim.g.autocomplete_tool = "coq"
+vim.g.autocomplete_tool = "cmp"
 vim.g.using_coq = vim.g.autocomplete_tool == "coq"
 vim.g.using_cmp = vim.g.autocomplete_tool == "cmp"
 EOF
@@ -80,11 +80,9 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
-if g:using_coq
-    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-    Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
-endif
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
 if g:using_cmp
     Plug 'hrsh7th/cmp-nvim-lsp'

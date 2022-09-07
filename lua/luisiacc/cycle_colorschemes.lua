@@ -60,17 +60,16 @@ local after_colorscheme_hook = {
     set_hl("TSFunction", { fg = func })
     set_hl("TSMethod", { fg = func })
 
-    set_hl("pythonTSVariable", { fg = p.blue3 })
-    set_hl("pythonTSField", { fg = p.blue2 })
-    set_hl("pythonTSParameter", { fg = p.blue2 })
-    set_hl("pythonTSConstant", { fg = p.blue2 })
-    set_hl("pythonTSParameter", { fg = p.text })
-    set_hl("pythonTSType", { fg = p.blue1 })
+    set_hl("@variable.python", { fg = p.blue3 })
+    set_hl("@field.python", { fg = p.blue2 })
+    set_hl("@parameter.python", { fg = p.blue2 })
+    set_hl("@constant.python", { fg = p.blue2 })
+    set_hl("@type.python", { fg = p.blue1 })
 
     set_hl("TSTag", { fg = p.teal1 })
     set_hl("TSType", { fg = p.blueGray2 })
     set_hl("TSString", { fg = p.teal1 })
-    set_hl("tsxTSConstructor", { fg = p.teal1 })
+    set_hl("@constructor.tsx", { fg = p.teal1 })
     set_hl("TSConstructor", { fg = p.teal1 })
     set_hl("Visual", { bg = p.blueGray3 })
     set_hl("TelescopeSelection", { fg = p.text, bg = p.blueGray3 })
@@ -108,9 +107,6 @@ local after_colorscheme_hook = {
     vim.api.nvim_set_hl(0, "CursorLine", { bg = "#515151" })
     vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#515151" })
     extend_hl("TabLine", { underline = false })
-  end,
-  catppuccin = function(variant)
-    vim.cmd("Catppuccin " .. variant)
   end,
   default_dark = function(bg)
     vim.cmd([[

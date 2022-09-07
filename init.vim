@@ -44,6 +44,7 @@ vim.g.neovide_cursor_animation_length = 0.08
 vim.g.neovide_cursor_antialiasing=true
 vim.g.neovide_refresh_rate=140
 vim.g.neovide_no_idle=true
+-- vim.api.nvim_del_augroup_by_name("IndentBlanklineAutogroup")
 EOF
 
 

@@ -69,7 +69,7 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("v", "<leader>ca", vim.lsp.buf.range_code_action, { buffer = 0, silent = true })
 
   -- "" show hover doc
-  vim.keymap.set("n", "K", require("lspsaga.hover").render_hover_doc, { buffer = 0, silent = true })
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0, silent = true })
 
   -- "" scroll down hover doc or scroll in definition preview
   vim.keymap.set("n", "<C-d>", function()
