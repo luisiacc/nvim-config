@@ -90,8 +90,8 @@ cmp.setup({
       compare.locality,
       compare.recently_used,
       compare.score,
-      compare.sort_text,
       compare.kind,
+      compare.sort_text,
     },
   },
   snippet = {
