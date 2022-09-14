@@ -22,9 +22,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'stevearc/dressing.nvim'
 Plug 'akinsho/bufferline.nvim'
 
-Plug 'lewis6991/impatient.nvim'
-
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -37,7 +34,6 @@ Plug 'nvim-telescope/telescope-frecency.nvim'
 
 " Plug 'folke/which-key.nvim'
 " Plug 'folke/trouble.nvim'
-
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " Plug 'andrejlevkovitch/vim-lua-format'
@@ -47,7 +43,8 @@ Plug 'lewis6991/gitsigns.nvim'
 "python
 Plug 'tweekmonster/django-plus.vim'
 
-Plug 'karb94/neoscroll.nvim'
+" Plug 'karb94/neoscroll.nvim'
+Plug 'psliwka/vim-smoothie'
 " Plug 'simrat39/symbols-outline.nvim'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -114,7 +111,7 @@ Plug 'sindrets/diffview.nvim'
 Plug 'numToStr/Comment.nvim'
 
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'folke/zen-mode.nvim'
+" Plug 'folke/zen-mode.nvim'
 
 Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-surround'
@@ -125,14 +122,14 @@ Plug 'tpope/vim-markdown'
 " Plug 'tpope/vim-dispatch'
 
 " Plug 'Yggdroot/indentLine'
-Plug 'lukas-reineke/indent-blankline.nvim'
+" Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
 " Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
-Plug 'rktjmp/lush.nvim'
+" Plug 'rktjmp/lush.nvim'
 
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
@@ -140,7 +137,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'olivercederborg/poimandres.nvim'
 Plug 'kaiuri/nvim-juliana'
 Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
-Plug 'Mofiqul/dracula.nvim'
+" Plug 'Mofiqul/dracula.nvim'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'cpea2506/one_monokai.nvim'
 Plug 'sainnhe/edge'

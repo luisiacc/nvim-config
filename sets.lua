@@ -15,13 +15,13 @@ o.diffopt = "vertical"
 -- o.html_ignore_conceal = 1
 
 --open local vimrc first
--- o.exrc = true
+o.exrc = true
 --
 o.timeoutlen = 400
 o.ttimeoutlen = 0
 o.mmp = 2000000
 
--- " set guicursor=
+opt.guicursor=""
 o.scrolloff = 5
 o.hidden = true
 o.switchbuf = "useopen"

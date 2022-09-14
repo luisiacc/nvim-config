@@ -52,48 +52,57 @@ local common_on_attach = function(client, bufnr)
   client.server_capabilities.document_formatting = false
   client.server_capabilities.document_range_formatting = false
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = 0, silent = true })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0, silent = true })
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = 0, silent = true })
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, silent = true })
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, silent = true })
+  vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, silent = true })
+  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, silent = true })
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<A-k>", require("lspsaga.diagnostic").goto_prev, { buffer = 0, silent = true, noremap = true })
-  vim.keymap.set("n", "<A-j>", require("lspsaga.diagnostic").goto_next, { buffer = 0, silent = true, noremap = true })
+  vim.keymap.set("n", "<A-k>", function()
+    local ok, _ = pcall(require("lspsaga.diagnostic").goto_prev, { severity = vim.diagnostic.severity.ERROR })
+    if not ok then
+      vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    end
+  end, { buffer = bufnr, silent = true, noremap = true })
+  vim.keymap.set("n", "<A-j>", function()
+    local ok, _ = pcall(require("lspsaga.diagnostic").goto_next, { severity = vim.diagnostic.severity.ERROR })
+    if not ok then
+      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+    end
+  end, { buffer = bufnr, silent = true, noremap = true })
 
   -- " lsp provider to find the cursor word definition and reference
-  vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = bufnr, silent = true })
 
   -- " code action
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0, silent = true })
-  vim.keymap.set("v", "<leader>ca", vim.lsp.buf.range_code_action, { buffer = 0, silent = true })
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
+  vim.keymap.set("v", "<leader>ca", vim.lsp.buf.range_code_action, { buffer = bufnr, silent = true })
 
   -- "" show hover doc
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0, silent = true })
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })
+
+  vim.keymap.set("n", "<leader>fm", function()
+    lsp_formatting(bufnr)
+  end, { buffer = bufnr, silent = true })
 
   -- "" scroll down hover doc or scroll in definition preview
   vim.keymap.set("n", "<C-d>", function()
     require("lspsaga.action").smart_scroll_with_saga(1)
-  end, { buffer = 0, silent = true })
+  end, { buffer = bufnr, silent = true })
   -- "" scroll up hover doc
   vim.keymap.set("n", "<C-u>", function()
     require("lspsaga.action").smart_scroll_with_saga(-1)
-  end, { buffer = 0, silent = true })
+  end, { buffer = bufnr, silent = true })
 
   -- "" show signature help
-  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = 0, silent = true })
+  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = bufnr, silent = true })
 
   -- "" rename
-  -- vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = 0, silent = true })
+  -- vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = bufnr, silent = true })
   vim.keymap.set("n", "<leader>rn", ":IncRename ")
-  vim.keymap.set("n", "<leader>dp", require("lspsaga.definition").preview_definition, { buffer = 0, silent = true })
 
   -- "" preview definition
-  vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = 0, silent = true })
-  vim.keymap.set("n", "<leader>fm", function()
-    lsp_formatting(bufnr)
-  end, { buffer = 0, silent = true })
-
+  vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = bufnr, silent = true })
   vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
   -- vim.api.nvim_create_autocmd("BufWritePre", {
   --   group = augroup,

@@ -20,7 +20,6 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <silent><leader>. :BufferLineCycleNext<CR>
 nnoremap <silent><leader>, :BufferLineCyclePrev<CR>
 
-nnoremap <A-q> gg:q!<CR>
 nnoremap <leader>2 gg:q!<CR>
 inoremap jj <Esc>
 
@@ -58,7 +57,6 @@ nnoremap <leader>js :set filetype=javascriptreact<CR>
 nnoremap <C-x> :cnext<CR>
 nnoremap <C-z> :cprev<CR>
 nnoremap <C-q> :call ToggleQFList()<CR>
-nnoremap <C-e> :call ToggleLocList()<CR>
 
 nmap <C-e> <C-f>
 

@@ -47,6 +47,10 @@ vim.g.neovide_no_idle=true
 -- vim.api.nvim_del_augroup_by_name("IndentBlanklineAutogroup")
 EOF
 
+silent! unmap f
+silent! unmap F
+silent! unmap t
+silent! unmap T
 
 call g:Source('/mappings.vim')
 call g:Source('/schemes.lua')

@@ -68,17 +68,20 @@ local function disable_if_more_than_x_lines(max_lines)
 end
 
 cmp.setup({
-  enabled = disable_if_more_than_x_lines(2000),
+  enabled = disable_if_more_than_x_lines(3000),
+  preselect = cmp.PreselectMode.None,
+  completion = {
+    keyword_length = 4,
+  },
   performance = {
-    debounce = 1000,
-    fetching_timeout = 1000,
+    debounce = 5000,
   },
   window = {
     completion = {
-      border = border("CmpBorder"),
+      -- border = border("CmpBorder"),
     },
     documentation = {
-      border = border("CmpDocBorder"),
+      -- border = border("CmpDocBorder"),
     },
   },
   sorting = {
@@ -86,8 +89,8 @@ cmp.setup({
       function(...)
         return cmp_buffer:compare_locality(...)
       end,
-      compare.exact,
       compare.locality,
+      compare.exact,
       compare.recently_used,
       compare.score,
       compare.kind,
@@ -123,16 +126,7 @@ cmp.setup({
     end, { "i", "s" }),
   }),
   formatting = {
-    format = lspkind.cmp_format({
-      with_text = true,
-      menu = {
-        buffer = "[buf]",
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[api]",
-        path = "[path]",
-        utilsnips = "[snip]",
-      },
-    }),
+    format = lspkind.cmp_format(),
   },
   sources = cmp.config.sources({
     { name = "snippy", max_item_count = 5 },

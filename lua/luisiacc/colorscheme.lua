@@ -9,8 +9,10 @@ local function apply_italics()
   local italic_bold_groups = { "TSKeyword", "TSFunction", "TSKeywordFunction", "TSMethod", "TSInclude" }
   if vim.g.colors_name == "gruvbox-baby" then
     for _, group in ipairs(italic_bold_groups) do
-      extend_hl(group, { italic = true, bold = true })
+      extend_hl(group, { italic = true })
     end
+    extend_hl("TSFunction", { italic = true, bold = true })
+    extend_hl("TSMethod", { italic = true, bold = true })
   else
     for _, group in ipairs(italic_bold_groups) do
       extend_hl(group, { italic = true })
