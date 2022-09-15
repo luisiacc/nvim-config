@@ -71,11 +71,11 @@ cmp.setup({
   enabled = disable_if_more_than_x_lines(3000),
   preselect = cmp.PreselectMode.None,
   completion = {
-    keyword_length = 4,
+    keyword_length = 3,
   },
-  performance = {
-    debounce = 5000,
-  },
+  -- performance = {
+  --   debounce = 500,
+  -- },
   sorting = {
     comparators = {
       function(...)
@@ -99,16 +99,16 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-    ["<CR>"] = cmp.mapping(function (fallback)
+    ["<CR>"] = function(fallback)
       if cmp.visible() then
-        cmp.confirm({ select = true })
+        cmp.confirm()
       else
-        fallback()
+        fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
       end
-    end),
+    end,
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })

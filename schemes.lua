@@ -10,7 +10,7 @@ vim.g.gruvbox_baby_highlights = {
   CmpBorder = { fg = c.light_blue, bg = c.none },
 }
 
-vim.g.gruvbox_baby_background_color = "soft"
+vim.g.gruvbox_baby_background_color = "medium"
 vim.g.gruvbox_baby_transparent_mode = false
 vim.g.gruvbox_baby_transform_colors = false
 vim.g.gruvbox_baby_string_style = "nocombine"

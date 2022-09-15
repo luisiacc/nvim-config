@@ -35,6 +35,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     for k, v in pairs(highs) do
       vim.api.nvim_set_hl(0, k, v)
     end
-    apply_italics()
+    -- apply_italics()
   end,
 })

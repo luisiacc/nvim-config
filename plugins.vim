@@ -11,7 +11,7 @@ else
 endif
 
 lua << EOF
-vim.g.autocomplete_tool = "coq"
+vim.g.autocomplete_tool = "cmp"
 vim.g.using_coq = vim.g.autocomplete_tool == "coq"
 vim.g.using_cmp = vim.g.autocomplete_tool == "cmp"
 EOF

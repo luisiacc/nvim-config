@@ -26,7 +26,7 @@ local M = {
 
 local gps = require("nvim-navic")
 local color = require("gruvbox-baby.util")
-local file_color = color.brighten(c.soft_yellow, 0.26)
+local file_color = c.soft_yellow
 -- local file_color = c.soft_yellow
 M.statusline.icons.active[1] = {
   {

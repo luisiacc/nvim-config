@@ -43,11 +43,6 @@ require("luisiacc.cycle_colorschemes")
 require('lightspeed').setup({})
 --vim.opt.listchars:append({lead="·"})
 -- vim.cmd([[nnoremap <F4> :lua package.loaded.acc_plugs = nil<CR>:source ~/.config/nvim/init.vim<CR>]])
-vim.g.neovide_transparency=0.95
-vim.g.neovide_cursor_animation_length = 0.08
-vim.g.neovide_cursor_antialiasing=true
-vim.g.neovide_refresh_rate=140
-vim.g.neovide_no_idle=true
 -- vim.api.nvim_del_augroup_by_name("IndentBlanklineAutogroup")
 EOF
 
@@ -66,3 +61,51 @@ call g:Source('/schemes.lua')
 " let g:neovide_cursor_animation_length=0.08
 " let g:neovide_cursor_antialiasing=v:true
 set laststatus=3
+
+if exists("g:neovide")
+    let g:neovide_transparency=0.93
+    let g:neovide_cursor_animation_length = 0.03
+    let g:neovide_cursor_antialiasing=v:true
+    let g:neovide_refresh_rate=60
+    let g:neovide_no_idle=v:false
+    let g:neovide_scroll_animation_length = 0.08
+    let g:neovide_fullscreen=v:false
+    " let $NEOVIDE_MULTIGRID = v:true
+
+lua << EOF
+vim.g.gui_font_default_size = 10
+vim.g.gui_font_size = vim.g.gui_font_default_size
+vim.g.gui_font_face = "MesloLGM Nerd Font"
+
+RefreshGuiFont = function()
+  vim.opt.guifont = string.format("%s:h%s",vim.g.gui_font_face, vim.g.gui_font_size)
+end
+
+
+ResizeGuiFont = function(delta)
+  vim.g.gui_font_size = vim.g.gui_font_size + delta
+  RefreshGuiFont()
+end
+
+ResetGuiFont = function()
+  vim.g.gui_font_size = vim.g.gui_font_default_size
+  RefreshGuiFont()
+end
+
+-- Call function on startup to set default value
+ResetGuiFont()
+
+-- Keymaps
+
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set({'n', 'i'}, "<C-0>", function() ResizeGuiFont(1)  end, opts)
+vim.keymap.set({'n', 'i'}, "<C-9>", function() ResizeGuiFont(-1) end, opts)
+EOF
+endif
+" cool ones
+" IBM Plex Mono:h10
+" Hack NF:h10
+" Fira Code
+" SF Mono
+
