@@ -90,3 +90,9 @@ nmap <leader>q :tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.ym
 nmap <leader>qq :tabedit /mnt/c/Users/Luis/.config/wezterm/wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s
+
+nnoremap <unique> { <cmd>call smoothie#do("{") <CR>
+vnoremap <unique> { <cmd>call smoothie#do("{") <CR>
+
+nnoremap <unique> } <cmd>call smoothie#do("}") <CR>
+vnoremap <unique> } <cmd>call smoothie#do("}") <CR>
