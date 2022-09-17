@@ -2,7 +2,6 @@ local colorschemes = {
   { name = "gruvbox-baby", variant = "soft" },
   { name = "gruvbox-baby", variant = "medium" },
   { name = "gruvbox-baby", variant = "dark" },
-  { name = "juliana" },
   { name = "poimandres" },
   { name = "nightfly" },
   { name = "one_monokai" },
@@ -19,6 +18,7 @@ local colorschemes = {
   { name = "tokyonight" },
   { name = "catppuccin", variant = "frappe" },
   { name = "catppuccin", variant = "macchiato" },
+  { name = "handmade-hero-theme" },
 }
 
 local function extend_hl(group, new_config)

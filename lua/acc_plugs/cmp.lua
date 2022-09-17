@@ -2,30 +2,9 @@ local cmp = require("cmp")
 local lspkind = require("lspkind")
 local cmp_buffer = require("cmp_buffer")
 
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 -- border_chars = { "┃", "┃", "━", "━", "┏", "┓", "┗", "┛", "█" },
 -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 -- ╘══════╛
-local function border(hl_name)
-  return {
-    { "╭", hl_name },
-    { "═", hl_name },
-    { "╮", hl_name },
-    { "│", hl_name },
-    { "╛", hl_name },
-    { "═", hl_name },
-    { "╘", hl_name },
-    { "│", hl_name },
-  }
-end
 
 local cmp_window = require("cmp.utils.window")
 
@@ -58,6 +37,15 @@ local buffer = {
 
 local function disable_if_more_than_x_lines(max_lines)
   return function()
+    local disabled = false
+    disabled = disabled or (vim.api.nvim_buf_get_option(0, "buftype") == "prompt")
+    disabled = disabled or (vim.fn.reg_recording() ~= "")
+    disabled = disabled or (vim.fn.reg_executing() ~= "")
+
+    if disabled then
+      return false
+    end
+
     local bufnr = vim.api.nvim_get_current_buf()
     local lines = vim.api.nvim_buf_line_count(bufnr)
     if lines > max_lines then
@@ -71,6 +59,11 @@ cmp.setup({
   enabled = disable_if_more_than_x_lines(3000),
   preselect = cmp.PreselectMode.None,
   completion = {
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
     keyword_length = 3,
   },
   -- performance = {
@@ -123,15 +116,22 @@ cmp.setup({
     end, { "i", "s" }),
   }),
   formatting = {
-    format = lspkind.cmp_format(),
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. strings[1] .. " "
+      kind.menu = " (" .. strings[2] .. ")"
+
+      return kind
+    end,
   },
   sources = cmp.config.sources({
+    { name = "nvim_lsp", max_item_count = 10 },
     { name = "snippy", max_item_count = 5 },
     { name = "nvim_lua", max_item_count = 10, ft = "lua" },
-    { name = "nvim_lsp", max_item_count = 10 },
     { name = "path", max_item_count = 10 },
-    buffer,
-  }),
+  }, { buffer }),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
