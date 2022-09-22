@@ -1,46 +1,14 @@
+
+vim.opt.list = true
 vim.g.indent_blankline_char = "│"
--- " set list listchars=space:·,trail:~
--- "char = '·",
--- " vim.g.indent_blankline_space_char = '·'
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-vim.g.indent_blankline_show_first_indent_level = false
-vim.g.indent_blankline_show_current_context = false
-vim.g.indent_blankline_show_current_context_start = false
-vim.g.indent_blankline_show_current_context_start_on_current_line = false
-vim.g.indent_blankline_use_treesitter_scope = true
-vim.g.indent_blankline_use_treesitter = true
-vim.g.indent_blankline_disable_with_nolist = false
-vim.g.indent_blankline_buftype_exclude = { "terminal", "telescope" }
-vim.g.indent_blankline_filetype_exclude = {
-  "help",
-  "startify",
-  "dashboard",
-  "packer",
-  "neogitstatus",
-  "NvimTree",
-  "Trouble",
-}
-vim.g.indent_blankline_context_patterns = {
-  "try",
-  "def",
-  "class",
-  "return",
-  "function",
-  "method",
-  "^if",
-  "^while",
-  "jsx_element",
-  "^for",
-  "^object",
-  "^table",
-  "block",
-  "arguments",
-  "if_statement",
-  "else_clause",
-  "jsx_element",
-  "jsx_self_closing_element",
-  "try_statement",
-  "catch_clause",
-  "import_statement",
-  "operation_type",
+
+require("indent_blankline").setup {
+  buftype_exclude = {"terminal", "telescope", "nofile"},
+  filetype_exclude = {"help", "dashboard", "packer", "NvimTree", "Trouble", "TelescopePrompt", "Float"},
+  show_current_context = true,
+  show_current_context_start = false,
+  show_end_of_line = false,
+  show_trailing_blankline_indent = false,
+  space_char_blankline = " ",
+  use_treesitter = true,
 }

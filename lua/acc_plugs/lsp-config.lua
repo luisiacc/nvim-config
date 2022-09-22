@@ -484,7 +484,7 @@ vim.diagnostic.config({
 })
 
 _G.cancel_all = function()
-  local clients = vim.lsp.buf_get_clients()
+  local clients = vim.lsp.buf_get_clients(0)
   for _, client in pairs(clients) do
     for id, _ in pairs(client.requests) do
       client.cancel_request(id)
@@ -496,7 +496,7 @@ end
 _G.remove_hidden_buffers = function()
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if vim.fn.getbufinfo(bufnr)[1].hidden == 1 then
-      pcall(vim.api.nvim_buf_delete, bufnr, {})
+      pcall(vim.api.nvim_buf_delete, bufnr, { force = true })
     end
   end
 end

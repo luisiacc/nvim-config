@@ -20,7 +20,7 @@ local configs = {
   "feline",
   "gitsigns",
   "harpoon",
-  "indent-blankline",
+  -- "indent-blankline",
   "lsp-config",
   -- "lualine",
   -- "neoscroll",

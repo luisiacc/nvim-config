@@ -20,19 +20,15 @@ local compare = cmp.config.compare
 local buffer = {
   name = "buffer",
   max_item_count = 10,
-  -- option = {
-  --   get_bufnrs = function()
-  --     local bufs = {}
-  --     for _, win in ipairs(vim.api.nvim_list_wins()) do
-  --       local buf = vim.api.nvim_win_get_buf(win)
-  --       local byte_size = vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf))
-  --       if byte_size < 256 * 1024 then -- 1 Megabyte max
-  --         bufs[buf] = true
-  --       end
-  --     end
-  --     return vim.tbl_keys(bufs)
-  --   end,
-  -- },
+  option = {
+    get_bufnrs = function()
+      local bufs = {}
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        bufs[vim.api.nvim_win_get_buf(win)] = true
+      end
+      return vim.tbl_keys(bufs)
+    end,
+  },
 }
 
 local function disable_if_more_than_x_lines(max_lines)
@@ -71,15 +67,16 @@ cmp.setup({
   -- },
   sorting = {
     comparators = {
-      function(...)
-        return cmp_buffer:compare_locality(...)
-      end,
-      compare.locality,
-      compare.exact,
-      compare.recently_used,
-      compare.score,
-      compare.kind,
-      compare.sort_text,
+      cmp.config.compare.exact,
+      -- function(...)
+      --   return cmp_buffer:compare_locality(...)
+      -- end,
+      cmp.config.compare.locality,
+      cmp.config.compare.recently_used,
+      cmp.config.compare.score,
+      cmp.config.compare.offset,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.order,
     },
   },
   snippet = {

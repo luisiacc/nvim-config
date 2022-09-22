@@ -130,8 +130,9 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
 Plug b:projects .. 'handmade-hero-theme.nvim'
-" Plug 'rktjmp/lush.nvim'
+Plug 'rktjmp/lush.nvim'
 
+Plug 'briones-gabriel/darcula-solid.nvim'
 Plug 'tanvirtin/monokai.nvim'
 " colorschemes
 Plug 'arcticicestudio/nord-vim'
