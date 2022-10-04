@@ -117,22 +117,22 @@ local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
 -- format buffers who doesn't have lsp
 local ts_utils = require("nvim-lsp-ts-utils")
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup,
-  pattern = table.concat(filetypes_with_save_on_write_with_no_lsp, ","),
-  callback = function(id, group, match, bufnr, file)
-    vim.keymap.set("n", "<leader>fm", function()
-      lsp_formatting(bufnr)
-    end, { buffer = 0, silent = true })
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = augroup,
-      buffer = bufnr,
-      callback = function()
-        lsp_formatting(bufnr)
-      end,
-    })
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   group = augroup,
+--   pattern = table.concat(filetypes_with_save_on_write_with_no_lsp, ","),
+--   callback = function(id, group, match, bufnr, file)
+--     vim.keymap.set("n", "<leader>fm", function()
+--       lsp_formatting(bufnr)
+--     end, { buffer = 0, silent = true })
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       group = augroup,
+--       buffer = bufnr,
+--       callback = function()
+--         lsp_formatting(bufnr)
+--       end,
+--     })
+--   end,
+-- })
 
 local default_config = {
   capabilities = capabilities,
@@ -466,10 +466,6 @@ function PrintDiagnostics()
 end
 
 vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
-
--- "" float terminal also you can pass the cli command in open_float_terminal function
-vim.cmd([[nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>]])
-vim.cmd([[tnoremap <silent> <A-d> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>]])
 
 vim.cmd([[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=]])
 vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=]])

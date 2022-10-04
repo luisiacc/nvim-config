@@ -3,6 +3,7 @@ require("luisiacc.replace")
 require("luisiacc.cycle_colorschemes")
 local lsp = require("lspconfig")
 
+-- change cwd on buf enter
 local function go_to_nearest_git_ancestor()
   local git_ancestor = lsp.util.root_pattern(".git")(vim.api.nvim_buf_get_name(0))
   if git_ancestor then
@@ -18,6 +19,17 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     go_to_nearest_git_ancestor()
   end,
 })
+
+-- change font with commands
+local function use_font(font)
+  return function()
+    vim.g.gui_font_face = font
+    vim.opt.guifont = string.format("%s:h%s", font, vim.g.gui_font_size)
+  end
+end
+
+vim.api.nvim_create_user_command("LGM", use_font("MesloLGM Nerd Font"), {})
+vim.api.nvim_create_user_command("LGL", use_font("MesloLGL Nerd Font"), {})
 
 -- autocmds
 
@@ -41,10 +53,18 @@ vim.keymap.set("n", "<leader>ac", function()
 end, { silent = true })
 
 vim.keymap.set("n", "<leader>ar", function()
-  vim.ui.input({ prompt = "Commit message", default=vim.g.last_commit_message }, function(input)
+  vim.ui.input({ prompt = "Commit message", default = vim.g.last_commit_message }, function(input)
     if input then
       vim.g.last_commit_message = input
       vim.cmd("G cm " .. '"' .. input .. '"')
+    end
+  end)
+end, { silent = true })
+
+vim.keymap.set("n", "<leader>e", function()
+  vim.ui.input({ prompt = "CMD" }, function(input)
+    if input then
+      vim.cmd(input)
     end
   end)
 end, { silent = true })

@@ -43,4 +43,3 @@ endfunction
 
 command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()
 command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()
-

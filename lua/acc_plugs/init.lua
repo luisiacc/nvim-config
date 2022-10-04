@@ -10,7 +10,6 @@ local configs = {
   "nvim-gps",
   "dressing",
   "bufferline",
-  "symbols",
   "colorizer",
   "comment",
   "copilot",
