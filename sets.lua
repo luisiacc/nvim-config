@@ -3,6 +3,7 @@ local g = vim.g
 local opt = vim.opt
 
 o.encoding = "utf-8"
+o.cmdheight = 1
 o.mouse = "a"
 o.synmaxcol = 500
 o.foldlevelstart = 20
@@ -21,7 +22,7 @@ o.timeoutlen = 400
 o.ttimeoutlen = 0
 o.mmp = 2000000
 
-opt.guicursor=""
+-- opt.guicursor=""
 o.scrolloff = 5
 o.hidden = true
 o.switchbuf = "useopen"

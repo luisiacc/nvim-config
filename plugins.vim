@@ -30,7 +30,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-telescope/telescope-project.nvim'
 Plug 'tami5/sqlite.lua'
 Plug 'nvim-telescope/telescope-frecency.nvim'
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 
 " Plug 'folke/which-key.nvim'
 " Plug 'folke/trouble.nvim'
@@ -138,7 +138,7 @@ Plug 'tanvirtin/monokai.nvim'
 Plug 'arcticicestudio/nord-vim'
 Plug 'olivercederborg/poimandres.nvim'
 Plug 'kaiuri/nvim-juliana'
-Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 " Plug 'Mofiqul/dracula.nvim'
 Plug 'EdenEast/nightfox.nvim'
 Plug 'cpea2506/one_monokai.nvim'

@@ -1,10 +1,10 @@
 -- Setup nvim-cmp.
--- Setup lspconfig.
+-- Setup lspconfig.lspc
 local capabilities
 if vim.g.using_coq then
   capabilities = vim.lsp.protocol.make_client_capabilities()
 else
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
 vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
@@ -76,7 +76,7 @@ local common_on_attach = function(client, bufnr)
 
   -- " code action
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
-  vim.keymap.set("v", "<leader>ca", vim.lsp.buf.range_code_action, { buffer = bufnr, silent = true })
+  vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
 
   -- "" show hover doc
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })

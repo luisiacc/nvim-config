@@ -42,44 +42,6 @@ local pre_colorscheme_hook = {
 }
 
 local after_colorscheme_hook = {
-  poimandres = function()
-    local p = require("poimandres.palette")
-    local util = require("gruvbox-baby.util")
-    local func = util.darken(p.text, 0.85)
-    set_hl("TSVariable", { fg = p.text })
-    set_hl("TSKeyword", { fg = p.blue3 })
-    set_hl("TSInclude", { fg = p.teal1 })
-    set_hl("TSField", { fg = p.pink1 })
-    set_hl("TSComment", { fg = p.blueGray3 })
-    set_hl("TSTag", { fg = p.teal1 })
-    set_hl("TSConstant", { fg = p.blue1 })
-    set_hl("TSNamedImport", { fg = p.blue2 })
-
-    set_hl("TSFuncLocal", { fg = func })
-    set_hl("TSFuncBuiltin", { fg = func })
-    set_hl("TSFunction", { fg = func })
-    set_hl("TSMethod", { fg = func })
-
-    set_hl("@variable.python", { fg = p.blue3 })
-    set_hl("@field.python", { fg = p.blue2 })
-    set_hl("@parameter.python", { fg = p.blue2 })
-    set_hl("@constant.python", { fg = p.blue2 })
-    set_hl("@type.python", { fg = p.blue1 })
-
-    set_hl("TSTag", { fg = p.teal1 })
-    set_hl("TSType", { fg = p.blueGray2 })
-    set_hl("TSString", { fg = p.teal1 })
-    set_hl("@constructor.tsx", { fg = p.teal1 })
-    set_hl("TSConstructor", { fg = p.teal1 })
-    set_hl("Visual", { bg = p.blueGray3 })
-    set_hl("TelescopeSelection", { fg = p.text, bg = p.blueGray3 })
-    set_hl("TelescopeSelectionCaret", { fg = p.text, bg = p.blueGray3 })
-    set_hl("ColorColumn", { bg = p.background3 })
-    set_hl("TSAttribute", { fg = p.blueGray1 })
-    set_hl("javascriptTSProperty", { fg = p.blue2 })
-    set_hl("typescriptTSProperty", { fg = p.blue2 })
-    set_hl("NvimTreeGitIgnored", { fg = p.blueGray3 })
-  end,
   one_monokai = function()
     require("one_monokai").setup()
   end,

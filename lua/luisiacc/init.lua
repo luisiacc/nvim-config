@@ -20,17 +20,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   end,
 })
 
--- change font with commands
-local function use_font(font)
-  return function()
-    vim.g.gui_font_face = font
-    vim.opt.guifont = string.format("%s:h%s", font, vim.g.gui_font_size)
-  end
-end
-
-vim.api.nvim_create_user_command("LGM", use_font("MesloLGM Nerd Font"), {})
-vim.api.nvim_create_user_command("LGL", use_font("MesloLGL Nerd Font"), {})
-
 -- autocmds
 
 vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })

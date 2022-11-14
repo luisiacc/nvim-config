@@ -66,7 +66,7 @@ if exists("g:neovide")
     let g:neovide_transparency=0.93
     let g:neovide_cursor_animation_length = 0.05
     let g:neovide_cursor_antialiasing=v:true
-    let g:neovide_refresh_rate=60
+    " let g:neovide_refresh_rate=60
     let g:neovide_no_idle=v:true
     let g:neovide_scroll_animation_length = 0.12
     let g:neovide_fullscreen=v:false
@@ -75,7 +75,7 @@ if exists("g:neovide")
 lua << EOF
 vim.g.gui_font_default_size = 10
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "MesloLGM Nerd Font"
+vim.g.gui_font_face = "MesloLGL NF"
 
 RefreshGuiFont = function()
   vim.opt.guifont = string.format("%s:h%s",vim.g.gui_font_face, vim.g.gui_font_size)
@@ -92,6 +92,18 @@ ResetGuiFont = function()
   RefreshGuiFont()
 end
 
+
+-- change font with commands
+local function use_font(font)
+  return function()
+    vim.g.gui_font_face = font
+    vim.opt.guifont = string.format("%s:h%s:#h-none", font, vim.g.gui_font_size)
+  end
+end
+
+vim.api.nvim_create_user_command("LGM", use_font("MesloLGM NF"), {})
+vim.api.nvim_create_user_command("LGL", use_font("MesloLGL NF"), {})
+
 -- Call function on startup to set default value
 ResetGuiFont()
 
@@ -99,8 +111,8 @@ ResetGuiFont()
 
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set({'n', 'i'}, "<C-0>", function() ResizeGuiFont(1)  end, opts)
-vim.keymap.set({'n', 'i'}, "<C-9>", function() ResizeGuiFont(-1) end, opts)
+vim.keymap.set({'n', 'i'}, "<F7>", function() ResizeGuiFont(1)  end, opts)
+vim.keymap.set({'n', 'i'}, "<F6>", function() ResizeGuiFont(-1) end, opts)
 EOF
 endif
 " cool ones
@@ -108,4 +120,5 @@ endif
 " Hack NF:h10
 " Fira Code
 " SF Mono
+
 
