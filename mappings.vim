@@ -15,10 +15,10 @@ vnoremap K :m '<-2<CR>gv=gv
 " inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 
 " remap tab navigation
-" nnoremap <leader>, gT
-" nnoremap <leader>. gt
-nnoremap <silent><leader>. :BufferLineCycleNext<CR>
-nnoremap <silent><leader>, :BufferLineCyclePrev<CR>
+nnoremap <leader>, gT
+nnoremap <leader>. gt
+" nnoremap <silent><leader>. :BufferLineCycleNext<CR>
+" nnoremap <silent><leader>, :BufferLineCyclePrev<CR>
 
 nnoremap <leader>2 gg:q!<CR>
 inoremap jj <Esc>
@@ -90,6 +90,7 @@ nmap <leader>q :tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.ym
 nmap <leader>qq :tabedit /mnt/c/Users/Luis/.config/wezterm/wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s
+nnoremap <F5> :UndotreeToggle<CR>
 
 " nnoremap <unique> { <cmd>call smoothie#do("{") <CR>
 " vnoremap <unique> { <cmd>call smoothie#do("{") <CR>

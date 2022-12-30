@@ -15,6 +15,32 @@ require("nvim-ts-autotag").setup({
 
 local c = require("gruvbox-baby.colors").config()
 require("nvim-treesitter.configs").setup({
+  ensure_installed = {
+    "typescript",
+    "javascript",
+    "json",
+    "json5",
+    "python",
+    "c",
+    "cpp",
+    "rust",
+    "lua",
+    "html",
+    "jsdoc",
+    "markdown",
+    "markdown_inline",
+    "bash",
+    "jsonc",
+    "rst",
+    "tsx",
+    "css",
+    "vim",
+    "help",
+    "yaml",
+    "scss",
+    "go",
+    "gomod",
+  },
   highlight = {
     enable = true,
   },

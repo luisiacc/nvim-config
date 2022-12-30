@@ -1,6 +1,6 @@
-require("bufferline").setup({
-  options = {
-    mode = "tabs",
-    separator_style = { "  ", "  " },
-  },
-})
+-- require("bufferline").setup({
+--   options = {
+--     mode = "tabs",
+--     separator_style = { "  ", "  " },
+--   },
+-- })

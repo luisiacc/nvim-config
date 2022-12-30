@@ -12,12 +12,10 @@ local colorschemes = {
   { name = "nightfox" },
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
-  { name = "github_dimmed" },
-  { name = "github_dark_default" },
+  { name = "github-colors" },
   { name = "vscode" },
   { name = "tokyonight" },
-  { name = "catppuccin", variant = "frappe" },
-  { name = "catppuccin", variant = "macchiato" },
+  { name = "catppuccin" },
   { name = "handmade-hero-theme" },
 }
 
@@ -35,9 +33,6 @@ local M = {}
 local pre_colorscheme_hook = {
   ["gruvbox-baby"] = function(variant)
     vim.g.gruvbox_baby_background_color = variant
-  end,
-  catppuccin = function(variant)
-    vim.cmd(string.format('silent execute "Catppuccin %s"', variant))
   end,
 }
 
@@ -116,7 +111,7 @@ function M.activate_scheme(scheme)
     after_colorscheme_hook[scheme.name](bg)
   end
 
-  if bg == "dark" and not (scheme.name == "catppuccin") then
+  if bg == "dark" and not (scheme.name ~= "catppuccin") then
     after_colorscheme_hook["default_dark"](bg)
   end
 
@@ -139,6 +134,7 @@ end
 -- @param moves can be a negative number
 function M.go_to_scheme(moves)
   local index, _ = M.get_current_scheme()
+  print("current scheme=" .. colorschemes[index].name)
   local new_index = ((index + moves - 1) % #colorschemes) + 1
   local next_scheme = colorschemes[new_index]
   pcall(M.activate_scheme, next_scheme)

@@ -19,6 +19,8 @@ EOF
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
+Plug 'j-hui/fidget.nvim'
+Plug 'mbbill/undotree'
 Plug 'stevearc/dressing.nvim'
 Plug 'akinsho/bufferline.nvim'
 
@@ -129,11 +131,15 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
+Plug b:projects .. 'github-nvim-theme'
 Plug b:projects .. 'handmade-hero-theme.nvim'
 Plug 'rktjmp/lush.nvim'
 
 Plug 'briones-gabriel/darcula-solid.nvim'
 Plug 'tanvirtin/monokai.nvim'
+
+Plug 'tjdevries/colorbuddy.nvim', { 'branch': 'dev' }
+Plug 'jesseleite/nvim-noirbuddy'
 " colorschemes
 Plug 'arcticicestudio/nord-vim'
 Plug 'olivercederborg/poimandres.nvim'
@@ -148,7 +154,8 @@ Plug 'bluz71/vim-nightfly-guicolors'
 " Plug 'embark-theme/vim', { 'as': 'embark' }
 Plug 'folke/tokyonight.nvim'
 Plug 'Mofiqul/vscode.nvim'
-Plug 'projekt0n/github-nvim-theme'
+" Plug 'projekt0n/github-nvim-theme'
+Plug 'lourenci/github-colors'
 Plug 'rose-pine/neovim', {'as': 'rose-pine'}
 Plug 'sainnhe/gruvbox-material'
 

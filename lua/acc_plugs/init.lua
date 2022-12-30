@@ -38,6 +38,8 @@ local configs = {
   -- "tabline",
 }
 
+require("fidget").setup({})
+
 for _, plugin in ipairs(configs) do
   require("acc_plugs." .. plugin)
 end

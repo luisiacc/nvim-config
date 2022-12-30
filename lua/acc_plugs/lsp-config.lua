@@ -148,6 +148,7 @@ local python_root_files = {
   "requirements.txt",
   "Pipfile",
   "pyrightconfig.json",
+  ".git",
 }
 
 local find_cmd = function(cmd, prefixes, start_from, stop_at)
@@ -311,7 +312,6 @@ local servers = {
   "sumneko_lua",
   "gopls",
   "clangd",
-  -- "tailwindcss",
   "cssls",
   "jsonls",
   "html",
