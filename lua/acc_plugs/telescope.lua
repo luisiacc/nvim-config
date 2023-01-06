@@ -18,7 +18,7 @@ nnoremap("<C-p>", funcs.find_files)
 nnoremap("<leader>ft", tb.treesitter)
 nnoremap("<Leader>em", funcs.search_nvim_config)
 nnoremap("<leader>pw", funcs.live_grep_under_cursor)
-nnoremap("<leader>ff", ":Ag<cr>")
+nnoremap("<leader>ff", "<cmd>Ag<cr>")
 -- nnoremap("<leader>FF", funcs.search_all_files)
 
 -- vim.cmd([[nnoremap <leader>fw :lua require('telescope.builtin').grep_string({ sort_only_text = true })<CR>]])

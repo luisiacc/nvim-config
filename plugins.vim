@@ -19,7 +19,7 @@ EOF
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
-Plug 'j-hui/fidget.nvim'
+" Plug 'j-hui/fidget.nvim'
 Plug 'mbbill/undotree'
 Plug 'stevearc/dressing.nvim'
 Plug 'akinsho/bufferline.nvim'
@@ -44,6 +44,8 @@ Plug 'lewis6991/gitsigns.nvim'
 
 "python
 Plug 'tweekmonster/django-plus.vim'
+Plug 'folke/noice.nvim'
+Plug 'MunifTanjim/nui.nvim'
 
 " Plug 'karb94/neoscroll.nvim'
 Plug 'psliwka/vim-smoothie'

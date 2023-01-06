@@ -13,6 +13,8 @@ local colorschemes = {
   { name = "rose-pine" },
   { name = "rose-pine", background = "light" },
   { name = "github-colors" },
+  { name = "github_dimmed" },
+  { name = "github_dark_default" },
   { name = "vscode" },
   { name = "tokyonight" },
   { name = "catppuccin" },

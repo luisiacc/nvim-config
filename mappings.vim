@@ -7,8 +7,8 @@ inoremap ! !<c-g>u
 "Fix visual indenting
 vmap < <gv
 vmap > >gv
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vnoremap J <cmd>m '>+1<CR>gv=gv
+vnoremap K <cmd>m '<-2<CR>gv=gv
 
 " Path completion with custom source command
 " inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
@@ -17,50 +17,50 @@ vnoremap K :m '<-2<CR>gv=gv
 " remap tab navigation
 nnoremap <leader>, gT
 nnoremap <leader>. gt
-" nnoremap <silent><leader>. :BufferLineCycleNext<CR>
-" nnoremap <silent><leader>, :BufferLineCyclePrev<CR>
+" nnoremap <silent><leader>. <cmd>BufferLineCycleNext<CR>
+" nnoremap <silent><leader>, <cmd>BufferLineCyclePrev<CR>
 
-nnoremap <leader>2 gg:q!<CR>
+nnoremap <leader>2 gg<cmd>q!<CR>
 inoremap jj <Esc>
 
 
 " replace word
-nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
-nnoremap <Leader>rr :%s/<C-r><C-w>/
+nnoremap <Leader>rw <cmd>%s/\<<C-r><C-w>\>/
+nnoremap <Leader>rr <cmd>%s/<C-r><C-w>/
 
-nnoremap <leader>s :w!<CR>
-nnoremap <leader>r :noautocmd w!<CR>
+nnoremap <leader>s <cmd>w!<CR>
+nnoremap <leader>r <cmd>noautocmd w!<CR>
 nnoremap - *zz
-" nnoremap <leader>t :Tags<CR>
+" nnoremap <leader>t <cmd>Tags<CR>
 
-nnoremap <C-h> :wincmd h<CR>
-nnoremap <C-j> :wincmd j<CR>
-nnoremap <C-k> :wincmd k<CR>
-nnoremap <C-l> :wincmd l<CR>
+nnoremap <C-h> <cmd>wincmd h<CR>
+nnoremap <C-j> <cmd>wincmd j<CR>
+nnoremap <C-k> <cmd>wincmd k<CR>
+nnoremap <C-l> <cmd>wincmd l<CR>
 
-nnoremap <leader>me :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>me <cmd>wincmd v<bar> <cmd>Ex <bar> <cmd>vertical resize 30<CR>
 
-nnoremap <leader>ps :Rg<SPACE>
-nnoremap <silent> <C-Right> :vertical resize -2<CR>
-nnoremap <silent> <C-Left> :vertical resize +2<CR>
-nnoremap <silent> <C-Up> :resize -1<CR>
-nnoremap <silent> <C-Down> :resize +1<CR>
+nnoremap <leader>ps <cmd>Rg<SPACE>
+nnoremap <silent> <C-Right> <cmd>vertical resize -2<CR>
+nnoremap <silent> <C-Left> <cmd>vertical resize +2<CR>
+nnoremap <silent> <C-Up> <cmd>resize -1<CR>
+nnoremap <silent> <C-Down> <cmd>resize +1<CR>
 
 " compares current file to last revision
-nmap <leader>lr :vert diffsplit #<CR>
+nmap <leader>lr <cmd>vert diffsplit #<CR>
 
 
-nnoremap <leader>d :tabedit %<CR>
+nnoremap <leader>d <cmd>tabedit %<CR>
 
-nnoremap <leader>js :set filetype=javascriptreact<CR>
+nnoremap <leader>js <cmd>set filetype=javascriptreact<CR>
 
-nnoremap <C-x> :cnext<CR>
-nnoremap <C-z> :cprev<CR>
-nnoremap <C-q> :call ToggleQFList()<CR>
+nnoremap <C-x> <cmd>cnext<CR>
+nnoremap <C-z> <cmd>cprev<CR>
+nnoremap <C-q> <cmd>call ToggleQFList()<CR>
 
 nmap <C-e> <C-f>
 
-" nnoremap <leader>rs :setlocal syntax=OFF
+" nnoremap <leader>rs <cmd>setlocal syntax=OFF
 
 let g:acc_loc_list = 0
 let g:acc_quickfix_list = 0
@@ -78,7 +78,7 @@ endfun
 
 fun! ToggleLocList()
     if g:acc_loc_list == 1
-        let g:acc_loc_list = 0
+        let g<cmd>acc_loc_list = 0
         lclose
     else
         let g:acc_loc_list = 1
@@ -86,11 +86,11 @@ fun! ToggleLocList()
     endif
 endfun
 
-nmap <leader>q :tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.yml<CR>
-nmap <leader>qq :tabedit /mnt/c/Users/Luis/.config/wezterm/wezterm.lua<CR>
+nmap <leader>q <cmd>tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.yml<CR>
+nmap <leader>qq <cmd>tabedit /mnt/c/Users/Luis/.config/wezterm/wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s
-nnoremap <F5> :UndotreeToggle<CR>
+nnoremap <F5> <cmd>UndotreeToggle<CR>
 
 " nnoremap <unique> { <cmd>call smoothie#do("{") <CR>
 " vnoremap <unique> { <cmd>call smoothie#do("{") <CR>

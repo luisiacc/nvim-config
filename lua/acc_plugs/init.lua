@@ -18,6 +18,7 @@ local configs = {
   "fugitive",
   "feline",
   "gitsigns",
+  "noice",
   "harpoon",
   -- "indent-blankline",
   "lsp-config",
@@ -37,8 +38,6 @@ local configs = {
   -- "hop",
   -- "tabline",
 }
-
-require("fidget").setup({})
 
 for _, plugin in ipairs(configs) do
   require("acc_plugs." .. plugin)
