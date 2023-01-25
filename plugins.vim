@@ -126,13 +126,14 @@ Plug 'tpope/vim-markdown'
 " Plug 'tpope/vim-dispatch'
 
 " Plug 'Yggdroot/indentLine'
-" Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'skywind3000/asyncrun.vim'
 
 " Plug 'tjdevries/colorbuddy.nvim'
 Plug 'norcalli/nvim-colorizer.lua'
 
 Plug b:projects .. 'gruvbox-baby'
+Plug b:projects .. 'the-matrix-theme'
 Plug b:projects .. 'github-nvim-theme'
 Plug b:projects .. 'handmade-hero-theme.nvim'
 Plug 'rktjmp/lush.nvim'
@@ -160,6 +161,8 @@ Plug 'Mofiqul/vscode.nvim'
 Plug 'lourenci/github-colors'
 Plug 'rose-pine/neovim', {'as': 'rose-pine'}
 Plug 'sainnhe/gruvbox-material'
+Plug 'yazeed1s/oh-lucy.nvim'
+Plug 'tiagovla/tokyodark.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 

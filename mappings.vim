@@ -25,8 +25,8 @@ inoremap jj <Esc>
 
 
 " replace word
-nnoremap <Leader>rw <cmd>%s/\<<C-r><C-w>\>/
-nnoremap <Leader>rr <cmd>%s/<C-r><C-w>/
+nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
+nnoremap <Leader>rr :%s/<C-r><C-w>/
 
 nnoremap <leader>s <cmd>w!<CR>
 nnoremap <leader>r <cmd>noautocmd w!<CR>

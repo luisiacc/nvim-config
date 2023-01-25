@@ -32,10 +32,10 @@ vim.o.background = "light"
 vim.cmd([[colorscheme gruvbox-baby]])
 vim.go.t_Co = 256
 
-vim.cmd([[highlight IndentBlanklineContextChar guifg=#365050]])
-
-vim.cmd([[highlight IndentBlanklineChar guifg=#313131]])
-vim.cmd([[highlight IndentBlanklineSpaceChar guifg=#313131]])
+-- vim.cmd([[highlight IndentBlanklineContextChar guifg=#365050]])
+--
+-- vim.cmd([[highlight IndentBlanklineChar guifg=#313131]])
+-- vim.cmd([[highlight IndentBlanklineSpaceChar guifg=#313131]])
 
 -- " set background transparent
 -- " hi Normal guibg=NONE ctermbg=NONE

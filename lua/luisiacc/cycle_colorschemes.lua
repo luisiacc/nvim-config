@@ -9,9 +9,7 @@ local colorschemes = {
   { name = "monokai_ristretto" },
   { name = "edge" },
   { name = "edge", background = "light" },
-  { name = "nightfox" },
-  { name = "rose-pine" },
-  { name = "rose-pine", background = "light" },
+  { name = "tokyodark" },
   { name = "github-colors" },
   { name = "github_dimmed" },
   { name = "github_dark_default" },
@@ -19,6 +17,7 @@ local colorschemes = {
   { name = "tokyonight" },
   { name = "catppuccin" },
   { name = "handmade-hero-theme" },
+  { name = "thematrix" },
 }
 
 local function extend_hl(group, new_config)

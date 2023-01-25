@@ -56,6 +56,11 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, silent = true })
   vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, silent = true })
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, silent = true })
+
+  vim.keymap.set("n", "<leader>fm", function()
+    lsp_formatting(bufnr)
+  end, { buffer = bufnr, silent = true })
+
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
   vim.keymap.set("n", "<A-k>", function()
@@ -72,7 +77,7 @@ local common_on_attach = function(client, bufnr)
   end, { buffer = bufnr, silent = true, noremap = true })
 
   -- " lsp provider to find the cursor word definition and reference
-  vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = bufnr, silent = true })
+  -- vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = bufnr, silent = true })
 
   -- " code action
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
@@ -80,10 +85,6 @@ local common_on_attach = function(client, bufnr)
 
   -- "" show hover doc
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })
-
-  vim.keymap.set("n", "<leader>fm", function()
-    lsp_formatting(bufnr)
-  end, { buffer = bufnr, silent = true })
 
   -- "" scroll down hover doc or scroll in definition preview
   vim.keymap.set("n", "<C-d>", function()
@@ -374,6 +375,8 @@ null_ls.setup({
     fmt.rustfmt,
     fmt.stylua,
     fmt.gofmt,
+    fmt.sqlformat,
+    fmt.djlint,
     fmt.black.with({
       prefer_local = ".venv/bin",
       args = { "--quiet", "-" },
@@ -400,11 +403,11 @@ null_ls.setup({
         return config
       end,
     }),
-    fmt.djhtml,
     fmt.eslint_d,
     fmt.prettierd,
     -- dg.tsc,
     dg.eslint_d,
+    dg.djlint,
     dg.flake8,
     ca.eslint_d,
     ca.refactoring,
@@ -465,7 +468,7 @@ function PrintDiagnostics()
   end
 end
 
-vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
+-- vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
 
 vim.cmd([[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=]])
 vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=]])
@@ -474,7 +477,7 @@ vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint line
 
 vim.diagnostic.config({
   underline = false,
-  virtual_text = false,
+  virtual_text = true,
   signs = true,
   update_in_insert = false,
 })
