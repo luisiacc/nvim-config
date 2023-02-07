@@ -27,6 +27,7 @@ inoremap jj <Esc>
 " replace word
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
 nnoremap <Leader>rr :%s/<C-r><C-w>/
+vnoremap <Leader>rw <kMultiply>N:%s//
 
 nnoremap <leader>s <cmd>w!<CR>
 nnoremap <leader>r <cmd>noautocmd w!<CR>

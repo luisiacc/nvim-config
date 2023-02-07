@@ -7,9 +7,20 @@ else
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
 
-vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
-vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
+-- require("lspsaga").setup({
+--   code_action_icon = "💡",
+--   code_action_lightbulb = {
+--     enable = true,
+--     sign = true,
+--     enable_in_insert = true,
+--     sign_priority = 5,
+--     virtual_text = false,
+-- }})
 
+
+-- vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
+-- vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
+--
 local border = {
   { "┌", "FloatBorder" },
   { "─", "FloatBorder" },
@@ -64,20 +75,14 @@ local common_on_attach = function(client, bufnr)
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
   vim.keymap.set("n", "<A-k>", function()
-    local ok, _ = pcall(require("lspsaga.diagnostic").goto_prev, { severity = vim.diagnostic.severity.ERROR })
-    if not ok then
+    -- require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
       vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    end
-  end, { buffer = bufnr, silent = true, noremap = true })
-  vim.keymap.set("n", "<A-j>", function()
-    local ok, _ = pcall(require("lspsaga.diagnostic").goto_next, { severity = vim.diagnostic.severity.ERROR })
-    if not ok then
-      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-    end
   end, { buffer = bufnr, silent = true, noremap = true })
 
-  -- " lsp provider to find the cursor word definition and reference
-  -- vim.keymap.set("n", "gh", require("lspsaga.finder").lsp_finder, { buffer = bufnr, silent = true })
+  vim.keymap.set("n", "<A-j>", function()
+    -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+  end, { buffer = bufnr, silent = true, noremap = true })
 
   -- " code action
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
@@ -87,19 +92,18 @@ local common_on_attach = function(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })
 
   -- "" scroll down hover doc or scroll in definition preview
-  vim.keymap.set("n", "<C-d>", function()
-    require("lspsaga.action").smart_scroll_with_saga(1)
-  end, { buffer = bufnr, silent = true })
-  -- "" scroll up hover doc
-  vim.keymap.set("n", "<C-u>", function()
-    require("lspsaga.action").smart_scroll_with_saga(-1)
-  end, { buffer = bufnr, silent = true })
+  -- vim.keymap.set("n", "<C-d>", function()
+  --   require("lspsaga.action").smart_scroll_with_saga(1)
+  -- end, { buffer = bufnr, silent = true })
+  -- -- "" scroll up hover doc
+  -- vim.keymap.set("n", "<C-u>", function()
+  --   require("lspsaga.action").smart_scroll_with_saga(-1)
+  -- end, { buffer = bufnr, silent = true })
 
   -- "" show signature help
   vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = bufnr, silent = true })
 
   -- "" rename
-  -- vim.keymap.set("n", "<leader>rn", require("lspsaga.rename").lsp_rename, { buffer = bufnr, silent = true })
   vim.keymap.set("n", "<leader>rn", ":IncRename ")
 
   -- "" preview definition
@@ -443,18 +447,6 @@ vim.lsp.protocol.CompletionItemKind = {
   " [operator]",
   " [type]",
 }
-
-local saga = require("lspsaga")
-saga.init_lsp_saga({
-  code_action_icon = "💡",
-  code_action_lightbulb = {
-    enable = true,
-    sign = true,
-    enable_in_insert = true,
-    sign_priority = 5,
-    virtual_text = false,
-  },
-})
 
 function PrintDiagnostics()
   local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
