@@ -19,10 +19,9 @@ EOF
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')
 
-" Plug 'j-hui/fidget.nvim'
 Plug 'mbbill/undotree'
 Plug 'stevearc/dressing.nvim'
-Plug 'akinsho/bufferline.nvim'
+" Plug 'akinsho/bufferline.nvim'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -34,12 +33,8 @@ Plug 'tami5/sqlite.lua'
 Plug 'nvim-telescope/telescope-frecency.nvim'
 Plug 'github/copilot.vim'
 
-" Plug 'folke/which-key.nvim'
-" Plug 'folke/trouble.nvim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Plug 'andrejlevkovitch/vim-lua-format'
-" Plug 'kevinhwang91/nvim-bqf'
 Plug 'lewis6991/gitsigns.nvim'
 
 "python
@@ -47,7 +42,6 @@ Plug 'tweekmonster/django-plus.vim'
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
 
-" Plug 'karb94/neoscroll.nvim'
 Plug 'psliwka/vim-smoothie'
 " Plug 'simrat39/symbols-outline.nvim'
 
@@ -60,7 +54,6 @@ Plug 'folke/todo-comments.nvim'
 Plug 'SmiteshP/nvim-navic'
 Plug 'p00f/nvim-ts-rainbow'
 
-" Plug 'ray-x/lsp_signature.nvim'
 " Plug 'glepnir/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'

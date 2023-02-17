@@ -1,42 +1,32 @@
 if vim.g.using_coq then
   require("acc_plugs.coq")
 else
-  require("acc_plugs.cmp")
-  require("acc_plugs.snippy")
+  require("acc_plugs.nvim-cmp")
+  require("acc_plugs.nvim-snippy")
 end
 
 local configs = {
-  --  "bqf",
-  "nvim-gps",
-  "dressing",
-  "bufferline",
-  "colorizer",
+  "nvim-colorizer",
   "comment",
   "copilot",
-  "debugger",
+  "nvim-dap",
   "diffview",
-  "fugitive",
+  "vim-fugitive",
   "feline",
   "gitsigns",
   "noice",
   "harpoon",
   "indent-blankline",
-  "lsp-config",
-  -- "lualine",
-  -- "neoscroll",
-  "nvim_autopairs",
-  "nvimtree",
-  "spectre",
-  "startify",
+  "nvim-lspconfig",
+  "nvim-autopairs",
+  "nvim-tree",
+  "nvim-spectre",
+  "vim-startify",
   "telescope",
-  "todo_comments",
+  "todo-comments",
   "toggleterm",
-  "treesitter",
+  "nvim-treesitter",
   "vim-test",
-  -- "zen-mode",
-  -- "floaterm",
-  -- "hop",
-  -- "tabline",
 }
 
 for _, plugin in ipairs(configs) do
