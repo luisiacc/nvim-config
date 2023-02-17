@@ -1,8 +1,8 @@
 let mapleader=" "
 
 "EMMET
-let g:user_emmet_mode='a'
-let g:user_emmet_leader_key='?'
+" let g:user_emmet_mode='a'
+" let g:user_emmet_leader_key='?'
 
 let g:pymode_lint_config = '$HOME/.pylintrc'
 let g:pymode_options_max_line_length=120

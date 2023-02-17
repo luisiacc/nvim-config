@@ -22,7 +22,8 @@ augroup vimrc_autocmd
     " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml CocPrettier
     autocmd BufNewFile,BufRead *.vim,*.vimrc setlocal syntax=vim
     autocmd FileType netrw setlocal syntax=netrw
-    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx,*.py,*.lua,*.rs,*.cpp silent execute ':setlocal syntax=OFF'
+    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx,*.py,*.lua,*.rs,*.cpp,*.toml,*.json silent execute ':setlocal syntax=OFF'
+    autocmd FileType htmldjango setlocal syntax=htmldjango
 augroup END
 
 lua require("luisiacc.colorscheme")
@@ -41,5 +42,4 @@ function EnableHighlightsOnBuffer()
     setlocal syntax=OFF
 endfunction
 
-command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()
 command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()

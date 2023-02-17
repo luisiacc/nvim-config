@@ -61,7 +61,7 @@ Plug 'SmiteshP/nvim-navic'
 Plug 'p00f/nvim-ts-rainbow'
 
 " Plug 'ray-x/lsp_signature.nvim'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'smjonas/inc-rename.nvim'
@@ -81,9 +81,9 @@ Plug 'mfussenegger/nvim-dap-python'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
 
 if g:using_cmp
     Plug 'hrsh7th/cmp-nvim-lsp'
@@ -103,7 +103,7 @@ Plug 'onsails/lspkind-nvim'
 Plug 'honza/vim-snippets'
 
 " javascript
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 Plug 'windwp/nvim-autopairs'
 
 Plug 'vim-test/vim-test'

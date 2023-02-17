@@ -17,7 +17,6 @@ end
 --     virtual_text = false,
 -- }})
 
-
 -- vim.cmd([[autocmd ColorScheme * highlight NormalFloat guibg=#1f2335]])
 -- vim.cmd([[autocmd ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]])
 --
@@ -76,12 +75,12 @@ local common_on_attach = function(client, bufnr)
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
   vim.keymap.set("n", "<A-k>", function()
     -- require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-      vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
   end, { buffer = bufnr, silent = true, noremap = true })
 
   vim.keymap.set("n", "<A-j>", function()
     -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+    vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
   end, { buffer = bufnr, silent = true, noremap = true })
 
   -- " code action
@@ -91,15 +90,6 @@ local common_on_attach = function(client, bufnr)
   -- "" show hover doc
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })
 
-  -- "" scroll down hover doc or scroll in definition preview
-  -- vim.keymap.set("n", "<C-d>", function()
-  --   require("lspsaga.action").smart_scroll_with_saga(1)
-  -- end, { buffer = bufnr, silent = true })
-  -- -- "" scroll up hover doc
-  -- vim.keymap.set("n", "<C-u>", function()
-  --   require("lspsaga.action").smart_scroll_with_saga(-1)
-  -- end, { buffer = bufnr, silent = true })
-
   -- "" show signature help
   vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = bufnr, silent = true })
 
@@ -108,36 +98,11 @@ local common_on_attach = function(client, bufnr)
 
   -- "" preview definition
   vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = bufnr, silent = true })
-  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-  -- vim.api.nvim_create_autocmd("BufWritePre", {
-  --   group = augroup,
-  --   buffer = bufnr,
-  --   callback = function()
-  --     lsp_formatting(bufnr)
-  --   end,
-  -- })
 end
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
--- format buffers who doesn't have lsp
 local ts_utils = require("nvim-lsp-ts-utils")
--- vim.api.nvim_create_autocmd("FileType", {
---   group = augroup,
---   pattern = table.concat(filetypes_with_save_on_write_with_no_lsp, ","),
---   callback = function(id, group, match, bufnr, file)
---     vim.keymap.set("n", "<leader>fm", function()
---       lsp_formatting(bufnr)
---     end, { buffer = 0, silent = true })
---     vim.api.nvim_create_autocmd("BufWritePre", {
---       group = augroup,
---       buffer = bufnr,
---       callback = function()
---         lsp_formatting(bufnr)
---       end,
---     })
---   end,
--- })
 
 local default_config = {
   capabilities = capabilities,
@@ -328,9 +293,10 @@ require("mason-lspconfig").setup({
   ensure_installed = servers,
 })
 
-local coq = require("coq")
+-- SET UP THE SERVERS  ******* IMPORTANT *******
 for _, lsp in pairs(servers) do
   if vim.g.using_coq then
+    local coq = require("coq")
     require("lspconfig")[lsp].setup(coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config))
   else
     require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
@@ -461,11 +427,17 @@ function PrintDiagnostics()
 end
 
 -- vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
+--     󰬸 ●
+--    
+-- vim.cmd([[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=]])
+-- vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=]])
+-- vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=]])
+-- vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
 
-vim.cmd([[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=]])
-vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=]])
-vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=]])
-vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
+vim.cmd([[sign define DiagnosticSignError text=● texthl=DiagnosticSignError linehl= numhl=]])
+vim.cmd([[sign define DiagnosticSignWarn text=● texthl=DiagnosticSignWarn linehl= numhl=]])
+vim.cmd([[sign define DiagnosticSignInfo text=● texthl=DiagnosticSignInfo linehl= numhl=]])
+vim.cmd([[sign define DiagnosticSignHint text=● texthl=DiagnosticSignHint linehl= numhl=]])
 
 vim.diagnostic.config({
   underline = false,
@@ -490,6 +462,10 @@ _G.remove_hidden_buffers = function()
       pcall(vim.api.nvim_buf_delete, bufnr, { force = true })
     end
   end
+end
+
+_G.p = function(arg)
+  print(vim.inspect(arg))
 end
 
 vim.cmd([[nnoremap <leader>aa :lua cancel_all()<CR>]])
