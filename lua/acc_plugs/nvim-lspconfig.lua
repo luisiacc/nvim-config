@@ -51,8 +51,6 @@ local lsp_formatting = function(bufnr)
 end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local rename = require("inc_rename")
-rename.setup()
 
 -- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
@@ -193,7 +191,7 @@ local server_configurations = {
       config.settings.python.pythonPath = p
     end,
   },
-  ["sumneko_lua"] = {
+  ["lua_ls"] = {
     capabilities = capabilities,
     on_attach = common_on_attach,
     flags = { debounce_text_changes = 150 },
@@ -279,7 +277,7 @@ local servers = {
   "pyright",
   "rust_analyzer",
   "tsserver",
-  "sumneko_lua",
+  "lua_ls",
   "gopls",
   "clangd",
   "cssls",

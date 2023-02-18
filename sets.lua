@@ -2,6 +2,7 @@ local o = vim.o
 local g = vim.g
 local opt = vim.opt
 
+opt.wrap = false
 o.encoding = "utf-8"
 o.cmdheight = 1
 o.mouse = "a"

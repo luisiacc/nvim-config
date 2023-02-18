@@ -13,7 +13,6 @@ require("nvim-ts-autotag").setup({
   },
 })
 
-local c = require("gruvbox-baby.colors").config()
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
     "typescript",
