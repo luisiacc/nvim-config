@@ -3,10 +3,10 @@ vim.g.using_coq = vim.g.autocomplete_tool == "coq"
 vim.g.using_cmp = vim.g.autocomplete_tool == "cmp"
 
 local projects
-if vim.fn.has("win32") then
+if vim.fn.has("win32") == 1 then
   projects = "C:\\projects\\"
 else
-  projects = vim.fn.expand("~/projects/")
+  projects = "/home/acc/projects/"
 end
 
 local function req(name)
@@ -32,7 +32,7 @@ return {
   {
     "junegunn/fzf",
     build = function()
-      vim.cmd("fzf#install()")
+      vim.cmd("call fzf#install()")
     end,
   },
   "junegunn/fzf.vim",
@@ -48,7 +48,7 @@ return {
   { "nvim-treesitter/nvim-treesitter", config = req("acc_plugs.nvim-treesitter") },
   "RRethy/nvim-treesitter-endwise",
   "windwp/nvim-ts-autotag",
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+  { "nvim-treesitter/playground" },
   { "folke/todo-comments.nvim", config = req("acc_plugs.todo-comments") },
   "SmiteshP/nvim-navic",
   "p00f/nvim-ts-rainbow",
@@ -171,7 +171,7 @@ return {
   } },
 
   { "mhinz/vim-startify", config = req("acc_plugs.vim-startify") },
-  { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
+  { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm")},
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
   "ThePrimeagen/refactoring.nvim",
 }

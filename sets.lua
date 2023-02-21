@@ -49,7 +49,6 @@ o.undodir = "/home/acc/.vim/undodir"
 o.undofile = true
 o.incsearch = true
 o.hlsearch = false
-o.linespace = 10
 o.t_Co = 256
 o.t_ut = ""
 o.t_u7 = ""
