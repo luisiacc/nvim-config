@@ -13,8 +13,9 @@ require("nvim-ts-autotag").setup({
   },
 })
 
+-- local parsers_path = "/home/acc/.local/share/nvim-treesitter-parsers/"
 require("nvim-treesitter.configs").setup({
-  auto_install = true,
+  -- parser_install_dir = parsers_path,
   ensure_installed = {
     "git_rebase",
     "gitattributes",
@@ -73,6 +74,4 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
--- require("treesitter-context").setup({
---   enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
--- })
+-- vim.opt.runtimepath:append(parsers_path)

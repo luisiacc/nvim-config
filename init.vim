@@ -26,7 +26,6 @@ let g:smoothie_speed_linear_factor = 13
 let g:smoothie_speed_constant_factor = 13
 
 call g:Source('/plugins.vim')
-"call g:Source('/packer.lua')
 
 call g:Source('/sets.lua')
 

@@ -42,7 +42,7 @@ return {
   { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" },
   "MunifTanjim/nui.nvim",
 
-  { "nvim-treesitter/nvim-treesitter", config = req("acc_plugs.nvim-treesitter"), lazy = false },
+  { "nvim-treesitter/nvim-treesitter", config = req("acc_plugs.nvim-treesitter") },
   "RRethy/nvim-treesitter-endwise",
   "windwp/nvim-ts-autotag",
   { "nvim-treesitter/playground" },

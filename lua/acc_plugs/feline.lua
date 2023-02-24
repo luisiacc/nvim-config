@@ -24,14 +24,32 @@ local M = {
   },
 }
 
-local gps = require("nvim-navic")
 local file_color = c.soft_yellow
--- local file_color = c.soft_yellow
+
+local theme = {
+  yellow = file_color,
+  normal = c.foreground,
+  bg = c.background_dark,
+  fg = "#D0D0D0",
+  black = "#454545",
+  skyblue = "#50B0F0",
+  cyan = "#009090",
+  green = "#60A040",
+  oceanblue = "#0066cc",
+  magenta = "#C26BDB",
+  orange = "#FF9000",
+  red = "#D10000",
+  violet = "#9E93E8",
+  white = "#FFFFFF",
+}
+
+-- 
+local gps = require("nvim-navic")
 M.statusline.icons.active[1] = {
   {
     provider = "▊ ",
     hl = {
-      fg = c.soft_yellow,
+      fg = "yellow",
     },
   },
   {
@@ -47,20 +65,11 @@ M.statusline.icons.active[1] = {
   {
     provider = "file_info",
     hl = {
-      fg = file_color,
+      fg = "yellow",
       style = "bold",
     },
-    left_sep = { str = "    " },
-    right_sep = { str = "    " },
-    -- left_sep = {
-    --   { str = "left_rounded", hl = { bg = "bg", fg = c.soft_yellow } },
-    --   { str = " ", hl = { bg = file_color, fg = "bg" } },
-    -- },
-    -- right_sep = {
-    --   { str = " ", hl = { bg = file_color, fg = "bg" } },
-    --   { str = "right_rounded", hl = { bg = "bg", fg = c.soft_yellow } },
-    --   " ",
-    -- },
+    left_sep = { str = "    ", hl = { fg = "black" } },
+    right_sep = { str = "    ", hl = { fg = "black" } },
   },
   {
     provider = "file_size",
@@ -68,20 +77,16 @@ M.statusline.icons.active[1] = {
   {
     provider = "position",
     hl = {
-      fg = file_color,
+      fg = "yellow",
       style = "bold",
     },
-    left_sep = { str = "    " },
-    right_sep = { str = "    " },
-    -- left_sep = { str = " ", hl = { bg = c.soft_yellow, fg = "bg" } },
-    -- right_sep = {
-    --   { str = " ", hl = { bg = c.soft_yellow, fg = "bg" } },
-    --   { str = "right_rounded", hl = { bg = "bg", fg = c.soft_yellow } },
-    -- },
+    left_sep = { str = "    ", hl = { fg = "black" } },
+    right_sep = { str = "    ", hl = { fg = "black" } },
   },
   {
     provider = "diagnostic_errors",
     hl = { fg = "red" },
+    right_sep = { str = "    ", hl = { fg = "black" } },
   },
 }
 
@@ -89,8 +94,8 @@ M.statusline.icons.active[2] = {
   {
     provider = "git_branch",
     hl = {
-      fg = "orange",
-      bg = "black",
+      fg = "violet",
+      bg = "bg",
       style = "bold",
     },
     right_sep = {
@@ -177,3 +182,27 @@ M.winbar.icons.inactive[1] = {
 
 require("feline").setup({ components = M.statusline.icons })
 require("feline").winbar.setup({ components = M.winbar.icons })
+require("feline").use_theme(theme)
+
+local function get_hl(group, attr)
+  local normal_group = vim.fn.hlID(group)
+  return vim.fn.synIDattr(normal_group, attr)
+end
+
+local augroup = vim.api.nvim_create_augroup("ChangeFelineBg", {})
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = augroup,
+  callback = function()
+    local utils = require("gruvbox-baby.util")
+    local bg = get_hl("Normal", "bg")
+    local accent = get_hl("@function.call", "fg")
+    local keyword = get_hl("@keyword", "fg")
+
+    local new_theme = vim.tbl_extend("force", theme, {
+      bg = utils.darken(bg, 0.85),
+      yellow = accent,
+      violet = keyword,
+    })
+    require("feline").use_theme(new_theme)
+  end,
+})
