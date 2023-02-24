@@ -14,11 +14,20 @@ require("nvim-ts-autotag").setup({
 })
 
 require("nvim-treesitter.configs").setup({
+  auto_install = true,
   ensure_installed = {
+    "git_rebase",
+    "gitattributes",
+    "gitcommit",
     "typescript",
     "javascript",
     "json",
     "json5",
+    "hcl",
+    "help",
+    "http",
+    "scheme",
+    "make",
     "python",
     "c",
     "cpp",
@@ -34,11 +43,12 @@ require("nvim-treesitter.configs").setup({
     "tsx",
     "css",
     "vim",
-    "help",
     "yaml",
     "scss",
     "go",
     "gomod",
+    "graphql",
+    "cmake",
   },
   highlight = {
     enable = true,

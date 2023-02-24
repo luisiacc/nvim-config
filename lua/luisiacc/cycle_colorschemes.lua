@@ -16,6 +16,7 @@ local colorschemes = {
   { name = "vscode" },
   { name = "tokyonight" },
   { name = "catppuccin" },
+  { name = "kimbox" },
   { name = "handmade-hero-theme" },
   { name = "thematrix" },
 }

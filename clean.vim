@@ -58,7 +58,7 @@ Plug 'folke/tokyonight.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 
-Plug 'SmiteshP/nvim-gps'
+Plug 'SmiteshP/nvim-navic'
 Plug 'feline-nvim/feline.nvim'
 call plug#end()
 
@@ -80,7 +80,7 @@ lua << EOF
 -- require("acc_plugs.gitsigns")
 -- require("acc_plugs.feline")
 -- require("acc_plugs.spectre")
-require("acc_plugs.treesitter")
+require("acc_plugs.nvim-treesitter")
 -- require("luisiacc.colorscheme")
 -- require('lightspeed').setup({})
 EOF

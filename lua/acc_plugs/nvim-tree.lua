@@ -39,7 +39,7 @@ require("nvim-tree").setup({
   },
   view = {
     width = 45,
-    side = "right",
+    side = "left",
     signcolumn = "no",
     -- adaptive_size = true,
     centralize_selection = true,

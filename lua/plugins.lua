@@ -16,7 +16,6 @@ local function req(name)
 end
 
 return {
-  "mbbill/undotree",
   { "stevearc/dressing.nvim", config = req("acc_plugs.dressing") },
 
   "nvim-lua/popup.nvim",
@@ -43,9 +42,7 @@ return {
   { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" },
   "MunifTanjim/nui.nvim",
 
-  "psliwka/vim-smoothie",
-
-  { "nvim-treesitter/nvim-treesitter", config = req("acc_plugs.nvim-treesitter") },
+  { "nvim-treesitter/nvim-treesitter", config = req("acc_plugs.nvim-treesitter"), lazy = false },
   "RRethy/nvim-treesitter-endwise",
   "windwp/nvim-ts-autotag",
   { "nvim-treesitter/playground" },
@@ -54,7 +51,6 @@ return {
   "p00f/nvim-ts-rainbow",
 
   { "smjonas/inc-rename.nvim", config = req("acc_plugs.inc_rename") },
-  "simrat39/rust-tools.nvim",
 
   {
     "neovim/nvim-lspconfig",
@@ -63,6 +59,7 @@ return {
       "jose-elias-alvarez/nvim-lsp-ts-utils",
       "jose-elias-alvarez/null-ls.nvim",
       "williamboman/mason.nvim",
+      "simrat39/rust-tools.nvim",
     },
   },
 
@@ -89,7 +86,7 @@ return {
   -- {'ms-jpq/coq.artifacts', branch= 'artifacts'},
   -- {'ms-jpq/coq.thirdparty', branch= '3p'},
 
-  { "dcampos/nvim-snippy", config = req("acc_plugs.nvim-snippy") },
+  { "dcampos/nvim-snippy", config = req("acc_plugs.nvim-snippy"), lazy = false },
   "onsails/lspkind-nvim",
   "honza/vim-snippets",
 
@@ -133,6 +130,7 @@ return {
   { dir = projects .. "the-matrix-theme" },
   { dir = projects .. "handmade-hero-theme.nvim" },
 
+  "lmburns/kimbox",
   "rktjmp/lush.nvim",
 
   "briones-gabriel/darcula-solid.nvim",
@@ -171,7 +169,7 @@ return {
   } },
 
   { "mhinz/vim-startify", config = req("acc_plugs.vim-startify") },
-  { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm")},
+  { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
   "ThePrimeagen/refactoring.nvim",
 }
