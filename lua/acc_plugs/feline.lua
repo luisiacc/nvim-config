@@ -65,6 +65,7 @@ M.statusline.icons.active[1] = {
   {
     provider = "file_info",
     hl = {
+      bg = "bg",
       fg = "yellow",
       style = "bold",
     },
