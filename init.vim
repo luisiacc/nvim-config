@@ -24,8 +24,8 @@ endfunction
 let g:smoothie_update_interval = 5
 let g:smoothie_speed_linear_factor = 13
 let g:smoothie_speed_constant_factor = 13
-
-call g:Source('/plugins.vim')
+"
+" call g:Source('/plugins.vim')
 
 call g:Source('/sets.lua')
 

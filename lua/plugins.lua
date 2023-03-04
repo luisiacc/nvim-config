@@ -130,7 +130,12 @@ return {
   { dir = projects .. "the-matrix-theme" },
   { dir = projects .. "handmade-hero-theme.nvim" },
 
-  "lmburns/kimbox",
+  {
+    "lmburns/kimbox",
+    opts = {
+      toggle_style_key = "<Leader>k",
+    },
+  },
   "rktjmp/lush.nvim",
 
   "briones-gabriel/darcula-solid.nvim",
@@ -159,8 +164,6 @@ return {
   "sainnhe/gruvbox-material",
   "yazeed1s/oh-lucy.nvim",
   "tiagovla/tokyodark.nvim",
-
-  "editorconfig/editorconfig-vim",
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
