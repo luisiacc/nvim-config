@@ -191,6 +191,11 @@ local function get_hl(group, attr)
 end
 
 local augroup = vim.api.nvim_create_augroup("ChangeFelineBg", {})
+
+local function change_tmux_with(bg, fg, accent, new_bg)
+  vim.fn.system({"python3", "/home/acc/change-tmux.py", bg, fg, accent, new_bg})
+end
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   group = augroup,
   callback = function()
@@ -199,11 +204,16 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     local accent = get_hl("@function.call", "fg")
     local keyword = get_hl("@keyword", "fg")
 
+    local new_bg = utils.darken(bg, 0.85)
+
     local new_theme = vim.tbl_extend("force", theme, {
-      bg = utils.darken(bg, 0.85),
+      bg = new_bg,
       yellow = accent,
       violet = keyword,
     })
     require("feline").use_theme(new_theme)
+
+    local fg = get_hl("Normal", "fg")
+    change_tmux_with(bg, fg, keyword, new_bg)
   end,
 })

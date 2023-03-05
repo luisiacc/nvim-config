@@ -3,9 +3,9 @@ let &packpath = &runtimepath
 
 let g:python3_host_prog  = '/usr/bin/python3.10'
 
-syntax off
-filetype indent off
-filetype plugin off
+" syntax off
+filetype indent on
+filetype plugin on
 " set smartindent
 " set autoindent
 

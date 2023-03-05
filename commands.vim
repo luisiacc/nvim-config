@@ -20,10 +20,10 @@ augroup vimrc_autocmd
     " autocmd BufWritePre *.py silent execute ':Black'
     " autocmd VimEnter,VimLeave * silent !tmux set status
     " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml CocPrettier
-    autocmd BufNewFile,BufRead *.vim,*.vimrc setlocal syntax=vim
-    autocmd FileType netrw setlocal syntax=netrw
-    autocmd FileType fugitive setlocal syntax=fugitive
-    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx,*.py,*.lua,*.rs,*.cpp,*.toml,*.json silent execute ':setlocal syntax=OFF'
+    " autocmd BufNewFile,BufRead *.vim,*.vimrc setlocal syntax=vim
+    " autocmd FileType netrw setlocal syntax=netrw
+    " autocmd FileType fugitive setlocal syntax=fugitive
+    " autocmd BufEnter *.js,*.jsx,*.ts,*.tsx,*.py,*.lua,*.rs,*.cpp,*.toml,*.json silent execute ':setlocal syntax=OFF'
     autocmd FileType htmldjango setlocal syntax=htmldjango
 augroup END
 
