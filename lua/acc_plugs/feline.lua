@@ -193,7 +193,7 @@ end
 local augroup = vim.api.nvim_create_augroup("ChangeFelineBg", {})
 
 local function change_tmux_with(bg, fg, accent, new_bg)
-  vim.fn.system({"python3", "/home/acc/change-tmux.py", bg, fg, accent, new_bg})
+  vim.fn.system({ "python3", vim.fn.stdpath("config") .. "/change-tmux.py", bg, fg, accent, new_bg })
 end
 
 vim.api.nvim_create_autocmd("ColorScheme", {
