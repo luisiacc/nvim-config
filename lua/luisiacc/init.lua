@@ -25,6 +25,20 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd("BufRead", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })
 vim.api.nvim_create_autocmd("BufNewFile", { pattern = "*/node_modules/*", command = "lua vim.diagnostic.disable(0)" })
 
+local cache = {}
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function(ev)
+    if cache[ev.file] == nil then
+      local ok, _ = pcall(vim.treesitter.get_parser)
+      cache[ev.file] = ok
+    end
+
+    if cache[ev.file] then
+      vim.cmd("setlocal syntax=OFF")
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd(
   { "BufRead", "BufNewFile" },
   { pattern = { "*.txt", "*.md", "*.tex" }, command = "setlocal spell" }

@@ -1,5 +1,4 @@
-command! -nargs=1 CFont silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -f ' . <q-args>
-command! -nargs=1 CHeight silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -o ' . <q-args>
+command! -nargs=1 CFont silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -f ' . <q-args> command! -nargs=1 CHeight silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -o ' . <q-args>
 command! -nargs=1 CSize silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -s ' . <q-args>
 command! -nargs=1 CWidth silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -w ' . <q-args>
 
@@ -43,4 +42,14 @@ function EnableHighlightsOnBuffer()
     setlocal syntax=OFF
 endfunction
 
-command! -nargs=0 CleanView silent call DisableHighlightsOnBuffer()
+
+function EnableAllTreesitter()
+    exec 'TSEnable hightlight'
+    exec 'TSEnable indent'
+    exec 'TSEnable rainbow'
+    exec 'TSEnable endwise'
+    exec 'TSEnable autotag'
+    exec 'TSEnable playground'
+endfunction
+
+command! -nargs=0 QWE silent call EnableAllTreesitter()

@@ -53,16 +53,19 @@ return {
   { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" },
   "MunifTanjim/nui.nvim",
 
-  { "nvim-treesitter/nvim-treesitter", config = req("acc_plugs.nvim-treesitter") },
-  "RRethy/nvim-treesitter-endwise",
-  "windwp/nvim-ts-autotag",
-  { "nvim-treesitter/playground" },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    config = req("acc_plugs.nvim-treesitter"),
+    dependencies = {
+      "RRethy/nvim-treesitter-endwise",
+      "windwp/nvim-ts-autotag",
+      "p00f/nvim-ts-rainbow",
+      "nvim-treesitter/playground",
+    },
+  },
   { "folke/todo-comments.nvim", config = req("acc_plugs.todo-comments") },
   "SmiteshP/nvim-navic",
-  "p00f/nvim-ts-rainbow",
-
   { "smjonas/inc-rename.nvim", config = req("acc_plugs.inc_rename") },
-
   {
     "neovim/nvim-lspconfig",
     config = req("acc_plugs.nvim-lspconfig"),
@@ -178,9 +181,13 @@ return {
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
-  { "feline-nvim/feline.nvim", config = req("acc_plugs.feline"), dependencies = {
-    "luisiacc/gruvbox-baby",
-  } },
+  {
+    "feline-nvim/feline.nvim",
+    config = req("acc_plugs.feline"),
+    dependencies = {
+      { dir = projects .. "gruvbox-baby" },
+    },
+  },
 
   { "mhinz/vim-startify", config = req("acc_plugs.vim-startify") },
   { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
