@@ -35,7 +35,6 @@ require("nvim-treesitter.configs").setup({
     "rust",
     "lua",
     "html",
-    "jsdoc",
     "markdown",
     "markdown_inline",
     "bash",

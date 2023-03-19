@@ -88,6 +88,7 @@ require("telescope").setup({
     mappings = {
       n = {
         ["<a-i>"] = actions.to_fuzzy_refine,
+        ["<C-y>"] = actions.insert_value,
       },
       i = {
         ["<a-i>"] = actions.to_fuzzy_refine,

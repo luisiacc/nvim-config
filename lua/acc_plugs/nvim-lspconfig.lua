@@ -195,14 +195,15 @@ local server_configurations = {
     capabilities = capabilities,
     on_attach = common_on_attach,
     flags = { debounce_text_changes = 150 },
-    root_dir = nvim_lsp.util.root_pattern(
-      ".luarc.json",
-      ".luacheckrc",
-      ".stylua.toml",
-      "stylua.toml",
-      "selene.toml",
-      ".git"
-    ),
+    root_dir = function(filename, bufnr)
+      -- if ".config/wezterm" is on the filename, return false
+      if string.find(filename, ".config/wezterm") then
+        return nil
+      end
+      nvim_lsp.util.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", ".git")(
+        filename
+      )
+    end,
     settings = {
       Lua = {
         runtime = {

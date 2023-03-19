@@ -12,6 +12,7 @@ o.showmode = false
 o.signcolumn = "yes"
 
 o.diffopt = "vertical"
+opt.equalalways = true
 
 -- o.json_ignore_conceal = 1
 -- o.html_ignore_conceal = 1

@@ -193,4 +193,5 @@ return {
   { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
   "ThePrimeagen/refactoring.nvim",
+  "Rawnly/gist.nvim",
 }
