@@ -53,7 +53,7 @@ require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
   },
-  indent = { enable = true, disable = { "python" } },
+  indent = { enable = true },
   endwise = {
     enable = true,
   },
@@ -64,13 +64,6 @@ require("nvim-treesitter.configs").setup({
     disable = {},
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false, -- Whether the query persists across vim sessions
-  },
-  rainbow = {
-    enable = true,
-    -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-    extended_mode = false, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-    max_file_lines = nil, -- Do not enable for files with more than n lines, int
-    -- termcolors = {} -- table of colour name strings
   },
 })
 

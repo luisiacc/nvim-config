@@ -2,6 +2,7 @@ local o = vim.o
 local g = vim.g
 local opt = vim.opt
 
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 opt.wrap = false
 o.encoding = "utf-8"
 o.cmdheight = 1

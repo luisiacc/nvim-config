@@ -59,7 +59,6 @@ return {
     dependencies = {
       "RRethy/nvim-treesitter-endwise",
       "windwp/nvim-ts-autotag",
-      "p00f/nvim-ts-rainbow",
       "nvim-treesitter/playground",
     },
   },
@@ -74,6 +73,7 @@ return {
       "jose-elias-alvarez/null-ls.nvim",
       "williamboman/mason.nvim",
       "simrat39/rust-tools.nvim",
+      "dcampos/nvim-snippy",
     },
   },
 
@@ -100,9 +100,10 @@ return {
   -- {'ms-jpq/coq.artifacts', branch= 'artifacts'},
   -- {'ms-jpq/coq.thirdparty', branch= '3p'},
 
-  { "dcampos/nvim-snippy", config = req("acc_plugs.nvim-snippy"), lazy = false },
+  { "dcampos/nvim-snippy", config = req("acc_plugs.nvim-snippy"), dependencies = {
+    "honza/vim-snippets",
+  } },
   "onsails/lspkind-nvim",
-  "honza/vim-snippets",
 
   {
     "hrsh7th/nvim-cmp",

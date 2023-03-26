@@ -7,7 +7,8 @@ require("nvim-tree").setup({
   hijack_netrw = true,
   prefer_startup_root = true,
   open_on_tab = false,
-  sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+  sync_root_with_cwd = false,
   hijack_cursor = true,
   hijack_directories = {
     enable = true,
