@@ -125,7 +125,9 @@ return {
 
   "ggandor/lightspeed.nvim",
   { "mg979/vim-visual-multi", branch = "master" },
-  { "sindrets/diffview.nvim", config = req("acc_plugs.diffview"), lazy = true },
+  { "sindrets/diffview.nvim", config = req("acc_plugs.diffview"), dependencies = {
+    "nvim-lua/plenary.nvim",
+  } },
   { "numToStr/Comment.nvim", event = "InsertEnter", config = req("acc_plugs.comment"), lazy = true },
 
   "ludovicchabant/vim-gutentags",
@@ -136,7 +138,7 @@ return {
   { "tpope/vim-fugitive", config = req("acc_plugs.vim-fugitive") },
   "tpope/vim-markdown",
 
-  { "lukas-reineke/indent-blankline.nvim", config = req("acc_plugs.indent-blankline") },
+  -- { "lukas-reineke/indent-blankline.nvim", config = req("acc_plugs.indent-blankline") },
   "skywind3000/asyncrun.vim",
 
   { "norcalli/nvim-colorizer.lua", config = req("acc_plugs.nvim-colorizer") },

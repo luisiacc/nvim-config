@@ -50,6 +50,8 @@ local lsp_formatting = function(bufnr)
   })
 end
 
+_G.format = lsp_formatting
+
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- vim.lsp.set_log_level("debug")
@@ -346,6 +348,8 @@ null_ls.setup({
     fmt.gofmt,
     fmt.sqlformat,
     fmt.djlint,
+    -- fmt.ruff,
+    dg.ruff,
     fmt.black.with({
       prefer_local = ".venv/bin",
       args = { "--quiet", "-" },
@@ -377,7 +381,7 @@ null_ls.setup({
     -- dg.tsc,
     dg.eslint_d,
     dg.djlint,
-    dg.flake8,
+    -- dg.flake8,
     ca.eslint_d,
     ca.refactoring,
   },
