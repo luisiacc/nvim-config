@@ -73,12 +73,12 @@ local common_on_attach = function(client, bufnr)
 
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<A-k>", function()
+  vim.keymap.set("n", "<D-k>", function()
     -- require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
     vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
   end, { buffer = bufnr, silent = true, noremap = true })
 
-  vim.keymap.set("n", "<A-j>", function()
+  vim.keymap.set("n", "<D-j>", function()
     -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
   end, { buffer = bufnr, silent = true, noremap = true })
@@ -325,7 +325,7 @@ local dg = null_ls.builtins.diagnostics
 local ca = null_ls.builtins.code_actions
 
 local _debug = function(content)
-  local f = io.open("/home/acc/.nvim.debug.log", "a")
+  local f = io.open("/Users/Luis/.nvim.debug.log", "a")
   f:write(content .. "\n")
   f.close()
 end

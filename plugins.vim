@@ -7,7 +7,7 @@ endif
 if has('win32')
     let b:projects = 'C:\projects\'
 else
-    let b:projects = '/home/acc/projects/'
+    let b:projects = '/Users/Luis/projects/'
 endif
 
 lua << EOF

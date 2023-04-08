@@ -1,17 +1,17 @@
-command! -nargs=1 CFont silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -f ' . <q-args> command! -nargs=1 CHeight silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -o ' . <q-args>
-command! -nargs=1 CSize silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -s ' . <q-args>
-command! -nargs=1 CWidth silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -w ' . <q-args>
+""command! -nargs=1 CFont silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py -f ' . <q-args> command! -nargs=1 CHeight silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py -o ' . <q-args>
+"command! -nargs=1 CSize silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py -s ' . <q-args>
+"command! -nargs=1 CWidth silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py -w ' . <q-args>
 
-command! -nargs=0 CBig silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -o 10'
-command! -nargs=0 DHeight silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py --decrease-height'
-command! -nargs=0 IHeight silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py --increase-height'
+"command! -nargs=0 CBig silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py -o 10'
+"command! -nargs=0 DHeight silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py --decrease-height'
+"command! -nargs=0 IHeight silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py --increase-height'
 
-command! -nargs=0 ResetTerminal silent execute 'silent !python3 /home/acc/projects/change_alacritty_font.py -s 9 -o 7 -w 0'
+"command! -nargs=0 ResetTerminal silent execute 'silent !python3 /Users/Luis/projects/change_alacritty_font.py -s 9 -o 7 -w 0'
 
-map <A-1> :DHeight<CR>
-map <A-2> :IHeight<CR>
-map <A-3> :ResetTerminal<CR>
-map <A-4> :CBig<CR>
+map <C-1> :DHeight<CR>
+map <C-2> :IHeight<CR>
+map <C-3> :ResetTerminal<CR>
+map <C-4> :CBig<CR>
 
 "auto cmd group
 augroup vimrc_autocmd

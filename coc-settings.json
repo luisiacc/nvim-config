@@ -54,16 +54,16 @@
         "typeParameter": "",
         "default": ""
     },
-    "clangd.path": "/home/acc/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
+    "clangd.path": "/Users/Luis/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": false,
     "python.formatting.provider": "black",
-    "python.formatting.blackPath": "/home/acc/projects/acubliss/core/.venv/bin/black",
+    "python.formatting.blackPath": "/Users/Luis/projects/acubliss/core/.venv/bin/black",
     "python.formatting.blackArgs": ["--line-length", "120"],
     "sumneko-lua.enableNvimLuaDev": false,
     "Lua.workspace.library": [
-        "/home/acc/neovim/share/nvim/runtime/lua",
-        "/home/acc/neovim/share/nvim/runtime/lua/vim/lsp"
+        "/Users/Luis/neovim/share/nvim/runtime/lua",
+        "/Users/Luis/neovim/share/nvim/runtime/lua/vim/lsp"
     ],
     "Lua.diagnostics.globals": [
         "hs",

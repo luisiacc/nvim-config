@@ -13,7 +13,7 @@ require("nvim-ts-autotag").setup({
   },
 })
 
--- local parsers_path = "/home/acc/.local/share/nvim-treesitter-parsers/"
+-- local parsers_path = "/Users/Luis/.local/share/nvim-treesitter-parsers/"
 require("nvim-treesitter.configs").setup({
   -- parser_install_dir = parsers_path,
   ensure_installed = {
@@ -25,7 +25,6 @@ require("nvim-treesitter.configs").setup({
     "json",
     "json5",
     "hcl",
-    "help",
     "http",
     "scheme",
     "make",

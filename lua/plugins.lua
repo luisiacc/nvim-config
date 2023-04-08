@@ -6,7 +6,7 @@ local projects
 if vim.fn.has("win32") == 1 then
   projects = "C:\\projects\\"
 else
-  projects = "/home/acc/projects/"
+  projects = "/Users/Luis/projects/"
 end
 
 local function req(name)

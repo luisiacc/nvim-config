@@ -53,6 +53,7 @@ silent! unmap t
 silent! unmap T
 
 call g:Source('/mappings.vim')
+call g:Source('/mappings.lua')
 call g:Source('/schemes.lua')
 
 " set foldmethod=expr

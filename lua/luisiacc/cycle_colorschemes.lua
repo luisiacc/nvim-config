@@ -127,7 +127,7 @@ local _debug = function(content)
     return
   end
 
-  local f = io.open("/home/acc/.nvim.debug.log", "a")
+  local f = io.open("/Users/Luis/.nvim.debug.log", "a")
   f:write(vim.inspect(content) .. "\n")
   f.close()
 end
@@ -151,5 +151,5 @@ local function go_backwards()
   M.go_to_scheme(-1)
 end
 
-vim.keymap.set("n", "<A-n>", go_backwards)
-vim.keymap.set("n", "<A-m>", go_forward)
+vim.keymap.set("n", "<leader>y", go_backwards)
+vim.keymap.set("n", "<leader>u", go_forward)

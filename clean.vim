@@ -17,7 +17,7 @@ function! g:Source(file)
     exec 'source ' .. g:nvim_config_home .. a:file
 endfunction
 
-let b:projects = '/home/acc/projects/'
+let b:projects = '/Users/Luis/projects/'
 
 set rtp +=~/.vim
 call plug#begin('~/.vim/plugged')

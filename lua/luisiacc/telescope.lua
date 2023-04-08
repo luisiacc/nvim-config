@@ -87,14 +87,14 @@ require("telescope").setup({
     },
     mappings = {
       n = {
-        ["<a-i>"] = actions.to_fuzzy_refine,
+        ["<C-i>"] = actions.to_fuzzy_refine,
         ["<C-y>"] = actions.insert_value,
       },
       i = {
-        ["<a-i>"] = actions.to_fuzzy_refine,
+        ["<C-i>"] = actions.to_fuzzy_refine,
         ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-        ["<A-j>"] = actions.move_selection_next,
-        ["<A-k>"] = actions.move_selection_previous,
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
         ["<C-j>"] = actions.move_selection_next,
         ["<C-k>"] = actions.move_selection_previous,
         ["<esc>"] = actions.close,
@@ -103,7 +103,7 @@ require("telescope").setup({
   },
   extensions = {
     frecency = {
-      db_root = "/home/acc/.vim",
+      db_root = "/Users/Luis/.vim",
     },
     fzf = {
       fuzzy = true, -- false will only do exact matching

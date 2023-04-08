@@ -6,9 +6,6 @@ inoremap ! !<c-g>u
 
 "Fix visual indenting
 vmap < <gv
-vmap > >gv
-vnoremap J <cmd>m '>+1<CR>gv=gv
-vnoremap K <cmd>m '<-2<CR>gv=gv
 
 " Path completion with custom source command
 " inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
@@ -22,6 +19,7 @@ nnoremap <leader>. gt
 
 nnoremap <leader>2 gg<cmd>q!<CR>
 
+vmap > >gv
 
 " replace word
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/
@@ -86,8 +84,7 @@ fun! ToggleLocList()
     endif
 endfun
 
-nmap <leader>q <cmd>tabedit /mnt/c/Users/Luis/AppData/Roaming/alacritty/alacritty.yml<CR>
-nmap <leader>qq <cmd>tabedit /mnt/c/Users/Luis/.config/wezterm/wezterm.lua<CR>
+nmap <leader>qq <cmd>tabedit /Users/Luis/.config/wezterm/wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s
 nnoremap <F5> <cmd>UndotreeToggle<CR>

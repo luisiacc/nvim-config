@@ -37,7 +37,7 @@ vim.g.coq_settings = {
   },
   keymap = {
     bigger_preview = nil,
-    jump_to_mark = "<a-,>",
+    jump_to_mark = "<C-,>",
   },
 }
 
