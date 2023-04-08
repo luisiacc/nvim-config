@@ -77,7 +77,7 @@ if exists("g:neovide")
 lua << EOF
 vim.g.gui_font_default_size = 10
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "MesloLGL NF"
+vim.g.gui_font_face = "Menlo"
 
 RefreshGuiFont = function()
   vim.opt.guifont = string.format("%s:h%s:#h-none",vim.g.gui_font_face, vim.g.gui_font_size)

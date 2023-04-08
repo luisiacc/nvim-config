@@ -36,9 +36,7 @@ nnoremap <C-j> <cmd>wincmd j<CR>
 nnoremap <C-k> <cmd>wincmd k<CR>
 nnoremap <C-l> <cmd>wincmd l<CR>
 
-nnoremap <leader>me <cmd>wincmd v<bar> <cmd>Ex <bar> <cmd>vertical resize 30<CR>
 
-nnoremap <leader>ps <cmd>Rg<SPACE>
 nnoremap <silent> <C-Right> <cmd>vertical resize -2<CR>
 nnoremap <silent> <C-Left> <cmd>vertical resize +2<CR>
 nnoremap <silent> <C-Up> <cmd>resize -1<CR>
