@@ -73,12 +73,12 @@ local common_on_attach = function(client, bufnr)
 
   -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
   -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<D-k>", function()
+  vim.keymap.set("n", "<leader>qk", function()
     -- require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
     vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
   end, { buffer = bufnr, silent = true, noremap = true })
 
-  vim.keymap.set("n", "<D-j>", function()
+  vim.keymap.set("n", "<leader>qj", function()
     -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
     vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
   end, { buffer = bufnr, silent = true, noremap = true })
@@ -377,7 +377,7 @@ null_ls.setup({
       end,
     }),
     fmt.eslint_d,
-    fmt.prettierd,
+    fmt.prettier,
     -- dg.tsc,
     dg.eslint_d,
     dg.djlint,
