@@ -15,7 +15,7 @@ local function req(name)
   end
 end
 
-return {
+local plugins = {
   { "stevearc/dressing.nvim", config = req("acc_plugs.dressing") },
 
   "nvim-lua/popup.nvim",
@@ -50,7 +50,6 @@ return {
 
   --python
   "tweekmonster/django-plus.vim",
-  { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" },
   "MunifTanjim/nui.nvim",
 
   {
@@ -198,3 +197,10 @@ return {
   "ThePrimeagen/refactoring.nvim",
   "Rawnly/gist.nvim",
 }
+
+if 1 then
+  -- concat something to plugins table
+  table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
+end
+
+return plugins

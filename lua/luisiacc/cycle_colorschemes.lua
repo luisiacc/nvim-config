@@ -152,4 +152,4 @@ local function go_backwards()
 end
 
 vim.keymap.set("n", "<leader>y", go_backwards)
-vim.keymap.set("n", "<leader>u", go_forward)
+vim.keymap.set("n", "<leader>h", go_forward)

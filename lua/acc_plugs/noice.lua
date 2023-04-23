@@ -1,3 +1,9 @@
+local enable_message = "mini"
+
+if vim.g.neovide then
+  enable_message = false
+end
+
 require("noice").setup({
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -10,27 +16,27 @@ require("noice").setup({
   cmdline = {
     view = "cmdline_mine",
   },
-    signature = {enabled = false},
+  signature = { enabled = false },
   -- you can enable a preset for easier configuration
   views = {
-    popupmenu ={
-        relative = "editor",
-        position = {
-          row = "40%",
-          col = "50%",
-        },
-        size = {
-          width = 60,
-          height = 10,
-        },
-        border = {
-          style = "rounded",
-          padding = { 0, 1 },
-        },
-        win_options = {
-          winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-        },
+    popupmenu = {
+      relative = "editor",
+      position = {
+        row = "40%",
+        col = "50%",
       },
+      size = {
+        width = 60,
+        height = 10,
+      },
+      border = {
+        style = "rounded",
+        padding = { 0, 1 },
+      },
+      win_options = {
+        winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+      },
+    },
     cmdline_mine = {
       backend = "popup",
       relative = "editor",
@@ -71,7 +77,7 @@ require("noice").setup({
   },
   messages = {
     enabled = true, -- enables the Noice messages UI
-    view = "mini", -- default view for messages
+    view = enable_message, -- default view for messages
     view_error = "notify", -- view for errors
     view_warn = "notify", -- view for warnings
     view_history = "messages", -- view for :messages
@@ -79,9 +85,9 @@ require("noice").setup({
   },
   routes = {
     {
-        view = "notify",
-        filter = { event = "msg_showmode" },
-      },
+      view = "notify",
+      filter = { event = "msg_showmode" },
+    },
     {
       filter = {
         event = "msg_show",

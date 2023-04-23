@@ -65,22 +65,23 @@ call g:Source('/schemes.lua')
 set laststatus=3
 
 if exists("g:neovide")
-    let g:neovide_transparency=0.95
+    let g:neovide_transparency=0.98
     let g:neovide_cursor_animation_length = 0.05
     let g:neovide_cursor_antialiasing=v:true
     let g:neovide_refresh_rate=60
     let g:neovide_no_idle=v:true
     let g:neovide_scroll_animation_length = 0.12
     let g:neovide_fullscreen=v:false
-    " let $NEOVIDE_MULTIGRID = v:true
+    set linespace=10
+    let $NEOVIDE_MULTIGRID = v:true
 
 lua << EOF
-vim.g.gui_font_default_size = 10
+vim.g.gui_font_default_size = 13
 vim.g.gui_font_size = vim.g.gui_font_default_size
 vim.g.gui_font_face = "Menlo"
 
 RefreshGuiFont = function()
-  vim.opt.guifont = string.format("%s:h%s:#h-none",vim.g.gui_font_face, vim.g.gui_font_size)
+  vim.opt.guifont = string.format("%s:h%s",vim.g.gui_font_face, vim.g.gui_font_size)
 end
 
 
@@ -93,18 +94,6 @@ ResetGuiFont = function()
   vim.g.gui_font_size = vim.g.gui_font_default_size
   RefreshGuiFont()
 end
-
-
--- change font with commands
-local function use_font(font)
-  return function()
-    vim.g.gui_font_face = font
-    vim.opt.guifont = string.format("%s:h%s:#h-none", font, vim.g.gui_font_size)
-  end
-end
-
-vim.api.nvim_create_user_command("LGM", use_font("MesloLGM NF"), {})
-vim.api.nvim_create_user_command("LGL", use_font("MesloLGL NF"), {})
 
 -- Call function on startup to set default value
 ResetGuiFont()
