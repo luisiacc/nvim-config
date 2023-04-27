@@ -99,6 +99,14 @@ cmp.setup({
         fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
       end
     end,
+    ["<C-r>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Inset })
+        cmp.confirm()
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      end
+    end, { "i", "s" }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -125,7 +133,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp", max_item_count = 10 },
-    { name = "snippy", max_item_count = 5 },
+    -- { name = "snippy", max_item_count = 5 },
     { name = "nvim_lua", max_item_count = 10, ft = "lua" },
     { name = "path", max_item_count = 10 },
   }, { buffer }),

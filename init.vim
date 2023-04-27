@@ -63,49 +63,6 @@ call g:Source('/schemes.lua')
 " let g:neovide_cursor_animation_length=0.08
 " let g:neovide_cursor_antialiasing=v:true
 set laststatus=3
-
-if exists("g:neovide")
-    let g:neovide_transparency=0.98
-    let g:neovide_cursor_animation_length = 0.05
-    let g:neovide_cursor_antialiasing=v:true
-    let g:neovide_refresh_rate=60
-    let g:neovide_no_idle=v:true
-    let g:neovide_scroll_animation_length = 0.12
-    let g:neovide_fullscreen=v:false
-    set linespace=10
-    let $NEOVIDE_MULTIGRID = v:true
-
-lua << EOF
-vim.g.gui_font_default_size = 13
-vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "Menlo"
-
-RefreshGuiFont = function()
-  vim.opt.guifont = string.format("%s:h%s",vim.g.gui_font_face, vim.g.gui_font_size)
-end
-
-
-ResizeGuiFont = function(delta)
-  vim.g.gui_font_size = vim.g.gui_font_size + delta
-  RefreshGuiFont()
-end
-
-ResetGuiFont = function()
-  vim.g.gui_font_size = vim.g.gui_font_default_size
-  RefreshGuiFont()
-end
-
--- Call function on startup to set default value
-ResetGuiFont()
-
--- Keymaps
-
-local opts = { noremap = true, silent = true }
-
-vim.keymap.set({'n', 'i'}, "<F7>", function() ResizeGuiFont(1)  end, opts)
-vim.keymap.set({'n', 'i'}, "<F6>", function() ResizeGuiFont(-1) end, opts)
-EOF
-endif
 " cool ones
 " IBM Plex Mono:h10
 " Hack NF:h10

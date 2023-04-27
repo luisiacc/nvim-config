@@ -3,6 +3,23 @@ local sorters = require("telescope.sorters")
 
 local M = {}
 
+M.no_preview = function()
+  local theme = require("telescope.themes").get_dropdown({
+    borderchars = {
+      { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+      prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+      preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    },
+    width = 150,
+    previewer = false,
+    prompt_title = false,
+  })
+  theme.layout_config.width = 0.4
+  theme.layout_config.height = 0.5
+  return theme
+end
+
 function M.grep_string_under_cursor()
   builtin.grep_string({ path_display = "shorten", search = vim.fn.expand("<cword>") })
 end
@@ -48,7 +65,7 @@ function M.find_in_buffer()
 end
 
 function M.find_files()
-  return builtin.find_files({})
+  return builtin.find_files(M.no_preview())
 end
 
 function M.frecency()

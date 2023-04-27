@@ -198,7 +198,7 @@ local plugins = {
   "Rawnly/gist.nvim",
 }
 
-if 1 then
+if not vim.g.neovide then
   -- concat something to plugins table
   table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
 end

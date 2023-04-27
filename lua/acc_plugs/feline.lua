@@ -196,6 +196,28 @@ local function change_tmux_with(bg, fg, accent, new_bg)
   vim.fn.system({ "python3", vim.fn.stdpath("config") .. "/change-tmux.py", bg, fg, accent, new_bg })
 end
 
+local function apply_telescope_theme(opt)
+  local telescope_theme = {
+    TelescopeBorder = { fg = opt.bg, bg = opt.bg },
+    TelescopePromptCounter = { fg = c.milk, bg = opt.barBg },
+    TelescopePromptBorder = { fg = opt.barBg, bg = opt.barBg },
+    TelescopePromptNormal = { fg = c.milk, bg = opt.barBg },
+    TelescopePromptPrefix = { fg = opt.icon, bg = opt.barBg },
+
+    TelescopeNormal = { bg = opt.bg },
+
+    TelescopePreviewTitle = { fg = c.background, bg = opt.preview },
+    TelescopePromptTitle = { fg = c.background, bg = opt.icon },
+    TelescopeResultsTitle = { fg = opt.bg, bg = c.milk },
+
+    TelescopeSelection = { bg = c.diff.change },
+  }
+  local util = require("gruvbox-baby.util")
+  for group, colors in pairs(telescope_theme) do
+    util.highlight(group, colors)
+  end
+end
+
 vim.api.nvim_create_autocmd("ColorScheme", {
   group = augroup,
   callback = function()
@@ -215,5 +237,11 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 
     local fg = get_hl("Normal", "fg")
     change_tmux_with(bg, fg, keyword, new_bg)
+    apply_telescope_theme({
+      bg = new_bg,
+      preview = keyword,
+      icon = get_hl("@accent", "fg"),
+      barBg = get_hl("@comment", "fg"),
+    })
   end,
 })
