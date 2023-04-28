@@ -180,6 +180,7 @@ local plugins = {
   "sainnhe/gruvbox-material",
   "yazeed1s/oh-lucy.nvim",
   "tiagovla/tokyodark.nvim",
+  "ofirgall/ofirkai.nvim",
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
