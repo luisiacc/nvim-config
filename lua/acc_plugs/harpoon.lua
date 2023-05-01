@@ -1,5 +1,5 @@
 -- vim.cmd([[nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>]])
 vim.keymap.set("n", "<M-h>", require("harpoon.ui").toggle_quick_menu, { silent = true })
-vim.keymap.set("n", "<leader>am", require("harpoon.mark").toggle_file, { silent = true })
+vim.keymap.set("n", "<M-a>", require("harpoon.mark").toggle_file, { silent = true })
 vim.keymap.set("n", "<M-o>", require("harpoon.ui").nav_prev, { silent = true })
 vim.keymap.set("n", "<M-p>", require("harpoon.ui").nav_next, { silent = true })
