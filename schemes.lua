@@ -8,6 +8,10 @@ vim.g.gruvbox_baby_highlights = {
   PmenuSel = { fg = c.none, bg = "#171717" },
   CmpDocBorder = { fg = c.light_blue, bg = c.none },
   CmpBorder = { fg = c.light_blue, bg = c.none },
+  ["@type"] = { fg = c.clean_green, style = "italic" },
+  ["@type.builtin"] = { fg = c.blue_gray, style = "italic" },
+  ["@type.qualifier"] = { fg = c.orange, style = "italic" },
+  ["@type.definition"] = { fg = c.soft_yellow, style = "italic" },
 }
 
 vim.g.gruvbox_baby_background_color = "medium"

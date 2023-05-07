@@ -1,9 +1,3 @@
-local count = 0
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function(ev)
-    print("hi")
-    count = count + 1
-    print(count)
-  end,
-})
+vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+
+-- let custom_glyph = "▟" " Replace XXXX with the Unicode code point of your custom glyph

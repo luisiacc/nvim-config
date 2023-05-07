@@ -175,7 +175,6 @@ local plugins = {
   "Mofiqul/vscode.nvim",
 
   "projekt0n/github-nvim-theme",
-  "lourenci/github-colors",
   { "rose-pine/neovim", name = "rose-pine" },
   "sainnhe/gruvbox-material",
   "yazeed1s/oh-lucy.nvim",
@@ -199,9 +198,9 @@ local plugins = {
   "Rawnly/gist.nvim",
 }
 
--- if not vim.g.neovide then
+if not vim.g.neovide then
   -- concat something to plugins table
   table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
--- end
+end
 
 return plugins
