@@ -12,12 +12,14 @@ local function go_to_nearest_git_ancestor()
 end
 vim.api.nvim_create_user_command("CWD", go_to_nearest_git_ancestor, {})
 
-vim.api.nvim_create_user_command("Push", function(name, args)
-  vim.cmd("G push origin HEAD -v " .. table.concat(args, " "))
+vim.api.nvim_create_user_command("Push", function(opts)
+  p(opts)
+  vim.cmd("G push origin HEAD -v " .. opts.args)
 end, {})
 
-vim.api.nvim_create_user_command("Pushf", function(name, args)
-  vim.cmd("G push -f origin HEAD -v " .. table.concat(args, " "))
+vim.api.nvim_create_user_command("Pushf", function(opts)
+  p(opts)
+  vim.cmd("G push -f origin HEAD -v " .. opts.args)
 end, {})
 
 local group = vim.api.nvim_create_augroup("ChangeCwd", {})
