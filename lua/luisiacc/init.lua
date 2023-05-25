@@ -13,14 +13,12 @@ end
 vim.api.nvim_create_user_command("CWD", go_to_nearest_git_ancestor, {})
 
 vim.api.nvim_create_user_command("Push", function(opts)
-  p(opts)
   vim.cmd("G push origin HEAD -v " .. opts.args)
-end, {})
+end, {nargs = "?"})
 
 vim.api.nvim_create_user_command("Pushf", function(opts)
-  p(opts)
   vim.cmd("G push -f origin HEAD -v " .. opts.args)
-end, {})
+end, {nargs = "?"})
 
 local group = vim.api.nvim_create_augroup("ChangeCwd", {})
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
