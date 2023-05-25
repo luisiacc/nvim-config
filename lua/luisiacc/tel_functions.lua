@@ -15,7 +15,7 @@ M.no_preview = function()
     previewer = false,
     prompt_title = false,
   })
-  theme.layout_config.width = 0.4
+  theme.layout_config.width = 0.7
   theme.layout_config.height = 0.5
   return theme
 end

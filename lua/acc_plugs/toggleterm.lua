@@ -11,7 +11,8 @@ toggleterm.setup({
   insert_mappings = false, -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
   persist_size = true,
-  direction = "horizontal",
+  -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
+  direction = "tab",
   close_on_exit = true, -- close the terminal window when the process exits
   shell = vim.o.shell, -- change the default shell
   -- This field is only relevant if direction is set to 'float'
@@ -25,10 +26,20 @@ toggleterm.setup({
     -- width = 80,
     -- height = 50,
     winblend = 0,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
+  },
+  highlights = {
+    Normal = {
+      link = "DarkNormal",
     },
+    NormalFloat = {
+      link = "DarkNormal",
+    },
+    FloatBorder = {
+      link = "DarkNormal",
+    },
+  },
+  winbar = {
+    enabled = false,
   },
 })
 

@@ -65,21 +65,21 @@ require("nvim-tree").setup({
       webdev_colors = true,
       git_placement = "before",
       show = {
-        folder = false,
+        folder = true,
         folder_arrow = true,
       },
-      glyphs = {
-        folder = {
-          arrow_closed = "",
-          arrow_open = "",
-          default = "",
-          open = "",
-          empty = "",
-          empty_open = "",
-          symlink = "",
-          symlink_open = "",
-        },
-      },
+      -- glyphs = {
+      --   folder = {
+      --     arrow_closed = "",
+      --     arrow_open = "",
+      --     default = "",
+      --     open = "",
+      --     empty = "",
+      --     empty_open = "",
+      --     symlink = "",
+      --     symlink_open = "",
+      --   },
+      -- },
     },
   },
   live_filter = {

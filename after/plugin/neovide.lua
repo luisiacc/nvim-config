@@ -3,7 +3,7 @@ if not vim.g.neovide then
 end
 
 vim.g.neovide_floating_blur = 0
-vim.g.neovide_transparency = 0.98
+vim.g.neovide_transparency = 0.96
 vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_antialiasing = true
 vim.g.neovide_refresh_rate = 60
@@ -13,12 +13,13 @@ vim.g.neovide_input_macos_alt_is_meta = true
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_fullscreen = false
 vim.env.NEOVIDE_MULTIGRID = true
-vim.opt.linespace = 10
 
 vim.g.gui_font_default_size = 12
 vim.g.gui_font_size = vim.g.gui_font_default_size
-vim.g.gui_font_face = "Menlo"
--- vim.g.gui_font_face = "Liberation Mono"
+-- vim.opt.linespace = 10
+-- vim.g.gui_font_face = "Menlo"
+vim.opt.linespace = 10
+vim.g.gui_font_face = "Liberation Mono"
 
 RefreshGuiFont = function()
   vim.opt.guifont = string.format("%s:h%s:#h-none", vim.g.gui_font_face, vim.g.gui_font_size)

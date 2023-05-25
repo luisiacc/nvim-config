@@ -17,6 +17,11 @@ local colorschemes = {
   { name = "handmade-hero-theme" },
 }
 
+local function get_hl(group, attr)
+  local normal_group = vim.fn.hlID(group)
+  return vim.fn.synIDattr(normal_group, attr)
+end
+
 local function extend_hl(group, new_config)
   local current_hl = vim.api.nvim_get_hl_by_name(group, true)
   vim.api.nvim_set_hl(0, group, vim.tbl_extend("force", current_hl, new_config))
@@ -35,8 +40,13 @@ local pre_colorscheme_hook = {
 }
 
 local after_colorscheme_hook = {
-  one_monokai = function()
-    require("one_monokai").setup()
+  monokai_pro = function()
+    extend_hl("@function.call", { link = "@function" })
+    extend_hl("@method.call", { link = "@function" })
+  end,
+  monokai_ristretto = function()
+    extend_hl("@function.call", { link = "@function" })
+    extend_hl("@method.call", { link = "@function" })
   end,
   ["rose-pine"] = function(bg)
     if bg == "light" then

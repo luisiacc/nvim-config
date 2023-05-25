@@ -235,6 +235,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     })
     require("feline").use_theme(new_theme)
 
+    vim.api.nvim_set_hl(0, "DarkNormal", { bg = new_bg })
+
     local fg = get_hl("Normal", "fg")
     change_tmux_with(bg, fg, keyword, new_bg)
     apply_telescope_theme({
