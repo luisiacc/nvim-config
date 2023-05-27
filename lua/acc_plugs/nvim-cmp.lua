@@ -62,9 +62,9 @@ cmp.setup({
     },
     keyword_length = 3,
   },
-  -- performance = {
-  --   debounce = 500,
-  -- },
+  performance = {
+    max_view_entries = 20,
+  },
   sorting = {
     comparators = {
       cmp.config.compare.exact,
@@ -132,10 +132,10 @@ cmp.setup({
     end,
   },
   sources = cmp.config.sources({
-    { name = "nvim_lsp", max_item_count = 10 },
+    { name = "nvim_lsp" },
     -- { name = "snippy", max_item_count = 5 },
-    { name = "nvim_lua", max_item_count = 10, ft = "lua" },
-    { name = "path", max_item_count = 10 },
+    { name = "nvim_lua", ft = "lua" },
+    { name = "path" },
   }, { buffer }),
 })
 
