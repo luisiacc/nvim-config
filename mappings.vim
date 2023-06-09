@@ -6,20 +6,20 @@ inoremap ! !<c-g>u
 
 "Fix visual indenting
 vmap < <gv
+vmap > >gv
 
 " Path completion with custom source command
 " inoremap <expr> <c-x><c-f> fzf#vim#complete#path('fd')
 " inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 
 " remap tab navigation
-nnoremap <leader>, gT
 nnoremap <leader>. gt
+nnoremap <leader>, gT
 " nnoremap <silent><leader>. <cmd>BufferLineCycleNext<CR>
 " nnoremap <silent><leader>, <cmd>BufferLineCyclePrev<CR>
 
 nnoremap <leader>2 gg<cmd>q!<CR>
 
-vmap > >gv
 
 " replace word
 nnoremap <Leader>rw :%s/\<<C-r><C-w>\>/

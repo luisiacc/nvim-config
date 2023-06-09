@@ -14,11 +14,24 @@ vim.api.nvim_create_user_command("CWD", go_to_nearest_git_ancestor, {})
 
 vim.api.nvim_create_user_command("Push", function(opts)
   vim.cmd("G push origin HEAD -v " .. opts.args)
-end, {nargs = "?"})
+end, { nargs = "?" })
 
 vim.api.nvim_create_user_command("Pushf", function(opts)
   vim.cmd("G push -f origin HEAD -v " .. opts.args)
-end, {nargs = "?"})
+end, { nargs = "?" })
+
+local function execute_range(start, finish)
+  for i = start, finish do
+    local line = vim.api.nvim_buf_get_lines(0, i-1, i, false)[1]
+    if line then
+      vim.cmd(line)
+    end
+  end
+end
+
+vim.api.nvim_create_user_command("R", function(opts)
+  execute_range(opts.line1, opts.line2)
+end, { range = true })
 
 local group = vim.api.nvim_create_augroup("ChangeCwd", {})
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
