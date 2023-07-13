@@ -182,7 +182,7 @@ M.winbar.icons.inactive[1] = {
 }
 
 require("feline").setup({ components = M.statusline.icons })
-require("feline").winbar.setup({ components = M.winbar.icons })
+-- require("feline").winbar.setup({ components = M.winbar.icons })
 require("feline").use_theme(theme)
 
 local function get_hl(group, attr)

@@ -51,11 +51,27 @@ local plugins = {
   --python
   "tweekmonster/django-plus.vim",
   "MunifTanjim/nui.nvim",
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      window = {
+        backdrop = 0,
+        width = 170,
+      },
+    },
+    config = function()
+      vim.keymap.set("n", "<F9>", ":ZenMode<CR>")
+    end,
+  },
 
   {
     "nvim-treesitter/nvim-treesitter",
     config = req("acc_plugs.nvim-treesitter"),
     dependencies = {
+      "nvim-treesitter/nvim-treesitter-context",
       "RRethy/nvim-treesitter-endwise",
       "windwp/nvim-ts-autotag",
       "nvim-treesitter/playground",
@@ -146,12 +162,12 @@ local plugins = {
   { dir = projects .. "the-matrix-theme" },
   { dir = projects .. "handmade-hero-theme.nvim" },
 
-  {
-    "lmburns/kimbox",
-    opts = {
-      toggle_style_key = "<Leader>k",
-    },
-  },
+  -- {
+  --   "lmburns/kimbox",
+  --   opts = {
+  --     toggle_style_key = "<Leader>k",
+  --   },
+  -- },
   "rktjmp/lush.nvim",
 
   "briones-gabriel/darcula-solid.nvim",

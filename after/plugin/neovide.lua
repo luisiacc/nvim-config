@@ -16,9 +16,9 @@ vim.env.NEOVIDE_MULTIGRID = true
 
 vim.g.gui_font_default_size = 12
 vim.g.gui_font_size = vim.g.gui_font_default_size
--- vim.opt.linespace = 10
--- vim.g.gui_font_face = "Menlo"
-vim.opt.linespace = 10
+-- vim.opt.linespace = 0
+-- vim.g.gui_font_face = "IntelOne Mono"
+vim.opt.linespace = 8
 vim.g.gui_font_face = "Liberation Mono"
 
 RefreshGuiFont = function()
@@ -48,6 +48,13 @@ end, opts)
 vim.keymap.set({ "n", "i" }, "<F6>", function()
   ResizeGuiFont(-0.1)
 end, opts)
+vim.keymap.set({ "n", "i" }, "<F8>", function()
+  if vim.g.neovide_transparency == 1 then
+    vim.g.neovide_transparency = 0.96
+  else
+    vim.g.neovide_transparency = 1
+  end
+end, opts)
 
 --cool ones
 --IBM Plex Mono:h10
@@ -56,10 +63,10 @@ end, opts)
 --SF Mono
 
 -- Enable cursor line highlighting
-vim.cmd('set cursorline')
+vim.cmd("set cursorline")
 
 -- Set the cursor line highlighting color (Light Salmon)
-vim.cmd('highlight CursorLine cterm=NONE ctermbg=33 guibg=#FFA07A')
+vim.cmd("highlight CursorLine cterm=NONE ctermbg=33 guibg=#FFA07A")
 
 -- Set the cursor shape in normal, insert, and replace modes (Light Salmon)
-vim.opt.guicursor = 'n-v-c:block,r:hor20,i:ver25'
+vim.opt.guicursor = "n-v-c:block,r:hor20,i:ver25"

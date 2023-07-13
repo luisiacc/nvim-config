@@ -68,6 +68,14 @@ function M.find_files()
   return builtin.find_files(M.no_preview())
 end
 
+function M.find_file_under_cursor()
+  builtin.find_files({ search_file = vim.fn.expand("<cword>") })
+end
+local nnoremap = function(lhs, rhs)
+  vim.keymap.set("n", lhs, rhs)
+end
+nnoremap("<leader>gf", M.find_file_under_cursor)
+
 function M.frecency()
   require("telescope").extensions.frecency.frecency()
 end

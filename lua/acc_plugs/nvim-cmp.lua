@@ -52,7 +52,7 @@ local function disable_if_more_than_x_lines(max_lines)
 end
 
 cmp.setup({
-  enabled = disable_if_more_than_x_lines(3000),
+  enabled = disable_if_more_than_x_lines(7000),
   preselect = cmp.PreselectMode.None,
   completion = {
     completion = {

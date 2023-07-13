@@ -1,7 +1,7 @@
 local colorschemes = {
-  { name = "gruvbox-baby", variant = "soft" },
   { name = "gruvbox-baby", variant = "medium" },
   { name = "gruvbox-baby", variant = "dark" },
+  { name = "ofirkai" },
   { name = "monokai_pro" },
   { name = "monokai_ristretto" },
   { name = "vscode" },
@@ -13,7 +13,6 @@ local colorschemes = {
   { name = "tokyonight" },
   { name = "catppuccin" },
   { name = "thematrix" },
-  { name = "kimbox" },
   { name = "handmade-hero-theme" },
 }
 
