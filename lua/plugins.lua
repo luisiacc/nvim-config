@@ -71,6 +71,7 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     config = req("acc_plugs.nvim-treesitter"),
     dependencies = {
+      "haringsrob/nvim_context_vt",
       "nvim-treesitter/nvim-treesitter-context",
       "RRethy/nvim-treesitter-endwise",
       "windwp/nvim-ts-autotag",
