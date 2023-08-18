@@ -59,7 +59,7 @@ o.t_md = ""
 o.updatetime = 100
 o.colorcolumn = "120"
 o.wildmenu = true
-o.guitablabel = [[\[%N\]\ %t\ %M"]]
+-- o.guitablabel = [[\[%N\]\ %t\ %M"]]
 -- set guioptions-=T guioptions-=m
 
 -- " Do NOT yank with x/s

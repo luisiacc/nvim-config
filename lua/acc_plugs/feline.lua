@@ -156,18 +156,18 @@ M.winbar.icons.active[1] = {
       style = "bold",
     },
   },
-  {
-    provider = function()
-      return gps.get_location()
-    end,
-    hl = { fg = "skyblue", bg = "NONE", style = "bold" },
-    enabled = function()
-      return gps.is_available()
-    end,
-    left_sep = {
-      { str = " ❯ ", hl = { bg = "NONE", fg = "skyblue" } },
-    },
-  },
+  -- {
+  --   provider = function()
+  --     return gps.get_location()
+  --   end,
+  --   hl = { fg = "skyblue", bg = "NONE", style = "bold" },
+  --   enabled = function()
+  --     return gps.is_available()
+  --   end,
+  --   left_sep = {
+  --     { str = " ❯ ", hl = { bg = "NONE", fg = "skyblue" } },
+  --   },
+  -- },
 }
 
 M.winbar.icons.inactive[1] = {
@@ -182,7 +182,7 @@ M.winbar.icons.inactive[1] = {
 }
 
 require("feline").setup({ components = M.statusline.icons })
--- require("feline").winbar.setup({ components = M.winbar.icons })
+require("feline").winbar.setup({ components = M.winbar.icons })
 require("feline").use_theme(theme)
 
 local function get_hl(group, attr)

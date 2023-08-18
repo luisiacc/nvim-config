@@ -71,7 +71,6 @@ local plugins = {
     "nvim-treesitter/nvim-treesitter",
     config = req("acc_plugs.nvim-treesitter"),
     dependencies = {
-      "haringsrob/nvim_context_vt",
       "nvim-treesitter/nvim-treesitter-context",
       "RRethy/nvim-treesitter-endwise",
       "windwp/nvim-ts-autotag",
@@ -198,6 +197,7 @@ local plugins = {
   "tiagovla/tokyodark.nvim",
   "ofirgall/ofirkai.nvim",
   "ellisonleao/gruvbox.nvim",
+  "marko-cerovac/material.nvim",
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
@@ -218,7 +218,11 @@ local plugins = {
 
 if not vim.g.neovide then
   -- concat something to plugins table
-  table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
+    table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
+end
+
+if not vim.fn.has("gui_vimr") then
+  table.insert(plugins, { "haringsrob/nvim_context_vt", config = req("acc_plugs.nvim-context") })
 end
 
 return plugins
