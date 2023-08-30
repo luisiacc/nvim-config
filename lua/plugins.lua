@@ -81,10 +81,14 @@ local plugins = {
   "SmiteshP/nvim-navic",
   { "smjonas/inc-rename.nvim", config = req("acc_plugs.inc_rename") },
   {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
+  {
     "neovim/nvim-lspconfig",
     config = req("acc_plugs.nvim-lspconfig"),
     dependencies = {
-      "jose-elias-alvarez/nvim-lsp-ts-utils",
       "jose-elias-alvarez/null-ls.nvim",
       "williamboman/mason.nvim",
       "simrat39/rust-tools.nvim",
@@ -218,7 +222,7 @@ local plugins = {
 
 if not vim.g.neovide then
   -- concat something to plugins table
-    table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
+  table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
 end
 
 if not vim.fn.has("gui_vimr") then

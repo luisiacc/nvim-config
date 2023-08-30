@@ -57,6 +57,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
 local navic = require("nvim-navic")
+
 local common_on_attach = function(client, bufnr)
   navic.attach(client, bufnr)
   client.server_capabilities.document_formatting = false
@@ -102,7 +103,17 @@ end
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
-local ts_utils = require("nvim-lsp-ts-utils")
+local function patch(result)
+  if not vim.tbl_islist(result) or type(result) ~= "table" then
+    return result
+  end
+
+  return { result[1] }
+end
+
+local function handle_go_to_definition(err, result, ctx, ...)
+  vim.lsp.handlers["textDocument/definition"](err, patch(result), ctx, ...)
+end
 
 local default_config = {
   capabilities = capabilities,
@@ -160,6 +171,25 @@ local find_cmd = function(cmd, prefixes, start_from, stop_at)
   end
 
   return found or cmd
+end
+
+local function filter(arr, fn)
+  if type(arr) ~= "table" then
+    return arr
+  end
+
+  local filtered = {}
+  for k, v in pairs(arr) do
+    if fn(v, k, arr) then
+      table.insert(filtered, v)
+    end
+  end
+
+  return filtered
+end
+
+local function filterReactDTS(value)
+  return string.match(value.uri, "react/index.d.ts") == nil
 end
 
 local server_configurations = {
@@ -226,60 +256,36 @@ local server_configurations = {
       },
     },
   },
-  ["tsserver"] = {
-    capabilities = capabilities,
-    init_options = ts_utils.init_options,
-    root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
-    flags = { debounce_text_changes = 150 },
-    on_attach = function(client, bufnr)
-      -- defaults
-      common_on_attach(client, bufnr)
-      ts_utils.setup({
-        debug = false,
-        disable_commands = false,
-        enable_import_on_completion = false,
+  -- ["tsserver"] = {
+  --   capabilities = capabilities,
+  --   root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+  --   flags = { debounce_text_changes = 150 },
+  --   on_attach = function(client, bufnr)
+  --     -- defaults
+  --     common_on_attach(client, bufnr)
+  --   end,
+  -- },
+}
 
-        -- import all
-        import_all_timeout = 5000, -- ms
-        -- lower numbers = higher priority
-        import_all_priorities = {
-          same_file = 1, -- add to existing import statement
-          local_files = 2, -- git files or files with relative path markers
-          buffer_content = 3, -- loaded buffer content
-          buffers = 4, -- loaded buffer names
-        },
-        import_all_scan_buffers = 100,
-        import_all_select_source = false,
-
-        -- filter diagnostics
-        filter_out_diagnostics_by_severity = {},
-        filter_out_diagnostics_by_code = {},
-
-        -- inlay hints
-        auto_inlay_hints = true,
-        inlay_hints_highlight = "Comment",
-
-        -- update imports on file move
-        update_imports_on_move = false,
-        require_confirmation_on_move = false,
-        watch_dir = nil,
-      })
-
-      -- required to fix code action ranges and filter diagnostics
-      ts_utils.setup_client(client)
-
-      -- no default maps, so you may want to define some here
-      local opts = { silent = true }
-      vim.api.nvim_buf_set_keymap(bufnr, "n", "rf", ":TSLspRenameFile<CR>", opts)
-      vim.api.nvim_buf_set_keymap(bufnr, "n", "ga", ":TSLspImportAll<CR>", opts)
+require("typescript-tools").setup({
+  flags = { debounce_text_changes = 150 },
+  handlers = {
+    ["textDocument/definition"] = function(err, result, method, ...)
+      return handle_go_to_definition(err, result, method, ...)
     end,
   },
-}
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+  on_attach = function(client, bufnr)
+    -- defaults
+    common_on_attach(client, bufnr)
+  end,
+})
 
 local servers = {
   "pyright",
   "rust_analyzer",
-  "tsserver",
+  -- "tsserver",
   "lua_ls",
   "gopls",
   "clangd",
