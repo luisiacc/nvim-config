@@ -1,7 +1,3 @@
-if vim.g.gui_vimr then
-  return
-end
-
 require("nvim_context_vt").setup({
   -- Enable by default. You can disable and use :NvimContextVtToggle to maually enable.
   -- Default: true

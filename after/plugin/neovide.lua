@@ -56,6 +56,45 @@ vim.keymap.set({ "n", "i" }, "<F8>", function()
   end
 end, opts)
 
+function startswith(str, start)
+  return string.sub(str, 1, string.len(start)) == start
+end
+
+local function findIndex(tbl, value)
+  for i, v in ipairs(tbl) do
+    if startswith(value, v) then
+      return i
+    end
+  end
+  return 1
+end
+
+local fonts = {
+  "Dank Mono",
+  "Liberation Mono",
+  "Operator Mono",
+  "Menlo",
+  "Zed Mono",
+    "Iosevka",
+}
+local function moveFont(move)
+  local current_font = vim.opt.guifont:get()[1]
+  local current_font_index = findIndex(fonts, current_font)
+  print("current ", current_font_index, current_font)
+  local new_index = ((current_font_index + move - 1) % #fonts) + 1
+  if new_index == 0 then
+    new_index = #fonts
+  end
+  vim.g.gui_font_face = fonts[new_index]
+  RefreshGuiFont()
+end
+vim.keymap.set({ "n", "i" }, "<F5>", function()
+  moveFont(1)
+end, opts)
+vim.keymap.set({ "n", "i" }, "<F4>", function()
+  moveFont(-1)
+end, opts)
+
 --cool ones
 --IBM Plex Mono:h10
 --Hack NF:h10

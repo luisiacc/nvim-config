@@ -19,7 +19,6 @@ local compare = cmp.config.compare
 
 local buffer = {
   name = "buffer",
-  max_item_count = 10,
   option = {
     get_bufnrs = function()
       local bufs = {}
@@ -60,10 +59,7 @@ cmp.setup({
       col_offset = -3,
       side_padding = 0,
     },
-    keyword_length = 3,
-  },
-  performance = {
-    max_view_entries = 20,
+    -- keyword_length = 3,
   },
   sorting = {
     comparators = {
@@ -123,10 +119,10 @@ cmp.setup({
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
       local strings = vim.split(kind.kind, "%s", { trimempty = true })
-      kind.kind = " " .. strings[1] .. " "
-      kind.menu = " (" .. strings[2] .. ")"
+      kind.kind = " " .. (strings[1] or "") .. " "
+      kind.menu = "    (" .. (strings[2] or "") .. ")"
 
       return kind
     end,

@@ -58,48 +58,52 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local nvim_lsp = require("lspconfig")
 local navic = require("nvim-navic")
 
-local common_on_attach = function(client, bufnr)
-  navic.attach(client, bufnr)
-  client.server_capabilities.document_formatting = false
-  client.server_capabilities.document_range_formatting = false
+local common_on_attach = function(with_navic)
+  return function(client, bufnr)
+    if with_navic then
+      navic.attach(client, bufnr)
+    end
+    -- client.server_capabilities.document_formatting = false
+    -- client.server_capabilities.document_range_formatting = false
 
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, silent = true })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, silent = true })
-  vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, silent = true })
-  vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, silent = true })
 
-  vim.keymap.set("n", "<leader>fm", function()
-    lsp_formatting(bufnr)
-  end, { buffer = bufnr, silent = true })
+    -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+    -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+    vim.keymap.set("n", "<leader>qk", function()
+      -- require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+      vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+    end, { buffer = bufnr, silent = true, noremap = true })
 
-  -- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-  -- nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  vim.keymap.set("n", "<leader>qk", function()
-    -- require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-  end, { buffer = bufnr, silent = true, noremap = true })
+    vim.keymap.set("n", "<leader>qj", function()
+      -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+      vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+    end, { buffer = bufnr, silent = true, noremap = true })
 
-  vim.keymap.set("n", "<leader>qj", function()
-    -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-    vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-  end, { buffer = bufnr, silent = true, noremap = true })
+    -- " code action
+    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
+    vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
 
-  -- " code action
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
-  vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
+    -- "" show hover doc
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })
 
-  -- "" show hover doc
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, silent = true })
+    -- "" show signature help
+    vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = bufnr, silent = true })
 
-  -- "" show signature help
-  vim.keymap.set("n", "gs", vim.lsp.buf.signature_help, { buffer = bufnr, silent = true })
+    -- "" rename
+    vim.keymap.set("n", "<leader>rn", ":IncRename ")
 
-  -- "" rename
-  vim.keymap.set("n", "<leader>rn", ":IncRename ")
-
-  -- "" preview definition
-  vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = bufnr, silent = true })
+    -- "" preview definition
+    vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = bufnr, silent = true })
+  end
 end
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true })
+vim.keymap.set("n", "<leader>fm", function()
+  lsp_formatting(nil)
+end, { silent = true })
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
@@ -117,8 +121,7 @@ end
 
 local default_config = {
   capabilities = capabilities,
-  flags = { debounce_text_changes = 150 },
-  on_attach = common_on_attach,
+  on_attach = common_on_attach(true),
 }
 
 local python_root_files = {
@@ -203,7 +206,7 @@ local server_configurations = {
       return nvim_lsp.util.root_pattern(unpack(python_root_files))(filename)
     end,
     capabilities = capabilities,
-    on_attach = common_on_attach,
+    on_attach = common_on_attach(true),
     settings = {
       python = {
         analysis = {
@@ -225,8 +228,7 @@ local server_configurations = {
   },
   ["lua_ls"] = {
     capabilities = capabilities,
-    on_attach = common_on_attach,
-    flags = { debounce_text_changes = 150 },
+    on_attach = common_on_attach(true),
     root_dir = function(filename, bufnr)
       -- if ".config/wezterm" is on the filename, return false
       if string.find(filename, ".config/wezterm") then
@@ -256,36 +258,53 @@ local server_configurations = {
       },
     },
   },
-  -- ["tsserver"] = {
-  --   capabilities = capabilities,
-  --   root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
-  --   flags = { debounce_text_changes = 150 },
-  --   on_attach = function(client, bufnr)
-  --     -- defaults
-  --     common_on_attach(client, bufnr)
-  --   end,
-  -- },
-}
-
-require("typescript-tools").setup({
-  flags = { debounce_text_changes = 150 },
-  handlers = {
-    ["textDocument/definition"] = function(err, result, method, ...)
-      return handle_go_to_definition(err, result, method, ...)
+  ["tsserver"] = {
+    capabilities = capabilities,
+    handlers = {
+      ["textDocument/definition"] = function(err, result, method, ...)
+        return handle_go_to_definition(err, result, method, ...)
+      end,
+    },
+    root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+    on_attach = function(client, bufnr)
+      -- defaults
+      common_on_attach(true)(client, bufnr)
     end,
   },
-  capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
-  on_attach = function(client, bufnr)
-    -- defaults
-    common_on_attach(client, bufnr)
-  end,
-})
+  ["tailwindcss"] = {
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      -- defaults
+      common_on_attach(false)(client, bufnr)
+    end,
+  },
+}
+
+-- require("typescript-tools").setup({
+--   -- handlers = {
+--   --   ["textDocument/definition"] = function(err, result, method, ...)
+--   --     return handle_go_to_definition(err, result, method, ...)
+--   --   end,
+--   -- },
+--   capabilities = capabilities,
+--   root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+--   on_attach = function(client, bufnr)
+--     -- defaults
+--     common_on_attach(client, bufnr)
+--   end,
+--   settings = {
+--     -- array of strings("fix_all"|"add_missing_imports"|"remove_unused")
+--     -- specify commands exposed as code_actions
+--     expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
+--   },
+-- })
 
 local servers = {
   "pyright",
   "rust_analyzer",
-  -- "tsserver",
+  "tailwindcss",
+  "tsserver",
+  "prismals",
   "lua_ls",
   "gopls",
   "clangd",

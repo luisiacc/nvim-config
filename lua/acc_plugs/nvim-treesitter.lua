@@ -67,7 +67,11 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- vim.opt.runtimepath:append(parsers_path)
-require("treesitter-context").setup({
+local ok, context = pcall(require, "treesitter-context")
+if not ok then
+  return
+end
+context.setup({
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
   min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.

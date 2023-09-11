@@ -80,11 +80,11 @@ local plugins = {
   { "folke/todo-comments.nvim", config = req("acc_plugs.todo-comments") },
   "SmiteshP/nvim-navic",
   { "smjonas/inc-rename.nvim", config = req("acc_plugs.inc_rename") },
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {},
+  -- },
   {
     "neovim/nvim-lspconfig",
     config = req("acc_plugs.nvim-lspconfig"),
