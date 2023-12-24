@@ -18,8 +18,8 @@ vim.g.gui_font_default_size = 12
 vim.g.gui_font_size = vim.g.gui_font_default_size
 -- vim.opt.linespace = 0
 -- vim.g.gui_font_face = "IntelOne Mono"
-vim.opt.linespace = 8
-vim.g.gui_font_face = "Liberation Mono"
+vim.opt.linespace = 12
+vim.g.gui_font_face = "Operator Mono"
 
 RefreshGuiFont = function()
   vim.opt.guifont = string.format("%s:h%s:#h-none", vim.g.gui_font_face, vim.g.gui_font_size)
@@ -75,8 +75,10 @@ local fonts = {
   "Operator Mono",
   "Menlo",
   "Zed Mono",
-    "Iosevka",
+  "SF Mono",
+  "Geist Mono",
 }
+
 local function moveFont(move)
   local current_font = vim.opt.guifont:get()[1]
   local current_font_index = findIndex(fonts, current_font)

@@ -22,7 +22,7 @@ end, { nargs = "?" })
 
 local function execute_range(start, finish)
   for i = start, finish do
-    local line = vim.api.nvim_buf_get_lines(0, i-1, i, false)[1]
+    local line = vim.api.nvim_buf_get_lines(0, i - 1, i, false)[1]
     if line then
       vim.cmd(line)
     end

@@ -35,6 +35,7 @@ call g:Source('/commands.vim')
 call g:Source('/globals.vim')
 call g:Source('/tabline.vim')
 call g:Source('/lazyplugins.lua')
+call g:Source('/filetype.lua')
 
 lua << EOF
 -- require'impatient'.enable_profile()

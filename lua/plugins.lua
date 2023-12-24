@@ -27,6 +27,11 @@ local plugins = {
   "nvim-telescope/telescope-frecency.nvim",
   -- { "github/copilot.vim", config = req("acc_plugs.copilot") },
   { "zbirenbaum/copilot.lua", config = req("acc_plugs.copilotlua") },
+  {
+    "sourcegraph/sg.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = req("acc_plugs.sg"),
+  },
 
   {
     "junegunn/fzf",
@@ -220,10 +225,8 @@ local plugins = {
   "Rawnly/gist.nvim",
 }
 
-if not vim.g.neovide then
-  -- concat something to plugins table
-  table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
-end
+-- concat something to plugins table
+-- table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
 
 if not vim.fn.has("gui_vimr") then
   table.insert(plugins, { "haringsrob/nvim_context_vt", config = req("acc_plugs.nvim-context") })

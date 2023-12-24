@@ -1,9 +1,5 @@
 local enable_message = "mini"
 
-if vim.g.neovide then
-  enable_message = false
-end
-
 require("noice").setup({
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -13,20 +9,17 @@ require("noice").setup({
       ["cmp.entry.get_documentation"] = true,
     },
   },
-  cmdline = {
-    view = "cmdline_mine",
-  },
   signature = { enabled = false },
   -- you can enable a preset for easier configuration
   views = {
     popupmenu = {
       relative = "editor",
-      position = {
-        row = "40%",
-        col = "50%",
-      },
+      -- position = {
+      --   row = "40%",
+      --   col = "50%",
+      -- },
       size = {
-        width = 60,
+        width = 120,
         height = 10,
       },
       border = {
@@ -43,12 +36,8 @@ require("noice").setup({
       focusable = false,
       enter = false,
       zindex = 60,
-      position = {
-        row = "30%",
-        col = "50%",
-      },
       size = {
-        min_width = 100,
+        min_width = 150,
         width = "auto",
         height = "auto",
       },
@@ -71,17 +60,17 @@ require("noice").setup({
     bottom_search = false, -- use a classic bottom cmdline for search
     -- command_palette = true, -- position the cmdline and popupmenu together
     long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = true, -- enables an input dialog for inc-rename.nvim
+    inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = true, -- add a border to hover docs and signature help
     -- cmdline_output_to_split=true,
   },
   messages = {
     enabled = true, -- enables the Noice messages UI
-    view = enable_message, -- default view for messages
-    view_error = "notify", -- view for errors
+    view = 'mini', -- default view for messages
+    view_error = "mini", -- view for errors
     view_warn = "notify", -- view for warnings
     view_history = "messages", -- view for :messages
-    view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+    view_search = false, -- view for search count messages. Set to `false` to disable
   },
   routes = {
     {

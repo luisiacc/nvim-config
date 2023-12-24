@@ -85,7 +85,7 @@ endfun
 nmap <leader>qq <cmd>tabedit /Users/Luis/.config/wezterm/wezterm.lua<CR>
 
 nmap s <Plug>Lightspeed_s
-nnoremap <F5> <cmd>UndotreeToggle<CR>
+" nnoremap <F5> <cmd>UndotreeToggle<CR>
 
 " nnoremap <unique> { <cmd>call smoothie#do("{") <CR>
 " vnoremap <unique> { <cmd>call smoothie#do("{") <CR>

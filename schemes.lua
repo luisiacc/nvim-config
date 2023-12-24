@@ -34,7 +34,6 @@ vim.g.nvcode_termcolors = 256
 vim.opt.termguicolors = true
 vim.o.background = "light"
 vim.cmd([[colorscheme gruvbox-baby]])
-vim.go.t_Co = 256
 
 -- vim.cmd([[highlight IndentBlanklineContextChar guifg=#365050]])
 --

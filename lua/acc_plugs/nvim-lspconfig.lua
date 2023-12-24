@@ -38,6 +38,26 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
+local prefetch_definitions = function()
+  local params = {
+    textDocument = vim.lsp.util.make_text_document_params(),
+  }
+  vim.lsp.buf_request(0, "textDocument/documentSymbol", params, function(err, result)
+    if err or not result then
+      return
+    end
+    for _, symbol in ipairs(result) do
+      if symbol.location then
+        local def_params = {
+          textDocument = params.textDocument,
+          position = symbol.location.range.start,
+        }
+        vim.lsp.buf_request(0, "textDocument/definition", def_params, function() end) -- Empty callback to discard results
+      end
+    end
+  end)
+end
+
 -------------------------- SET UP SERVERS ---------------------------------------------
 
 local lsp_formatting = function(bufnr)
@@ -63,6 +83,7 @@ local common_on_attach = function(with_navic)
     if with_navic then
       navic.attach(client, bufnr)
     end
+    pcall(prefetch_definitions)
     -- client.server_capabilities.document_formatting = false
     -- client.server_capabilities.document_range_formatting = false
 

@@ -51,10 +51,6 @@ o.undodir = "/Users/Luis/.vim/undodir"
 o.undofile = true
 o.incsearch = true
 o.hlsearch = false
-o.t_Co = 256
-o.t_ut = ""
-o.t_u7 = ""
-o.t_md = ""
 
 o.updatetime = 100
 o.colorcolumn = "120"

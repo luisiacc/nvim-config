@@ -86,3 +86,5 @@ context.setup({
   on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 })
 
+
+-- vim.treesitter.language.register("mdx", "markdown")

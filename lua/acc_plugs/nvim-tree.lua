@@ -44,12 +44,6 @@ require("nvim-tree").setup({
     signcolumn = "no",
     -- adaptive_size = true,
     centralize_selection = true,
-    mappings = {
-      custom_only = false,
-      list = {
-        { key = "<CR>", action = "edit_in_place" },
-      },
-    },
   },
   git = {
     enable = true,
@@ -88,11 +82,11 @@ require("nvim-tree").setup({
 })
 
 local function toggle_replace()
-  local view = require("nvim-tree.view")
-  if view.is_visible() then
-    view.close()
+  local api = require("nvim-tree.api")
+  if api.tree.is_visible() then
+    api.tree.close()
   else
-    require("nvim-tree").open_replacing_current_buffer()
+    api.node.open.replace_tree_buffer()
   end
 end
 
