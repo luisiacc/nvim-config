@@ -71,7 +71,7 @@ Plug 'theHamsta/nvim-dap-virtual-text'
 " debugger langs
 Plug 'mfussenegger/nvim-dap-python'
 
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jose-elias-alvarez/none-ls.nvim'
 Plug 'nvim-pack/nvim-spectre'
 
 " Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}

@@ -94,7 +94,7 @@ local plugins = {
     "neovim/nvim-lspconfig",
     config = req("acc_plugs.nvim-lspconfig"),
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
       "williamboman/mason.nvim",
       "simrat39/rust-tools.nvim",
       "dcampos/nvim-snippy",

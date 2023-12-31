@@ -79,6 +79,17 @@ require("nvim-tree").setup({
   live_filter = {
     prefix = "🔎 >",
   },
+  on_attach = function(bufnr)
+    local api = require("nvim-tree.api")
+
+    local function opts(desc)
+      return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
+    vim.keymap.set("n", "<CR>", api.node.open.replace_tree_buffer, opts("Open: In Place"))
+  end,
 })
 
 local function toggle_replace()
@@ -86,6 +97,7 @@ local function toggle_replace()
   if api.tree.is_visible() then
     api.tree.close()
   else
+    print("Helloooooo")
     api.node.open.replace_tree_buffer()
   end
 end
@@ -93,7 +105,7 @@ end
 vim.keymap.set("n", "<leader>ce", "<cmd>NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>r", "<cmd>NvimTreeRefresh<CR>")
 vim.keymap.set("n", "<leader>n", "<cmd>NvimTreeFindFile<CR>")
-vim.keymap.set("n", "<leader>i", toggle_replace)
+vim.keymap.set("n", "<leader>o", toggle_replace)
 
 local function open_nvim_tree(data)
   -- buffer is a [No Name]

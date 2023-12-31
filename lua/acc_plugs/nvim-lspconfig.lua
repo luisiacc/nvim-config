@@ -294,6 +294,22 @@ local server_configurations = {
   },
   ["tailwindcss"] = {
     capabilities = capabilities,
+    settings = {
+      tailwindCSS = {
+        experimental = {
+          classRegex = {
+            "twc\\.[^`]+`([^`]*)`",
+            "twc\\(.*?\\).*?`([^`]*)",
+            { "twc\\.[^`]+\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+            { "twc\\(.*?\\).*?\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+            "twx\\.[^`]+`([^`]*)`",
+            "twx\\(.*?\\).*?`([^`]*)",
+            { "twx\\.[^`]+\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+            { "twx\\(.*?\\).*?\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          },
+        },
+      },
+    },
     on_attach = function(client, bufnr)
       -- defaults
       common_on_attach(false)(client, bufnr)
@@ -423,7 +439,10 @@ null_ls.setup({
       end,
     }),
     fmt.eslint_d,
-    fmt.prettier,
+    fmt.prettier.with({
+      extra_filetypes = { "astro", "mdx" },
+    }),
+    -- fmt.prettierd,
     -- dg.tsc,
     dg.eslint_d,
     dg.djlint,
