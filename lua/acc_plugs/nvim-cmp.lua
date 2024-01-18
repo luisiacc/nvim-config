@@ -129,7 +129,7 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = "nvim_lsp" },
-    -- { name = "snippy", max_item_count = 5 },
+    { name = "snippy", max_item_count = 5 },
     { name = "nvim_lua", ft = "lua" },
     { name = "path" },
   }, { buffer }),

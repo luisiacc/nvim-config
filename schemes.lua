@@ -1,4 +1,5 @@
 vim.g.vimsyn_embed = "l"
+local o = vim.o
 
 vim.g.dracula_italic_comment = true
 local c = require("gruvbox-baby.colors").config()
@@ -44,3 +45,22 @@ vim.cmd([[colorscheme gruvbox-baby]])
 -- " hi Normal guibg=NONE ctermbg=NONE
 -- " hi LineNr ctermbg=NONE guibg=NONE
 -- "
+--
+-- opt.guicursor = "n-v-c:ver70,i:ver25"
+-- set cursor to line on insert mode, and vertical 70 on the rest, make it green on normal mode
+-- o.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
+o.guicursor = "i-ci-ve:ver25-CursorInsert,r-cr-o:hor20,n-v-c-ve:ver70-Cursor"
+-- set cursor group green
+vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
+-- red
+vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ff0000" })
+
+local augroup = vim.api.nvim_create_augroup("ChangeCursor", {})
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = augroup,
+  callback = function()
+    vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
+    -- red
+    vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ff0000" })
+  end,
+})

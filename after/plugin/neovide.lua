@@ -21,9 +21,41 @@ vim.g.gui_font_size = vim.g.gui_font_default_size
 vim.opt.linespace = 12
 vim.g.gui_font_face = "Operator Mono"
 
-RefreshGuiFont = function()
-  vim.opt.guifont = string.format("%s:h%s:#h-none", vim.g.gui_font_face, vim.g.gui_font_size)
+RefreshGuiFont = function(opts)
+  -- vim.opt.guifont = string.format("%s:h%s:#h-none", vim.g.gui_font_face, vim.g.gui_font_size)
+  local font = "%s:h%s"
+  if opts and opts.h then
+    font = font .. ":#h-" .. opts.h
+  end
+  if opts and opts.w then
+    font = font .. ":W" .. opts.w
+  end
+  vim.opt.guifont = string.format(font, vim.g.gui_font_face, vim.g.gui_font_size)
+  p("font", vim.opt.guifont)
 end
+
+local function startswith(str, start)
+  return string.sub(str, 1, string.len(start)) == start
+end
+
+local function findIndex(tbl, value)
+  for i, v in ipairs(tbl) do
+    if startswith(value, v.name) then
+      return i
+    end
+  end
+  return 1
+end
+
+local fonts = {
+  { name = "Dank Mono" },
+  { name = "Liberation Mono", h = "none" },
+  { name = "Operator Mono", w = "300"},
+  { name = "Menlo" },
+  { name = "Zed Mono" },
+  { name = "SF Mono" },
+  { name = "Geist Mono" },
+}
 
 ResizeGuiFont = function(delta)
   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + delta
@@ -32,7 +64,8 @@ end
 
 ResetGuiFont = function()
   vim.g.gui_font_size = vim.g.gui_font_default_size
-  RefreshGuiFont()
+  local fontIndex = findIndex(fonts, vim.g.gui_font_face)
+  RefreshGuiFont(fonts[fontIndex])
 end
 
 -- Call function on startup to set default value
@@ -56,29 +89,6 @@ vim.keymap.set({ "n", "i" }, "<F8>", function()
   end
 end, opts)
 
-function startswith(str, start)
-  return string.sub(str, 1, string.len(start)) == start
-end
-
-local function findIndex(tbl, value)
-  for i, v in ipairs(tbl) do
-    if startswith(value, v) then
-      return i
-    end
-  end
-  return 1
-end
-
-local fonts = {
-  "Dank Mono",
-  "Liberation Mono",
-  "Operator Mono",
-  "Menlo",
-  "Zed Mono",
-  "SF Mono",
-  "Geist Mono",
-}
-
 local function moveFont(move)
   local current_font = vim.opt.guifont:get()[1]
   local current_font_index = findIndex(fonts, current_font)
@@ -87,8 +97,8 @@ local function moveFont(move)
   if new_index == 0 then
     new_index = #fonts
   end
-  vim.g.gui_font_face = fonts[new_index]
-  RefreshGuiFont()
+  vim.g.gui_font_face = fonts[new_index].name
+  RefreshGuiFont(fonts[new_index])
 end
 vim.keymap.set({ "n", "i" }, "<F5>", function()
   moveFont(1)

@@ -200,7 +200,11 @@ local plugins = {
   "Mofiqul/vscode.nvim",
 
   "projekt0n/github-nvim-theme",
-  { "rose-pine/neovim", name = "rose-pine" },
+  { "rose-pine/neovim", name = "rose-pine", opts = {
+    styles = {
+      italic = false,
+    },
+  } },
   "sainnhe/gruvbox-material",
   "yazeed1s/oh-lucy.nvim",
   "tiagovla/tokyodark.nvim",

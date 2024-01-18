@@ -12,6 +12,7 @@ local colorschemes = {
   { name = "tokyodark" },
   { name = "tokyonight" },
   { name = "catppuccin" },
+  { name = "rose-pine-moon" },
   { name = "thematrix" },
   { name = "handmade-hero-theme" },
 }

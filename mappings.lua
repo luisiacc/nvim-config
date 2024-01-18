@@ -9,3 +9,9 @@ vim.keymap.set('i', '<A-i>', 'í', {noremap = true, silent = true})
 vim.keymap.set('i', '<A-o>', 'ó', {noremap = true, silent = true})
 vim.keymap.set('i', '<A-u>', 'ú', {noremap = true, silent = true})
 vim.keymap.set('i', '<A-n>', 'ñ', {noremap = true, silent = true})
+
+vim.keymap.set("n", 'j', 'gj', {noremap = true, silent = true})
+vim.keymap.set("n", 'k', 'gk', {noremap = true, silent = true})
+vim.keymap.set("n", 'H', '^', {noremap = true, silent = true})
+vim.keymap.set("n", 'L', '$', {noremap = true, silent = true})
+
