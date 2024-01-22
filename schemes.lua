@@ -49,7 +49,9 @@ vim.cmd([[colorscheme gruvbox-baby]])
 -- opt.guicursor = "n-v-c:ver70,i:ver25"
 -- set cursor to line on insert mode, and vertical 70 on the rest, make it green on normal mode
 -- o.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
-o.guicursor = "i-ci-ve:ver25-CursorInsert,r-cr-o:hor20,n-v-c-ve:ver70-Cursor"
+if vim.g.neovide then
+  o.guicursor = "n-v-c-ve-sm-r:ver70-Cursor,i-ci:ver25-CursorInsert"
+end
 -- set cursor group green
 vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
 -- red

@@ -245,5 +245,9 @@ vim.api.nvim_create_autocmd("ColorScheme", {
       icon = get_hl("@accent", "fg"),
       barBg = get_hl("@comment", "fg"),
     })
+
+    -- change highlight of text to be a bit lighter than background
+    local light_bg = utils.lighten(bg, 0.85)
+    vim.api.nvim_set_hl(0, "Visual", { bg = light_bg })
   end,
 })

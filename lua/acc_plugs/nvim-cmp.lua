@@ -50,6 +50,25 @@ local function disable_if_more_than_x_lines(max_lines)
   end
 end
 
+---recently_used: Entries that are used recently will be ranked higher.
+---@type cmp.ComparatorFunctor
+local custom_compare = setmetatable({
+  records = {},
+  add_entry = function(self, e)
+    self.records[e.completion_item.label] = vim.loop.now()
+  end,
+}, {
+  ---@type fun(self: table, entry1: cmp.Entry, entry2: cmp.Entry): boolean|nil
+  __call = function(self, entry1, entry2)
+    local t1 = self.records[entry1.completion_item.label] or -1
+    local t2 = self.records[entry2.completion_item.label] or -1
+    if t1 ~= t2 then
+      return t1 > t2
+    end
+    return nil
+  end,
+})
+
 cmp.setup({
   enabled = disable_if_more_than_x_lines(7000),
   preselect = cmp.PreselectMode.None,
