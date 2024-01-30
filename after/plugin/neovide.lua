@@ -50,9 +50,9 @@ end
 local fonts = {
   { name = "Dank Mono" },
   { name = "Liberation Mono", h = "none" },
-  { name = "Operator Mono", w = "300"},
+  { name = "Operator Mono", w = "300" },
   { name = "Menlo" },
-  { name = "Zed Mono" },
+  { name = "Fira Code", h = "none" },
   { name = "SF Mono" },
   { name = "Geist Mono" },
 }

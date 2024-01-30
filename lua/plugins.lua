@@ -43,9 +43,7 @@ local plugins = {
   { "lewis6991/gitsigns.nvim", config = req("acc_plugs.gitsigns"), event = "BufRead" },
   {
     "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup({})
-    end,
+    config = req("acc_plugs.chatgpt"),
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
