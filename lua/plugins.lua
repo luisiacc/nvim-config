@@ -160,7 +160,7 @@ local plugins = {
   { "tpope/vim-fugitive", config = req("acc_plugs.vim-fugitive") },
   "tpope/vim-markdown",
 
-  -- { "lukas-reineke/indent-blankline.nvim", config = req("acc_plugs.indent-blankline") },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", config = req("acc_plugs.indent-blankline") },
   "skywind3000/asyncrun.vim",
 
   { "norcalli/nvim-colorizer.lua", config = req("acc_plugs.nvim-colorizer") },
@@ -225,6 +225,7 @@ local plugins = {
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
   "ThePrimeagen/refactoring.nvim",
   "Rawnly/gist.nvim",
+  { "LunarVim/bigfile.nvim", config = req("acc_plugs.bigfile") },
 }
 
 -- concat something to plugins table

@@ -10,22 +10,9 @@ require("nvim-tree").setup({
   respect_buf_cwd = true,
   sync_root_with_cwd = false,
   hijack_cursor = true,
-  hijack_directories = {
-    enable = true,
-    auto_open = false,
-  },
-  filters = {
-    dotfiles = false,
-    custom = {},
-    exclude = {},
-  },
-  diagnostics = {
-    enable = false,
-    icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+  actions = {
+    open_file = {
+      eject = true,
     },
   },
   update_focused_file = {
@@ -98,7 +85,7 @@ local function toggle_replace()
     api.tree.close()
   else
     print("Helloooooo")
-    api.node.open.replace_tree_buffer()
+    api.tree.open({ current_window = true })
   end
 end
 

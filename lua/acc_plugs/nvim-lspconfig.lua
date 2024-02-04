@@ -80,6 +80,7 @@ local navic = require("nvim-navic")
 
 local common_on_attach = function(with_navic)
   return function(client, bufnr)
+    client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
     if with_navic then
       navic.attach(client, bufnr)
     end
@@ -102,6 +103,8 @@ local common_on_attach = function(with_navic)
       -- require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
       vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
     end, { buffer = bufnr, silent = true, noremap = true })
+
+    vim.keymap.set("n", "H", vim.diagnostic.open_float, { buffer = bufnr, silent = true })
 
     -- " code action
     vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, silent = true })
@@ -143,6 +146,9 @@ end
 local default_config = {
   capabilities = capabilities,
   on_attach = common_on_attach(true),
+  on_init = function(client, _)
+    client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
+  end,
 }
 
 local python_root_files = {
@@ -509,7 +515,7 @@ vim.cmd([[sign define DiagnosticSignHint text=● texthl=DiagnosticSignHint line
 
 vim.diagnostic.config({
   underline = false,
-  virtual_text = true,
+  virtual_text = false,
   signs = true,
   update_in_insert = false,
 })

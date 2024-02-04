@@ -8,10 +8,12 @@ vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_antialiasing = true
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_no_idle = true
-vim.g.neovide_scroll_animation_length = 0.13
+vim.g.neovide_scroll_animation_length = 0.15
 vim.g.neovide_input_macos_alt_is_meta = true
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_fullscreen = false
+vim.g.neovide_cursor_animate_in_insert_mode = true
+vim.g.neovide_scroll_animation_far_lines = 10
 vim.env.NEOVIDE_MULTIGRID = true
 
 vim.g.gui_font_default_size = 12
@@ -27,11 +29,17 @@ RefreshGuiFont = function(opts)
   if opts and opts.h then
     font = font .. ":#h-" .. opts.h
   end
+	if opts and not opts.h then
+		font = font .. ":#h-none"
+	end
+
+  if opts and opts.e then
+    font = font .. ":#e-" .. opts.e
+  end
   if opts and opts.w then
     font = font .. ":W" .. opts.w
   end
   vim.opt.guifont = string.format(font, vim.g.gui_font_face, vim.g.gui_font_size)
-  p("font", vim.opt.guifont)
 end
 
 local function startswith(str, start)
@@ -49,12 +57,14 @@ end
 
 local fonts = {
   { name = "Dank Mono" },
-  { name = "Liberation Mono", h = "none" },
+  { name = "Droid Sans Mono" },
+  { name = "Liberation Mono", h = "none", e = "antialias" },
   { name = "Operator Mono", w = "300" },
   { name = "Menlo" },
   { name = "Fira Code", h = "none" },
   { name = "SF Mono" },
   { name = "Geist Mono" },
+  -- { name = "Segoe UI Mono W01", h = "none" },
 }
 
 ResizeGuiFont = function(delta)

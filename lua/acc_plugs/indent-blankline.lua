@@ -1,17 +1,29 @@
-vim.opt.list = true
--- vim.g.indent_blankline_char = "│"
-vim.g.indent_blankline_char = "⋅"
-vim.g.indent_blankline_space_char_blankline =  "⋅"
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
+local hooks = require("ibl.hooks")
+hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level, { bufnr = 0 })
 
-require("indent_blankline").setup({
-  buftype_exclude = { "terminal", "telescope", "nofile" },
-  filetype_exclude = { "help", "dashboard", "NvimTree", "Trouble", "TelescopePrompt", "Float" },
-  -- show_current_context = true,
-  -- show_current_context_start = false,
-  show_end_of_line = true,
-  show_trailing_blankline_indent = false,
-  use_treesitter = true,
-  space_char_blankline = "⋅",
+require("ibl").setup({
+  indent = {
+    char = "▏",
+    tab_char = "▏",
+  },
+  scope = { enabled = true },
+  whitespace = {
+    remove_blankline_trail = true,
+  },
+  exclude = {
+    filetypes = {
+      "help",
+      "alpha",
+      "dashboard",
+      "neo-tree",
+      "Trouble",
+      "trouble",
+      "lazy",
+      "mason",
+      "notify",
+      "toggleterm",
+      "lazyterm",
+    },
+  },
 })
+

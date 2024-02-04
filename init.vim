@@ -71,3 +71,4 @@ set laststatus=3
 " SF Mono
 
 
+call g:Source('/saved-session.lua')
