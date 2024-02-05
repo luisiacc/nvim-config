@@ -50,6 +50,35 @@ local function disable_if_more_than_x_lines(max_lines)
   end
 end
 
+local custom = {
+  select_first = cmp.mapping(function(fallback)
+    if cmp.visible() then
+      cmp.select_next_item({ behavior = cmp.SelectBehavior.Inset })
+      cmp.confirm()
+    else
+      fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+    end
+  end, { "i", "s" }),
+  safe_enter = cmp.mapping({
+    i = function(fallback)
+      if cmp.visible() and cmp.get_active_entry() then
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+      else
+        fallback()
+      end
+    end,
+    s = cmp.mapping.confirm({ select = true }),
+    c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+  }),
+  regular_enter = function(fallback)
+    if cmp.visible() then
+      cmp.confirm()
+    else
+      fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
+    end
+  end,
+}
+
 ---recently_used: Entries that are used recently will be ranked higher.
 ---@type cmp.ComparatorFunctor
 local custom_compare = setmetatable({
@@ -95,11 +124,7 @@ cmp.setup({
     },
   },
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      -- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       require("snippy").expand_snippet(args.body) -- For `snippy` users.
     end,
   },
@@ -107,33 +132,10 @@ cmp.setup({
     -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-    ["<CR>"] = function(fallback)
-      if cmp.visible() then
-        cmp.confirm()
-      else
-        fallback() -- If you use vim-endwise, this fallback will behave the same as vim-endwise.
-      end
-    end,
-    ["<C-r>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Inset })
-        cmp.confirm()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-      end
-    end, { "i", "s" }),
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-      end
-    end, { "i", "s" }),
+    -- ["<CR>"] = custom.regular_enter,
+    ["<CR>"] = custom.safe_enter,
+    ["<C-r>"] = custom.select_first,
+    ["<Tab>"] = custom.select_first,
   }),
   formatting = {
     fields = { "kind", "abbr", "menu" },

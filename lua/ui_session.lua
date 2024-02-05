@@ -6,8 +6,12 @@ function M.save_session_settings()
   local guifont = vim.o.guifont
   local colorscheme = vim.g.colors_name
   local linespace = vim.o.linespace
+  local scale_factor = vim.g.neovide_scale_factor or 1
   local content = string.format(
-    'vim.o.guifont="%s"\n' .. 'vim.cmd[[colorscheme %s]]\n' .. "vim.opt.linespace=%d\n",
+    'vim.o.guifont="%s"\n'
+      .. "vim.cmd[[colorscheme %s]]\n"
+      .. "vim.opt.linespace=%d\n"
+      .. "vim.g.neovide_scale_factor=%d\n",
     guifont,
     colorscheme,
     linespace
