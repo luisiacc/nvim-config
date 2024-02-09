@@ -6,7 +6,7 @@ require("ibl").setup({
     char = "▏",
     tab_char = "▏",
   },
-  scope = { enabled = true },
+  scope = { enabled = true, show_end = false },
   whitespace = {
     remove_blankline_trail = true,
   },
@@ -27,3 +27,4 @@ require("ibl").setup({
   },
 })
 
+vim.keymap.set("n", "<F2>", "<cmd>IBLToggle<CR>")
