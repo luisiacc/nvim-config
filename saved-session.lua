@@ -1,5 +1,6 @@
-vim.o.guifont="Droid Sans Mono:h12:#h-none"
-vim.cmd[[colorscheme handmade-hero-theme]]
-vim.opt.linespace=-2
-vim.g.neovide_scale_factor=1.400000
+vim.o.guifont="Geist Mono:h12:#h-none"
+vim.cmd[[colorscheme rose-pine]]
+vim.opt.linespace=8
+vim.opt.background='dark'
+vim.g.neovide_scale_factor=1.200000
 

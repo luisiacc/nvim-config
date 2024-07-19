@@ -2,13 +2,13 @@ local colorschemes = {
   { name = "gruvbox-baby", variant = "medium" },
   { name = "gruvbox-baby", variant = "dark" },
   { name = "poimandres" },
+  { name = "rose-pine" },
   { name = "monokai_pro" },
   { name = "monokai_ristretto" },
   { name = "vscode" },
   { name = "github_dark_dimmed" },
   { name = "tokyonight" },
   { name = "catppuccin" },
-  { name = "rose-pine-moon" },
   { name = "thematrix" },
   { name = "handmade-hero-theme" },
 }
@@ -44,13 +44,6 @@ local after_colorscheme_hook = {
     extend_hl("@function.call", { link = "@function" })
     extend_hl("@method.call", { link = "@function" })
   end,
-  ["rose-pine"] = function(bg)
-    if bg == "light" then
-      require("rose-pine").set("dawn")
-    else
-      require("rose-pine").set("moon")
-    end
-  end,
   dracula = function(bg)
     vim.cmd([[hi Comment guifg=#665c54 gui=italic ]])
     vim.cmd([[hi TSComment guifg=#665c54 gui=italic ]])
@@ -75,6 +68,10 @@ local after_colorscheme_hook = {
       hi IndentBlanklineChar guifg=#313131
       hi IndentBlanklineSpaceChar guifg=#313131
     ]])
+  end,
+  poimandres = function(bg)
+    -- set indentline color
+    vim.cmd([[hi IndentBlanklineChar guifg=#101010]])
   end,
 }
 

@@ -24,9 +24,10 @@ local plugins = {
   { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   "nvim-telescope/telescope-project.nvim",
   "tami5/sqlite.lua",
-  "nvim-telescope/telescope-frecency.nvim",
+  -- "nvim-telescope/telescope-frecency.nvim",
   -- { "github/copilot.vim", config = req("acc_plugs.copilot") },
-  { "zbirenbaum/copilot.lua", config = req("acc_plugs.copilotlua") },
+  -- { "zbirenbaum/copilot.lua", config = req("acc_plugs.copilotlua") },
+  -- { "supermaven-inc/supermaven-nvim", config = req("acc_plugs.supermaven") },
   {
     "sourcegraph/sg.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -92,11 +93,23 @@ local plugins = {
     "neovim/nvim-lspconfig",
     config = req("acc_plugs.nvim-lspconfig"),
     dependencies = {
-      "nvimtools/none-ls.nvim",
       "williamboman/mason.nvim",
       "simrat39/rust-tools.nvim",
       "dcampos/nvim-snippy",
     },
+  },
+
+  { "nvimtools/none-ls.nvim" },
+  { "nvimtools/none-ls-extras.nvim" },
+
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "williamboman/mason.nvim",
+      "nvimtools/none-ls.nvim",
+    },
+    config = req("acc_plugs.null-ls"),
   },
 
   { "williamboman/mason.nvim", lazy = false, dependencies = {
@@ -195,14 +208,24 @@ local plugins = {
   "bluz71/vim-nightfly-guicolors",
 
   "folke/tokyonight.nvim",
-  "Mofiqul/vscode.nvim",
-
-  "projekt0n/github-nvim-theme",
-  { "rose-pine/neovim", name = "rose-pine", opts = {
-    styles = {
-      italic = false,
+  { "Mofiqul/vscode.nvim", opts = {
+    color_overrides = {
+      vscBack = "#131313",
     },
   } },
+
+  "projekt0n/github-nvim-theme",
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      variant = "moon", -- auto, main, moon, or dawn
+      dark_variant = "moon", -- main, moon, or dawn
+      styles = {
+        italic = false,
+      },
+    },
+  },
   "sainnhe/gruvbox-material",
   "yazeed1s/oh-lucy.nvim",
   "tiagovla/tokyodark.nvim",
@@ -212,6 +235,16 @@ local plugins = {
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
+  -- {
+  --   branch = "v3.x",
+  -- config = req("acc_plugs.neotree"),
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+  --     "MunifTanjim/nui.nvim",
+  --     -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+  --   },
+  -- },
   {
     "feline-nvim/feline.nvim",
     config = req("acc_plugs.feline"),
@@ -223,6 +256,16 @@ local plugins = {
   { "mhinz/vim-startify", config = req("acc_plugs.vim-startify") },
   { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
+  { "Shatur/neovim-session-manager", config = req("acc.neovim-session-manager") },
+  {
+    "luckasRanarison/nvim-devdocs",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {},
+  },
   "ThePrimeagen/refactoring.nvim",
   "Rawnly/gist.nvim",
   { "LunarVim/bigfile.nvim", config = req("acc_plugs.bigfile") },
@@ -231,8 +274,8 @@ local plugins = {
 -- concat something to plugins table
 -- table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
 
-if not vim.fn.has("gui_vimr") then
-  table.insert(plugins, { "haringsrob/nvim_context_vt", config = req("acc_plugs.nvim-context") })
-end
+-- if not vim.fn.has("gui_vimr") then
+--   table.insert(plugins, { "haringsrob/nvim_context_vt", config = req("acc_plugs.nvim-context") })
+-- end
 
 return plugins

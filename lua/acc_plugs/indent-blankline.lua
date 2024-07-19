@@ -6,7 +6,7 @@ require("ibl").setup({
     char = "▏",
     tab_char = "▏",
   },
-  scope = { enabled = true, show_end = false },
+  scope = { enabled = false, show_end = false },
   whitespace = {
     remove_blankline_trail = true,
   },

@@ -1,5 +1,6 @@
 require("luisiacc.telescope")
 require("luisiacc.replace")
+require("ui_session")
 require("luisiacc.cycle_colorschemes")
 local lsp = require("lspconfig")
 

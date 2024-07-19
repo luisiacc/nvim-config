@@ -10,9 +10,17 @@ require("nvim-tree").setup({
   respect_buf_cwd = true,
   sync_root_with_cwd = false,
   hijack_cursor = true,
+  filesystem_watchers = {
+    enable = true,
+    debounce_delay = 50,
+    ignore_dirs = {
+      "node_modules",
+    },
+  },
   actions = {
     open_file = {
-      eject = true,
+      eject = false,
+      resize_window = false,
     },
   },
   update_focused_file = {
@@ -31,6 +39,7 @@ require("nvim-tree").setup({
     signcolumn = "no",
     -- adaptive_size = true,
     centralize_selection = true,
+    preserve_window_proportions = false,
   },
   git = {
     enable = true,

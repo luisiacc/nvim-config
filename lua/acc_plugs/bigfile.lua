@@ -1,3 +1,3 @@
 require("bigfile").setup({
-  filesize = 10,
+  filesize = 2,
 })

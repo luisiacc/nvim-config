@@ -8,8 +8,8 @@ vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_antialiasing = true
 vim.g.neovide_refresh_rate = 60
 vim.g.neovide_no_idle = true
-vim.g.neovide_scroll_animation_length = 0.22
-vim.g.neovide_input_macos_alt_is_meta = true
+vim.g.neovide_scroll_animation_length = 0.12
+vim.g.neovide_input_macos_option_key_is_meta = "only_left"
 vim.g.neovide_remember_window_size = true
 vim.g.neovide_fullscreen = false
 vim.g.neovide_cursor_animate_in_insert_mode = true
@@ -130,4 +130,9 @@ vim.cmd("set cursorline")
 vim.cmd("highlight CursorLine cterm=NONE ctermbg=33 guibg=#FFA07A")
 
 -- Set the cursor shape in normal, insert, and replace modes (Light Salmon)
-vim.opt.guicursor = "n-v-c:block,r:hor20,i:ver25"
+-- vim.opt.guicursor = "n-v-c:block,r:hor20,i:ver25"
+vim.opt.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
+-- set cursor group green
+vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
+-- red
+vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ff0000" })

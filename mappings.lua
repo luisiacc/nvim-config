@@ -15,3 +15,5 @@ vim.keymap.set("n", 'k', 'gk', {noremap = true, silent = true})
 vim.keymap.set("n", 'H', '^', {noremap = true, silent = true})
 vim.keymap.set("n", 'L', '$', {noremap = true, silent = true})
 
+vim.api.nvim_create_user_command("CopyRelPath", function() vim.api.nvim_call_function("setreg", {"+", vim.fn.fnamemodify(vim.fn.expand("%"), ":.")}) end, {})
+vim.keymap.set("n", "<leader>cm", ":CopyRelPath<CR>", {noremap = true, silent = true})

@@ -42,20 +42,20 @@ local prefetch_definitions = function()
   local params = {
     textDocument = vim.lsp.util.make_text_document_params(),
   }
-  vim.lsp.buf_request(0, "textDocument/documentSymbol", params, function(err, result)
-    if err or not result then
-      return
-    end
-    for _, symbol in ipairs(result) do
-      if symbol.location then
-        local def_params = {
-          textDocument = params.textDocument,
-          position = symbol.location.range.start,
-        }
-        vim.lsp.buf_request(0, "textDocument/definition", def_params, function() end) -- Empty callback to discard results
-      end
-    end
-  end)
+  -- vim.lsp.buf_request(0, "textDocument/documentSymbol", params, function(err, result)
+  --   if err or not result then
+  --     return
+  --   end
+  --   for _, symbol in ipairs(result) do
+  --     if symbol.location then
+  --       local def_params = {
+  --         textDocument = params.textDocument,
+  --         position = symbol.location.range.start,
+  --       }
+  --       vim.lsp.buf_request(0, "textDocument/definition", def_params, function() end) -- Empty callback to discard results
+  --     end
+  --   end
+  -- end)
 end
 
 -------------------------- SET UP SERVERS ---------------------------------------------
@@ -64,10 +64,20 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     timeout_ms = 10000,
     filter = function(client)
-      return client.name == "null-ls"
+      return client.name == "null-ls" or client.name == "ruff_lsp"
     end,
     bufnr = bufnr,
   })
+
+  -- Organize imports only for Python files
+  if vim.bo.filetype == "python" then
+    vim.lsp.buf.code_action({
+      filter = function(action)
+        return action.title == "Ruff: Organize Imports"
+      end,
+      apply = true,
+    })
+  end
 end
 
 _G.format = lsp_formatting
@@ -80,10 +90,12 @@ local navic = require("nvim-navic")
 
 local common_on_attach = function(with_navic)
   return function(client, bufnr)
-    client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-    if with_navic then
-      navic.attach(client, bufnr)
+    if client.name == "ruff_lsp" then
+      -- Disable hover in favor of Pyright
+      client.server_capabilities.hoverProvider = false
     end
+
+    -- client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
     pcall(prefetch_definitions)
     -- client.server_capabilities.document_formatting = false
     -- client.server_capabilities.document_range_formatting = false
@@ -223,6 +235,16 @@ local function filterReactDTS(value)
 end
 
 local server_configurations = {
+  ["ruff_lsp"] = {
+    on_attach = common_on_attach(false),
+    root_dir = function(filename, bufnr)
+      -- local lines = vim.api.nvim_buf_line_count(bufnr)
+      -- if lines > 3000 then
+      --   return nil
+      -- end
+      return nvim_lsp.util.root_pattern(unpack(python_root_files))(filename)
+    end,
+  },
   ["pyright"] = {
     single_file_support = false,
     root_dir = function(filename, bufnr)
@@ -233,13 +255,28 @@ local server_configurations = {
       return nvim_lsp.util.root_pattern(unpack(python_root_files))(filename)
     end,
     capabilities = capabilities,
-    on_attach = common_on_attach(true),
+    on_attach = function(client, bufnr)
+      common_on_attach(true)(client, bufnr)
+    end,
+    -- settings = {
+    --   python = {
+    --     analysis = {
+    --       autoSearchPaths = true,
+    --       useLibraryCodeForTypes = true,
+    --       diagnosticMode = "openFilesOnly",
+    --     },
+    --   },
+    -- },
+    -- use ruff for linting
     settings = {
+      pyright = {
+        -- Using Ruff's import organizer
+        disableOrganizeImports = true,
+      },
       python = {
         analysis = {
-          autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
-          diagnosticMode = "openFilesOnly",
+          -- Ignore all files for analysis to exclusively use Ruff for linting
+          ignore = { "*" },
         },
       },
     },
@@ -355,6 +392,8 @@ local servers = {
   "jsonls",
   "html",
   "sqlls",
+  "astro",
+  "ruff_lsp",
 }
 
 require("mason").setup()
@@ -384,81 +423,6 @@ end
 -- rt.setup({
 --   server = config_wrapper({ on_attach = common_on_attach }),
 -- })
-
-------------------------------------------------------------------------------------------
-------------------------------- null ls --------------------------------------------------
-local null_ls = require("null-ls")
-local fmt = null_ls.builtins.formatting
-local dg = null_ls.builtins.diagnostics
-local ca = null_ls.builtins.code_actions
-
-local _debug = function(content)
-  local f = io.open("/Users/Luis/.nvim.debug.log", "a")
-  f:write(content .. "\n")
-  f.close()
-end
-
-local lsputil = require("lspconfig.util")
-local root_has_file = function(name)
-  local cwd = vim.loop.cwd()
-  return lsputil.path.exists(lsputil.path.join(cwd, name))
-end
-
-null_ls.setup({
-  autostart = true,
-  default_timeout = 10000,
-  sources = {
-    fmt.trim_whitespace.with({
-      filetypes = { "text", "sh", "zsh", "yaml", "toml", "make", "conf", "tmux" },
-    }),
-    fmt.rustfmt,
-    fmt.stylua,
-    fmt.gofmt,
-    fmt.sqlformat,
-    fmt.djlint,
-    -- fmt.ruff,
-    dg.ruff,
-    fmt.black.with({
-      prefer_local = ".venv/bin",
-      args = { "--quiet", "-" },
-      extra_args = { "--line-length", "120" },
-    }),
-    -- fmt.isort,
-    fmt.isort.with({
-      -- condition = function(utils)
-      -- return root_has_file("pyproject.toml")
-      -- end,
-      args = function(params)
-        local lsputil = require("lspconfig.util")
-        local root = nvim_lsp.pyright.get_root_dir(params.bufname)
-        local config = {
-          "--stdout",
-        }
-        if lsputil.path.exists(lsputil.path.join(root, "pyproject.toml")) then
-          table.insert(config, "--settings-path")
-          table.insert(config, root)
-        end
-        table.insert(config, "--filename")
-        table.insert(config, "$FILENAME")
-        table.insert(config, "-")
-        return config
-      end,
-    }),
-    fmt.eslint_d,
-    fmt.prettier.with({
-      extra_filetypes = { "astro", "mdx" },
-    }),
-    -- fmt.prettierd,
-    -- dg.tsc,
-    dg.eslint_d,
-    dg.djlint,
-    -- dg.flake8,
-    ca.eslint_d,
-    ca.refactoring,
-  },
-})
-
-------------------------------------------------------------------------------------------
 
 vim.lsp.protocol.CompletionItemKind = {
   " [text]",
