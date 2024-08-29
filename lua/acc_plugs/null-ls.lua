@@ -68,17 +68,20 @@ null_ls.setup({
     --     return config
     --   end,
     -- }),
-    fmt.prettier.with({
+    -- fmt.prettier.with({
+    --   extra_filetypes = { "astro", "mdx" },
+    -- }),
+		fmt.prisma_format,
+    fmt.prettierd.with({
       extra_filetypes = { "astro", "mdx" },
     }),
-    -- fmt.prettierd,
     -- dg.tsc,
     dg.djlint,
     -- dg.flake8,
     ca.refactoring,
-    require("none-ls.diagnostics.eslint_d"),
-    require("none-ls.formatting.eslint_d"),
-    require("none-ls.code_actions.eslint_d"),
+    -- require("none-ls.diagnostics.eslint"),
+    -- require("none-ls.formatting.eslint_d"),
+    -- require("none-ls.code_actions.eslint"),
   },
 })
 

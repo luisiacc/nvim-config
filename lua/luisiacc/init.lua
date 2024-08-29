@@ -2,6 +2,8 @@ require("luisiacc.telescope")
 require("luisiacc.replace")
 require("ui_session")
 require("luisiacc.cycle_colorschemes")
+require("dingllm")
+require("dingllm-config")
 local lsp = require("lspconfig")
 
 -- change cwd on buf enter
@@ -72,19 +74,19 @@ vim.keymap.set("n", "<leader>ac", function()
   vim.ui.input({ prompt = "Commit message" }, function(input)
     if input then
       vim.g.last_commit_message = input
-      vim.cmd("G cm " .. '"' .. input .. '"')
+      vim.cmd("G cm -a -m " .. '"' .. input .. '"')
     end
   end)
 end, { silent = true })
 
-vim.keymap.set("n", "<leader>ar", function()
-  vim.ui.input({ prompt = "Commit message", default = vim.g.last_commit_message }, function(input)
-    if input then
-      vim.g.last_commit_message = input
-      vim.cmd("G cm " .. '"' .. input .. '"')
-    end
-  end)
-end, { silent = true })
+-- vim.keymap.set("n", "<leader>ar", function()
+--   vim.ui.input({ prompt = "Commit message", default = vim.g.last_commit_message }, function(input)
+--     if input then
+--       vim.g.last_commit_message = input
+--       vim.cmd("G cm " .. '"' .. input .. '"')
+--     end
+--   end)
+-- end, { silent = true })
 
 vim.keymap.set("n", "<leader>e", function()
   vim.ui.input({ prompt = "CMD" }, function(input)
@@ -93,3 +95,36 @@ vim.keymap.set("n", "<leader>e", function()
     end
   end)
 end, { silent = true })
+
+local function reload_module(name)
+  package.loaded[name] = nil
+  return require(name)
+end
+
+-- Create the command
+vim.api.nvim_create_user_command("ReloadM", function(opts)
+  local module_name = opts.args
+  if module_name == "" then
+    print("Please provide a module name")
+    return
+  end
+
+  local success, result = pcall(reload_module, module_name)
+  if success then
+    print(string.format("Module '%s' reloaded successfully", module_name))
+  else
+    print(string.format("Failed to reload module '%s': %s", module_name, result))
+  end
+end, {
+  nargs = 1,
+  complete = function(ArgLead, CmdLine, CursorPos)
+    -- This provides basic completion for loaded modules
+    local modules = {}
+    for k, _ in pairs(package.loaded) do
+      if k:find(ArgLead) == 1 then
+        table.insert(modules, k)
+      end
+    end
+    return modules
+  end,
+})

@@ -6,6 +6,10 @@ if vim.g.using_coq then
 else
   capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 end
+-- vim.lsp.set_log_level'trace'
+-- if vim.fn.has 'nvim-0.5.1' == 1 then
+-- 	require('vim.lsp.log').set_format_func(vim.inspect)
+-- end
 
 -- require("lspsaga").setup({
 --   code_action_icon = "💡",
@@ -38,6 +42,13 @@ function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
   return orig_util_open_floating_preview(contents, syntax, opts, ...)
 end
 
+-- vim.lsp.set_config({
+--   flags = {
+--     allow_incremental_sync = true,
+--     debounce_text_changes = 500,
+--   },
+-- })
+
 local prefetch_definitions = function()
   local params = {
     textDocument = vim.lsp.util.make_text_document_params(),
@@ -64,7 +75,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     timeout_ms = 10000,
     filter = function(client)
-      return client.name == "null-ls" or client.name == "ruff_lsp"
+      return client.name == "null-ls" or client.name == "ruff_lsp" or client.name == "eslint"
     end,
     bufnr = bufnr,
   })
@@ -86,7 +97,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- vim.lsp.set_log_level("debug")
 local nvim_lsp = require("lspconfig")
-local navic = require("nvim-navic")
+-- local navic = require("nvim-navic")
 
 local common_on_attach = function(with_navic)
   return function(client, bufnr)
@@ -96,7 +107,7 @@ local common_on_attach = function(with_navic)
     end
 
     -- client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
-    pcall(prefetch_definitions)
+    -- pcall(prefetch_definitions)
     -- client.server_capabilities.document_formatting = false
     -- client.server_capabilities.document_range_formatting = false
 
@@ -133,6 +144,14 @@ local common_on_attach = function(with_navic)
 
     -- "" preview definition
     vim.keymap.set("n", "<leader>gd", "<C-]>", { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "<leader>ai", function()
+      vim.lsp.buf.code_action({
+        filter = function(action)
+          return action.title:lower():match("import") or action.title:lower():match("add import")
+        end,
+        apply = true,
+      })
+    end, { buffer = 0, silent = true, desc = "Auto import" })
   end
 end
 
@@ -323,17 +342,16 @@ local server_configurations = {
     },
   },
   ["tsserver"] = {
-    capabilities = capabilities,
-    handlers = {
-      ["textDocument/definition"] = function(err, result, method, ...)
-        return handle_go_to_definition(err, result, method, ...)
-      end,
-    },
+    -- capabilities = capabilities,
+    -- handlers = {
+    --   ["textDocument/definition"] = function(err, result, method, ...)
+    --     return handle_go_to_definition(err, result, method, ...)
+    --   end,
+    -- },
     root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
-    on_attach = function(client, bufnr)
-      -- defaults
-      common_on_attach(true)(client, bufnr)
-    end,
+    init_options = {
+      maxTsServerMemory = 8192,
+    },
   },
   ["tailwindcss"] = {
     capabilities = capabilities,
@@ -394,6 +412,7 @@ local servers = {
   "sqlls",
   "astro",
   "ruff_lsp",
+  "eslint",
 }
 
 require("mason").setup()
@@ -506,4 +525,4 @@ _G.p = function(arg)
   print(vim.inspect(arg))
 end
 
-vim.cmd([[nnoremap <leader>aa :lua cancel_all()<CR>]])
+vim.cmd([[nnoremap <leader>lca :lua cancel_all()<CR>]])

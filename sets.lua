@@ -26,7 +26,7 @@ o.ttimeoutlen = 0
 o.mmp = 2000000
 
 -- opt.guicursor=""
-o.scrolloff = 5
+o.scrolloff = 15
 o.hidden = true
 o.switchbuf = "useopen"
 o.errorbells = false
