@@ -75,7 +75,7 @@ local lsp_formatting = function(bufnr)
   vim.lsp.buf.format({
     timeout_ms = 10000,
     filter = function(client)
-      return client.name == "null-ls" or client.name == "ruff_lsp" or client.name == "eslint"
+      return client.name == "null-ls" or client.name == "ruff" or client.name == "eslint"
     end,
     bufnr = bufnr,
   })
@@ -101,7 +101,7 @@ local nvim_lsp = require("lspconfig")
 
 local common_on_attach = function(with_navic)
   return function(client, bufnr)
-    if client.name == "ruff_lsp" then
+    if client.name == "ruff" then
       -- Disable hover in favor of Pyright
       client.server_capabilities.hoverProvider = false
     end
@@ -254,7 +254,7 @@ local function filterReactDTS(value)
 end
 
 local server_configurations = {
-  ["ruff_lsp"] = {
+  ["ruff"] = {
     on_attach = common_on_attach(false),
     root_dir = function(filename, bufnr)
       -- local lines = vim.api.nvim_buf_line_count(bufnr)
@@ -341,7 +341,7 @@ local server_configurations = {
       },
     },
   },
-  ["tsserver"] = {
+  ["ts_ls"] = {
     -- capabilities = capabilities,
     -- handlers = {
     --   ["textDocument/definition"] = function(err, result, method, ...)
@@ -401,7 +401,7 @@ local servers = {
   "pyright",
   "rust_analyzer",
   "tailwindcss",
-  "tsserver",
+  "ts_ls",
   "prismals",
   "lua_ls",
   "gopls",
@@ -411,7 +411,7 @@ local servers = {
   "html",
   "sqlls",
   "astro",
-  "ruff_lsp",
+  "ruff",
   "eslint",
 }
 

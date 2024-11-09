@@ -56,7 +56,10 @@ local custom = {
       cmp.select_next_item({ behavior = cmp.SelectBehavior.Inset })
       cmp.confirm()
     else
-      fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      cmp.complete()
+      cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+      cmp.confirm()
+      -- fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
     end
   end, { "i", "s" }),
   safe_enter = cmp.mapping({
@@ -99,7 +102,7 @@ local custom_compare = setmetatable({
 })
 
 cmp.setup({
-  enabled = disable_if_more_than_x_lines(7000),
+  enabled = disable_if_more_than_x_lines(5000),
   preselect = cmp.PreselectMode.None,
   completion = {
     completion = {
@@ -129,13 +132,14 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    -- ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
     -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
     -- ["<CR>"] = custom.regular_enter,
     ["<CR>"] = custom.safe_enter,
     ["<C-r>"] = custom.select_first,
-    ["<Tab>"] = custom.select_first,
+    -- ["<Tab>"] = custom.select_first,
+    ["<C-t>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
   }),
   formatting = {
     fields = { "kind", "abbr", "menu" },

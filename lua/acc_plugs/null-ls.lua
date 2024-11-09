@@ -12,7 +12,6 @@ require("mason-null-ls").setup({
     "isort",
     "prettier",
     "prettierd",
-    "eslint_d",
   },
 })
 local null_ls = require("null-ls")

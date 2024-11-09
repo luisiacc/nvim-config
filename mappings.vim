@@ -18,7 +18,7 @@ nnoremap <leader>, gT
 " nnoremap <silent><leader>. <cmd>BufferLineCycleNext<CR>
 " nnoremap <silent><leader>, <cmd>BufferLineCyclePrev<CR>
 
-nnoremap <leader>2 gg<cmd>q!<CR>
+" nnoremap <leader>2 gg<cmd>q!<CR>
 
 
 " replace word

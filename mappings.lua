@@ -17,3 +17,10 @@ vim.keymap.set("n", 'L', '$', {noremap = true, silent = true})
 
 vim.api.nvim_create_user_command("CopyRelPath", function() vim.api.nvim_call_function("setreg", {"+", vim.fn.fnamemodify(vim.fn.expand("%"), ":.")}) end, {})
 vim.keymap.set("n", "<leader>cm", ":CopyRelPath<CR>", {noremap = true, silent = true})
+
+vim.keymap.set("n", "<leader>an", "acA")
+
+-- Increase panel width
+vim.keymap.set("n", "<C-f>", ":vertical resize +5<CR>", {noremap = true, silent = true})
+-- Decrease panel width
+vim.keymap.set("n", "<C-e>", ":vertical resize -5<CR>", {noremap = true, silent = true})

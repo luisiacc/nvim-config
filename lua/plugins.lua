@@ -17,6 +17,32 @@ end
 
 local plugins = {
   { "stevearc/dressing.nvim", config = req("acc_plugs.dressing") },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+    keys = {
+      {
+        "<leader>ap",
+        function()
+          Snacks.terminal.toggle()
+        end,
+        desc = "Terminal",
+      },
+      {
+        "<leader>2",
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Delete buffer",
+      },
+    },
+  },
 
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
@@ -34,39 +60,36 @@ local plugins = {
     event = "VeryLazy",
     lazy = false,
     opts = {
-      -- add any opts here
-    },
-    keys = {
-      {
-        "<leader>aa",
-        function()
-          require("avante.api").ask()
-        end,
-        desc = "avante: ask",
-        mode = { "n", "v" },
+      behaviour = {
+        auto_apply_diff_after_generation = false,
       },
-      {
-        "<leader>ar",
-        function()
-          require("avante.api").refresh()
-        end,
-        desc = "avante: refresh",
+      windows = {
+        ---@type "right" | "left" | "top" | "bottom"
+        position = "right", -- the position of the sidebar
+        wrap = true, -- similar to vim.o.wrap
+        width = 40, -- default % based on available width
+        sidebar_header = {
+          align = "center", -- left, center, right for title
+          rounded = true,
+        },
       },
-      {
-        "<leader>ae",
-        function()
-          require("avante.api").edit()
-        end,
-        desc = "avante: edit",
-        mode = "v",
+      highlights = {
+        diff = {
+          current = "DiffDelete",
+          incoming = "DiffAdd",
+        },
       },
     },
+    -- if you want to download pre-built binary, then pass source=false. Make sure to follow instruction above.
+    -- Also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
+    build = ":AvanteBuild source=false",
     dependencies = {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       --- The below dependencies are optional,
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -84,14 +107,14 @@ local plugins = {
           },
         },
       },
-      {
-        -- Make sure to setup it properly if you have lazy=true
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
+      -- {
+      --   -- Make sure to setup it properly if you have lazy=true
+      --   "MeanderingProgrammer/render-markdown.nvim",
+      --   opts = {
+      --     file_types = { "markdown", "Avante" },
+      --   },
+      --   ft = { "markdown", "Avante" },
+      -- },
     },
   },
   -- {
@@ -323,15 +346,15 @@ local plugins = {
   { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
   { "Shatur/neovim-session-manager", config = req("acc.neovim-session-manager") },
-  {
-    "luckasRanarison/nvim-devdocs",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {},
-  },
+  -- {
+  --   "luckasRanarison/nvim-devdocs",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "nvim-telescope/telescope.nvim",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   opts = {},
+  -- },
   "ThePrimeagen/refactoring.nvim",
   "Rawnly/gist.nvim",
   { "LunarVim/bigfile.nvim", config = req("acc_plugs.bigfile") },
