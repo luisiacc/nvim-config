@@ -28,18 +28,12 @@ local plugins = {
     },
     keys = {
       {
-        "<leader>ap",
+        "<C-y>",
         function()
           Snacks.terminal.toggle()
         end,
         desc = "Terminal",
-      },
-      {
-        "<leader>2",
-        function()
-          Snacks.bufdelete()
-        end,
-        desc = "Delete buffer",
+        mode = { "n", "t" },
       },
     },
   },
@@ -56,10 +50,26 @@ local plugins = {
   { "supermaven-inc/supermaven-nvim", config = req("acc_plugs.supermaven") },
   { "j-hui/fidget.nvim", opts = {} },
   {
+    "robitx/gp.nvim",
+    config = function()
+      local conf = {
+        -- For customization, refer to Install > Configuration in the Documentation/Readme
+      }
+      require("gp").setup(conf)
+
+      -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+    end,
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
     opts = {
+      provider = "gemini",
+      gemini = {
+        model = "gemini-2.5-pro-preview-03-25",
+        max_tokens = 8192,
+      },
       behaviour = {
         auto_apply_diff_after_generation = false,
       },
@@ -173,11 +183,11 @@ local plugins = {
   { "folke/todo-comments.nvim", config = req("acc_plugs.todo-comments") },
   "SmiteshP/nvim-navic",
   { "smjonas/inc-rename.nvim", config = req("acc_plugs.inc_rename") },
-  -- {
-  --   "pmizio/typescript-tools.nvim",
-  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-  --   opts = {},
-  -- },
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   {
     "neovim/nvim-lspconfig",
     config = req("acc_plugs.nvim-lspconfig"),
@@ -185,6 +195,7 @@ local plugins = {
       "williamboman/mason.nvim",
       "simrat39/rust-tools.nvim",
       "dcampos/nvim-snippy",
+      "pmizio/typescript-tools.nvim",
     },
   },
 
@@ -321,6 +332,7 @@ local plugins = {
   "ofirgall/ofirkai.nvim",
   "ellisonleao/gruvbox.nvim",
   "marko-cerovac/material.nvim",
+  "ptdewey/darkearth-nvim",
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
@@ -343,6 +355,7 @@ local plugins = {
   },
 
   { "mhinz/vim-startify", config = req("acc_plugs.vim-startify") },
+  "yorumicolors/yorumi.nvim",
   { "akinsho/toggleterm.nvim", config = req("acc_plugs.toggleterm") },
   { "ThePrimeagen/harpoon", config = req("acc_plugs.harpoon") },
   { "Shatur/neovim-session-manager", config = req("acc.neovim-session-manager") },

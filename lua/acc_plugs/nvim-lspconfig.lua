@@ -1,5 +1,7 @@
 -- Setup nvim-cmp.
 -- Setup lspconfig.lspc
+require("mason").setup()
+vim.lsp.set_log_level("off")
 local capabilities
 if vim.g.using_coq then
   capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -84,7 +86,7 @@ local lsp_formatting = function(bufnr)
   if vim.bo.filetype == "python" then
     vim.lsp.buf.code_action({
       filter = function(action)
-        return action.title == "Ruff: Organize Imports"
+        return action.title == "Ruff: Organize imports"
       end,
       apply = true,
     })
@@ -341,18 +343,18 @@ local server_configurations = {
       },
     },
   },
-  ["ts_ls"] = {
-    -- capabilities = capabilities,
-    -- handlers = {
-    --   ["textDocument/definition"] = function(err, result, method, ...)
-    --     return handle_go_to_definition(err, result, method, ...)
-    --   end,
-    -- },
-    root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
-    init_options = {
-      maxTsServerMemory = 8192,
-    },
-  },
+  -- ["ts_ls"] = {
+  --   -- capabilities = capabilities,
+  --   -- handlers = {
+  --   --   ["textDocument/definition"] = function(err, result, method, ...)
+  --   --     return handle_go_to_definition(err, result, method, ...)
+  --   --   end,
+  --   -- },
+  --   root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+  --   init_options = {
+  --     maxTsServerMemory = 8192,
+  --   },
+  -- },
   ["tailwindcss"] = {
     capabilities = capabilities,
     settings = {
@@ -378,30 +380,44 @@ local server_configurations = {
   },
 }
 
--- require("typescript-tools").setup({
---   -- handlers = {
---   --   ["textDocument/definition"] = function(err, result, method, ...)
---   --     return handle_go_to_definition(err, result, method, ...)
---   --   end,
---   -- },
---   capabilities = capabilities,
---   root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
---   on_attach = function(client, bufnr)
---     -- defaults
---     common_on_attach(client, bufnr)
---   end,
---   settings = {
---     -- array of strings("fix_all"|"add_missing_imports"|"remove_unused")
---     -- specify commands exposed as code_actions
---     expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
---   },
--- })
+require("typescript-tools").setup({
+  handlers = {
+    ["textDocument/definition"] = function(err, result, method, ...)
+      return handle_go_to_definition(err, result, method, ...)
+    end,
+  },
+  capabilities = capabilities,
+  root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+  on_attach = function(client, bufnr)
+    -- defaults
+    common_on_attach(client, bufnr)
+  end,
+  settings = {
+    -- array of strings("fix_all"|"add_missing_imports"|"remove_unused")
+    -- specify commands exposed as code_actions
+    expose_as_code_action = { "fix_all", "add_missing_imports", "remove_unused" },
+    typescript = {
+      preferences = {
+        importModuleSpecifierPreference = "non-relative", -- Optional: Prefers '#/' paths if available
+        -- THIS IS THE KEY SETTING:
+        -- 'relative' tells tsserver to add the correct extension (.ts, .tsx, .js, .jsx)
+        importModuleSpecifierEnding = "relative",
+      },
+    },
+    javascript = { -- Apply the same setting for consistency if you work with JS too
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+        importModuleSpecifierEnding = "relative",
+      },
+    },
+  },
+})
 
 local servers = {
   "pyright",
   "rust_analyzer",
   "tailwindcss",
-  "ts_ls",
+  -- "ts_ls",
   "prismals",
   "lua_ls",
   "gopls",
@@ -415,7 +431,6 @@ local servers = {
   "eslint",
 }
 
-require("mason").setup()
 require("mason-lspconfig").setup({
   ensure_installed = servers,
 })

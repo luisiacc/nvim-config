@@ -4,6 +4,16 @@ require("spectre").setup({
     search = "DiffChange",
     replace = "debugPc",
   },
+  replace_engine = {
+    ["sed"] = {
+      cmd = "sed",
+      args = {
+        "-i",
+        "",
+        "-E",
+      },
+    },
+  },
 })
 vim.cmd([[nnoremap <leader>S :lua require('spectre').open()<CR>]])
 

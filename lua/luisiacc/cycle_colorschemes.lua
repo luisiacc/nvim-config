@@ -1,3 +1,4 @@
+local utils = require("gruvbox-baby.util")
 local colorschemes = {
   { name = "gruvbox-baby", variant = "medium" },
   { name = "gruvbox-baby", variant = "dark" },
@@ -5,6 +6,7 @@ local colorschemes = {
   { name = "rose-pine" },
   { name = "monokai_pro" },
   { name = "monokai_ristretto" },
+  { name = "duskfox" },
   { name = "vscode" },
   { name = "github_dark_dimmed" },
   { name = "tokyonight" },
@@ -63,15 +65,13 @@ local after_colorscheme_hook = {
     extend_hl("TabLine", { underline = false })
   end,
   default_dark = function(bg)
-    vim.cmd([[
-      hi IndentBlanklineContextChar guifg=#365050
-      hi IndentBlanklineChar guifg=#313131
-      hi IndentBlanklineSpaceChar guifg=#313131
-    ]])
+    vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { fg = "#365050" })
   end,
   poimandres = function(bg)
-    -- set indentline color
-    vim.cmd([[hi IndentBlanklineChar guifg=#101010]])
+    vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#101010", nocombine = true })
+    vim.api.nvim_set_hl(0, "IblIndent", { fg = "#2a2f3f", bg = "none", nocombine = true })
+    vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a2f3f", nocombine = true })
+    vim.api.nvim_set_hl(0, "StatusColumn", { bg = "#2a2f3f", nocombine = true })
   end,
 }
 
@@ -90,7 +90,6 @@ function M.get_current_scheme()
       return i, scheme
     end
   end
-
   return 1, colorschemes[1]
 end
 
@@ -119,6 +118,8 @@ function M.activate_scheme(scheme)
   vim.defer_fn(function()
     vim.cmd("hi nvim_set_hl_x_hi_clear_bugfix guifg=red")
   end, 100)
+  vim.cmd("IBLToggle") -- toggle on and off
+  vim.cmd("IBLToggle")
 end
 
 local _debug = function(content)

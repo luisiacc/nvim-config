@@ -3,7 +3,7 @@ if not vim.g.neovide then
 end
 
 vim.g.neovide_floating_blur = 0
-vim.g.neovide_transparency = 0.96
+vim.g.neovide_opacity = 0.96
 vim.g.neovide_cursor_animation_length = 0.05
 vim.g.neovide_cursor_antialiasing = true
 vim.g.neovide_refresh_rate = 60
@@ -92,10 +92,10 @@ vim.keymap.set({ "n", "i" }, "<F6>", function()
   ResizeGuiFont(-0.1)
 end, opts)
 vim.keymap.set({ "n", "i" }, "<F8>", function()
-  if vim.g.neovide_transparency == 1 then
-    vim.g.neovide_transparency = 0.96
+  if vim.g.neovide_opacity == 1 then
+    vim.g.neovide_opacity = 0.96
   else
-    vim.g.neovide_transparency = 1
+    vim.g.neovide_opacity = 1
   end
 end, opts)
 
