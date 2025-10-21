@@ -37,13 +37,6 @@ local border = {
   { "│", "FloatBorder" },
 }
 
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or border
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
-
 -- vim.lsp.set_config({
 --   flags = {
 --     allow_incremental_sync = true,
@@ -53,7 +46,7 @@ end
 
 local prefetch_definitions = function()
   local params = {
-    textDocument = vim.lsp.util.make_text_document_params(),
+    textDocument = lsp_utils.make_text_document_params(),
   }
   -- vim.lsp.buf_request(0, "textDocument/documentSymbol", params, function(err, result)
   --   if err or not result then
@@ -98,8 +91,66 @@ _G.format = lsp_formatting
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- vim.lsp.set_log_level("debug")
-local nvim_lsp = require("lspconfig")
 -- local navic = require("nvim-navic")
+--
+
+local function get_first_always(result)
+  -- Always jump to first result
+  if not vim.tbl_islist(result) or type(result) ~= "table" then
+    return result
+  end
+
+  return result[1]
+end
+
+local function get_first_without_node_modules(result)
+  local length = #result
+
+  if length == 1 then
+    return result[1]
+  end
+
+  local filtered_results = {}
+  for _, location in ipairs(result) do
+    local uri = location.uri or location.targetUri
+    if uri then
+      if not string.match(uri, "node_modules") then
+        table.insert(filtered_results, location)
+      end
+    end
+  end
+
+  if vim.tbl_isempty(filtered_results) then
+    vim.notify("No definition found")
+    return
+  end
+
+  -- Always go to the first filtered result
+  local first_result = filtered_results[1]
+  return first_result
+end
+
+local lsp_utils = require("lspconfig.util")
+
+local function build_definition_handler(result_handler)
+  return function()
+    local params = lsp_utils.make_position_params()
+    vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result, ctx, config)
+      if err then
+        vim.notify("Error: " .. err.message)
+        return
+      end
+      if not result or vim.tbl_isempty(result) then
+        vim.notify("No definition found")
+        return
+      end
+
+      -- Always go to the first result
+      local first_result = result_handler(result)
+      lsp_utils.show_document(first_result, "utf-8", { focus = true })
+    end)
+  end
+end
 
 local common_on_attach = function(with_navic)
   return function(client, bufnr)
@@ -113,7 +164,7 @@ local common_on_attach = function(with_navic)
     -- client.server_capabilities.document_formatting = false
     -- client.server_capabilities.document_range_formatting = false
 
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, silent = true })
+    vim.keymap.set("n", "gD", build_definition_handler(get_first_always), { buffer = bufnr, silent = true })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, silent = true })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, silent = true })
 
@@ -157,23 +208,19 @@ local common_on_attach = function(with_navic)
   end
 end
 
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { silent = true })
+vim.keymap.set("n", "gd", build_definition_handler(get_first_without_node_modules), { silent = true })
 vim.keymap.set("n", "<leader>fm", function()
   lsp_formatting(nil)
 end, { silent = true })
 
 local filetypes_with_save_on_write_with_no_lsp = { "htmldjango" }
 
-local function patch(result)
-  if not vim.tbl_islist(result) or type(result) ~= "table" then
-    return result
-  end
-
-  return { result[1] }
+local function handle_go_to_definition(err, result, ctx, ...)
+  vim.lsp.handlers["textDocument/definition"](err, get_first_always(result), ctx, ...)
 end
 
-local function handle_go_to_definition(err, result, ctx, ...)
-  vim.lsp.handlers["textDocument/definition"](err, patch(result), ctx, ...)
+local function handle_go_to_definition_ts(err, result, ctx, ...)
+  vim.lsp.handlers["textDocument/definition"](err, get_first_without_node_modules(result), ctx, ...)
 end
 
 local default_config = {
@@ -182,6 +229,11 @@ local default_config = {
   on_init = function(client, _)
     client.server_capabilities.semanticTokensProvider = nil -- turn off semantic tokens
   end,
+  handlers = {
+    ["textDocument/definition"] = function(err, result, method, ...)
+      return handle_go_to_definition(err, result, method, ...)
+    end,
+  },
 }
 
 local python_root_files = {
@@ -196,7 +248,7 @@ local python_root_files = {
 }
 
 local find_cmd = function(cmd, prefixes, start_from, stop_at)
-  local path = require("lspconfig/util").path
+  local path = lsp_utils.path
 
   if type(prefixes) == "string" then
     prefixes = { prefixes }
@@ -263,17 +315,22 @@ local server_configurations = {
       -- if lines > 3000 then
       --   return nil
       -- end
-      return nvim_lsp.util.root_pattern(unpack(python_root_files))(filename)
+      return lsp_utils.root_pattern(unpack(python_root_files))(filename)
     end,
   },
   ["pyright"] = {
+    handlers = {
+      ["textDocument/definition"] = function(err, result, method, ...)
+        return handle_go_to_definition(err, result, method, ...)
+      end,
+    },
     single_file_support = false,
     root_dir = function(filename, bufnr)
       -- local lines = vim.api.nvim_buf_line_count(bufnr)
       -- if lines > 3000 then
       --   return nil
       -- end
-      return nvim_lsp.util.root_pattern(unpack(python_root_files))(filename)
+      return lsp_utils.root_pattern(unpack(python_root_files))(filename)
     end,
     capabilities = capabilities,
     on_attach = function(client, bufnr)
@@ -304,7 +361,7 @@ local server_configurations = {
     before_init = function(_, config)
       local p
       if vim.env.VIRTUAL_ENV then
-        p = nvim_lsp.util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+        p = nlsp_utils.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
       else
         p = find_cmd("python3", ".venv/bin", config.root_dir)
       end
@@ -312,6 +369,11 @@ local server_configurations = {
     end,
   },
   ["lua_ls"] = {
+    handlers = {
+      ["textDocument/definition"] = function(err, result, method, ...)
+        return handle_go_to_definition(err, result, method, ...)
+      end,
+    },
     capabilities = capabilities,
     on_attach = common_on_attach(true),
     root_dir = function(filename, bufnr)
@@ -319,7 +381,7 @@ local server_configurations = {
       if string.find(filename, ".config/wezterm") then
         return nil
       end
-      nvim_lsp.util.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", ".git")(
+      lsp_utils.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", ".git")(
         filename
       )
     end,
@@ -383,11 +445,11 @@ local server_configurations = {
 require("typescript-tools").setup({
   handlers = {
     ["textDocument/definition"] = function(err, result, method, ...)
-      return handle_go_to_definition(err, result, method, ...)
+      return handle_go_to_definition_ts(err, result, method, ...)
     end,
   },
   capabilities = capabilities,
-  root_dir = nvim_lsp.util.root_pattern(".yarn", "package.json", ".git"),
+  root_dir = lsp_utils.root_pattern(".yarn", "package.json", ".git"),
   on_attach = function(client, bufnr)
     -- defaults
     common_on_attach(client, bufnr)
@@ -417,7 +479,6 @@ local servers = {
   "pyright",
   "rust_analyzer",
   "tailwindcss",
-  -- "ts_ls",
   "prismals",
   "lua_ls",
   "gopls",
@@ -433,16 +494,18 @@ local servers = {
 
 require("mason-lspconfig").setup({
   ensure_installed = servers,
+  automatic_enable = false,
 })
 
 -- SET UP THE SERVERS  ******* IMPORTANT *******
 for _, lsp in pairs(servers) do
   if vim.g.using_coq then
     local coq = require("coq")
-    require("lspconfig")[lsp].setup(coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config))
+    vim.lsp.config[lsp] = coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config)
   else
-    require("lspconfig")[lsp].setup(server_configurations[lsp] or default_config)
+    vim.lsp.config[lsp] = server_configurations[lsp] or default_config
   end
+  vim.lsp.enable(lsp)
 end
 
 -- local rt = require("rust-tools")

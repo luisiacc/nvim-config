@@ -66,9 +66,14 @@ local plugins = {
     lazy = false,
     opts = {
       provider = "gemini",
-      gemini = {
-        model = "gemini-2.5-pro-preview-03-25",
-        max_tokens = 8192,
+      providers = {
+        gemini = {
+          model = "gemini-2.5-pro",
+          extra_request_body = {
+            temperature = 0.8,
+            max_completion_tokens = 32000,
+          },
+        },
       },
       behaviour = {
         auto_apply_diff_after_generation = false,
@@ -162,7 +167,7 @@ local plugins = {
       -- refer to the configuration section below
       window = {
         backdrop = 0,
-        width = 170,
+        width = 0.6,
       },
     },
     config = function()
@@ -333,6 +338,15 @@ local plugins = {
   "ellisonleao/gruvbox.nvim",
   "marko-cerovac/material.nvim",
   "ptdewey/darkearth-nvim",
+  {
+    "0xstepit/flow.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      -- Your configuration options here.
+    },
+  },
+  { "diegoulloao/neofusion.nvim", priority = 1000, config = true },
 
   "kyazdani42/nvim-web-devicons",
   { "kyazdani42/nvim-tree.lua", config = req("acc_plugs.nvim-tree") },
@@ -371,10 +385,31 @@ local plugins = {
   "ThePrimeagen/refactoring.nvim",
   "Rawnly/gist.nvim",
   { "LunarVim/bigfile.nvim", config = req("acc_plugs.bigfile") },
+  {
+    "hardhackerlabs/theme-vim",
+    name = "hardhacker",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.hardhacker_hide_tilde = 1
+      vim.g.hardhacker_keyword_italic = 1
+      -- custom highlights
+      vim.g.hardhacker_custom_highlights = {}
+      vim.cmd("colorscheme hardhacker")
+    end,
+  },
+  {
+    "0xstepit/flow.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      -- Your configuration options here.
+    },
+  },
 }
 
 -- concat something to plugins table
--- table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
+table.insert(plugins, { "folke/noice.nvim", config = req("acc_plugs.noice"), event = "VeryLazy" })
 
 -- if not vim.fn.has("gui_vimr") then
 --   table.insert(plugins, { "haringsrob/nvim_context_vt", config = req("acc_plugs.nvim-context") })

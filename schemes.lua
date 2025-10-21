@@ -9,10 +9,10 @@ vim.g.gruvbox_baby_highlights = {
   PmenuSel = { fg = c.none, bg = "#171717" },
   CmpDocBorder = { fg = c.light_blue, bg = c.none },
   CmpBorder = { fg = c.light_blue, bg = c.none },
-  ["@type"] = { fg = c.clean_green, style = "italic" },
-  ["@type.builtin"] = { fg = c.blue_gray, style = "italic" },
-  ["@type.qualifier"] = { fg = c.orange, style = "italic" },
-  ["@type.definition"] = { fg = c.soft_yellow, style = "italic" },
+  -- ["@type"] = { fg = c.clean_green, style = "italic" },
+  -- ["@type.builtin"] = { fg = c.blue_gray, style = "italic" },
+  -- ["@type.qualifier"] = { fg = c.orange, style = "italic" },
+  -- ["@type.definition"] = { fg = c.soft_yellow, style = "italic" },
 }
 
 vim.g.gruvbox_baby_background_color = "medium"
@@ -50,12 +50,13 @@ vim.cmd([[colorscheme gruvbox-baby]])
 -- set cursor to line on insert mode, and vertical 70 on the rest, make it green on normal mode
 -- o.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
 if vim.g.neovide then
-  o.guicursor = "n-v-c:block-Cursor,r:hor20-Cursor,i:ver25-Cursor"
+  -- o.guicursor = "n-v-c:block-Cursor,r:hor20-Cursor,i:ver25-Cursor"
+  -- vim.opt.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
+  -- -- set cursor group green
+  -- vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
+  -- -- red
+  -- vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ff0000" })
 end
--- set cursor group green
-vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
--- red
-vim.api.nvim_set_hl(0, "CursorInsert", { bg = "#ff0000" })
 
 local augroup = vim.api.nvim_create_augroup("ChangeCursor", {})
 vim.api.nvim_create_autocmd("ColorScheme", {

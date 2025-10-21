@@ -60,6 +60,8 @@ local fonts = {
   { name = "Droid Sans Mono" },
   { name = "Liberation Mono", h = "none", e = "antialias" },
   { name = "Operator Mono", w = "300" },
+  { name = "Berkeley Mono Variable", w = "300" },
+  { name = "Inconsolata", w = "300" },
   { name = "Menlo" },
   { name = "Fira Code", h = "none" },
   { name = "SF Mono" },
@@ -127,11 +129,11 @@ end, opts)
 vim.cmd("set cursorline")
 
 -- Set the cursor line highlighting color (Light Salmon)
-vim.cmd("highlight CursorLine cterm=NONE ctermbg=33 guibg=#FFA07A")
+-- vim.cmd("highlight CursorLine cterm=NONE ctermbg=33 guibg=#FFA07A")
 
 -- Set the cursor shape in normal, insert, and replace modes (Light Salmon)
 -- vim.opt.guicursor = "n-v-c:block,r:hor20,i:ver25"
-vim.opt.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
+-- vim.opt.guicursor = "n-v-c:ver60,i-ci-ve:ver25,r-cr-o:hor20"
 -- set cursor group green
 vim.api.nvim_set_hl(0, "Cursor", { bg = "#00ff00" })
 -- red

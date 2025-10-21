@@ -71,6 +71,7 @@ local after_colorscheme_hook = {
     vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#101010", nocombine = true })
     vim.api.nvim_set_hl(0, "IblIndent", { fg = "#2a2f3f", bg = "none", nocombine = true })
     vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#2a2f3f", nocombine = true })
+    -- vim.api.nvim_set_hl(0, "@string", { fg = "#B2BD62", nocombine = true })
     vim.api.nvim_set_hl(0, "StatusColumn", { bg = "#2a2f3f", nocombine = true })
   end,
 }

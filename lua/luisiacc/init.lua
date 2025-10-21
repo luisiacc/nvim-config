@@ -23,6 +23,20 @@ vim.api.nvim_create_user_command("Pushf", function(opts)
   vim.cmd("G push -f origin HEAD -v " .. opts.args)
 end, { nargs = "?" })
 
+vim.api.nvim_create_user_command("LspRestartAll", function()
+  vim.notify("Restarting LSP servers...")
+  vim.lsp.stop_client(vim.lsp.get_clients())
+
+  vim.defer_fn(function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted then
+        vim.api.nvim_exec_autocmds("BufEnter", { buffer = buf, modeline = false })
+      end
+    end
+    vim.notify("LSP servers restarted.", vim.log.levels.INFO, { title = "LSP" })
+  end, 100)
+end, {})
+
 local function execute_range(start, finish)
   for i = start, finish do
     local line = vim.api.nvim_buf_get_lines(0, i - 1, i, false)[1]
@@ -128,3 +142,4 @@ end, {
     return modules
   end,
 })
+

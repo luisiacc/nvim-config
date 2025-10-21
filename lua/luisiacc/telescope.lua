@@ -1,6 +1,8 @@
 local resolve = require("telescope.config.resolve")
 local p_window = require("telescope.pickers.window")
 local actions = require("telescope.actions")
+local telescope = require("telescope")
+local themes = require("telescope.themes")
 
 local full_theme = {
   winblend = 20,
@@ -18,7 +20,7 @@ local full_theme = {
 }
 
 local no_preview = function()
-  return require("telescope.themes").get_dropdown({
+  return themes.get_dropdown({
     borderchars = {
       { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
       prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
@@ -32,15 +34,14 @@ local no_preview = function()
 end
 
 local vscode_finder = function(opts)
-  local theme_opts = require("telescope.themes").get_ivy(opts)
+  local theme_opts = themes.get_ivy(opts)
   theme_opts.theme = "vscode"
   return vim.tbl_deep_extend("force", theme_opts, opts)
 end
 
-local ivy = require("telescope.themes").get_ivy
+local ivy = themes.get_ivy
 
-local actions = require("telescope.actions")
-require("telescope").setup({
+telescope.setup({
   pickers = { buffers = { sort_lastused = true, theme = "ivy" } },
   defaults = {
     prompt_prefix = "   ",
@@ -121,6 +122,6 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("project")
-pcall(require("telescope").load_extension, "frecency")
+telescope.load_extension("fzf")
+-- telescope.load_extension("project")
+pcall(telescope.load_extension, "frecency")
