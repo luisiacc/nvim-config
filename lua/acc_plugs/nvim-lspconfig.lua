@@ -46,7 +46,7 @@ local border = {
 
 local prefetch_definitions = function()
   local params = {
-    textDocument = lsp_utils.make_text_document_params(),
+    textDocument = vim.lsp.util.make_text_document_params(),
   }
   -- vim.lsp.buf_request(0, "textDocument/documentSymbol", params, function(err, result)
   --   if err or not result then
@@ -134,7 +134,7 @@ local lsp_utils = require("lspconfig.util")
 
 local function build_definition_handler(result_handler)
   return function()
-    local params = lsp_utils.make_position_params()
+    local params = vim.lsp.util.make_position_params()
     vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result, ctx, config)
       if err then
         vim.notify("Error: " .. err.message)
@@ -147,7 +147,7 @@ local function build_definition_handler(result_handler)
 
       -- Always go to the first result
       local first_result = result_handler(result)
-      lsp_utils.show_document(first_result, "utf-8", { focus = true })
+      vim.lsp.util.show_document(first_result, "utf-8", { focus = true })
     end)
   end
 end
@@ -248,28 +248,26 @@ local python_root_files = {
 }
 
 local find_cmd = function(cmd, prefixes, start_from, stop_at)
-  local path = lsp_utils.path
-
   if type(prefixes) == "string" then
     prefixes = { prefixes }
   end
 
   local found
   for _, prefix in ipairs(prefixes) do
-    local full_cmd = prefix and path.join(prefix, cmd) or cmd
+    local full_cmd = prefix and vim.fs.joinpath(prefix, cmd) or cmd
     local possibility
 
     -- if start_from is a dir, test it first since transverse will start from its parent
-    if start_from and path.is_dir(start_from) then
-      possibility = path.join(start_from, full_cmd)
+    if start_from and vim.fn.isdirectory(start_from) then
+      possibility = vim.fs.joinpath(start_from, full_cmd)
       if vim.fn.executable(possibility) > 0 then
         found = possibility
         break
       end
     end
 
-    path.traverse_parents(start_from, function(dir)
-      possibility = path.join(dir, full_cmd)
+    for dir in vim.fs.parents(start_from) do
+      possibility = vim.fs.joinpath(dir, full_cmd)
       if vim.fn.executable(possibility) > 0 then
         found = possibility
         return true
@@ -278,7 +276,7 @@ local find_cmd = function(cmd, prefixes, start_from, stop_at)
       if stop_at and dir == stop_at then
         return true
       end
-    end)
+    end
 
     if found ~= nil then
       break
@@ -310,13 +308,14 @@ end
 local server_configurations = {
   ["ruff"] = {
     on_attach = common_on_attach(false),
-    root_dir = function(filename, bufnr)
-      -- local lines = vim.api.nvim_buf_line_count(bufnr)
-      -- if lines > 3000 then
-      --   return nil
-      -- end
-      return lsp_utils.root_pattern(unpack(python_root_files))(filename)
-    end,
+    root_markers = python_root_files,
+    -- root_dir = function(filename, bufnr)
+    --   -- local lines = vim.api.nvim_buf_line_count(bufnr)
+    --   -- if lines > 3000 then
+    --   --   return nil
+    --   -- end
+    --   return lsp_utils.root_pattern(unpack(python_root_files))(filename)
+    -- end,
   },
   ["pyright"] = {
     handlers = {
@@ -325,13 +324,14 @@ local server_configurations = {
       end,
     },
     single_file_support = false,
-    root_dir = function(filename, bufnr)
-      -- local lines = vim.api.nvim_buf_line_count(bufnr)
-      -- if lines > 3000 then
-      --   return nil
-      -- end
-      return lsp_utils.root_pattern(unpack(python_root_files))(filename)
-    end,
+    -- root_dir = function(filename, bufnr)
+    --   -- local lines = vim.api.nvim_buf_line_count(bufnr)
+    --   -- if lines > 3000 then
+    --   --   return nil
+    --   -- end
+    --   return lsp_utils.root_pattern(unpack(python_root_files))(filename)
+    -- end,
+    root_markers = python_root_files,
     capabilities = capabilities,
     on_attach = function(client, bufnr)
       common_on_attach(true)(client, bufnr)
@@ -360,11 +360,18 @@ local server_configurations = {
     },
     before_init = function(_, config)
       local p
+      local venvInRoot = vim.fs.joinpath(config.root_dir, ".venv")
+
       if vim.env.VIRTUAL_ENV then
-        p = nlsp_utils.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
+        p = vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python3")
       else
         p = find_cmd("python3", ".venv/bin", config.root_dir)
       end
+
+      if vim.fn.isdirectory(venvInRoot) == 1 then
+        p = vim.fs.joinpath(config.root_dir, ".venv", "bin", "python3")
+      end
+
       config.settings.python.pythonPath = p
     end,
   },
@@ -376,15 +383,16 @@ local server_configurations = {
     },
     capabilities = capabilities,
     on_attach = common_on_attach(true),
-    root_dir = function(filename, bufnr)
-      -- if ".config/wezterm" is on the filename, return false
-      if string.find(filename, ".config/wezterm") then
-        return nil
-      end
-      lsp_utils.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", ".git")(
-        filename
-      )
-    end,
+    -- root_dir = function(filename, bufnr)
+    --   -- if ".config/wezterm" is on the filename, return false
+    --   if string.find(filename, ".config/wezterm") then
+    --     return nil
+    --   end
+    --   return lsp_utils.root_pattern(".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", ".git")(
+    --     filename
+    --   )
+    -- end,
+    root_markers = { ".luarc.json", ".luacheckrc", ".stylua.toml", "stylua.toml", "selene.toml", ".git" },
     settings = {
       Lua = {
         runtime = {
@@ -497,15 +505,18 @@ require("mason-lspconfig").setup({
   automatic_enable = false,
 })
 
+-- local lspconfig = require("lspconfig")
 -- SET UP THE SERVERS  ******* IMPORTANT *******
 for _, lsp in pairs(servers) do
   if vim.g.using_coq then
     local coq = require("coq")
-    vim.lsp.config[lsp] = coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config)
+    -- lspconfig[lsp].setup(coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config))
+    vim.lsp.config(lsp, coq.lsp_ensure_capabilities(server_configurations[lsp] or default_config))
   else
-    vim.lsp.config[lsp] = server_configurations[lsp] or default_config
+    -- lspconfig[lsp].setup(server_configurations[lsp] or default_config)
+    vim.lsp.config(lsp, server_configurations[lsp] or default_config)
   end
-  vim.lsp.enable(lsp)
+  vim.lsp.enable(lsp, true)
 end
 
 -- local rt = require("rust-tools")

@@ -65,6 +65,7 @@ local fonts = {
   { name = "Menlo" },
   { name = "Fira Code", h = "none" },
   { name = "SF Mono" },
+  { name = "JetBrains Mono" },
   { name = "Geist Mono" },
   -- { name = "Segoe UI Mono W01", h = "none" },
 }
