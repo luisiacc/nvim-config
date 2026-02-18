@@ -26,6 +26,8 @@ local completion_runtime_cache = {
   package_markers = {},
   project_context = {},
   source_preference = {},
+  duplicate_labels = {},
+  duplicate_labels_built = false,
 }
 
 local function trim(text)
@@ -165,9 +167,24 @@ local function maybe_extract_source(text)
     return nil
   end
 
+  local auto_import_quoted = normalized:match("[Aa]uto import from%s+['\"]([^'\"]+)['\"]")
+  if auto_import_quoted then
+    return auto_import_quoted
+  end
+
+  local from_paren_quoted = normalized:match("%(from%s+['\"]([^'\"]+)['\"]%)")
+  if from_paren_quoted then
+    return from_paren_quoted
+  end
+
   local from_quoted = normalized:match("from%s+['\"]([^'\"]+)['\"]")
   if from_quoted then
     return from_quoted
+  end
+
+  local from_unquoted = normalized:match("from%s+([@%w_.%-%/]+)")
+  if from_unquoted then
+    return from_unquoted
   end
 
   local quoted = normalized:match("^['\"]([^'\"]+)['\"]$")
@@ -183,7 +200,48 @@ local function maybe_extract_source(text)
     return normalized
   end
 
+  if normalized:match("^[@%w_.%-]+$") then
+    return normalized
+  end
+
   return nil
+end
+
+local function display_parts_to_text(value)
+  if type(value) == "string" then
+    return trim(value)
+  end
+
+  if type(value) ~= "table" then
+    return nil
+  end
+
+  if type(value.text) == "string" then
+    return trim(value.text)
+  end
+
+  local parts = {}
+  for _, part in ipairs(value) do
+    if type(part) == "string" then
+      table.insert(parts, part)
+    elseif type(part) == "table" and type(part.text) == "string" then
+      table.insert(parts, part.text)
+    end
+  end
+
+  if #parts == 0 then
+    return nil
+  end
+
+  return trim(table.concat(parts, ""))
+end
+
+local function normalize_source(value)
+  local as_text = display_parts_to_text(value)
+  if not as_text or as_text == "" then
+    return nil
+  end
+  return maybe_extract_source(as_text) or as_text
 end
 
 local function get_completion_item_source(item)
@@ -191,10 +249,46 @@ local function get_completion_item_source(item)
     return nil
   end
 
+  local function extract_from_data(data)
+    if type(data) ~= "table" then
+      return nil
+    end
+
+    local entry_names = data.entryNames
+    if type(entry_names) == "table" then
+      for _, entry_name in ipairs(entry_names) do
+        if type(entry_name) == "table" then
+          local source = normalize_source(entry_name.source)
+          if source then
+            return source
+          end
+        end
+      end
+    end
+
+    local direct_source = normalize_source(data.source)
+    if direct_source then
+      return direct_source
+    end
+
+    local module_specifier = normalize_source(data.moduleSpecifier)
+    if module_specifier then
+      return module_specifier
+    end
+
+    return nil
+  end
+
+  local source_from_data = extract_from_data(item.data)
+  if source_from_data then
+    return source_from_data
+  end
+
   local candidates = {}
   local function add_candidate(value)
-    if type(value) == "string" and value ~= "" then
-      table.insert(candidates, value)
+    local normalized = normalize_source(value)
+    if normalized then
+      table.insert(candidates, normalized)
     end
   end
 
@@ -211,15 +305,9 @@ local function get_completion_item_source(item)
     add_candidate(item.documentation.value)
   end
 
-  if type(item.data) == "table" then
-    add_candidate(item.data.source)
-    add_candidate(item.data.moduleSpecifier)
-  end
-
   for _, candidate in ipairs(candidates) do
-    local source = maybe_extract_source(candidate)
-    if source then
-      return source
+    if candidate and candidate ~= "" then
+      return candidate
     end
   end
 
@@ -268,7 +356,46 @@ local function get_completion_runtime(entry)
   completion_runtime_cache.package_markers = get_considered_my_packages()
   completion_runtime_cache.project_context = get_project_context()
   completion_runtime_cache.source_preference = {}
+  completion_runtime_cache.duplicate_labels = {}
+  completion_runtime_cache.duplicate_labels_built = false
   return completion_runtime_cache
+end
+
+local function build_duplicate_labels_for_context(context_id)
+  local label_counts = {}
+  local result = {}
+  local all_sources = (cmp.core and cmp.core.sources) or {}
+
+  for _, source in pairs(all_sources) do
+    if source and source.name == "nvim_lsp" and source.context and source.context.id == context_id then
+      local entries = source.entries or {}
+      for _, entry in ipairs(entries) do
+        local item = entry and entry.completion_item
+        local label = item and item.label
+        if type(label) == "string" and label ~= "" then
+          label_counts[label] = (label_counts[label] or 0) + 1
+        end
+      end
+    end
+  end
+
+  for label, count in pairs(label_counts) do
+    if count > 1 then
+      result[label] = true
+    end
+  end
+
+  return result
+end
+
+local function ensure_duplicate_labels(runtime, entry)
+  if runtime.duplicate_labels_built then
+    return
+  end
+
+  local context_id = entry and entry.context and entry.context.id or runtime.context_id
+  runtime.duplicate_labels = build_duplicate_labels_for_context(context_id)
+  runtime.duplicate_labels_built = true
 end
 
 local function is_my_import_source(source, runtime)
@@ -334,13 +461,15 @@ local function prefer_my_imports(entry1, entry2)
     return nil
   end
 
+  local runtime = get_completion_runtime(entry1)
+  runtime.duplicate_labels[item1.label] = true
+
   local source1 = get_entry_source(entry1)
   local source2 = get_entry_source(entry2)
   if not source1 and not source2 then
     return nil
   end
 
-  local runtime = get_completion_runtime(entry1)
   local my_source1 = is_my_import_source(source1, runtime)
   local my_source2 = is_my_import_source(source2, runtime)
 
@@ -511,9 +640,13 @@ cmp.setup({
       local kind_label = strings[2] or ""
       formatted.kind = " " .. (strings[1] or "") .. " "
 
+      local runtime = get_completion_runtime(entry)
+      ensure_duplicate_labels(runtime, entry)
+      local label = (entry.completion_item and entry.completion_item.label) or formatted.abbr
       local source = get_entry_source(entry)
+      local show_source = source and runtime.duplicate_labels[label]
 
-      if source then
+      if show_source then
         formatted.menu = " [" .. truncate_source_label(source, 36) .. "]"
       else
         formatted.menu = "    (" .. kind_label .. ")"
