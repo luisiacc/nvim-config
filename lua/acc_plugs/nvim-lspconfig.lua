@@ -572,23 +572,26 @@ function PrintDiagnostics()
   end
 end
 
--- vim.cmd([[ autocmd CursorHold * lua PrintDiagnostics() ]])
---     󰬸 ●
---    
--- vim.cmd([[sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=]])
--- vim.cmd([[sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=]])
--- vim.cmd([[sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=]])
--- vim.cmd([[sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=]])
-
-vim.cmd([[sign define DiagnosticSignError text=● texthl=DiagnosticSignError linehl= numhl=]])
-vim.cmd([[sign define DiagnosticSignWarn text=● texthl=DiagnosticSignWarn linehl= numhl=]])
-vim.cmd([[sign define DiagnosticSignInfo text=● texthl=DiagnosticSignInfo linehl= numhl=]])
-vim.cmd([[sign define DiagnosticSignHint text=● texthl=DiagnosticSignHint linehl= numhl=]])
-
 vim.diagnostic.config({
   underline = false,
   virtual_text = false,
-  signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "●",
+      [vim.diagnostic.severity.WARN] = "●",
+      [vim.diagnostic.severity.INFO] = "●",
+      [vim.diagnostic.severity.HINT] = "●",
+    },
+    texthl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+    },
+    numhl = {
+      [vim.diagnostic.severity.WARN] = "WarningMsg",
+    },
+  },
   update_in_insert = false,
 })
 

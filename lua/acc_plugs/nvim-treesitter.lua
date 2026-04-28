@@ -10,7 +10,7 @@ require("nvim-ts-autotag").setup({
     "typescriptreact",
     "svelte",
     "vue",
-		"astro",
+    "astro",
   },
 })
 
@@ -53,7 +53,7 @@ require("nvim-treesitter.configs").setup({
   highlight = {
     enable = true,
   },
-  indent = { enable = true },
+  indent = { enable = false },
   endwise = {
     enable = true,
   },
@@ -66,6 +66,8 @@ require("nvim-treesitter.configs").setup({
     persist_queries = false, -- Whether the query persists across vim sessions
   },
 })
+
+vim.opt.indentexpr = 'nvim_treesitter#indent()'
 
 -- vim.opt.runtimepath:append(parsers_path)
 local ok, context = pcall(require, "treesitter-context")
@@ -86,7 +88,6 @@ context.setup({
   zindex = 20, -- The Z-index of the context window
   on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
 })
-
 
 -- vim.filetype.add({
 --   extension = {

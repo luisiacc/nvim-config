@@ -25,9 +25,7 @@ local completion_runtime_cache = {
   context_id = nil,
   package_markers = {},
   project_context = {},
-  source_preference = {},
-  duplicate_labels = {},
-  duplicate_labels_built = false,
+  source_rank = {},
 }
 
 local function trim(text)
@@ -355,89 +353,64 @@ local function get_completion_runtime(entry)
   completion_runtime_cache.context_id = context_id
   completion_runtime_cache.package_markers = get_considered_my_packages()
   completion_runtime_cache.project_context = get_project_context()
-  completion_runtime_cache.source_preference = {}
-  completion_runtime_cache.duplicate_labels = {}
-  completion_runtime_cache.duplicate_labels_built = false
+  completion_runtime_cache.source_rank = {}
   return completion_runtime_cache
 end
 
-local function build_duplicate_labels_for_context(context_id)
-  local label_counts = {}
-  local result = {}
-  local all_sources = (cmp.core and cmp.core.sources) or {}
-
-  for _, source in pairs(all_sources) do
-    if source and source.name == "nvim_lsp" and source.context and source.context.id == context_id then
-      local entries = source.entries or {}
-      for _, entry in ipairs(entries) do
-        local item = entry and entry.completion_item
-        local label = item and item.label
-        if type(label) == "string" and label ~= "" then
-          label_counts[label] = (label_counts[label] or 0) + 1
-        end
-      end
-    end
+local function get_entry_lsp_client_name(entry)
+  if not entry or not entry.source or entry.source.name ~= "nvim_lsp" then
+    return nil
   end
 
-  for label, count in pairs(label_counts) do
-    if count > 1 then
-      result[label] = true
-    end
+  local source_impl = entry.source.source
+  local client = source_impl and source_impl.client
+  local client_name = client and client.name
+
+  if type(client_name) == "string" and client_name ~= "" then
+    return client_name
   end
 
-  return result
+  return "lsp"
 end
 
-local function ensure_duplicate_labels(runtime, entry)
-  if runtime.duplicate_labels_built then
-    return
-  end
-
-  local context_id = entry and entry.context and entry.context.id or runtime.context_id
-  runtime.duplicate_labels = build_duplicate_labels_for_context(context_id)
-  runtime.duplicate_labels_built = true
-end
-
-local function is_my_import_source(source, runtime)
+local function get_import_source_rank(source, runtime)
   if type(source) ~= "string" or source == "" then
-    return false
+    return math.huge
   end
 
-  local cached = runtime.source_preference[source]
+  local cached = runtime.source_rank[source]
   if cached ~= nil then
     return cached
   end
 
-  local is_mine = false
+  local rank = math.huge
 
+  -- Local/project imports always beat package imports.
   if is_path_like(source) then
-    is_mine = true
+    rank = 0
   end
 
-  if not is_mine then
-    local context = runtime.project_context
-    if type(context.root) == "string" then
-      if vim.startswith(source, context.root) then
-        is_mine = true
-      end
+  local context = runtime.project_context
+  if type(context.root) == "string" then
+    if vim.startswith(source, context.root) then
+      rank = math.min(rank, 0)
+    end
 
-      if source:match("^file://") and source:find(context.root, 1, true) then
-        is_mine = true
-      end
+    if source:match("^file://") and source:find(context.root, 1, true) then
+      rank = math.min(rank, 0)
     end
   end
 
-  if not is_mine then
-    for _, marker in ipairs(runtime.package_markers) do
-      if source_matches_prefix(source, marker) then
-        is_mine = true
-        break
-      end
+  -- Respect CONSIDERED_MY_PACKAGES order for package-vs-package ties.
+  for index, marker in ipairs(runtime.package_markers) do
+    if source_matches_prefix(source, marker) then
+      rank = math.min(rank, index)
+      break
     end
   end
 
-  runtime.source_preference[source] = is_mine
-  return is_mine
+  runtime.source_rank[source] = rank
+  return rank
 end
 
 local function prefer_my_imports(entry1, entry2)
@@ -462,7 +435,6 @@ local function prefer_my_imports(entry1, entry2)
   end
 
   local runtime = get_completion_runtime(entry1)
-  runtime.duplicate_labels[item1.label] = true
 
   local source1 = get_entry_source(entry1)
   local source2 = get_entry_source(entry2)
@@ -470,11 +442,17 @@ local function prefer_my_imports(entry1, entry2)
     return nil
   end
 
-  local my_source1 = is_my_import_source(source1, runtime)
-  local my_source2 = is_my_import_source(source2, runtime)
+  local rank1 = get_import_source_rank(source1, runtime)
+  local rank2 = get_import_source_rank(source2, runtime)
+  local my_source1 = rank1 < math.huge
+  local my_source2 = rank2 < math.huge
 
   if my_source1 ~= my_source2 then
     return my_source1
+  end
+
+  if my_source1 and my_source2 and rank1 ~= rank2 then
+    return rank1 < rank2
   end
 
   return nil
@@ -640,16 +618,16 @@ cmp.setup({
       local kind_label = strings[2] or ""
       formatted.kind = " " .. (strings[1] or "") .. " "
 
-      local runtime = get_completion_runtime(entry)
-      ensure_duplicate_labels(runtime, entry)
-      local label = (entry.completion_item and entry.completion_item.label) or formatted.abbr
       local source = get_entry_source(entry)
-      local show_source = source and runtime.duplicate_labels[label]
-
-      if show_source then
+      local lsp_client_name = get_entry_lsp_client_name(entry)
+      if source then
         formatted.menu = " [" .. truncate_source_label(source, 36) .. "]"
-      else
+      elseif lsp_client_name then
+        formatted.menu = " [" .. lsp_client_name .. "]"
+      elseif kind_label ~= "" then
         formatted.menu = "    (" .. kind_label .. ")"
+      else
+        formatted.menu = " [" .. (entry.source and entry.source.name or "cmp") .. "]"
       end
 
       return formatted

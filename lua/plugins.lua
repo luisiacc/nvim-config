@@ -88,78 +88,6 @@ local plugins = {
       -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
     end,
   },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    lazy = false,
-    opts = {
-      provider = "gemini",
-      providers = {
-        gemini = {
-          model = "gemini-2.5-pro",
-          extra_request_body = {
-            temperature = 0.8,
-            max_completion_tokens = 32000,
-          },
-        },
-      },
-      behaviour = {
-        auto_apply_diff_after_generation = false,
-      },
-      windows = {
-        ---@type "right" | "left" | "top" | "bottom"
-        position = "right", -- the position of the sidebar
-        wrap = true, -- similar to vim.o.wrap
-        width = 40, -- default % based on available width
-        sidebar_header = {
-          align = "center", -- left, center, right for title
-          rounded = true,
-        },
-      },
-      highlights = {
-        diff = {
-          current = "DiffDelete",
-          incoming = "DiffAdd",
-        },
-      },
-    },
-    -- if you want to download pre-built binary, then pass source=false. Make sure to follow instruction above.
-    -- Also note that downloading prebuilt binary is a lot faster comparing to compiling from source.
-    build = ":AvanteBuild source=false",
-    dependencies = {
-      "stevearc/dressing.nvim",
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- The below dependencies are optional,
-      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
-      {
-        -- support for image pasting
-        "HakonHarnes/img-clip.nvim",
-        event = "VeryLazy",
-        opts = {
-          -- recommended settings
-          default = {
-            embed_image_as_base64 = false,
-            prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
-            -- required for Windows users
-            use_absolute_path = true,
-          },
-        },
-      },
-      -- {
-      --   -- Make sure to setup it properly if you have lazy=true
-      --   "MeanderingProgrammer/render-markdown.nvim",
-      --   opts = {
-      --     file_types = { "markdown", "Avante" },
-      --   },
-      --   ft = { "markdown", "Avante" },
-      -- },
-    },
-  },
   -- {
   --   "sourcegraph/sg.nvim",
   --   dependencies = { "nvim-lua/plenary.nvim" },
@@ -205,6 +133,7 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     config = req("acc_plugs.nvim-treesitter"),
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
